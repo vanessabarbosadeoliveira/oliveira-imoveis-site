@@ -1,0 +1,4 @@
+public/imoveis/
+*.mp4
+.DS_Store
+deploy/

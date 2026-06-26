@@ -77,6 +77,28 @@ Fechamento → comissão para a Oliveira
 
 Endpoint no Cloudflare Workers — retorna todos os leads capturados pela LP em tempo real. Requer parâmetro `?secret=` (ver doc de senhas).
 
+### Centralização de leads — LP1 e LP2 apontam para o mesmo Worker
+
+**Confirmado em 26/06/2026:** ambas as landing pages já enviam leads para o mesmo endpoint do Worker. O campo `pagina_origem` identifica de qual LP veio o lead.
+
+| LP | URL | Worker | `pagina_origem` |
+|---|---|---|---|
+| LP1 — Pesquisa Estratégica | `lp.oliveiraimoveis.ia.br` | `oliveira-pesquisa` | `oliveiraimoveis.ia.br/pesquisa` |
+| LP2 — Portofino Street Mall | `wispy-field-ab1d.vanessabarbosadeoliveira9.workers.dev` | `wispy-field-ab1d` | `Portofino Street Mall` |
+
+**Endpoint único (ambas):** `https://oliveira-leads-api.vanessabarbosadeoliveira9.workers.dev/lead`
+- Método: `POST`
+- Formato: `FormData`
+- `keepalive: true` em ambas (garante entrega mesmo quando o usuário navega para o WhatsApp)
+
+**Dashboard centralizado:** URL e secret disponíveis no [documento de senhas](https://docs.google.com/document/d/1xSb1g3KtOfWy-bCrnoSagkGrfhPj3hj1-1IOIxyfQ_E/edit?tab=t.0) (seção "link com os leads").
+- Coluna **"Página"** mostra de qual LP veio o lead
+- Todos os UTMs do Meta Ads são capturados (campanha, conjunto, criativo, ad_id, fbclid)
+
+**DNS Cloudflare (`oliveiraimoveis.ia.br`):**
+- `lp.oliveiraimoveis.ia.br` → Worker `oliveira-pesquisa` (Proxied)
+- `www.oliveiraimoveis.ia.br` → Worker `soft-smoke-c987` (Proxied)
+
 ---
 
 ## 4. Landing Page — lp.oliveiraimoveis.ia.br

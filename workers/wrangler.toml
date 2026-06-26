@@ -1,0 +1,14 @@
+name = "cliques-oliveira"
+main = "cliques-worker.js"
+compatibility_date = "2024-01-01"
+
+# Subdomínio: cliques.oliveiraimoveis.ia.br
+# (configurar DNS no Cloudflare apontando para este Worker)
+
+[[kv_namespaces]]
+binding = "CLIQUES_KV"
+id = ""          # preencher após criar o KV namespace no dashboard
+
+[routes]
+pattern = "cliques.oliveiraimoveis.ia.br/api/cliques"
+zone_name = "oliveiraimoveis.ia.br"

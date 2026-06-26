@@ -2963,6 +2963,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
         <a href="#ecossistema" class="btn btn--outline-white">Ver case de sucesso →</a>
       </div>
 
+      <!-- Prova social — visível só após CLIQUE_THRESHOLD cliques (controlado por JS) -->
+      <div id="oi-social-proof" style="display:none;align-items:center;gap:8px;margin-bottom:12px;font-family:inherit;font-size:13px;color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:20px;padding:6px 14px;width:fit-content;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4fc3f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span id="oi-social-proof-text"></span>
+      </div>
+
       <!-- Selos de credibilidade -->
       <div class="hero__badges">
         <div class="hero__badge">
@@ -4296,6 +4302,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
   }
 
   /* ── Logo posicionada via CSS (bottom:28px, centralizada) ── */
+
+  /* ── Contador de cliques + prova social ─────────────────────────
+     - Cada clique em botão wa.me envia POST para o Worker de contagem
+     - Badge #oi-social-proof fica oculto até count >= THRESHOLD
+     - Quando visível: "X proprietários já solicitaram análise"          */
+  (function () {
+    var API    = 'https://cliques.oliveiraimoveis.ia.br/api/cliques';
+    var THRESHOLD = 50;   // exibe o badge só a partir deste número
+
+    function updateBadge(count) {
+      if (count < THRESHOLD) return;
+      var box  = document.getElementById('oi-social-proof');
+      var text = document.getElementById('oi-social-proof-text');
+      if (!box || !text) return;
+      text.textContent = count + ' proprietários já solicitaram análise';
+      box.style.display = 'flex';
+    }
+
+    // Busca contagem atual ao carregar a página
+    fetch(API, { method: 'GET', cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { if (d && d.count) updateBadge(d.count); })
+      .catch(function () {});
+
+    // Incrementa ao clicar em qualquer CTA wa.me
+    document.querySelectorAll('a[href^="https://wa.me"], a[href^="http://wa.me"]')
+      .forEach(function (a) {
+        a.addEventListener('click', function () {
+          fetch(API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ page: location.pathname })
+          })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (d) { if (d && d.count) updateBadge(d.count); })
+          .catch(function () {});
+        }, { passive: true });
+      });
+  })();
 
   /* ── Rastreamento de LEAD nos CTAs de contato ──────────────────
      Dispara o evento de conversão para Meta (Lead) e GA4 (generate_lead)

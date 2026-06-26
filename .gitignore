@@ -1,4 +1,27 @@
-public/imoveis/
-*.mp4
+# Sistema
 .DS_Store
+*.DS_Store
+
+# Deploy (gerado automaticamente)
 deploy/
+
+# Vídeos e áudios pesados
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.m4v
+
+# Imagens pesadas (fotos de imóveis, capturas de tela de slides)
+public/imoveis/
+marketing/pesquisas-v5/slide-*.jpg
+marketing/pitch-parceria/slide-*.jpg
+
+# Arquivos de apresentação pesados (> 5MB ficam fora do git)
+marketing/identidade-visual/Aula*.pdf
+marketing/identidade-visual/*.png
+marketing/identidade-visual/Oliveira-Imoveis-Apresentacao.pptx
+
+# Temporários e inspeção
+*.inspect.ndjson
+*.textClipping

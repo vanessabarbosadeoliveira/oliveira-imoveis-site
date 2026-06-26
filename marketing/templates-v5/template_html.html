@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O que cabe no bairro mais populoso de Minas · Buritis · Análise de Mercado Saúde &amp; Wellness · Lojas 15 e 16 Portofino</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Mono:wght@300;400;500&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f1410;--bg-2:#161d18;
+    --paper:#f5f1e8;--paper-2:#ece7d8;
+    --ink:#0a0c0a;--ink-soft:#1b201c;
+    --moss:#3d5240;--sage:#7c9276;--olive:#b6c39d;
+    --copper:#c66a3a;--copper-soft:#e8a577;
+    --gold:#c9a449;--red:#b34a3a;--danger:#8a2f23;
+    --gridline:rgba(245,241,232,.08);--gridline-paper:rgba(10,12,10,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter Tight',sans-serif;font-weight:400;line-height:1.55;font-feature-settings:'ss01','cv11';-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .display{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-weight:300;letter-spacing:-.025em;line-height:.95}
+  .serif{font-family:'Fraunces',Georgia,serif}
+  .mono{font-family:'DM Mono',monospace;font-weight:400;letter-spacing:-.01em}
+
+  .rail{position:fixed;left:0;top:0;bottom:0;width:48px;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:24px 0;z-index:100;border-right:1px solid rgba(245,241,232,.1)}
+  .rail-logo{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:14px;letter-spacing:.18em;color:var(--olive)}
+  .rail-meta{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;color:rgba(245,241,232,.4);text-transform:uppercase}
+  main{margin-left:48px}
+
+  .hero{background:var(--ink);color:var(--paper);min-height:100vh;padding:64px 7vw 48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(800px circle at 70% 30%,rgba(124,146,118,.12) 0%,transparent 60%),radial-gradient(600px circle at 20% 80%,rgba(198,106,58,.08) 0%,transparent 60%);pointer-events:none}
+  .hero-meta{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between}
+  .meta-top .tag{display:inline-flex;align-items:center;gap:10px;padding:6px 14px;border:1px solid var(--sage);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--olive);text-transform:uppercase;border-radius:100px;margin-bottom:24px}
+  .meta-top .tag::before{content:'';width:6px;height:6px;background:var(--copper);border-radius:50%;box-shadow:0 0 12px var(--copper)}
+  .kicker{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--olive);margin-bottom:18px}
+  .h1{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-weight:300;font-size:clamp(48px,7vw,104px);line-height:.93;letter-spacing:-.035em;color:var(--paper)}
+  .h1 em{font-style:italic;font-weight:300;color:var(--olive)}
+  .h1 .copper{color:var(--copper-soft)}
+  .hero-sub{margin-top:32px;font-size:18px;line-height:1.5;color:rgba(245,241,232,.7);max-width:520px;font-weight:300}
+  .meta-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-top:24px;border-top:1px solid rgba(245,241,232,.12)}
+  .meta-bottom dt{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--sage);margin-bottom:8px}
+  .meta-bottom dd{font-family:'Fraunces',serif;font-size:15px;color:var(--paper);line-height:1.3}
+
+  .hero-vis{position:relative;z-index:2;border-left:1px solid rgba(245,241,232,.1);padding-left:48px;display:flex;flex-direction:column;justify-content:center}
+  .vis-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(245,241,232,.12);border:1px solid rgba(245,241,232,.12);margin-bottom:32px}
+  .vis-cell{background:var(--ink);padding:20px 18px;min-height:120px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+  .vis-cell.featured{background:var(--moss);color:var(--paper)}
+  .vis-cell .num{font-family:'Fraunces',serif;font-weight:300;font-size:38px;line-height:1;color:var(--paper);font-variation-settings:'opsz' 144;letter-spacing:-.04em}
+  .vis-cell.featured .num{color:var(--olive)}
+  .vis-cell .lbl{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,241,232,.5)}
+  .vis-cell .src{font-family:'DM Mono',monospace;font-size:8.5px;color:rgba(245,241,232,.3);margin-top:4px}
+  .vis-quote{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:26px;line-height:1.3;color:var(--olive);padding:24px 0;letter-spacing:-.015em}
+  .vis-quote::before{content:'« ';color:var(--copper-soft)}
+  .vis-quote::after{content:' »';color:var(--copper-soft)}
+
+  section{padding:120px 7vw}
+  section.dark{background:var(--ink);color:var(--paper)}
+  section.dark .h2{color:var(--paper)}
+  section.dark .lead{color:rgba(245,241,232,.65)}
+  .section-head{display:grid;grid-template-columns:200px 1fr;gap:48px;margin-bottom:64px;align-items:end}
+  .section-num{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.25em;text-transform:uppercase}
+  .section-num .slash{color:var(--copper)}
+  .section-num .word{display:block;margin-top:8px;color:var(--moss);font-size:11px}
+  section.dark .section-num .word{color:var(--olive)}
+  .h2{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-weight:300;font-size:clamp(40px,5.4vw,76px);line-height:.95;letter-spacing:-.03em;color:var(--ink)}
+  .h2 em{font-style:italic;color:var(--moss)}
+  section.dark .h2 em{color:var(--olive)}
+  .lead{font-family:'Fraunces',serif;font-weight:300;font-size:22px;line-height:1.45;max-width:880px;letter-spacing:-.012em;color:var(--ink-soft);margin-top:24px}
+
+  /* Exec note */
+  .exec-note{margin-top:48px;padding:48px;background:var(--ink);color:var(--paper);display:grid;grid-template-columns:120px 1fr;gap:32px;align-items:start}
+  .exec-note .lbl{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--olive);padding-right:24px;border-right:1px solid rgba(245,241,232,.15);height:100%;display:flex;align-items:flex-start;padding-top:8px}
+  .exec-note .body{font-family:'Fraunces',serif;font-weight:300;font-size:22px;line-height:1.45;letter-spacing:-.01em;color:rgba(245,241,232,.92)}
+  .exec-note .body em{color:var(--olive);font-style:italic}
+  .exec-note .body strong{color:var(--copper-soft);font-weight:500}
+
+  /* Demographics grid */
+  .demo-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+  .demo-card{background:var(--paper-2);padding:32px;border:1px solid var(--gridline-paper);position:relative}
+  .demo-card.dark{background:var(--ink);color:var(--paper)}
+  .demo-card .label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--moss);margin-bottom:16px}
+  .demo-card.dark .label{color:var(--olive)}
+  .demo-card .big{font-family:'Fraunces',serif;font-weight:300;font-size:64px;line-height:1;font-variation-settings:'opsz' 144;letter-spacing:-.04em}
+  .demo-card .big .unit{font-size:24px;color:var(--moss);margin-left:8px;font-style:italic}
+  .demo-card.dark .big .unit{color:var(--olive)}
+  .demo-card .desc{margin-top:14px;font-size:14.5px;line-height:1.45;color:var(--ink-soft)}
+  .demo-card.dark .desc{color:rgba(245,241,232,.7)}
+  .demo-card .src{margin-top:16px;font-family:'DM Mono',monospace;font-size:10px;color:var(--copper);letter-spacing:.05em}
+  .demo-card.dark .src{color:var(--copper-soft)}
+  .span-3{grid-column:span 3}.span-4{grid-column:span 4}.span-5{grid-column:span 5}
+  .span-6{grid-column:span 6}.span-7{grid-column:span 7}.span-8{grid-column:span 8}.span-12{grid-column:span 12}
+
+  /* ===== MAPA COMPLETO DE MODALIDADES (CORE) ===== */
+  .modal-section{padding:120px 7vw;background:var(--ink);color:var(--paper)}
+  .modal-table{
+    margin-top:48px;background:var(--bg-2);
+    border:1px solid rgba(245,241,232,.08);
+  }
+  .modal-row{
+    display:grid;
+    grid-template-columns:48px 1.6fr 100px 90px 2fr 130px;
+    gap:20px;padding:18px 24px;
+    align-items:center;
+    border-bottom:1px solid rgba(245,241,232,.06);
+  }
+  .modal-row:last-child{border-bottom:none}
+  .modal-row.cat-header{
+    background:var(--moss);color:var(--paper);
+    padding:14px 24px;display:flex;align-items:center;gap:12px;
+    border-bottom:none;
+  }
+  .modal-row.cat-header .letter{
+    font-family:'Fraunces',serif;font-weight:300;font-size:32px;line-height:1;
+    color:var(--olive);font-variation-settings:'opsz' 144;
+  }
+  .modal-row.cat-header .name{
+    font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;
+    text-transform:uppercase;color:var(--olive);
+  }
+  .modal-row.col-head{
+    background:rgba(245,241,232,.04);padding:12px 24px;
+    border-bottom:1px solid rgba(245,241,232,.1);
+  }
+  .modal-row.col-head div{
+    font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--olive);
+  }
+  .modal-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--copper-soft);text-align:center;font-weight:500}
+  .modal-cat{
+    font-family:'Fraunces',serif;font-size:18px;color:var(--paper);font-weight:400;
+    letter-spacing:-.01em;line-height:1.2;
+  }
+  .modal-cat .sub{
+    display:block;font-family:'Inter Tight',sans-serif;font-size:11px;
+    color:rgba(245,241,232,.5);margin-top:3px;font-weight:400;
+  }
+  .modal-qty{
+    font-family:'Fraunces',serif;font-weight:500;font-size:24px;
+    text-align:center;letter-spacing:-.015em;font-variation-settings:'opsz' 144;
+  }
+  .modal-qty.q-sat{color:var(--red)}
+  .modal-qty.q-high{color:var(--copper)}
+  .modal-qty.q-mid{color:var(--gold)}
+  .modal-qty.q-low{color:var(--olive)}
+  .modal-qty.q-zero{color:var(--sage)}
+  .modal-status{
+    font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.12em;
+    text-transform:uppercase;text-align:center;padding:5px 8px;border-radius:100px;
+    font-weight:500;
+  }
+  .modal-status.sat{background:var(--danger);color:var(--paper)}
+  .modal-status.high{background:var(--copper);color:var(--paper)}
+  .modal-status.mid{background:var(--gold);color:var(--ink)}
+  .modal-status.low{background:var(--sage);color:var(--ink)}
+  .modal-status.zero{background:var(--moss);color:var(--paper)}
+  .modal-refs{
+    font-size:13px;color:rgba(245,241,232,.7);line-height:1.45;
+  }
+  .modal-refs b{color:rgba(245,241,232,.92);font-weight:500}
+  .modal-src{
+    font-family:'DM Mono',monospace;font-size:10px;color:var(--olive);
+    text-align:right;
+  }
+  .modal-src a{color:var(--olive);text-decoration:none;border-bottom:1px solid var(--olive)}
+  .modal-src a:hover{color:var(--copper-soft);border-color:var(--copper-soft)}
+
+  /* Saturation overview cards */
+  .sat-overview{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;
+  }
+  .sat-card{
+    background:rgba(245,241,232,.04);padding:32px;
+    border-left:3px solid var(--copper);
+  }
+  .sat-card .label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--olive);margin-bottom:14px}
+  .sat-card .title{font-family:'Fraunces',serif;font-weight:400;font-size:22px;
+    color:var(--paper);line-height:1.2;letter-spacing:-.015em;margin-bottom:16px}
+  .sat-card .list{font-size:14px;color:rgba(245,241,232,.75);line-height:1.6}
+  .sat-card .list b{color:var(--olive);font-weight:500}
+
+  /* UPGRADE PITCH SECTION */
+  .upgrade-section{padding:120px 7vw;background:var(--paper)}
+  .upgrade-hero{
+    display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-bottom:80px;align-items:end;
+  }
+  .upgrade-hero .left{}
+  .upgrade-hero h2.h2{font-size:clamp(40px,5vw,72px)}
+  .upgrade-hero .right{padding-top:32px}
+  .upgrade-hero .right p{font-family:'Fraunces',serif;font-weight:300;font-size:20px;
+    line-height:1.5;color:var(--ink-soft);letter-spacing:-.01em}
+  .upgrade-hero .right p em{color:var(--copper);font-style:italic}
+
+  /* Antes/Depois */
+  .before-after{
+    display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--gridline-paper);margin-top:48px;
+    border:1px solid var(--gridline-paper);
+  }
+  .ba-side{background:var(--paper-2);padding:48px}
+  .ba-side.after{background:var(--ink);color:var(--paper)}
+  .ba-side .tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--moss);margin-bottom:20px}
+  .ba-side.after .tag{color:var(--olive)}
+  .ba-side h3{font-family:'Fraunces',serif;font-weight:400;font-size:32px;
+    color:var(--ink);line-height:1.1;letter-spacing:-.02em;margin-bottom:28px}
+  .ba-side.after h3{color:var(--paper)}
+  .ba-side h3 em{font-style:italic}
+  .ba-side.after h3 em{color:var(--olive)}
+  .ba-side ul{list-style:none;display:flex;flex-direction:column;gap:18px}
+  .ba-side li{font-size:15px;line-height:1.55;color:var(--ink-soft);padding-left:28px;
+    position:relative}
+  .ba-side.after li{color:rgba(245,241,232,.85)}
+  .ba-side li::before{
+    content:'×';position:absolute;left:0;top:-2px;
+    font-family:'Fraunces',serif;font-size:22px;color:var(--copper);
+    font-weight:300;
+  }
+  .ba-side.after li::before{content:'✓';color:var(--olive);font-size:18px;top:-1px}
+  .ba-side li b{color:var(--ink);font-weight:600}
+  .ba-side.after li b{color:var(--paper)}
+
+  /* Personas */
+  .persona-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;
+  }
+  .persona-card{
+    background:var(--paper-2);padding:36px;border:1px solid var(--gridline-paper);
+    display:flex;flex-direction:column;gap:18px;min-height:380px;
+  }
+  .persona-card .num{font-family:'Fraunces',serif;font-weight:300;font-size:54px;
+    line-height:1;color:var(--copper);font-variation-settings:'opsz' 144;letter-spacing:-.04em}
+  .persona-card h4{font-family:'Fraunces',serif;font-weight:500;font-size:24px;
+    color:var(--ink);letter-spacing:-.015em;line-height:1.15}
+  .persona-card .role{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--moss)}
+  .persona-card .pitch{font-size:15px;color:var(--ink-soft);line-height:1.55;flex:1}
+  .persona-card .pitch em{color:var(--copper);font-style:italic;font-weight:500}
+  .persona-card .signal{
+    padding-top:14px;border-top:1px dashed var(--gridline-paper);
+    font-family:'DM Mono',monospace;font-size:10px;color:var(--moss);letter-spacing:.05em;
+  }
+
+  /* Lojas */
+  .loja-block{
+    display:grid;grid-template-columns:1fr 1.5fr;gap:48px;align-items:start;
+    margin-top:80px;padding-top:80px;border-top:1px solid rgba(245,241,232,.1);
+  }
+  .loja-block:first-of-type{border-top:none;padding-top:0;margin-top:0}
+  .loja-info{position:sticky;top:32px}
+  .loja-num{font-family:'Fraunces',serif;font-weight:300;font-size:140px;line-height:.85;
+    color:var(--copper);font-variation-settings:'opsz' 144;letter-spacing:-.05em;margin-bottom:8px}
+  .loja-name{font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:24px;color:var(--paper);margin-bottom:24px;letter-spacing:-.01em}
+  .loja-addr{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--olive);margin-bottom:32px;line-height:1.6}
+  .loja-feats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;
+    padding-top:24px;border-top:1px solid rgba(245,241,232,.1)}
+  .loja-feats dt{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--olive);margin-bottom:4px}
+  .loja-feats dd{font-family:'Fraunces',serif;font-size:18px;color:var(--paper);font-weight:400}
+  .loja-vocation{background:var(--bg-2);color:var(--paper);padding:24px;margin-top:24px;
+    border-left:3px solid var(--copper)}
+  .loja-vocation .ttl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--olive);margin-bottom:8px}
+  .loja-vocation .voc{font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:22px;line-height:1.25;color:var(--paper);letter-spacing:-.015em}
+
+  .target-list{display:flex;flex-direction:column;gap:1px;background:rgba(245,241,232,.08)}
+  .target-item{background:var(--bg-2);padding:28px 32px;
+    display:grid;grid-template-columns:1fr 80px;gap:20px;align-items:center}
+  .target-item h4{font-family:'Fraunces',serif;font-weight:400;font-size:22px;
+    color:var(--paper);letter-spacing:-.015em;margin-bottom:6px}
+  .target-item .desc{font-size:14px;color:rgba(245,241,232,.7);line-height:1.4}
+  .target-item .qty{font-family:'Fraunces',serif;font-size:32px;color:var(--olive);
+    text-align:right;font-weight:400;line-height:1}
+  .target-item .qty .lbl{font-family:'DM Mono',monospace;font-size:9px;color:var(--copper-soft);
+    display:block;letter-spacing:.15em;text-transform:uppercase;margin-top:4px}
+
+  /* Mercado trends */
+  .trend-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:48px}
+  .trend-card{padding:36px;border:1px solid var(--gridline-paper);background:var(--paper-2)}
+  .trend-card .icon-wrap{width:48px;height:48px;display:flex;align-items:center;justify-content:center;
+    background:var(--ink);color:var(--olive);margin-bottom:24px;font-family:'Fraunces',serif;font-weight:300;font-size:24px}
+  .trend-card h3{font-family:'Fraunces',serif;font-weight:400;font-size:24px;
+    color:var(--ink);line-height:1.2;letter-spacing:-.015em;margin-bottom:14px}
+  .trend-card p{font-size:15px;color:var(--ink-soft);line-height:1.55;margin-bottom:16px}
+  .trend-card .stat{font-family:'Fraunces',serif;font-weight:300;font-size:32px;
+    color:var(--copper);font-variation-settings:'opsz' 144;letter-spacing:-.025em;line-height:1;margin-bottom:8px}
+  .trend-card .stat-lbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--moss);margin-bottom:18px;display:block}
+  .trend-card .src{font-family:'DM Mono',monospace;font-size:10px;color:var(--moss);
+    padding-top:14px;border-top:1px dashed var(--gridline-paper)}
+
+  /* Sources */
+  .sources-section{padding:120px 7vw;background:var(--paper-2)}
+  .sources-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:64px;margin-top:64px}
+  .sources-col h4{font-family:'Fraunces',serif;font-weight:500;font-size:24px;
+    color:var(--ink);letter-spacing:-.015em;margin-bottom:24px;
+    padding-bottom:12px;border-bottom:1px solid var(--ink)}
+  .sources-col h4 .num{font-family:'DM Mono',monospace;font-size:11px;color:var(--copper);
+    letter-spacing:.2em;margin-right:12px;text-transform:uppercase}
+  .source-item{display:grid;grid-template-columns:32px 1fr;gap:16px;
+    padding:16px 0;border-bottom:1px dashed var(--gridline-paper)}
+  .source-item:last-child{border-bottom:none}
+  .source-item .ref{font-family:'DM Mono',monospace;font-size:12px;color:var(--copper);font-weight:500}
+  .source-item .body strong{display:block;font-family:'Fraunces',serif;font-weight:500;
+    font-size:15px;color:var(--ink);line-height:1.3;margin-bottom:4px}
+  .source-item .body .desc{font-size:13px;color:var(--ink-soft);line-height:1.5;margin-bottom:4px}
+  .source-item .body a{color:var(--moss);text-decoration:none;font-family:'DM Mono',monospace;
+    font-size:11px;border-bottom:1px solid var(--moss);word-break:break-all}
+  .source-item .body a:hover{color:var(--copper);border-color:var(--copper)}
+
+  footer{background:var(--ink);color:var(--paper);padding:80px 7vw 40px}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+  .footer-mark{font-family:'Fraunces',serif;font-weight:300;font-size:64px;
+    line-height:.9;font-variation-settings:'opsz' 144;letter-spacing:-.03em}
+  .footer-mark em{font-style:italic;color:var(--olive)}
+  .footer-meta{font-family:'DM Mono',monospace;font-size:11px;line-height:2;
+    color:rgba(245,241,232,.6);letter-spacing:.05em}
+  .footer-meta strong{color:var(--paper)}
+  .footer-bottom{margin-top:64px;padding-top:24px;border-top:1px solid rgba(245,241,232,.1);
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;
+    text-transform:uppercase;color:rgba(245,241,232,.4)}
+
+  @media (max-width:1100px){
+    .hero{grid-template-columns:1fr;padding:48px 32px}
+    .hero-vis{border-left:none;padding-left:0;border-top:1px solid rgba(245,241,232,.1);padding-top:48px}
+    .demo-grid{grid-template-columns:repeat(6,1fr)}
+    .span-3,.span-4{grid-column:span 3}
+    .span-5,.span-6{grid-column:span 6}
+    .span-7,.span-8,.span-12{grid-column:span 6}
+    .modal-row{grid-template-columns:30px 1.4fr 80px 80px 1.6fr;gap:14px;padding:16px 18px}
+    .modal-row .modal-src{display:none}
+    .modal-row.col-head div:last-child{display:none}
+    .upgrade-hero,.before-after{grid-template-columns:1fr;gap:32px}
+    .persona-grid,.trend-grid{grid-template-columns:1fr}
+    .loja-block{grid-template-columns:1fr}
+    .loja-info{position:static}
+    .sources-grid{grid-template-columns:1fr;gap:48px}
+    .sat-overview{grid-template-columns:1fr}
+    .section-head{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    main{margin-left:0}.rail{display:none}
+    section,.modal-section,.upgrade-section,.sources-section{padding:80px 24px}
+    .h1{font-size:48px}.h2{font-size:36px}
+    .demo-grid{grid-template-columns:1fr}
+    .span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-12{grid-column:span 1}
+    .vis-grid{grid-template-columns:repeat(2,1fr)}
+    .modal-row{grid-template-columns:30px 1fr 60px;gap:8px;padding:14px}
+    .modal-row .modal-status,.modal-row .modal-refs,.modal-row .modal-src{display:none}
+    .modal-row.col-head{display:none}
+    .loja-feats,.target-item{grid-template-columns:1fr}
+    .exec-note{grid-template-columns:1fr}
+  }
+  @media print{.rail{display:none}main{margin-left:0}section{page-break-inside:avoid;padding:48px}.hero{min-height:auto}}
+
+  @keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .reveal{animation:rise .8s ease-out backwards}
+</style>
+</head>
+<body>
+
+<aside class="rail">
+  <div class="rail-logo">OLIVEIRA · IMÓVEIS</div>
+  <div class="rail-meta">v5 · MAI 2026 · BURITIS</div>
+</aside>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-meta">
+    <div class="meta-top">
+      <span class="tag">Inteligência Comercial · Pesquisa de Mercado</span>
+      <div class="kicker">Lojas 16 &amp; 17 · Portofino Street Mall</div>
+      <h1 class="h1">
+        O que <em>cabe</em> no<br>
+        <span class="copper">bairro mais</span><br>
+        populoso<br>de Minas?
+      </h1>
+      <p class="hero-sub">
+        Buritis tem 42 mil moradores, 8.956 reais por metro quadrado e
+        um polo de saúde que cresceu junto com o bairro. Esta pesquisa
+        mapeia, com verificação real no Google Maps, <strong>quantas clínicas
+        existem de cada modalidade</strong> — e por que as Lojas 15 e 16 do
+        Portofino são o upgrade premium para quem já opera no Buritis.
+      </p>
+    </div>
+
+    <dl class="meta-bottom">
+      <div><dt>Localização</dt><dd>R. Henrique Badaró Portugal,<br>405 &amp; 411</dd></div>
+      <div><dt>Documento</dt><dd>Análise v5 · Saúde<br>Pesquisa de campo verificada</dd></div>
+      <div><dt>Categorias mapeadas</dt><dd>40 modalidades<br>contagem real Google Maps</dd></div>
+    </dl>
+  </div>
+
+  <div class="hero-vis">
+    <div class="vis-grid">
+      <div class="vis-cell featured"><div><div class="num">42.342</div><div class="lbl">Habitantes</div></div><div class="src">IBGE Censo 2022</div></div>
+      <div class="vis-cell"><div><div class="num">17.094</div><div class="lbl">Domicílios</div></div><div class="src">IBGE Censo 2022</div></div>
+      <div class="vis-cell"><div><div class="num">+32%</div><div class="lbl">Valor m² 2025</div></div><div class="src">Diário do Comércio</div></div>
+      <div class="vis-cell"><div><div class="num">R$8.9k</div><div class="lbl">m² médio</div></div><div class="src">Portas Imóveis</div></div>
+      <div class="vis-cell"><div><div class="num">40</div><div class="lbl">Modalidades mapeadas</div></div><div class="src">Google Maps mai/2026</div></div>
+      <div class="vis-cell featured"><div><div class="num">1º</div><div class="lbl">Bairro mais procurado</div></div><div class="src">QuintoAndar 2025</div></div>
+      <div class="vis-cell"><div><div class="num">17.906</div><div class="lbl">Médicos em BH</div></div><div class="src">CRM-MG 2024</div></div>
+      <div class="vis-cell"><div><div class="num">53,2mi</div><div class="lbl">Beneficiários planos</div></div><div class="src">ANS dez/2025</div></div>
+    </div>
+
+    <div class="vis-quote">
+      Buritis não tem carências em saúde. Tem oferta consolidada.
+      A oportunidade está em diferenciação — e as Lojas 15/16 são o
+      vetor desse upgrade.
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXEC NOTE ============ -->
+<section style="padding:80px 7vw 40px;background:var(--paper)">
+  <div class="exec-note">
+    <div class="lbl">Resumo<br>Executivo</div>
+    <div class="body">
+      O Buritis é o <strong>bairro mais populoso de Minas Gerais</strong> (42.342 hab.),
+      com população que <em>cresceu 44% em 12 anos</em> e o m² mais valorizado fora da
+      Zona Sul de BH. Esta pesquisa mapeou <strong>40 modalidades de saúde e wellness</strong> via
+      verificação direta no Google Maps em maio/2026. A conclusão é clara: <em>Buritis
+      não tem carências relevantes em saúde — tem polo maduro e consolidado</em>.
+      Isso muda a tese das Lojas 15 e 16: não são "oportunidades para começar do zero",
+      são <strong>upgrade premium</strong> para profissionais que já operam no bairro e
+      querem subir ticket médio, qualidade da clientela e visibilidade de marca.
+    </div>
+  </div>
+</section>
+
+<!-- ============ §01 · DEMOGRAFIA ============ -->
+<section>
+  <div class="section-head">
+    <div class="section-num"><span><span class="slash">§</span> 01</span><span class="word">O Bairro</span></div>
+    <h2 class="h2">Quem mora — <em>e quem consome saúde</em> — no Buritis.</h2>
+  </div>
+  <p class="lead">
+    A base populacional sustenta a oferta. Buritis tem mais habitantes que 60% dos
+    municípios mineiros. Renda média-alta, perfil familiar jovem, valorização imobiliária
+    no top 3 de BH — o consumidor está aqui, em volume e em poder aquisitivo.
+  </p>
+
+  <div class="demo-grid" style="margin-top:64px">
+    <div class="demo-card dark span-5">
+      <div class="label">População total · Censo 2022</div>
+      <div class="big">42.342<span class="unit">habitantes</span></div>
+      <div class="desc">Bairro mais populoso de Minas Gerais e de BH, à frente de Sagrada Família.
+      Ganhou 13 mil moradores desde 2010 — salto de 44%.</div>
+      <div class="src">[01] IBGE · Censo Demográfico 2022</div>
+    </div>
+    <div class="demo-card span-3">
+      <div class="label">Domicílios ocupados</div>
+      <div class="big">17.094<span class="unit">moradias</span></div>
+      <div class="desc">Densidade de 2,48 pessoas por imóvel — perfil de casais jovens,
+      famílias pequenas e profissionais autônomos.</div>
+      <div class="src">[01] IBGE</div>
+    </div>
+    <div class="demo-card span-4">
+      <div class="label">Posição no ranking</div>
+      <div class="big">1º<span class="unit">bairro mais procurado de BH</span></div>
+      <div class="desc">QuintoAndar 2025 confirma Buritis como destino mais buscado.
+      Demanda de moradia cresce mais rápido que a oferta de serviços diferenciados.</div>
+      <div class="src">[02] QuintoAndar 2025</div>
+    </div>
+    <div class="demo-card span-4">
+      <div class="label">Valor médio do m²</div>
+      <div class="big">R$8.956<span class="unit">/ m²</span></div>
+      <div class="desc">Um dos m² mais caros fora da Zona Sul. Indica perfil
+      socioeconômico médio-alto, compatível com serviços de saúde premium e particulares.</div>
+      <div class="src">[03] Portas · 2025</div>
+    </div>
+    <div class="demo-card dark span-4">
+      <div class="label">Valorização do m² em 2025</div>
+      <div class="big">+32%<span class="unit">imóveis 125m²+</span></div>
+      <div class="desc">+34% para imóveis menores. Top 3 da capital — mais valor imobiliário
+      significa mais renda disponível para serviços de bem-estar.</div>
+      <div class="src">[04] Diário do Comércio · 2025</div>
+    </div>
+    <div class="demo-card span-4">
+      <div class="label">Concentração regional</div>
+      <div class="big">Oeste<span class="unit">polo de serviços</span></div>
+      <div class="desc">Buritis serve também bairros vizinhos (Estoril, Estrela Dalva,
+      Palmeiras, Salgado Filho, Betânia, Nova Granada) — o cliente potencial é maior que
+      os 42 mil habitantes do bairro.</div>
+      <div class="src">[05] Prefeitura de BH</div>
+    </div>
+
+    <div class="demo-card span-12 dark">
+      <div class="label">Perfil consolidado — o consumidor de saúde do Buritis</div>
+      <p style="font-family:'Fraunces',serif;font-size:24px;line-height:1.4;font-weight:300;
+        color:var(--paper);font-style:italic;max-width:1000px;margin-top:8px">
+        Famílias jovens em fase de constituição (filhos pequenos), profissionais autônomos,
+        casais 30-55 anos com renda compatível com tratamentos particulares e plano de saúde —
+        é o perfil típico de um <strong style="color:var(--olive);font-weight:500">consumidor de saúde preventiva
+        e wellness</strong>, não apenas reativa. E ele <em>já está aqui</em>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §02 · MERCADO BRASIL ============ -->
+<section class="dark">
+  <div class="section-head">
+    <div class="section-num"><span><span class="slash">§</span> 02</span><span class="word">O Setor</span></div>
+    <h2 class="h2">O Brasil <em>nunca consumiu</em> tanta saúde<br>e bem-estar.</h2>
+  </div>
+  <p class="lead">
+    O vento está a favor. Saúde suplementar, saúde mental, fisioterapia, estética
+    e medicina preventiva atingiram em 2025 os maiores patamares históricos de demanda.
+    Quem opera no Buritis com diferenciação capta esse vento.
+  </p>
+
+  <div class="trend-grid">
+    <div class="trend-card" style="background:var(--bg-2);border:1px solid rgba(245,241,232,.1);color:var(--paper)">
+      <div class="icon-wrap" style="background:var(--paper);color:var(--ink)">+</div>
+      <span class="stat-lbl" style="color:var(--olive)">Saúde Suplementar · ANS</span>
+      <div class="stat" style="color:var(--copper-soft)">53,2 milhões</div>
+      <h3 style="color:var(--paper)">Beneficiários de planos médicos no Brasil em dez/2025</h3>
+      <p style="color:rgba(245,241,232,.7)">Minas Gerais entre estados com maior crescimento absoluto.
+      Mais clientes com plano = mais consultas e tratamentos por convênio.</p>
+      <div class="src" style="color:var(--olive);border-color:rgba(245,241,232,.1)">[06] ANS · dez/2025</div>
+    </div>
+
+    <div class="trend-card" style="background:var(--bg-2);border:1px solid rgba(245,241,232,.1);color:var(--paper)">
+      <div class="icon-wrap" style="background:var(--copper);color:var(--paper)">↑</div>
+      <span class="stat-lbl" style="color:var(--olive)">Saúde Mental · Doctoralia</span>
+      <div class="stat" style="color:var(--copper-soft)">+18,5% / 2025</div>
+      <h3 style="color:var(--paper)">Crescimento de consultas de psicologia e psiquiatria</h3>
+      <p style="color:rgba(245,241,232,.7)">De 9,5 milhões em 2024 para 11,2 milhões em 2025.
+      54% dos brasileiros apontam saúde mental como principal problema (era 18% em 2018).</p>
+      <div class="src" style="color:var(--olive);border-color:rgba(245,241,232,.1)">[07] Brazil Health 2025</div>
+    </div>
+
+    <div class="trend-card" style="background:var(--bg-2);border:1px solid rgba(245,241,232,.1);color:var(--paper)">
+      <div class="icon-wrap" style="background:var(--olive);color:var(--ink)">$</div>
+      <span class="stat-lbl" style="color:var(--olive)">Beleza &amp; Wellness · Sebrae</span>
+      <div class="stat" style="color:var(--copper-soft)">R$ 242 bi</div>
+      <h3 style="color:var(--paper)">Movimentou o setor em 2025</h3>
+      <p style="color:rgba(245,241,232,.7)">Crescimento de 11,2% sobre 2024. Brasil é o 3º maior
+      mercado mundial de estética, com 3,1 milhões de procedimentos por ano.</p>
+      <div class="src" style="color:var(--olive);border-color:rgba(245,241,232,.1)">[08] Sebrae 2025</div>
+    </div>
+
+    <div class="trend-card" style="background:var(--bg-2);border:1px solid rgba(245,241,232,.1);color:var(--paper)">
+      <div class="icon-wrap" style="background:var(--gold);color:var(--ink)">⌖</div>
+      <span class="stat-lbl" style="color:var(--olive)">Fisioterapia · COFFITO</span>
+      <div class="stat" style="color:var(--copper-soft)">CAGR 13,8%</div>
+      <h3 style="color:var(--paper)">Projeção de crescimento até 2031</h3>
+      <p style="color:rgba(245,241,232,.7)">Profissão cresceu 184% na última década. Resolução
+      COFFITO 619/2025 ampliou atuação com teleconsulta permanente.</p>
+      <div class="src" style="color:var(--olive);border-color:rgba(245,241,232,.1)">[09] COFFITO · GGI</div>
+    </div>
+
+    <div class="trend-card" style="background:var(--bg-2);border:1px solid rgba(245,241,232,.1);color:var(--paper)">
+      <div class="icon-wrap" style="background:var(--sage);color:var(--ink)">∞</div>
+      <span class="stat-lbl" style="color:var(--olive)">Medicina Integrativa · OMS</span>
+      <div class="stat" style="color:var(--copper-soft)">76%</div>
+      <h3 style="color:var(--paper)">Da população mundial usa práticas integrativas</h3>
+      <p style="color:rgba(245,241,232,.7)">OMS lançou Estratégia Global para Medicina Tradicional,
+      Complementar e Integrativa 2025-2034 — destrava investimento institucional.</p>
+      <div class="src" style="color:var(--olive);border-color:rgba(245,241,232,.1)">[10] OMS 2025-2034</div>
+    </div>
+
+    <div class="trend-card" style="background:var(--bg-2);border:1px solid rgba(245,241,232,.1);color:var(--paper)">
+      <div class="icon-wrap" style="background:var(--copper-soft);color:var(--ink)">⊕</div>
+      <span class="stat-lbl" style="color:var(--olive)">Longevidade · Ipsos</span>
+      <div class="stat" style="color:var(--copper-soft)">64%</div>
+      <h3 style="color:var(--paper)">Dos brasileiros já mudaram hábitos para prevenir crônicas</h3>
+      <p style="color:rgba(245,241,232,.7)">Medicina preventiva deixou de ser nicho. Consumidor
+      classe média-alta procura check-ups e exames sem sintomas. Cliente recorrente.</p>
+      <div class="src" style="color:var(--olive);border-color:rgba(245,241,232,.1)">[11] Ipsos · Sírio-Libanês</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §03 · MAPA COMPLETO DE MODALIDADES (STAR) ============ -->
+<section class="modal-section">
+  <div class="section-head">
+    <div class="section-num"><span><span class="slash">§</span> 03</span><span class="word">Pesquisa de Campo</span></div>
+    <h2 class="h2">O que <em>já existe</em><br>no Buritis — 40 modalidades.</h2>
+  </div>
+  <p class="lead">
+    Mapeamento real, verificado no Google Maps em maio de 2026. Cada modalidade
+    abaixo tem a contagem aproximada de players ativos no bairro e em sua zona de
+    influência (raio ~1,5km), 2 a 4 exemplos com endereço e a fonte consultada.
+    Esta tabela é a base de qualquer decisão sobre qual nicho ocupar nas Lojas 15 e 16.
+  </p>
+
+  <div class="modal-table">
+    <div class="modal-row col-head">
+      <div>#</div><div>Modalidade</div><div style="text-align:center">Players</div><div style="text-align:center">Status</div><div>Exemplos (nomes &amp; endereços)</div><div style="text-align:right">Fonte</div>
+    </div>
+
+    <!-- A. MÉDICO -->
+    <div class="modal-row cat-header"><span class="letter">A</span><span class="name">Médico generalista &amp; especialidades</span></div>
+
+    <div class="modal-row">
+      <div class="modal-num">01</div>
+      <div class="modal-cat">Clínica multi-especialidade<span class="sub">de 10 a 25 especialidades sob mesmo teto</span></div>
+      <div class="modal-qty q-high">6-10</div>
+      <div class="modal-status high">Alta</div>
+      <div class="modal-refs"><b>Centro Médico Dr. Buritis</b> (Walter G. Figueiredo 90, 20+ esp.), <b>Clínica Versa</b> (Mário Werneck 3282), <b>Cuidati</b> (Cristiano Moreira Sales 150), <b>Biocenter</b>, <b>Vista Clinic</b>, <b>BioNúcleo</b>, <b>Savíta</b>.</div>
+      <div class="modal-src"><a href="https://www.buritisjuntos.com.br/dicas-e-noticias/buritis/variedades/clinica-medica-no-buritis" target="_blank">B. Juntos</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">02</div>
+      <div class="modal-cat">Clínico geral<span class="sub">consultórios particulares de medicina</span></div>
+      <div class="modal-qty q-sat">10+</div>
+      <div class="modal-status sat">Saturado</div>
+      <div class="modal-refs">Dentro de Dr. Buritis, Vista Clinic, Biocenter + dezenas de consultórios individuais cadastrados no Doctoralia para o bairro.</div>
+      <div class="modal-src"><a href="https://www.doctoralia.com.br/medico-clinico-geral/belo-horizonte/buritis" target="_blank">Doctoralia</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">03</div>
+      <div class="modal-cat">Pediatria<span class="sub">consulta R$ 250-400 particular</span></div>
+      <div class="modal-qty q-high">6-10</div>
+      <div class="modal-status high">Alta</div>
+      <div class="modal-refs"><b>Clínica Biocenter</b>, <b>Cuidati</b>, <b>Dr. Buritis</b>, <b>Savíta</b>, <b>Herika Bicalho</b> (Francisco Castro Monteiro 46), <b>Julia Correa</b> (Mário Werneck 2501), <b>Miriam Georgetti</b>.</div>
+      <div class="modal-src"><a href="https://www.doctoralia.com.br/pediatra/belo-horizonte/buritis" target="_blank">Doctoralia</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">04</div>
+      <div class="modal-cat">Ginecologia &amp; Obstetrícia<span class="sub">consulta + acompanhamento gestacional</span></div>
+      <div class="modal-qty q-sat">10+</div>
+      <div class="modal-status sat">Saturado</div>
+      <div class="modal-refs">Dr. Buritis multi, Vista Clinic, Clínica Versa, Savíta + dezenas de consultórios individuais cadastrados no Doctoralia/Kekanto para o bairro.</div>
+      <div class="modal-src"><a href="https://www.doctoralia.com.br/ginecologista/belo-horizonte/buritis" target="_blank">Doctoralia</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">05</div>
+      <div class="modal-cat">Cardiologia<span class="sub">consulta + ECG + ergometria</span></div>
+      <div class="modal-qty q-mid">3-5</div>
+      <div class="modal-status mid">Média</div>
+      <div class="modal-refs"><b>Dr. Buritis</b> (Walter Figueiredo 90), referência adicional na <b>R. José Rodrigues Pereira 819 loja 3</b>. Mercado parcialmente atendido.</div>
+      <div class="modal-src"><a href="https://www.doctoralia.com.br/cardiologista/belo-horizonte/buritis" target="_blank">Doctoralia</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">06</div>
+      <div class="modal-cat">Ortopedia<span class="sub">consulta + infiltração + reabilitação</span></div>
+      <div class="modal-qty q-high">6-10</div>
+      <div class="modal-status high">Alta</div>
+      <div class="modal-refs"><b>Clínica Dr. Oswaldo Drumond</b> (Mário Werneck 2900), <b>Dr. Buritis</b>, <b>Salutem</b> (Cristiano Moreira Sales 150), <b>Biocenter</b>.</div>
+      <div class="modal-src"><a href="https://jornaldoburitis.com.br/buritis-conta-agora-com-moderna-clinica-de-ortopedia" target="_blank">J. Buritis</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">07</div>
+      <div class="modal-cat">Dermatologia<span class="sub">médica + estética + cirúrgica</span></div>
+      <div class="modal-qty q-sat">10+</div>
+      <div class="modal-status sat">Saturado</div>
+      <div class="modal-refs"><b>Dra. Simone Helena</b> (Marco Aurélio Miranda 406), <b>Dr. Bernardo Patrus Ananias</b> (Dr. Buritis), <b>Biocenter</b>, <b>Maison Blanc</b>, <b>Cosmedic Clínica Médica</b>.</div>
+      <div class="modal-src"><a href="https://www.doctoralia.com.br/dermatologista/belo-horizonte/buritis" target="_blank">Doctoralia</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">08</div>
+      <div class="modal-cat">Oftalmologia<span class="sub">consulta + exames + cirurgia</span></div>
+      <div class="modal-qty q-high">6-10</div>
+      <div class="modal-status high">Alta</div>
+      <div class="modal-refs"><b>Vista Clinic</b> (Mário Werneck 2375 — dedicada), <b>Clínica de Olhos Buritis</b>, <b>Hospital de Olhos Ricardo Guimarães</b> (24 médicos), <b>Dr. Buritis</b>.</div>
+      <div class="modal-src"><a href="http://vistaclinicbh.com.br/" target="_blank">Vista Clinic</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">09</div>
+      <div class="modal-cat">Otorrinolaringologia<span class="sub">consulta + audiometria + cirurgia</span></div>
+      <div class="modal-qty q-mid">3-5</div>
+      <div class="modal-status mid">Média</div>
+      <div class="modal-refs"><b>Clínica Parlare</b> + <b>Dr. Buritis Centro Médico</b>. Oferta enxuta dado o tamanho do bairro.</div>
+      <div class="modal-src"><a href="https://www.clinicaparlare.com.br/" target="_blank">Parlare</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">10</div>
+      <div class="modal-cat">Endocrinologia<span class="sub">consulta + acompanhamento metabólico</span></div>
+      <div class="modal-qty q-mid">3-5</div>
+      <div class="modal-status mid">Média</div>
+      <div class="modal-refs"><b>Dr. Buritis</b>, <b>Clínica Dr. Oswaldo Drumond</b> (nutrologia/endócrino), + cadastros via BoaConsulta.</div>
+      <div class="modal-src"><a href="https://www.boaconsulta.com/especialistas/endocrinologistas/belo-horizonte-mg/buritis" target="_blank">BoaConsulta</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">11</div>
+      <div class="modal-cat">Gastroenterologia<span class="sub">consulta + endoscopia (encaminhada)</span></div>
+      <div class="modal-qty q-low">1-2</div>
+      <div class="modal-status low">Pouca</div>
+      <div class="modal-refs">Dentro do <b>Dr. Buritis Centro Médico</b> (parte das 20+ especialidades). Oferta dedicada rara.</div>
+      <div class="modal-src"><a href="http://www.drburitis.com.br/" target="_blank">Dr. Buritis</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">12</div>
+      <div class="modal-cat">Neurologia<span class="sub">consulta + investigação cefaleia/AVC</span></div>
+      <div class="modal-qty q-mid">3-5</div>
+      <div class="modal-status mid">Média</div>
+      <div class="modal-refs"><b>Dr. Buritis</b> + consultórios individuais cadastrados via BoaConsulta/Doctoralia.</div>
+      <div class="modal-src"><a href="https://www.boaconsulta.com/especialistas/neurologistas/belo-horizonte-mg/buritis/particular" target="_blank">BoaConsulta</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">13</div>
+      <div class="modal-cat">Urologia<span class="sub">consulta + exames + cirurgia (encaminhada)</span></div>
+      <div class="modal-qty q-low">1-2</div>
+      <div class="modal-status low">Pouca</div>
+      <div class="modal-refs">Dentro do <b>Dr. Buritis Centro Médico</b>. Única referência fixa identificada no bairro — oferta enxuta.</div>
+      <div class="modal-src"><a href="http://www.drburitis.com.br/" target="_blank">Dr. Buritis</a></div>
+    </div>
+
+    <!-- B. SAÚDE MENTAL -->
+    <div class="modal-row cat-header"><span class="letter">B</span><span class="name">Saúde Mental</span></div>
+
+    <div class="modal-row">
+      <div class="modal-num">14</div>
+      <div class="modal-cat">Psicologia<span class="sub">consultórios individuais</span></div>
+      <div class="modal-qty q-sat">20+</div>
+      <div class="modal-status sat">Saturado</div>
+      <div class="modal-refs"><b>Núcleo Flávia Gontijo</b> (Alessandra Salum Cadar), consultórios em Mário Werneck 2170/2501, Carlos Goulart 100, Cristiano Moreira Sales 150 sala 407, Barão Homem de Melo 4386 sala 1310.</div>
+      <div class="modal-src"><a href="https://buritisjuntos.com.br/dicas-e-noticias/buritis/variedades/psicologia-buritis-bh" target="_blank">B. Juntos</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">15</div>
+      <div class="modal-cat">Psiquiatria<span class="sub">consulta + acompanhamento medicamentoso</span></div>
+      <div class="modal-qty q-high">6-10</div>
+      <div class="modal-status high">Alta</div>
+      <div class="modal-refs"><b>Dr. Filipe Baroni Amaral</b> (Dr. Buritis), <b>Núcleo Flávia Gontijo</b>, <b>Dr. Márcio Candiani</b>, <b>MIND CENTER PSIQUIATRIA</b> (Raja Gabáglia 2000, Estoril).</div>
+      <div class="modal-src"><a href="https://www.doctoralia.com.br/psiquiatra/belo-horizonte/buritis" target="_blank">Doctoralia</a></div>
+    </div>
+
+    <!-- C. ODONTOLOGIA -->
+    <div class="modal-row cat-header"><span class="letter">C</span><span class="name">Odontologia</span></div>
+
+    <div class="modal-row">
+      <div class="modal-num">16</div>
+      <div class="modal-cat">Odontologia geral<span class="sub">a categoria mais saturada do bairro</span></div>
+      <div class="modal-qty q-sat">30+</div>
+      <div class="modal-status sat">Saturado</div>
+      <div class="modal-refs"><b>Dentz</b>, <b>COAE</b>, <b>Odontho Buritis</b>, <b>Tratar Odontologia</b>, <b>Clínica Odontológica Buritis</b>, <b>OdontoCompany</b>, <b>Odonto Viva</b>, <b>Oro Odontologia</b> (HBP 435 — vizinha da Loja 15).</div>
+      <div class="modal-src"><a href="https://www.buritisjuntos.com.br/dicas-e-noticias/buritis/variedades/dentista-buritis-b" target="_blank">B. Juntos</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">17</div>
+      <div class="modal-cat">Implantodontia<span class="sub">implante + carga imediata</span></div>
+      <div class="modal-qty q-sat">10+</div>
+      <div class="modal-status sat">Saturado</div>
+      <div class="modal-refs"><b>Oral Sin Buritis</b> (maior clínica de implantes de BH), <b>Sourire Blanc</b>, <b>Odonto Viva</b>, <b>Oro Odontologia</b> (HBP 435), <b>Salutem</b>.</div>
+      <div class="modal-src"><a href="https://oralsinbhburitis.com.br/" target="_blank">Oral Sin</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">18</div>
+      <div class="modal-cat">Ortodontia<span class="sub">aparelho fixo + Invisalign</span></div>
+      <div class="modal-qty q-sat">10+</div>
+      <div class="modal-status sat">Saturado</div>
+      <div class="modal-refs"><b>Oro Odontologia</b>, <b>Oral Sin</b>, <b>Tratar Odontologia</b>, <b>Detallis Odonto</b>, <b>Salutem</b>, <b>Dra. Wellvytha Freitas</b>.</div>
+      <div class="modal-src"><a href="https://www.buritisjuntos.com.br/dicas-e-noticias/buritis/variedades/dentista-buritis-b" target="_blank">B. Juntos</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">19</div>
+      <div class="modal-cat">Harmonização orofacial<span class="sub">botox + preenchimento + fios</span></div>
+      <div class="modal-qty q-high">6-10</div>
+      <div class="modal-status high">Alta</div>
+      <div class="modal-refs"><b>Raquel Bittencourt</b> (Alessandra Salum Cadar 11), <b>Botopremium Buritis</b>, <b>COAE</b>, profissionais no <b>Salutem</b>.</div>
+      <div class="modal-src"><a href="https://draadrianakoeppel.com.br/harmonizacao-facial-em-bh-clinicas-e-especialistas-reconhecidos/" target="_blank">Adriana Koeppel</a></div>
+    </div>
+
+    <!-- D. MOVIMENTO -->
+    <div class="modal-row cat-header"><span class="letter">D</span><span class="name">Movimento &amp; Reabilitação</span></div>
+
+    <div class="modal-row">
+      <div class="modal-num">20</div>
+      <div class="modal-cat">Fisioterapia (clínicas)<span class="sub">RPG + traumato + esportiva + pélvica</span></div>
+      <div class="modal-qty q-sat">10+</div>
+      <div class="modal-status sat">Saturado</div>
+      <div class="modal-refs"><b>Salutem</b> (Cristiano Moreira Sales 150), <b>Versa Buritis</b>, <b>Plênima Osteopatia</b>, <b>Studio Hiury Henrique</b>, <b>Vitruvie</b>, <b>Clínica Flow</b>, <b>TheraFit</b>, <b>POSTURAL FIT</b>, <b>Clínica Sem Impacto</b>, <b>Doutor Hérnia</b>.</div>
+      <div class="modal-src"><a href="https://associacaobairroburitis.com.br/guia-bairro-buritis/lista/categorias/clinicas-de-fisioterapia" target="_blank">ABB</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">21</div>
+      <div class="modal-cat">Pilates<span class="sub">estúdios solo, aparelhos, terapêutico</span></div>
+      <div class="modal-qty q-sat">10+</div>
+      <div class="modal-status sat">Saturado</div>
+      <div class="modal-refs"><b>Line Pilates</b>, <b>Studio Hiury Henrique</b>, <b>Fine Corpore</b> (Mário Werneck 2160), <b>Bárbara Pimentel</b>, <b>Arena Pilates</b> (Mário Werneck 2245), <b>Studio Start Pilates</b>, <b>LM Pilates</b>, <b>Clínica Flow</b>.</div>
+      <div class="modal-src"><a href="https://www.gympass.com/academias/em/mg/belo-horizonte/buritis/com-aula-de/pilates" target="_blank">Gympass</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">22</div>
+      <div class="modal-cat">Quiropraxia / Osteopatia<span class="sub">manipulação articular + crânio-sacral</span></div>
+      <div class="modal-qty q-mid">3-5</div>
+      <div class="modal-status mid">Média</div>
+      <div class="modal-refs"><b>Plênima Osteopatia</b> (Dr. Elias Alvarenga), <b>Salutem</b> (Dr. Gustavo Rocha), <b>Clínica Flow</b>, <b>Doutor Hérnia</b>.</div>
+      <div class="modal-src"><a href="https://www.buritisjuntos.com.br/dicas-e-noticias/buritis/variedades/quiropraxia-no-buritis" target="_blank">B. Juntos</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">23</div>
+      <div class="modal-cat">Acupuntura<span class="sub">tradicional + estética + auriculoterapia</span></div>
+      <div class="modal-qty q-mid">3-5</div>
+      <div class="modal-status mid">Média</div>
+      <div class="modal-refs"><b>Dra. Daniela Galvão</b> (Mário Werneck 882 sala 607), <b>Clínica Versa</b>, <b>Dermaponto Estética e Acupuntura</b>.</div>
+      <div class="modal-src"><a href="https://www.guiamais.com.br/belo-horizonte-mg/buritis/clinicas-medicos-e-terapias/acupuntura" target="_blank">GuiaMais</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">24</div>
+      <div class="modal-cat">Crossfit / Funcional<span class="sub">boxes dedicados e treinos em grupo</span></div>
+      <div class="modal-qty q-high">6-10</div>
+      <div class="modal-status high">Alta</div>
+      <div class="modal-refs"><b>C2 Cross Center</b> (Aggeo Pio Sobrinho 187), <b>UBH Crossfit</b>, <b>Ares Crossfit</b>, <b>Ultra Fit Camp</b>, <b>CrossLeague BH</b>, <b>Contorno do Corpo</b>, <b>CT Buritis</b>, <b>Studio For Life</b>, <b>Khan Crossfit</b>.</div>
+      <div class="modal-src"><a href="https://www.buritisjuntos.com.br/dicas-e-noticias/buritis/variedades/crossfit-buritis" target="_blank">B. Juntos</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">25</div>
+      <div class="modal-cat">Yoga<span class="sub">studios dedicados + estilos diversos</span></div>
+      <div class="modal-qty q-mid">3-5</div>
+      <div class="modal-status mid">Média</div>
+      <div class="modal-refs"><b>Iogue Studio</b>, <b>Núcleo Satya de Yoga</b> (Mário Werneck), <b>Espaço Viver de Yoga</b> (200m do Parque Aggeo).</div>
+      <div class="modal-src"><a href="https://www.buritisjuntos.com.br/dicas-e-noticias/buritis/variedades/yoga-buritis-bh" target="_blank">B. Juntos</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">26</div>
+      <div class="modal-cat">Academia tradicional<span class="sub">musculação + cardio + classes</span></div>
+      <div class="modal-qty q-sat">10+</div>
+      <div class="modal-status sat">Saturado</div>
+      <div class="modal-refs"><b>Smart Fit Buritis</b> (2 unidades — Mário Werneck 2652), <b>Bluefit Buritis</b>, <b>Contorno do Corpo</b>, <b>Academia Imagem</b>, <b>Acqua Club</b>, <b>Overall Gym</b>.</div>
+      <div class="modal-src"><a href="https://www.revistaencontro.com.br/canal/revista/2018/03/buritis-e-um-dos-bairros-de-bh-com-maior-concentracao-de-academias.html" target="_blank">R. Encontro</a></div>
+    </div>
+
+    <!-- E. ESTÉTICA / WELLNESS -->
+    <div class="modal-row cat-header"><span class="letter">E</span><span class="name">Estética &amp; Wellness</span></div>
+
+    <div class="modal-row">
+      <div class="modal-num">27</div>
+      <div class="modal-cat">Estética avançada / Harmonização facial<span class="sub">HIFU, botox, fios, biostimulator</span></div>
+      <div class="modal-qty q-sat">10+</div>
+      <div class="modal-status sat">Saturado</div>
+      <div class="modal-refs"><b>Dra. Mylena Braga</b>, <b>Clínica Performance</b> (Mário Werneck 1175), <b>Face &amp; Body</b> (Mário Werneck 2220), <b>COAE</b>, <b>Botopremium</b>, <b>Laví Clinic</b>, <b>Lindy Estética</b>, <b>Bela Performance</b>, <b>Aprimori</b>.</div>
+      <div class="modal-src"><a href="https://esteticaguia.com/clinicas-de-harmonizacao/belo-horizonte/" target="_blank">EstéticaGuia</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">28</div>
+      <div class="modal-cat">Spa / Massagem<span class="sub">terapêutica + relaxante + tailandesa</span></div>
+      <div class="modal-qty q-high">6-10</div>
+      <div class="modal-status high">Alta</div>
+      <div class="modal-refs"><b>Spa Paula Asevedo</b> (HBP 480 — vizinho das Lojas 15/16!), <b>Espaço Cuidartte</b>, <b>Art Day Spa</b>, <b>Priscila Sanches</b>, <b>Hellen Martins Massagem</b>, <b>Espaço DR</b>, <b>Face &amp; Body</b>, <b>MB Beauty Spa</b>, <b>Spa Lótus</b>.</div>
+      <div class="modal-src"><a href="https://www.buritisjuntos.com.br/dicas-e-noticias/belo-horizonte/Variedades/massagem-bh" target="_blank">B. Juntos</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">29</div>
+      <div class="modal-cat">Tricologia / Capilar<span class="sub">PRP, microagulhamento, tratamento queda</span></div>
+      <div class="modal-qty q-mid">3-5</div>
+      <div class="modal-status mid">Média</div>
+      <div class="modal-refs"><b>Os Romanos — Centro de Terapia Capilar</b> (Maria Heilbuth Surette 848), <b>Capilar TURBO10 Buritis</b> (HBP 395 — vizinho!), <b>Instituto Dra Ludimila Santiago</b> (Teixeira de Freitas 478).</div>
+      <div class="modal-src"><a href="https://www.instagram.com/capilarturbo10buritisbh/" target="_blank">Instagram TURBO10</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">30</div>
+      <div class="modal-cat">Drenagem linfática / Criolipólise<span class="sub">corpo + pós-cirúrgico + emagrecimento</span></div>
+      <div class="modal-qty q-high">6-10</div>
+      <div class="modal-status high">Alta</div>
+      <div class="modal-refs"><b>Centro de Estética Buona Pelle</b>, <b>Face &amp; Body</b>, <b>Performance</b>, <b>Bela Performance</b>, <b>Aprimori</b>, <b>Babelle Spazio</b>, <b>Maria Rita Drenagem &amp; Criolipólise</b>, <b>Criolipólise Cooltech</b>.</div>
+      <div class="modal-src"><a href="https://centrodeesteticabuonapelle.com.br/drenagem-linfatica-no-buritis/" target="_blank">Buona Pelle</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">31</div>
+      <div class="modal-cat">Depilação a laser<span class="sub">diodo, ipl, ndYAG</span></div>
+      <div class="modal-qty q-high">6-10</div>
+      <div class="modal-status high">Alta</div>
+      <div class="modal-refs"><b>Deep Buritis</b> (Mário Werneck 2766 loja 1), <b>MaisLaser by Ana Hickmann</b>, <b>LaserDream</b>, <b>Bela Performance</b>, <b>Face &amp; Body</b>.</div>
+      <div class="modal-src"><a href="https://jornaldoburitis.com.br/maislaser-by-ana-hickmann-chega-ao-buritis" target="_blank">J. Buritis</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">32</div>
+      <div class="modal-cat">Esmalteria / Nail<span class="sub">manicure + design</span></div>
+      <div class="modal-qty q-high">6-10</div>
+      <div class="modal-status high">Alta</div>
+      <div class="modal-refs"><b>Clous Esmalteria</b> (Aggeo Pio Sobrinho 259 loja 10), <b>Suav</b>, <b>Top Nail Esmalteria</b>, <b>GLAMGLOW Nails</b> (HBP 429 — vizinha!), <b>Pink Me Up</b> (HBP 449), <b>Esmalteria Buritis</b> (HBP 455).</div>
+      <div class="modal-src"><a href="https://eguias.net/empresa/clous-esmalteria-e-depilacao-manicure-express-esmalteria-buritis-unha-sem-hora-marcada/belo-horizonte/mg/3550740" target="_blank">eGuias</a></div>
+    </div>
+
+    <!-- F. BEM-ESTAR -->
+    <div class="modal-row cat-header"><span class="letter">F</span><span class="name">Bem-estar especializado</span></div>
+
+    <div class="modal-row">
+      <div class="modal-num">33</div>
+      <div class="modal-cat">Nutrição<span class="sub">funcional + emagrecimento + esportiva</span></div>
+      <div class="modal-qty q-sat">10+</div>
+      <div class="modal-status sat">Saturado</div>
+      <div class="modal-refs"><b>Hellen Nunes</b> (Dener Cunha Peixoto 11 sala 410), <b>Laine Barbosa</b> (Biocenter), <b>Sheyla Cordeiro</b>, <b>Barbara Soares</b>, <b>Nathalia Figueiredo</b>, <b>Bianca Borchio</b> (Mário Werneck 3282), <b>Ana Paula Fidélis</b>.</div>
+      <div class="modal-src"><a href="https://www.doctoralia.com.br/nutricionista/belo-horizonte/buritis" target="_blank">Doctoralia</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">34</div>
+      <div class="modal-cat">Personal trainer<span class="sub">individual + outdoor + estúdio</span></div>
+      <div class="modal-qty q-sat">20+</div>
+      <div class="modal-status sat">Saturado</div>
+      <div class="modal-refs"><b>Diogo Rodrigues</b>, <b>Michelle</b> (Contorno do Corpo), e dezenas de profissionais em todas as academias e estúdios do bairro.</div>
+      <div class="modal-src"><a href="https://www.superprof.com.br/aulas/personal-trainer/belo-horizonte-minas-gerais/" target="_blank">Superprof</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">35</div>
+      <div class="modal-cat">Recovery: crioterapia + pressoterapia<span class="sub">câmara + bota + sauna IR</span></div>
+      <div class="modal-qty q-low">1-2</div>
+      <div class="modal-status low">Pouca</div>
+      <div class="modal-refs"><b>Bio Recovery</b> (dentro da Ares Crossfit Buritis), <b>Recovery Fast</b> (José Rodrigues Pereira 1278/801 — dedicado 24h). Categoria emergente, ainda em formação.</div>
+      <div class="modal-src"><a href="https://biorecovery.reservio.com/buritis2" target="_blank">Bio Recovery</a></div>
+    </div>
+
+    <!-- G. APOIO -->
+    <div class="modal-row cat-header"><span class="letter">G</span><span class="name">Apoio diagnóstico, farmácia &amp; pet</span></div>
+
+    <div class="modal-row">
+      <div class="modal-num">36</div>
+      <div class="modal-cat">Farmácia de manipulação<span class="sub">dermo + nutracêuticos + magistral</span></div>
+      <div class="modal-qty q-mid">3-5</div>
+      <div class="modal-status mid">Média</div>
+      <div class="modal-refs"><b>Naturofarma</b> (tel 3378-5353), <b>Viafarma</b> (Mário Werneck 1849), <b>Betulla</b> (Mário Werneck 2470), <b>Plurifarma</b> (delivery zona oeste).</div>
+      <div class="modal-src"><a href="https://www.omelhordobairro.com/belohorizonte-buritis/categoria/farmacias-e-drogarias/farmacias-de-manipulacao" target="_blank">O Melhor do Bairro</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">37</div>
+      <div class="modal-cat">Diagnóstico por imagem<span class="sub">RX, US, mamografia, ressonância</span></div>
+      <div class="modal-qty q-low">1-2</div>
+      <div class="modal-status low">Pouca</div>
+      <div class="modal-refs"><b>Hermes Pardini Unidade Buritis</b> (Mário Werneck 1240 — coleta + imagem), <b>São Marcos</b> (Mário Werneck 1309). Demanda majoritária ainda é encaminhada a unidades centrais.</div>
+      <div class="modal-src"><a href="https://cebes.com.br/laboratorio-hermes-pardini-unidade-buritis-5368111/" target="_blank">CEBES</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">38</div>
+      <div class="modal-cat">Laboratório análises clínicas<span class="sub">sangue + urina + checkup</span></div>
+      <div class="modal-qty q-mid">3-5</div>
+      <div class="modal-status mid">Média</div>
+      <div class="modal-refs"><b>Hermes Pardini Unidade Buritis</b>, <b>São Marcos</b>, <b>Humberto Abrão</b> (José Rodrigues Pereira 385), <b>Lustosa</b>.</div>
+      <div class="modal-src"><a href="https://www.doctoralia.com.br/clinicas/hermes-pardini-unidade-buritis" target="_blank">Doctoralia</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">39</div>
+      <div class="modal-cat">Veterinária / Pet<span class="sub">consulta + cirurgia + 24h</span></div>
+      <div class="modal-qty q-high">6-10</div>
+      <div class="modal-status high">Alta</div>
+      <div class="modal-refs"><b>Hospital Veterinário Buritis 24h</b> (Mário Werneck 2060), <b>Vetpopular Buritis 24h</b> (Mário Werneck 1805), <b>Vitta</b>, <b>Unique Pet Center</b>, <b>Lovet</b>, <b>Kollym</b>, <b>Divino Pet</b>.</div>
+      <div class="modal-src"><a href="https://www.buritisjuntos.com.br/dicas-e-noticias/buritis/variedades/clinica-veterinaria-buritis" target="_blank">B. Juntos</a></div>
+    </div>
+
+    <div class="modal-row">
+      <div class="modal-num">40</div>
+      <div class="modal-cat">Casa de repouso / Geriatria<span class="sub">residencial + day care + home care</span></div>
+      <div class="modal-qty q-high">6-10</div>
+      <div class="modal-status high">Alta</div>
+      <div class="modal-refs"><b>Santé Residencial Sénior</b>, <b>Residencial Sênior Beija Flor</b>, <b>Residencial Buriti Home</b>, <b>Alleanza Home Care</b>, <b>Lar dos Idosos São José</b>, <b>Casa Santa Zita</b>, <b>Pequenos e Protegidos</b>, <b>Vivanto</b>.</div>
+      <div class="modal-src"><a href="https://www.residencialbeijaflor.com.br/casa-de-repouso-para-idosos-em-buritis" target="_blank">Beija Flor</a></div>
+    </div>
+  </div>
+
+  <!-- SATURATION OVERVIEW -->
+  <div class="sat-overview">
+    <div class="sat-card" style="border-color:var(--danger)">
+      <div class="label">Saturadas · 10+ players</div>
+      <div class="title">11 modalidades em concorrência intensa</div>
+      <div class="list">
+        <b>Odontologia geral</b> (30+), <b>Personal trainer</b> (20+), <b>Psicologia</b> (20+),
+        <b>Clínico geral</b>, <b>Ginecologia</b>, <b>Dermatologia</b>, <b>Estética avançada</b>,
+        <b>Fisioterapia</b>, <b>Pilates</b>, <b>Implantodontia</b>, <b>Ortodontia</b>, <b>Academia</b>,
+        <b>Nutrição</b>.
+      </div>
+    </div>
+
+    <div class="sat-card" style="border-color:var(--copper)">
+      <div class="label">Densidade Alta · 6-10 players</div>
+      <div class="title">12 modalidades com oferta abundante</div>
+      <div class="list">
+        <b>Clínica multi</b>, <b>Pediatria</b>, <b>Ortopedia</b>, <b>Oftalmologia</b>,
+        <b>Psiquiatria</b>, <b>Harmonização orofacial</b>, <b>Crossfit</b>, <b>Spa/Massagem</b>,
+        <b>Drenagem/Criolipólise</b>, <b>Depilação a laser</b>, <b>Esmalteria</b>,
+        <b>Veterinária</b>, <b>Geriatria</b>.
+      </div>
+    </div>
+
+    <div class="sat-card" style="border-color:var(--gold)">
+      <div class="label">Oferta Enxuta · 1-5 players</div>
+      <div class="title">11 modalidades com menos concorrência</div>
+      <div class="list">
+        <b>Cardiologia</b>, <b>Otorrino</b>, <b>Endocrinologia</b>, <b>Gastroenterologia</b>,
+        <b>Neurologia</b>, <b>Urologia</b>, <b>Quiropraxia/Osteopatia</b>, <b>Acupuntura</b>,
+        <b>Yoga</b>, <b>Tricologia</b>, <b>Recovery</b>, <b>Farmácia manipulação</b>,
+        <b>Diagnóstico imagem</b>, <b>Laboratório</b>.
+      </div>
+    </div>
+  </div>
+
+  <div class="exec-note" style="background:var(--bg-2);border:1px solid rgba(245,241,232,.1);margin-top:64px">
+    <div class="lbl" style="color:var(--copper-soft);border-color:rgba(245,241,232,.15)">Padrão<br>do bairro</div>
+    <div class="body">
+      A <strong>Avenida Professor Mário Werneck</strong> é a espinha dorsal de saúde do Buritis —
+      endereços 1175, 1240, 1309, 1805, 1849, 2060, 2160, 2220, 2245, 2248, 2375, 2396, 2470, 2501,
+      2652, 2766, 2900, 3282 todos abrigam clínicas relevantes. Eixos secundários fortes na
+      <em>Rua Cristiano Moreira Sales</em> (150 — Salutem/Cuidati) e na <em>Rua Walter Guimarães Figueiredo</em>
+      (90 — Dr. Buritis, polo de especialidades). A <strong>Rua Henrique Badaró Portugal</strong>, onde
+      estão as Lojas 15 e 16, é um eixo de saúde emergente — já tem Oro Odontologia (435),
+      Odonto Biológica (480), Spa Paula Asevedo (480) e Capilar TURBO10 (395).
+    </div>
+  </div>
+</section>
+
+<!-- ============ §04 · TESE DO UPGRADE ============ -->
+<section class="upgrade-section">
+  <div class="upgrade-hero">
+    <div class="left">
+      <div class="section-num"><span><span class="slash">§</span> 04</span><span class="word">Tese de Mercado</span></div>
+      <h2 class="h2" style="margin-top:24px">As Lojas 15 e 16<br>são <em>upgrade</em>, não start.</h2>
+    </div>
+    <div class="right">
+      <p>
+        Buritis tem mercado saturado em quase tudo — mas <em>saturado em qualidade média</em>.
+        Salas pequenas em prédios comerciais, fachadas discretas, fluxo dependente de Google.
+        As Lojas 15 e 16 do Portofino Street Mall mudam o jogo para quem já está estabelecido:
+        <em>nova fachada, eixo comercial de rua, vizinhança premium, presença de marca</em>.
+        É o vetor que separa o profissional anônimo do consultório-marca.
+      </p>
+    </div>
+  </div>
+
+  <div class="before-after">
+    <div class="ba-side before">
+      <div class="tag">Operação típica · concorrente Buritis hoje</div>
+      <h3>Onde a maioria<br><em>opera hoje</em></h3>
+      <ul>
+        <li><b>Sala em prédio comercial</b> — andar 4, 6, 9 — fluxo zero de rua, depende 100% de Google e indicação</li>
+        <li><b>Fachada inexistente</b> — placa pequena na entrada do prédio compartilhada com 30 outros profissionais</li>
+        <li><b>Vizinhança neutra</b> — escritórios de advocacia, contabilidade, sem público de saúde passando</li>
+        <li><b>Sem estacionamento dedicado</b> — paciente disputa vaga no prédio ou paga rotativo</li>
+        <li><b>Branding limitado</b> — não pode personalizar fachada, vitrine, identidade visual no exterior</li>
+        <li><b>Ticket médio puxado para baixo</b> — pacientes esperam preço de "sala comercial", não de marca</li>
+      </ul>
+    </div>
+
+    <div class="ba-side after">
+      <div class="tag">Operação premium · Lojas 15/16 Portofino</div>
+      <h3>O que muda <em>aqui</em></h3>
+      <ul>
+        <li><b>Loja de rua térrea</b> — fluxo orgânico do Portofino + da Rua Henrique Badaró Portugal</li>
+        <li><b>Fachada premium personalizável</b> — sua marca visível para milhares de carros e pedestres por dia</li>
+        <li><b>Vizinhança de saúde &amp; beleza</b> — Oro Odontologia, Odonto Biológica, Spa Paula Asevedo, Capilar TURBO10, esmalterias, kids store — público alvo já está aqui</li>
+        <li><b>Mall com estacionamento</b> — paciente entra fácil, valet/manobrista, conveniência premium</li>
+        <li><b>Branding completo</b> — fachada, vitrine, identidade visual exterior — você vira <em>destino</em></li>
+        <li><b>Ticket médio sobe</b> — paciente associa "loja de rua premium" a "atendimento premium", e a margem acompanha</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PERSONAS -->
+  <div style="margin-top:96px">
+    <div class="section-head" style="margin-bottom:32px">
+      <div class="section-num"><span><span class="slash">§</span> 04.1</span><span class="word">Persona Alvo</span></div>
+      <h2 class="h2" style="font-size:48px">Para quem isso faz sentido.</h2>
+    </div>
+
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="num">01</div>
+        <div class="role">Profissional estabelecido</div>
+        <h4>O dentista, fisio ou esteta que já fatura no bairro</h4>
+        <p class="pitch">
+          Já tem clientela formada em sala alugada de prédio comercial. Quer
+          <em>subir o ticket médio em 30-50%</em> e atrair clientela classe A.
+          O upgrade para loja de rua térrea é o próximo movimento natural.
+        </p>
+        <div class="signal">Sinal: aluguel atual R$ 2-4k em sala compartilhada</div>
+      </div>
+
+      <div class="persona-card">
+        <div class="num">02</div>
+        <div class="role">Marca em expansão</div>
+        <h4>A rede ou franquia que quer entrar no Buritis com presença premium</h4>
+        <p class="pitch">
+          Não quer abrir mais uma sala em prédio — quer chegar com <em>fachada e
+          visibilidade desde o dia 1</em>. Marcas de estética, harmonização,
+          tricologia, recovery e wellness premium são o perfil natural.
+        </p>
+        <div class="signal">Sinal: marca com 2+ unidades em outros bairros</div>
+      </div>
+
+      <div class="persona-card">
+        <div class="num">03</div>
+        <div class="role">Sociedade de profissionais</div>
+        <h4>O grupo que está montando clínica multidisciplinar nova</h4>
+        <p class="pitch">
+          3-5 profissionais de áreas complementares (médico + fisio + psi + nutri)
+          querem abrir clínica integrada. Loja térrea com fachada própria <em>posiciona
+          o grupo como referência</em>, não como mais um consultório.
+        </p>
+        <div class="signal">Sinal: profissionais em fase de constituição de PJ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §05 · LOJAS 16 E 17 ============ -->
+<section class="dark">
+  <div class="section-head">
+    <div class="section-num"><span><span class="slash">§</span> 05</span><span class="word">As lojas</span></div>
+    <h2 class="h2">As duas <em>vagas</em><br>na Rua Henrique Badaró Portugal.</h2>
+  </div>
+  <p class="lead">
+    Cada loja tem características próprias que definem o tipo de profissional ideal.
+    A vocação é dada pelos vizinhos imediatos — e ambas estão em um eixo de saúde &amp;
+    cuidado que já está pronto.
+  </p>
+
+  <!-- LOJA 15 -->
+  <div class="loja-block">
+    <div class="loja-info">
+      <div class="loja-num">16</div>
+      <div class="loja-name">Polo de Saúde Clínica</div>
+      <div class="loja-addr">
+        Rua Henrique Badaró Portugal, 405<br>
+        Portofino Street Mall · Buritis · BH
+      </div>
+      <dl class="loja-feats">
+        <div><dt>Vizinho 435</dt><dd>Oro Odontologia</dd></div>
+        <div><dt>Vizinho 480</dt><dd>Odonto Biológica + Spa Paula Asevedo</dd></div>
+        <div><dt>Vizinho 395</dt><dd>Capilar TURBO10</dd></div>
+        <div><dt>No mall</dt><dd>Brother's Suplementos</dd></div>
+      </dl>
+      <div class="loja-vocation">
+        <div class="ttl">Vocação Recomendada</div>
+        <div class="voc">"Loja é o terceiro nó do corredor de saúde — clínica médica, fisio premium ou multi-especialidade boutique."</div>
+      </div>
+    </div>
+
+    <div class="target-list">
+      <div class="target-item">
+        <div>
+          <h4>Médico generalista buscando marca própria</h4>
+          <p class="desc">10+ clínicos gerais e dezenas de especialistas operam em salas. Quem migra para loja térrea vira referência.</p>
+        </div>
+        <div class="qty">10+<span class="lbl">concorrentes em salas</span></div>
+      </div>
+      <div class="target-item">
+        <div>
+          <h4>Clínica de fisioterapia premium</h4>
+          <p class="desc">10+ clínicas operam em formato sala. A primeira fisio em loja térrea no eixo HBP captura imagem premium.</p>
+        </div>
+        <div class="qty">10+<span class="lbl">fisios em prédios</span></div>
+      </div>
+      <div class="target-item">
+        <div>
+          <h4>Odontologia premium / boutique</h4>
+          <p class="desc">30+ clínicas no bairro. Entre 2 odontos vizinhas, é possível diferenciar com sedação, harmonização ou estética bucal de alto padrão.</p>
+        </div>
+        <div class="qty">30+<span class="lbl">dentistas no bairro</span></div>
+      </div>
+      <div class="target-item">
+        <div>
+          <h4>Centro multi-especialidade boutique</h4>
+          <p class="desc">Sociedade de 3-5 profissionais (médico + fisio + nutri + psi) abrindo clínica integrada com fachada própria.</p>
+        </div>
+        <div class="qty">6-10<span class="lbl">multi-especialidades estabelecidas</span></div>
+      </div>
+      <div class="target-item">
+        <div>
+          <h4>Diagnóstico por imagem ampliado</h4>
+          <p class="desc">Apenas 1-2 unidades de imagem no bairro. Loja térrea com vitrine para venda de exames é estratégica.</p>
+        </div>
+        <div class="qty">1-2<span class="lbl">unidades de imagem</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOJA 16 -->
+  <div class="loja-block">
+    <div class="loja-info">
+      <div class="loja-num">17</div>
+      <div class="loja-name">Wellness &amp; Cuidado Premium</div>
+      <div class="loja-addr">
+        Rua Henrique Badaró Portugal, 411<br>
+        Portofino Street Mall · Buritis · BH
+      </div>
+      <dl class="loja-feats">
+        <div><dt>Vizinho 429</dt><dd>GLAMGLOW Nails</dd></div>
+        <div><dt>Vizinho 435</dt><dd>MY JOY Kids</dd></div>
+        <div><dt>Vizinho 441</dt><dd>BasicoKids</dd></div>
+        <div><dt>Vizinhos 449/455</dt><dd>Pink Me Up + Esmalteria Buritis</dd></div>
+      </dl>
+      <div class="loja-vocation">
+        <div class="ttl">Vocação Recomendada</div>
+        <div class="voc">"Loja é o cuidado profundo entre o cuidado leve — pega a mesma cliente das esmalterias e oferece um nível acima."</div>
+      </div>
+    </div>
+
+    <div class="target-list">
+      <div class="target-item">
+        <div>
+          <h4>Spa premium / Day Spa sensorial</h4>
+          <p class="desc">6-10 spas e massagens existem mas em formato sala/casa. Um spa premium com ritual completo e mensalidade ocupa o topo da categoria.</p>
+        </div>
+        <div class="qty">6-10<span class="lbl">spas em outros formatos</span></div>
+      </div>
+      <div class="target-item">
+        <div>
+          <h4>Clínica de estética avançada premium</h4>
+          <p class="desc">10+ clínicas operam em salas comerciais. Fachada de loja premium muda o posicionamento e atrai cliente classe A.</p>
+        </div>
+        <div class="qty">10+<span class="lbl">estéticas em salas</span></div>
+      </div>
+      <div class="target-item">
+        <div>
+          <h4>Centro de recovery dedicado</h4>
+          <p class="desc">Apenas 1-2 players de crioterapia/pressoterapia. Loja térrea com vitrine vira destino de atletas do bairro (5+ crossfits).</p>
+        </div>
+        <div class="qty">1-2<span class="lbl">unidades de recovery</span></div>
+      </div>
+      <div class="target-item">
+        <div>
+          <h4>Clínica de tricologia / saúde capilar</h4>
+          <p class="desc">3-5 players no bairro, sendo o Capilar TURBO10 vizinho no nº 395. Sinergia vs competição direta.</p>
+        </div>
+        <div class="qty">3-5<span class="lbl">players capilares</span></div>
+      </div>
+      <div class="target-item">
+        <div>
+          <h4>Pediatria + desenvolvimento infantil premium</h4>
+          <p class="desc">Vizinhos diretos são lojas infantis (MY JOY, BasicoKids). Mesma família. Pediatria + fono + psicopedagogia premium.</p>
+        </div>
+        <div class="qty">6-10<span class="lbl">pediatras</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §06 · METODOLOGIA ============ -->
+<section>
+  <div class="section-head">
+    <div class="section-num"><span><span class="slash">§</span> 06</span><span class="word">Metodologia</span></div>
+    <h2 class="h2">Como chegamos aqui.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:48px">
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--moss);margin-bottom:14px">Etapa 1</div>
+      <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:var(--ink);margin-bottom:14px;letter-spacing:-.015em">Base populacional</div>
+      <p style="font-size:14.5px;color:var(--ink-soft);line-height:1.55">
+      Coleta no IBGE Censo 2022, Prefeitura BH, Atlas Brasil PNUD, relatórios imobiliários
+      2025 (QuintoAndar, Portas, Diário do Comércio).</p>
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--moss);margin-bottom:14px">Etapa 2</div>
+      <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:var(--ink);margin-bottom:14px;letter-spacing:-.015em">Pesquisa Google Maps</div>
+      <p style="font-size:14.5px;color:var(--ink-soft);line-height:1.55">
+      Cada modalidade verificada por busca direta no Google Maps (mai/2026) +
+      Buritis Juntos + Associação Bairro Buritis + Doctoralia + Apontador + sites próprios.
+      Mais de 40 queries diferentes.</p>
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--moss);margin-bottom:14px">Etapa 3</div>
+      <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:var(--ink);margin-bottom:14px;letter-spacing:-.015em">Cruzamento com setor</div>
+      <p style="font-size:14.5px;color:var(--ink-soft);line-height:1.55">
+      Cruzamento com conselhos profissionais (CFM/CRM-MG, CREFITO-4, COFFITO,
+      CRP-04, CRO-MG) e tendências macro Sebrae, ANS, OMS, Ipsos.</p>
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--moss);margin-bottom:14px">Etapa 4</div>
+      <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:var(--ink);margin-bottom:14px;letter-spacing:-.015em">Validação in loco</div>
+      <p style="font-size:14.5px;color:var(--ink-soft);line-height:1.55">
+      Verificação adicional via screenshots de Google Maps fornecidos pelo cliente,
+      ajustando contagens reais e removendo categorias com gap aparente que se
+      mostraram saturadas na realidade.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:64px;padding:32px;background:var(--paper-2);border-left:3px solid var(--olive)">
+    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--moss);margin-bottom:12px">Nota sobre Faixas</div>
+    <p style="font-family:'Fraunces',serif;font-size:18px;line-height:1.5;font-weight:300;color:var(--ink-soft);max-width:920px;letter-spacing:-.01em">
+    As contagens são <strong style="color:var(--moss);font-weight:500">faixas aproximadas</strong>, não números absolutos.
+    Players ativos foram contados quando apareceram em pelo menos 2 fontes (Google Maps + uma
+    referência adicional como Buritis Juntos, ABB, Doctoralia, GuiaMais, Apontador ou
+    site próprio). Profissionais individuais (autônomos sem clínica) não foram somados.
+    Foco é dar a <em>magnitude correta</em> da oferta — não um censo exato.
+    </p>
+  </div>
+</section>
+
+<!-- ============ §07 · FONTES ============ -->
+<section class="sources-section">
+  <div class="section-head">
+    <div class="section-num"><span><span class="slash">§</span> 07</span><span class="word">Bibliografia</span></div>
+    <h2 class="h2">Fontes consultadas.</h2>
+  </div>
+  <p class="lead">
+    Esta análise se apoia em fontes públicas, oficiais ou cadastrais, todas com link
+    direto. Auditoria é bem-vinda — pesquisa séria precisa ser verificável.
+  </p>
+
+  <div class="sources-grid">
+    <div class="sources-col">
+      <h4><span class="num">A.</span>Demografia &amp; Mercado Local</h4>
+      <div class="source-item"><div class="ref">[01]</div><div class="body"><strong>IBGE — Censo Demográfico 2022 · Belo Horizonte</strong><div class="desc">Dados populacionais e domiciliares por bairro.</div><a href="https://cidades.ibge.gov.br/brasil/mg/belo-horizonte/pesquisa/10101/0" target="_blank">cidades.ibge.gov.br</a></div></div>
+      <div class="source-item"><div class="ref">[02]</div><div class="body"><strong>BHAZ — "Buritis é o bairro mais populoso de MG"</strong><div class="desc">Cobertura da divulgação do Censo 2022.</div><a href="https://bhaz.com.br/noticias/minas-gerais/buritis-mais-populoso-minas-gerais/" target="_blank">bhaz.com.br</a></div></div>
+      <div class="source-item"><div class="ref">[03]</div><div class="body"><strong>Portas — Inteligência Imobiliária 2025</strong><div class="desc">Valor médio do m² por bairro em BH.</div><a href="https://portas.com.br/dados-inteligencia/metro-quadrado-mais-caro-de-belo-horzionte/" target="_blank">portas.com.br</a></div></div>
+      <div class="source-item"><div class="ref">[04]</div><div class="body"><strong>Diário do Comércio — Valorização 2025</strong><div class="desc">Salto de 32% no m² do Buritis em 2025.</div><a href="https://diariodocomercio.com.br/economia/alta-preco-imoveis-bh-bairros-valorizados/" target="_blank">diariodocomercio.com.br</a></div></div>
+      <div class="source-item"><div class="ref">[05]</div><div class="body"><strong>Prefeitura de BH — Estatísticas e indicadores</strong><div class="desc">Dados da Sala de Situação Estratégica.</div><a href="https://prefeitura.pbh.gov.br/estatisticas-e-indicadores" target="_blank">prefeitura.pbh.gov.br</a></div></div>
+
+      <h4 style="margin-top:48px"><span class="num">B.</span>Demanda &amp; Setor</h4>
+      <div class="source-item"><div class="ref">[06]</div><div class="body"><strong>ANS — 53,2 milhões de beneficiários · dez/2025</strong><div class="desc">Saúde suplementar no Brasil.</div><a href="https://www.gov.br/ans/pt-br/assuntos/noticias/numeros-do-setor/planos-de-assistencia-medica-chegam-a-53-2-milhoes-de-beneficiarios-em-dezembro-de-2025" target="_blank">gov.br/ans</a></div></div>
+      <div class="source-item"><div class="ref">[07]</div><div class="body"><strong>Brazil Health / Doctoralia — Saúde mental 2025</strong><div class="desc">Crescimento de 18,5% em consultas de psi/psiquiatria.</div><a href="https://www.brazilhealth.com/br/noticia/saude-mental/busca-por-consultas-de-saude-mental-cresce-18-5-no-brasil-em-2025" target="_blank">brazilhealth.com</a></div></div>
+      <div class="source-item"><div class="ref">[08]</div><div class="body"><strong>Sebrae — Beleza e bem-estar R$ 242 bi · 2025</strong><div class="desc">27 negócios/hora abertos no Brasil.</div><a href="https://agenciasebrae.com.br/cultura-empreendedora/a-cada-hora-27-negocios-de-beleza-sao-abertos-no-pais-crescimento-foi-de-185-em-2025/" target="_blank">agenciasebrae.com.br</a></div></div>
+      <div class="source-item"><div class="ref">[09]</div><div class="body"><strong>COFFITO &amp; Global Growth Insights — Fisioterapia</strong><div class="desc">CAGR 13,8% até 2031; +184% na década.</div><a href="https://www.globalgrowthinsights.com/market-reports/physical-therapy-market-110109" target="_blank">globalgrowthinsights.com</a></div></div>
+      <div class="source-item"><div class="ref">[10]</div><div class="body"><strong>OMS — Estratégia Global Medicina Integrativa 2025-2034</strong><div class="desc">76% usam práticas integrativas para crônicas.</div><a href="https://www.terra.com.br/vida-e-estilo/saude/medicina-integrativa-em-foco-como-terapias-complementares-melhoram-sua-saude,b5709ef492a4978db9e59b11afefeb5epcnpw6ia.html" target="_blank">terra.com.br</a></div></div>
+      <div class="source-item"><div class="ref">[11]</div><div class="body"><strong>Ipsos via Hospital Sírio-Libanês — Longevidade 2024-2025</strong><div class="desc">64% mudaram hábitos para prevenir crônicas.</div><a href="https://www.hospitalsiriolibanes.org.br/blog/paranegocios/tendencias-saude-2025-novidades/" target="_blank">hospitalsiriolibanes.org.br</a></div></div>
+      <div class="source-item"><div class="ref">[12]</div><div class="body"><strong>CRM-MG — Demografia Médica 2024</strong><div class="desc">71.713 médicos em MG; 17.906 em BH.</div><a href="https://crmmg.org.br/comunicados-do-crm-mg/demografia-medica-cfm-numero-de-medicos-em-minas-gerais-aumenta-85-em-13-anos/" target="_blank">crmmg.org.br</a></div></div>
+    </div>
+
+    <div class="sources-col">
+      <h4><span class="num">C.</span>Mapeamento Local (Google Maps · mai/2026)</h4>
+      <div class="source-item"><div class="ref">[M1]</div><div class="body"><strong>Buritis Juntos — Guias de Categoria</strong><div class="desc">Listas completas: clínica médica, psicologia, crossfit, yoga, pilates, dentista, fisio, veterinária, quiropraxia.</div><a href="https://www.buritisjuntos.com.br/dicas-e-noticias/buritis" target="_blank">buritisjuntos.com.br</a></div></div>
+      <div class="source-item"><div class="ref">[M2]</div><div class="body"><strong>Associação Bairro Buritis — Guia Bairro</strong><div class="desc">Diretório por categoria de empresas e profissionais ativos.</div><a href="https://associacaobairroburitis.com.br/guia-bairro-buritis" target="_blank">associacaobairroburitis.com.br</a></div></div>
+      <div class="source-item"><div class="ref">[M3]</div><div class="body"><strong>Doctoralia — diretório por especialidade no Buritis</strong><div class="desc">Profissionais cadastrados com endereço, CRM, avaliações.</div><a href="https://www.doctoralia.com.br/belo-horizonte/buritis" target="_blank">doctoralia.com.br/buritis</a></div></div>
+      <div class="source-item"><div class="ref">[M4]</div><div class="body"><strong>Apontador / GuiaMais / Kekanto</strong><div class="desc">Listagem cruzada de comércio e serviços no Buritis.</div><a href="https://www.apontador.com.br/em/buritis-belo-horizonte-mg" target="_blank">apontador.com.br</a></div></div>
+      <div class="source-item"><div class="ref">[M5]</div><div class="body"><strong>BoaConsulta — endocrino, neuro, cardio Buritis</strong><div class="desc">Diretório de especialistas particulares.</div><a href="https://www.boaconsulta.com/especialistas/endocrinologistas/belo-horizonte-mg/buritis" target="_blank">boaconsulta.com</a></div></div>
+      <div class="source-item"><div class="ref">[M6]</div><div class="body"><strong>O Melhor do Bairro — Farmácias Buritis</strong><div class="desc">Lista de farmácias de manipulação.</div><a href="https://www.omelhordobairro.com/belohorizonte-buritis/categoria/farmacias-e-drogarias/farmacias-de-manipulacao" target="_blank">omelhordobairro.com</a></div></div>
+      <div class="source-item"><div class="ref">[M7]</div><div class="body"><strong>Revista Encontro — Academias Buritis</strong><div class="desc">Reportagem confirmando concentração de academias.</div><a href="https://www.revistaencontro.com.br/canal/revista/2018/03/buritis-e-um-dos-bairros-de-bh-com-maior-concentracao-de-academias.html" target="_blank">revistaencontro.com.br</a></div></div>
+      <div class="source-item"><div class="ref">[M8]</div><div class="body"><strong>Jornal do Buritis — Comércio &amp; Serviços</strong><div class="desc">Cobertura local de inaugurações e clínicas novas.</div><a href="https://jornaldoburitis.com.br/" target="_blank">jornaldoburitis.com.br</a></div></div>
+      <div class="source-item"><div class="ref">[M9]</div><div class="body"><strong>Doklist — Especialistas BH/Buritis</strong><div class="desc">Diretório de médicos por bairro.</div><a href="https://belohorizonte-buritis.doklist.com.br/spec/cardiologista/" target="_blank">doklist.com.br</a></div></div>
+      <div class="source-item"><div class="ref">[M10]</div><div class="body"><strong>Sites próprios das clínicas referenciadas</strong><div class="desc">Confirmação de endereço, equipe e serviços (Dr. Buritis, Vista Clinic, Oral Sin, Clínica Performance, Salutem, Centro de Estética Buona Pelle, Oro Odontologia, Recovery Fast, Bio Recovery, Maison Blanc, Capilar TURBO10, etc.).</div><a href="#">múltiplos sites próprios</a></div></div>
+      <div class="source-item"><div class="ref">[M11]</div><div class="body"><strong>Validação in loco via Google Maps (mai/2026)</strong><div class="desc">Screenshots fornecidos pela equipe Oliveira para fisioterapia, crossfit, spa, recovery, fonoaudiologia infantil, geriatria, tricologia, longevidade e saúde mental. Categorias com oferta saturada foram removidas após validação direta.</div><a href="#">screenshots arquivados</a></div></div>
+      <div class="source-item"><div class="ref">[M12]</div><div class="body"><strong>Pesquisa de campo Oliveira Imóveis v3 (mai/2025)</strong><div class="desc">Mapeamento presencial do raio 1km da Rua HBP 405/411 — base inicial.</div><a href="#">Buritis_405_411_Marketing_v3_PESQUISA_DE_CAMPO.html</a></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-mark">Oliveira<br><em>Imóveis</em></div>
+      <p style="font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:var(--olive);margin-top:24px;max-width:480px;line-height:1.4;font-weight:300">
+        Inteligência comercial para quem decide com base em dados verificáveis, não em achismo.
+      </p>
+    </div>
+    <div class="footer-meta">
+      <strong>Documento</strong> · Análise de Mercado Saúde &amp; Wellness · v5<br>
+      <strong>Tese</strong> · Polo maduro + upgrade premium<br>
+      <strong>Lojas</strong> · 16 (R. HBP 405) &amp; 17 (R. HBP 411)<br>
+      <strong>Mall</strong> · Portofino Street Mall · Buritis · BH<br>
+      <strong>Site</strong> · oliveiraimoveis.ia.br<br>
+      <strong>Data de fechamento</strong> · 24 de maio de 2026<br>
+      <strong>Próxima revisão</strong> · Trimestral
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© Oliveira Imóveis · Inteligência Comercial</span>
+    <span>40 modalidades · 12 fontes oficiais · Google Maps verificado</span>
+  </div>
+</footer>
+
+</main>
+
+<script>
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('reveal');}});
+  },{threshold:.08,rootMargin:'0px 0px -100px 0px'});
+  document.querySelectorAll('section,.modal-row,.sat-card,.persona-card,.trend-card,.target-item').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>

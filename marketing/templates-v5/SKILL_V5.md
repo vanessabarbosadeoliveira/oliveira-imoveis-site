@@ -1,187 +1,181 @@
----
-name: analise-mercado-oliveira
-description: >
-  Skill de inteligência comercial da Oliveira Imóveis para análise estratégica de pontos comerciais vagos.
-  Use SEMPRE que Vanessa ou um cliente mencionar: "loja vaga", "ponto comercial disponível", "o que colocar
-  nessa loja", "qual negócio funciona aqui", "pesquisa de mercado do bairro", "análise da região",
-  "perfil do público", "concorrentes próximos", "que tipo de negócio alugar", "estudo do entorno",
-  "o que falta no bairro", "para quem anunciar", "análise de mercado para loja", "análise de mercado",
-  "análise comercial", "plano de campanhas para loja", "campanha para ponto comercial" ou qualquer variação
-  que indique a necessidade de descobrir o melhor tipo de negócio para ocupar um espaço comercial.
-  Também acione quando o cliente tiver uma loja vaga em qualquer cidade do Brasil (não apenas BH).
-  Esta skill entrega: HTML editorial + PPTX 18 slides com mapa de 40 modalidades verificado via Google Maps,
-  tese de upgrade premium, personas alvo e plano de campanhas.
----
+# Skill: Pesquisa de Mercado para Lojas — Oliveira Imóveis
 
-# Análise de Mercado V5 — Oliveira Imóveis
+## Quando usar
+Quando o cliente estiver avaliando um ponto comercial (loja, franquia, clínica, serviço) e precisar de análise de viabilidade antes de assinar contrato de locação.
 
-Skill de inteligência comercial para identificar o melhor tipo de negócio para um ponto comercial vago.
+## Metodologia V5 Oliveira Imóveis
 
-**Versão:** V5 (default a partir de mai/2026)
-**Caso fundador:** Buritis · Lojas 15 e 16 Portofino Street Mall · 11 ciclos de correção
-**Templates:** `Marketing Oliveira/00 - Templates Padrao Pesquisa V5/`
+### 1. Entrevista estruturada (coleta antes de pesquisar)
+Coletar ANTES de qualquer pesquisa:
+- Segmento / produto / franquia
+- Ticket médio alvo e mix de preços
+- Público-alvo (classe social, perfil)
+- Experiência do empresário no segmento
+- Meta de faturamento (mês 1, meta 6 meses)
+- Área mínima necessária
+- Critérios de localização valorizados pelo cliente
 
----
-
-## Regra de Ouro V5 (não negociável)
-
-> **Nunca afirmar "zero" ou contagem baixa de um segmento sem ter feito busca direta no Google Maps do bairro.**
->
-> Doctoralia, catálogos locais e conselhos profissionais **subestimam massivamente** a oferta real — só capturam quem paga assinatura.
-> Para CADA modalidade que aparecer como "carência" no mapeamento inicial:
-> 1. Buscar `[modalidade] [bairro] [cidade]` no Google Maps
-> 2. Cruzar com pelo menos 2ª fonte
-> 3. Pedir validação visual do cliente (screenshot)
-> 4. Em dúvida → escrever "oferta enxuta" ou "poucos players conhecidos" em vez de "zero"
-
-Caso histórico de erro: análise Buritis v4 afirmou "zero clínica de fisioterapia"; Vanessa validou e mostrou 6+ clínicas. v5 corrigiu o método.
-
----
-
-## Princípio Central · Mensagem para o Cliente Final
-
-> O público-alvo das lojas Oliveira em centros comerciais **não é o empreendedor iniciante**.
-> É o **profissional já estabelecido** que opera em espaço inadequado (sala em prédio, casa adaptada,
-> garagem) e quer **migrar** para ambiente premium.
->
-> A mensagem nunca é "venha abrir seu negócio aqui".
-> A mensagem é: **"Seu negócio já funciona. Agora mereça o espaço certo."**
-
-Este princípio orienta toda a tese (upgrade premium), as personas e o tom dos anúncios.
-
----
-
-## Fluxo Padrão V5 — 7 fases (3-5h total)
-
-### Fase 1 · Demografia (30 min)
-
-Coletar:
-- População total (IBGE Censo 2022 · `cidades.ibge.gov.br`)
-- Domicílios + crescimento populacional 2010-2022
-- Posição no ranking de bairros da cidade
-- Valor médio do m² 2025/2026 (Portas, Diário do Comércio, QuintoAndar)
-- Valorização % nos últimos 12 meses
+### 2. Análise do bairro
+- População (IBGE Censo mais recente)
 - Perfil socioeconômico
-- Bairros vizinhos clientes potenciais
+- Valor do m² (posicionamento relativo na cidade)
+- Bairros vizinhos no catchment (raio 3–5km)
 
-### Fase 2 · Pesquisa profunda Google Maps (1-2h)
+### 3. Mapeamento de concorrência — obrigatório via Google Maps
+**REGRA INVIOLÁVEL:** Verificar TODOS os concorrentes via Google Maps antes de afirmar "território virgem". Buscar:
+- Nome do segmento + bairro
+- Endereço exato, nota, número de avaliações, horário de funcionamento, site
+- Classificar por eixo geográfico (mesmo eixo / eixo perpendicular / polo consolidado)
+- Para cada concorrente: nível de ameaça (ALTA / MÉDIA / BAIXA) com justificativa
 
-Delegar a um agente `general-purpose` com prompt-base (ver `checklist_pesquisa.md`).
+**Insight aprendido (caso Ótica Rodrigo):** Concorrente com nota 3,5 e poucos reviews no mesmo eixo = oportunidade, não obstáculo. Confirma demanda existente + gap de qualidade.
 
-**40 modalidades obrigatórias** em 7 categorias:
-- **A. Médico** (13): clínica multi, clínico geral, pediatria, ginecologia, cardiologia, ortopedia, dermatologia, oftalmologia, otorrino, endocrinologia, gastro, neurologia, urologia
-- **B. Saúde mental** (2): psicologia, psiquiatria
-- **C. Odontologia** (4): geral, implantodontia, ortodontia, harmonização orofacial
-- **D. Movimento** (7): fisioterapia, pilates, quiropraxia/osteopatia, acupuntura, crossfit, yoga, academia
-- **E. Estética/wellness** (6): estética avançada, spa/massagem, tricologia, drenagem/criolipólise, depilação laser, esmalteria
-- **F. Bem-estar** (3): nutrição, personal trainer, recovery
-- **G. Apoio** (5): farmácia manipulação, diagnóstico imagem, laboratório, veterinária, geriatria
+### 4. Ecossistema de referral
+Mapear via Google Maps:
+- Médicos / clínicas / labs do segmento no bairro
+- Âncoras de fluxo (supermercados, farmácias, academias)
+- Parceiros potenciais (material de ponto, convênio, indicação)
+- Prioridade: players com alto volume de avaliações = alto fluxo de pessoas
 
-Para cada uma: faixa (0, 1-2, 3-5, 6-10, 10+, 20+, 30+) · 2-4 nomes com endereço · fonte · veredito.
+### 5. Análise financeira
+- Custo fixo total do imóvel (aluguel + condomínio + IPTU)
+- Breakeven em nº de vendas/mês (custo fixo total ÷ ticket médio)
+- Curva de ramp-up: meses 1–3, 4–6, 6+
+- Payback estimado
+- % aluguel/faturamento por fase (saudável: <8%)
 
-### Fase 3 · Validação in loco (30 min)
+### 6. Score V5
+Escala 0–10. Score ≥ 7,5 = FAVORÁVEL. Fatores:
+- Demanda comprovada no eixo
+- Força da concorrência direta
+- Qualidade do ecossistema de referral
+- Viabilidade financeira do ponto
+- Diferencial do imóvel (âncora, fluxo, estacionamento)
 
-Para cada categoria com veredito "carência" / "pouca", pedir print Google Maps ao cliente.
-Ajustar números em tempo real.
+### 7. 3 Condições para o sucesso
+Sempre terminar com 3 ações concretas que o empresário precisa tomar para o score se confirmar.
 
-### Fase 4 · Pivô estratégico (15 min)
+### 8. Disclaimer obrigatório
+Todo relatório deve conter:
+> "Esta pesquisa foi elaborada pela Oliveira Imóveis como instrumento de inteligência de mercado. Não constitui garantia de resultado, rentabilidade ou sucesso do empreendimento. A decisão final é de responsabilidade exclusiva do empreendedor."
 
-Escolher 1 das narrativas:
+---
 
-| Cenário | Narrativa | Quando usar |
+---
+
+## Prompt Geral — Plataforma Oliveira Imóveis
+
+### Questões (inputs do cliente na plataforma)
+
+| # | Variável | Pergunta para o cliente |
 |---|---|---|
-| Carência real | "X está em falta no bairro" | 2-3 gaps reais sobrevivem à validação |
-| **Polo maduro (default V5)** | "Polo consolidado · lojas são upgrade premium" | Bairro tem 30+ modalidades cobertas |
-| Híbrido | "Polo maduro em X + carência em Y" | 1-2 gaps fortes + saturação no resto |
+| 1 | `{{segmento}}` | Qual é o seu segmento / produto / franquia? |
+| 2 | `{{tipo_operacao}}` | Este ponto é para começar seu primeiro negócio ou para expandir uma operação que já existe? |
+| 3 | `{{experiencia}}` | Você já tem experiência neste segmento? Se sim, há quanto tempo? |
+| 4 | `{{publico_alvo}}` | Quem é o seu público-alvo? (classe social, perfil, idade) |
+| 5 | `{{criterios_localizacao}}` | O que é mais importante para você na localização? *(Marque quantas opções necessárias)*<br>☐ Fluxo de pedestres<br>☐ Estacionamento<br>☐ Visibilidade<br>☐ Bairro específico<br>☐ Precisa estar próximo de concorrentes<br>☐ Portaria 24 horas<br>☐ Elevador |
+| 6 | `{{visibilidade_ponto}}` | Para seu negócio você precisa de visibilidade direta para a rua ou uma sala comercial? |
+| 7 | `{{regiao_preferida}}` | Em qual região / bairro pensa em implantar este empreendimento? |
+| 8 | `{{area_minima}}` | Qual é a área mínima necessária para o seu negócio? (m²) |
+| 9 | `{{custo_imovel}}` | Qual o valor de aluguel + condomínio + IPTU que pretende pagar? (R$) |
+| 10 | `{{meta_ano1}}` | Qual é a sua meta de faturamento para o 1º ano? |
+| 11 | `{{meta_ano2}}` | Qual é a sua meta de faturamento para o 2º ano? |
+| 12 | `{{ticket_medio}}` | Quanto cada cliente gasta, em média, numa única visita ou compra no seu negócio? (ex: se você é dentista e cobra R$200 por consulta, esse é o seu valor médio por cliente. Se vende roupas e a maioria das compras fica entre R$100 e R$300, coloque R$200) ⚠️ **Pergunta condicional — exibir somente se `{{tipo_operacao}}` = "expandir operação existente"** |
 
-### Fase 5 · HTML editorial (1h)
+### Lógica Condicional — Instrução para o Desenvolvedor (Daniel)
 
-Copiar `template_html.html` → trocar dados do Buritis pelos do novo bairro.
+> **Regra da pergunta 12 — ticket médio:**
+> - Se `{{tipo_operacao}}` = **"primeiro negócio"** → **não exibir a pergunta 12**. O cliente não terá essa informação. Neste caso, `{{ticket_medio}}` = `"não informado — usar média do setor"`.
+> - Se `{{tipo_operacao}}` = **"expandir operação existente"** → exibir a pergunta 12 normalmente.
+>
+> **O que o Clóvis faz quando ticket_medio = "não informado":**
+> Na Etapa 4 (Análise Financeira), buscar a média de ticket médio do setor `{{segmento}}` em BH/Brasil para usar no cálculo do breakeven. Citar a fonte da referência utilizada.
 
-**Estrutura obrigatória (7 seções):**
-1. Hero "O que cabe em [BAIRRO]?" + 8 stats
-2. Resumo Executivo
-3. §01 Demografia (6 cards)
-4. §02 Setor Brasil (6 trends macro)
-5. §03 Mapa de 40 modalidades (TABELA · core)
-6. §04 Tese do Upgrade (antes × depois + personas)
-7. §05 Lojas individuais
-8. §06 Metodologia + §07 Fontes
+### Prompt Template (enviado ao Claude/Clóvis com variáveis substituídas)
 
-### Fase 6 · PPTX 18 slides (30 min)
+```
+Você é Clóvis, especialista em pesquisa de mercado da Rede Oliveira Imóveis.
 
-Copiar `template_pptx.js` → editar dados → `node template_pptx.js`.
+Execute uma pesquisa de mercado completa seguindo a Metodologia V5 Oliveira Imóveis para o empresário abaixo.
 
-**Slides:**
-1. Capa
-2. Resumo Executivo
-3. Demografia
-4. Mercado Brasil
-5-9. Tabela de 40 modalidades (5 slides)
-10. Síntese saturação + eixo dominante
-11. Pivô Tese Upgrade
-12. Antes × Depois
-13. Personas (3 cards)
-14-15. Lojas individuais
-16. Metodologia
-17. Fontes
-18. Fechamento
+DADOS DO EMPRESÁRIO E NEGÓCIO:
+- Segmento / produto / franquia: {{segmento}}
+- Tipo de operação: {{tipo_operacao}}
+- Experiência no segmento: {{experiencia}}
+- Público-alvo: {{publico_alvo}}
+- Critérios de localização: {{criterios_localizacao}}
+- Visibilidade do ponto: {{visibilidade_ponto}}
+- Área mínima necessária: {{area_minima}} m²
+- Meta de faturamento — 1º ano: {{meta_ano1}}
+- Meta de faturamento — 2º ano: {{meta_ano2}}
+- Ticket médio: {{ticket_medio}}
 
-**Design tokens (dark/paper editorial):**
-- Cores: `#0f1410` (ink) · `#f5f1e8` (paper) · `#b6c39d` (olive) · `#c66a3a` (copper)
-- Fontes: Fraunces/Georgia (display) · Inter/Calibri (body) · DM Mono/Consolas
+INSTRUÇÃO SOBRE TICKET MÉDIO:
+Se {{ticket_medio}} = "não informado — usar média do setor", significa que o cliente está abrindo seu primeiro negócio e não possui essa informação. Neste caso, na Etapa 4, pesquise e utilize a média de ticket médio do setor {{segmento}} praticada em BH ou no Brasil. Informe a referência utilizada e deixe claro que é uma estimativa de mercado.
 
-### Fase 7 · Entrega (15 min)
+DADOS DO IMÓVEL:
+- Região / bairro de preferência: {{regiao_preferida}}
+- Custo mensal do imóvel (aluguel + condomínio + IPTU): R$ {{custo_imovel}}
 
-Salvar HTML + PPTX em `02 - Pesquisa [Bairro]/` · entregar ao cliente · revisão trimestral.
+EXECUTE AS 7 ETAPAS OBRIGATÓRIAS:
+
+ETAPA 1 — Análise da Região
+- Analisar a região informada: {{regiao_preferida}}
+- População do bairro (IBGE Censo mais recente)
+- Perfil socioeconômico predominante
+- Valor do m² (posicionamento relativo na cidade)
+- Bairros vizinhos no catchment (raio 3–5km)
+
+ETAPA 2 — Mapeamento de Concorrência (via Google Maps)
+REGRA INVIOLÁVEL: Verificar TODOS os concorrentes via Google Maps antes de qualquer afirmação.
+Buscar concorrentes em: {{regiao_preferida}}
+Para cada concorrente, levantar:
+- Nome, endereço exato, nota, nº de avaliações, horário de funcionamento
+- Classificação: mesmo eixo / eixo perpendicular / polo consolidado
+- Nível de ameaça: ALTA / MÉDIA / BAIXA com justificativa
+Insight: concorrente com nota baixa e poucos reviews no mesmo eixo = oportunidade.
+
+ETAPA 3 — Ecossistema de Referral
+Mapear via Google Maps em {{regiao_preferida}}:
+- Médicos / clínicas / labs do segmento {{segmento}} no bairro
+- Âncoras de fluxo (supermercados, farmácias, academias próximas)
+- Parceiros potenciais (convênio, indicação, material de ponto)
+- Priorizar players com alto volume de avaliações (= alto fluxo de pessoas)
+
+ETAPA 4 — Análise Financeira
+- Custo fixo do imóvel informado: R$ {{custo_imovel}}
+- Breakeven em nº de vendas/mês: R$ {{custo_imovel}} ÷ R$ {{ticket_medio}}
+- Curva de ramp-up projetada: meses 1–3 / 4–6 / 6+
+- Payback estimado do investimento inicial
+- % aluguel/faturamento por fase (saudável: <8%)
+- Comparar com metas: R$ {{meta_ano1}} (1º ano) e R$ {{meta_ano2}} (2º ano)
+
+ETAPA 5 — Score V5 (escala 0–10)
+- Demanda comprovada no eixo
+- Força da concorrência direta (inverso)
+- Qualidade do ecossistema de referral
+- Viabilidade financeira do ponto
+- Diferencial da região (âncoras, fluxo, acessibilidade)
+Score ≥ 7,5 = FAVORÁVEL · Score 5–7,4 = ATENÇÃO · Score < 5 = DESFAVORÁVEL
+
+ETAPA 6 — 3 Condições para o Sucesso
+Liste 3 ações concretas que o empresário deve tomar para o score se confirmar na prática.
+
+ETAPA 7 — Disclaimer
+"Esta pesquisa foi elaborada pela Oliveira Imóveis como instrumento de inteligência de mercado. Não constitui garantia de resultado, rentabilidade ou sucesso do empreendimento. A decisão final é de responsabilidade exclusiva do empreendedor."
+
+FORMATO DE ENTREGA:
+Relatório completo em Markdown com seções claras, tabela de concorrentes, Score V5 destacado, 3 condições para o sucesso e disclaimer ao final.
+```
 
 ---
 
-## Copy dos 3 Primeiros Segundos (para anúncios)
-
-Para cada nicho recomendado, gerar OBRIGATORIAMENTE 3 hooks:
-
-### Fórmula A · Identidade + Lacuna
-`"Você é [profissão]. [Bairro] tem [N] [concorrente] e zero [lacuna]. [CTA]."`
-
-### Fórmula B · Dado bruto sem preâmbulo
-`"[N] [tipo de negócio] em [raio]km do [bairro]. [Diagnóstico]. [Loja = solução]."`
-
-### Fórmula C · POV
-`"POV: você descobre que [superlativo do bairro] não tem [negócio do espectador]."`
-
-**Regra:** começar pela palavra que prende o profissional (nunca "Olá", "Sabia que").
+## Output padrão
+- Arquivo `.md` em `~/pesquisas/pesquisa-[segmento]-[cliente]-[local]-[data].md`
+- Arquivo `.html` com design V5 (hero navy, score verde, cards, tabela de concorrentes, disclaimer)
+- Upload no Google Drive → pasta do cliente em Marketing Oliveira
 
 ---
 
-## Templates disponíveis
-
-Pasta: `Marketing Oliveira/00 - Templates Padrao Pesquisa V5/`
-
-| Arquivo | Uso |
-|---|---|
-| `template_html.html` | Base do entregável principal |
-| `template_pptx.js` | Script de geração do PPTX (Node.js + pptxgenjs) |
-| `checklist_pesquisa.md` | Passo-a-passo detalhado |
-| `README.md` | Visão geral |
-
----
-
-## Aplicações futuras (qualquer cidade/bairro)
-
-O padrão V5 funciona para **qualquer bairro de qualquer cidade do Brasil**.
-Adaptar apenas:
-- Dados demográficos do IBGE Censo do novo bairro
-- Lista de modalidades (ajustar se for ponto comercial não-saúde — ex: gastronomia, moda, serviços)
-- Personas alvo locais
-- Vocação das lojas conforme vizinhos imediatos
-
-**Bairros já analisados pela Oliveira:**
-- Buritis (BH) · v3, v4, v5 · maio 2025-2026 · saúde & wellness
-- Serra/Palmira (BH) · v1 · Centro Comercial Iracema
-- Aplicar V5 daqui em diante.
-
----
-
-**Status:** V5 é o **padrão default** para toda nova pesquisa a partir de 25 de maio de 2026.
-Substituir versões anteriores quando o cliente solicitar nova análise.
+## Referências / Casos anteriores
+- [Ótica Rodrigo — Loja 15 Portofino, Buritis BH](referencias/caso-otica-rodrigo-buritis-2026-06.md)

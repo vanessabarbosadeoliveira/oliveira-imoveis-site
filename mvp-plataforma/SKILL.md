@@ -524,7 +524,24 @@ ETAPAS: 1-Análise da região · 2-Concorrência (Google Maps obrigatório) · 3
 
 ---
 
-## 14. Alertas Técnicos
+## 14. Termos de Uso — Isenção sobre Pesquisa de Mercado
+
+**Atualizado em 26/06/2026:** ambas as LPs possuem cláusula **4.1 — Isenção de responsabilidade sobre a pesquisa de mercado** nos Termos de Uso.
+
+Conteúdo da cláusula:
+- A pesquisa é fornecida por livre e espontânea vontade do usuário
+- Não constitui consultoria financeira, imobiliária ou jurídica
+- Resultados e projeções são estimativas sujeitas a variações de mercado não controláveis pela Oliveira Imóveis
+- A decisão de abrir, expandir ou manter um negócio é responsabilidade exclusiva do usuário
+- Oliveira Imóveis não se responsabiliza por perdas decorrentes do uso ou interpretação da pesquisa
+
+**Localização nos arquivos:**
+- LP1 (`lp.oliveiraimoveis.ia.br`): modal "Termos de Uso" em `oliveira-lp-leads/public/index.html`
+- LP2 (`wispy-field-ab1d`): página `/termos-de-uso` em `oliveira-portofino-next/app/termos-de-uso/page.js`
+
+---
+
+## 15. Alertas Técnicos
 
 - **Site em HTML único** → Daniel recomenda separar em componentes para reduzir custo de tokens por atualização
 - **Sem dados históricos** → sem CRM, impossível aprender padrões de matching

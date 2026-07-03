@@ -18,9 +18,11 @@ Duas landing pages para a campanha Portofino Buritis, cada uma com formulário p
 
 Também existe `oliveira-portofino-cloudflare/` — protótipo estático antigo do LP2, **não é mais o que está publicado** (mantido só de referência histórica).
 
-## ⚠️ Pendência crítica (aberta em 02/07/2026)
+## 🚫 NÃO FAZER DEPLOY DA LP1 (instrução direta da Vanessa, 2026-07-03)
 
-**A LP1 realmente publicada em `lp.oliveiraimoveis.ia.br` NÃO bate com o código-fonte local `oliveira-lp-leads`.** A página ao vivo tem menu "ENTRAR"/login e abas "especialista"/"plataforma" (parece ligada ao MVP da plataforma, pasta `01 - MVP Plataforma (Daniel)`), enquanto o `oliveira-lp-leads` é um formulário simples dourado/verde sem login. O worker `oliveira-pesquisa` foi redeployado em 02/07/2026 e a fonte desse deploy **não está em nenhuma pasta sincronizada** (nem local, nem no repo do site, nem no MVP). Verificar com Daniel onde está esse código antes de editar/deployar a LP1 — subir `oliveira-lp-leads` por cima corre o risco de derrubar a página atual.
+**A LP1 realmente publicada em `lp.oliveiraimoveis.ia.br` NÃO bate com o código-fonte local `oliveira-lp-leads`** — e essa diferença é **intencional**: a página ao vivo foi modificada (tem menu "ENTRAR"/login e abas "especialista"/"plataforma", parece ligada ao MVP da plataforma, pasta `01 - MVP Plataforma (Daniel)`) e **essa modificação deve ser respeitada**. O `oliveira-lp-leads` (formulário simples dourado/verde sem login) é uma versão **desatualizada/obsoleta** — não é para ser publicada por cima da atual.
+
+**Regra: nunca fazer deploy da LP1 (worker `oliveira-pesquisa`) a partir de `oliveira-lp-leads` ou qualquer outra fonte local, mesmo que pareça um "fix" ou "atualização".** Se surgir pedido para editar/atualizar/mexer na LP1, checar com a Vanessa antes — não assumir que é seguro publicar.
 
 ## Diagnóstico de tracking (02/07/2026)
 

@@ -77,6 +77,28 @@ Fechamento → comissão para a Oliveira
 
 Endpoint no Cloudflare Workers — retorna todos os leads capturados pela LP em tempo real. Requer parâmetro `?secret=` (ver doc de senhas).
 
+### Centralização de leads — LP1 e LP2 apontam para o mesmo Worker
+
+**Confirmado em 26/06/2026:** ambas as landing pages já enviam leads para o mesmo endpoint do Worker. O campo `pagina_origem` identifica de qual LP veio o lead.
+
+| LP | URL | Worker | `pagina_origem` |
+|---|---|---|---|
+| LP1 — Pesquisa Estratégica | `lp.oliveiraimoveis.ia.br` | `oliveira-pesquisa` | `oliveiraimoveis.ia.br/pesquisa` |
+| LP2 — Portofino Street Mall | `wispy-field-ab1d.vanessabarbosadeoliveira9.workers.dev` | `wispy-field-ab1d` | `Portofino Street Mall` |
+
+**Endpoint único (ambas):** `https://oliveira-leads-api.vanessabarbosadeoliveira9.workers.dev/lead`
+- Método: `POST`
+- Formato: `FormData`
+- `keepalive: true` em ambas (garante entrega mesmo quando o usuário navega para o WhatsApp)
+
+**Dashboard centralizado:** URL e secret disponíveis no [documento de senhas](https://docs.google.com/document/d/1xSb1g3KtOfWy-bCrnoSagkGrfhPj3hj1-1IOIxyfQ_E/edit?tab=t.0) (seção "link com os leads").
+- Coluna **"Página"** mostra de qual LP veio o lead
+- Todos os UTMs do Meta Ads são capturados (campanha, conjunto, criativo, ad_id, fbclid)
+
+**DNS Cloudflare (`oliveiraimoveis.ia.br`):**
+- `lp.oliveiraimoveis.ia.br` → Worker `oliveira-pesquisa` (Proxied)
+- `www.oliveiraimoveis.ia.br` → Worker `soft-smoke-c987` (Proxied)
+
 ---
 
 ## 4. Landing Page — lp.oliveiraimoveis.ia.br
@@ -502,7 +524,24 @@ ETAPAS: 1-Análise da região · 2-Concorrência (Google Maps obrigatório) · 3
 
 ---
 
-## 14. Alertas Técnicos
+## 14. Termos de Uso — Isenção sobre Pesquisa de Mercado
+
+**Atualizado em 26/06/2026:** ambas as LPs possuem cláusula **4.1 — Isenção de responsabilidade sobre a pesquisa de mercado** nos Termos de Uso.
+
+Conteúdo da cláusula:
+- A pesquisa é fornecida por livre e espontânea vontade do usuário
+- Não constitui consultoria financeira, imobiliária ou jurídica
+- Resultados e projeções são estimativas sujeitas a variações de mercado não controláveis pela Oliveira Imóveis
+- A decisão de abrir, expandir ou manter um negócio é responsabilidade exclusiva do usuário
+- Oliveira Imóveis não se responsabiliza por perdas decorrentes do uso ou interpretação da pesquisa
+
+**Localização nos arquivos:**
+- LP1 (`lp.oliveiraimoveis.ia.br`): modal "Termos de Uso" em `oliveira-lp-leads/public/index.html`
+- LP2 (`wispy-field-ab1d`): página `/termos-de-uso` em `oliveira-portofino-next/app/termos-de-uso/page.js`
+
+---
+
+## 15. Alertas Técnicos
 
 - **Site em HTML único** → Daniel recomenda separar em componentes para reduzir custo de tokens por atualização
 - **Sem dados históricos** → sem CRM, impossível aprender padrões de matching

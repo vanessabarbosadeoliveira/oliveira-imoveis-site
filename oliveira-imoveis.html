@@ -5042,11 +5042,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     enviarWorker(1);
 
     // Conversão: só aqui, depois do formulário realmente enviado.
-    window.oiFireLead(
-      { method: 'form-modal', cta_text: cta.cta_text || '' },
-      eventId,
-      { em: email.toLowerCase(), ph: waDigits, fn: nome.toLowerCase().split(' ')[0] }
-    );
+    // Protegido: uma falha no tracking não pode impedir o lead de seguir
+    // para o WhatsApp nem abortar o envio ao Worker.
+    try {
+      if (typeof window.oiFireLead === 'function') {
+        window.oiFireLead(
+          { method: 'form-modal', cta_text: cta.cta_text || '' },
+          eventId,
+          { em: email.toLowerCase(), ph: waDigits, fn: nome.toLowerCase().split(' ')[0] }
+        );
+      }
+    } catch (e) {}
 
     var msg = 'Olá! Me chamo ' + nome + ', vim pelo site da Oliveira Imóveis e gostaria de falar com a equipe.';
     window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');

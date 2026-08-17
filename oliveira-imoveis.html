@@ -266,8 +266,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       { "@type": "ListItem", "position": 2, "name": "Ecossistema",      "item": "https://www.oliveiraimoveis.ia.br/#ecossistema" },
       { "@type": "ListItem", "position": 3, "name": "Sobre",            "item": "https://www.oliveiraimoveis.ia.br/#sobre" },
       { "@type": "ListItem", "position": 4, "name": "Para Proprietários","item": "https://www.oliveiraimoveis.ia.br/#proprietarios" },
-      { "@type": "ListItem", "position": 5, "name": "Perguntas Frequentes","item": "https://www.oliveiraimoveis.ia.br/#faq" },
-      { "@type": "ListItem", "position": 6, "name": "Contato",          "item": "https://www.oliveiraimoveis.ia.br/#contato" }
+      { "@type": "ListItem", "position": 5, "name": "Para Empreendedores","item": "https://www.oliveiraimoveis.ia.br/#empreendedores" },
+      { "@type": "ListItem", "position": 6, "name": "Perguntas Frequentes","item": "https://www.oliveiraimoveis.ia.br/#faq" },
+      { "@type": "ListItem", "position": 7, "name": "Contato",          "item": "https://www.oliveiraimoveis.ia.br/#contato" }
     ]
   }
   </script>
@@ -501,16 +502,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --canvas:   #f6f3ee;
-    --ink:      #1b1b1b;
-    --sand:     #e7e0d6;
-    --clay:     #b98f6a;
+    --canvas:   #f4efe5;   /* paper da LP2 */
+    --ink:      #10161d;   /* ink da LP2 — preto azulado no lugar do preto puro */
+    --sand:     #ebe3d3;
+    --clay:     #c9a84c;   /* dourado da LP2 — substituiu o marrom #b98f6a */
     --pine:     #2f4a3f;
-    --accent:   #b26a4a;
-    --navy:     #1a2b1e;   /* deep forest — substituiu o azul navy */
+    --accent:   #d9a647;   /* gold da LP2 — substituiu o terracota #b26a4a */
+    --navy:     #0d1c15;   /* deep forest — substituiu o azul navy */
     --white:    #ffffff;
-    --shadow-sm: 0 4px 20px rgba(47,74,63,0.08), 0 1px 4px rgba(27,27,27,0.06);
-    --shadow:    0 24px 56px -16px rgba(27,27,27,0.28), 0 4px 16px rgba(185,143,106,0.10);
+    --shadow-sm: 0 4px 20px rgba(47,74,63,0.08), 0 1px 4px rgba(16,22,29,0.06);
+    --shadow:    0 24px 56px -16px rgba(16,22,29,0.28), 0 4px 16px rgba(201,168,76,0.10);
     --noise:     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
   }
 
@@ -673,12 +674,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .btn--clay {
     background: var(--clay);
-    color: var(--white);
+    color: var(--ink);          /* texto escuro sobre o dourado, como na LP2 */
     border-color: var(--clay);
-    box-shadow: 0 8px 24px rgba(185,143,106,0.3);
+    box-shadow: 0 8px 24px rgba(201,168,76,0.3);
   }
   .btn--clay:hover {
-    background: #a67a55;
+    background: #dfc16d;
     transform: translateY(-1px);
   }
   .btn--whatsapp {
@@ -891,7 +892,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   ═══════════════════════════════════════════════════ */
   .hero {
     height: 100vh;
-    background: #0e0e0e;
+    background: #0b0f14;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -906,7 +907,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     top: -10%; right: -5%;
     width: 55%; height: 120%;
     background: radial-gradient(ellipse at top right,
-      rgba(185,143,106,0.10) 0%,
+      rgba(201,168,76,0.10) 0%,
       transparent 60%);
     z-index: 0;
     pointer-events: none;
@@ -980,7 +981,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     gap: 8px;
     background: rgba(14,14,14,0.72);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(185,143,106,0.35);
+    border: 1px solid rgba(201,168,76,0.35);
     color: var(--white);
     font-size: 12px;
     font-weight: 700;
@@ -1008,7 +1009,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     justify-content: center;
     gap: 16px;
     background: linear-gradient(135deg, #1a2218 0%, #2f4a3f 60%, #1a1209 100%);
-    border-right: 1px dashed rgba(185,143,106,0.2);
+    border-right: 1px dashed rgba(201,168,76,0.2);
   }
   .hero__image-placeholder span { font-size: 48px; }
   .hero__image-placeholder p {
@@ -1114,7 +1115,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transition: border-color 0.25s, color 0.25s;
   }
   .hero__badge:hover {
-    border-color: rgba(185,143,106,0.3);
+    border-color: rgba(201,168,76,0.3);
     color: rgba(255,255,255,0.65);
   }
   .hero__badge-dot {
@@ -1187,7 +1188,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     overflow: hidden;
     aspect-ratio: 16/7;
     box-shadow: 0 32px 80px -20px rgba(27,27,27,0.32);
-    background: linear-gradient(135deg, var(--pine), #1b1b1b);
+    background: linear-gradient(135deg, var(--pine), #10161d);
   }
   .ecosistema__photo-wrap img {
     width: 100%;
@@ -1342,7 +1343,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     overflow: hidden;
     aspect-ratio: 4/3;
     box-shadow: var(--shadow);
-    background: linear-gradient(135deg, var(--pine), #1b1b1b);
+    background: linear-gradient(135deg, var(--pine), #10161d);
     display: none; /* oculto: substituído pela foto em destaque acima */
   }
   .ecosistema__image-wrap img {
@@ -1412,7 +1413,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     margin-top: 28px;
     padding: 24px 28px;
     border-left: 3px solid var(--clay);
-    background: rgba(185,143,106,0.06);
+    background: rgba(201,168,76,0.06);
     border-radius: 0 12px 12px 0;
   }
   .ecosistema__quote p {
@@ -1523,7 +1524,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size: 44px;
     font-weight: 700;
     font-style: italic;
-    color: rgba(185,143,106,0.18);
+    color: rgba(201,168,76,0.18);
     line-height: 1;
     margin-bottom: -8px;
     letter-spacing: -0.02em;
@@ -1560,7 +1561,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     overflow: hidden;
     aspect-ratio: 4/3;
     box-shadow: var(--shadow);
-    background: linear-gradient(135deg, #2f4a3f, #1b1b1b);
+    background: linear-gradient(135deg, #2f4a3f, #10161d);
     order: 0;
   }
   .case__image img {
@@ -1839,6 +1840,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     color: rgba(27,27,27,0.62);
   }
   .diferencial-card p + p { margin-top: 10px; }
+
+  /* Escolha de público (proprietário x empreendedor) */
+  .publico__grid {
+    display: grid;
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) {
+    .publico__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .publico__card {
+    display: block;
+    padding: 40px 32px;
+    border-radius: 18px;
+    border: 1px solid var(--sand);
+    background: var(--white);
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  }
+  .publico__card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+    border-color: var(--clay);
+  }
+  .publico__card-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .publico__card h3 {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .publico__card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(27,27,27,0.62);
+    margin-bottom: 16px;
+  }
+  .publico__card-link {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--clay);
+  }
 
   /* Prova */
   .prova {
@@ -2695,11 +2743,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .depoimento-card:hover {
     transform: translateY(-6px);
     background: rgba(255,255,255,0.1);
-    border-color: rgba(185,143,106,0.4);
+    border-color: rgba(201,168,76,0.4);
   }
   .depoimento-card--destaque {
-    background: rgba(185,143,106,0.15);
-    border-color: rgba(185,143,106,0.4);
+    background: rgba(201,168,76,0.15);
+    border-color: rgba(201,168,76,0.4);
   }
   .depoimento-card--destaque::before {
     background: linear-gradient(90deg, var(--clay), #f0c07a);
@@ -2709,7 +2757,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     align-items: center;
     gap: 6px;
     background: var(--clay);
-    color: var(--white);
+    color: var(--ink);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -2818,7 +2866,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* Depoimento inline dentro do grid de lojistas */
   .depoimento-inline {
-    background: linear-gradient(135deg, rgba(185,143,106,0.08), rgba(185,143,106,0.03));
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.03));
     border: 1.5px solid var(--clay);
     border-radius: 16px;
     padding: 18px 20px 16px;
@@ -2827,7 +2875,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .depoimento-inline__badge {
     display: inline-block;
     background: var(--clay);
-    color: var(--white);
+    color: var(--ink);
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -2849,6 +2897,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     color: var(--clay);
     letter-spacing: 0.03em;
   }
+
+  /* ═══════════════════════════════════════════════════
+     BLOCOS CLAROS (paleta LP2 — Opção B, 2026-08-17)
+     FAQ e Depoimentos saíram do fundo escuro para o creme.
+     Hero e rodapé continuam escuros, para manter contraste.
+     Para voltar ao visual anterior, basta remover este bloco.
+  ═══════════════════════════════════════════════════ */
+
+  /* ── FAQ: preto → creme ─────────────── */
+  .faq-section            { background: var(--canvas); color: var(--ink); }
+  .faq-section .sh h2     { color: var(--ink); }
+  .faq-section .sh p      { color: rgba(16,22,29,0.62); }
+  .faq-section .eyebrow--white         { color: var(--clay); }
+  .faq-section .eyebrow--white::before { background: currentColor; }
+  .faq-list               { border-color: rgba(16,22,29,0.14); background: rgba(255,255,255,0.60); }
+  .faq-item               { border-bottom-color: rgba(16,22,29,0.10); }
+  .faq-item summary       { color: var(--ink); }
+  .faq-item summary:hover { background: rgba(201,168,76,0.08); }
+  .faq-item__body         { color: rgba(16,22,29,0.72); }
+
+  /* ── Depoimentos: verde escuro → creme com cartões claros ── */
+  .depoimentos            { background: var(--sand); }
+  .depoimentos::before    { color: rgba(16,22,29,0.05); }
+  .depoimentos .sh h2,
+  .depoimentos .sh p      { color: var(--ink) !important; }
+  .depoimentos .eyebrow   { color: var(--clay) !important; }
+  .depoimento-card {
+    background: rgba(255,255,255,0.78);
+    border-color: rgba(16,22,29,0.10);
+    box-shadow: 0 4px 20px rgba(16,22,29,0.06);
+  }
+  .depoimento-card:hover           { background: #ffffff; border-color: rgba(201,168,76,0.55); }
+  .depoimento-card--destaque       { background: rgba(201,168,76,0.14); border-color: rgba(201,168,76,0.45); }
+  .depoimento-card__text           { color: rgba(16,22,29,0.82); }
+  .depoimento-card__author         { border-top-color: rgba(16,22,29,0.10); }
+  .depoimento-card__author *       { color: var(--ink) !important; }
 
   </style>
 </head>
@@ -2880,12 +2964,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#ecossistema">Ecossistema</a></li>
       <li><a href="#proprietarios">Proprietários</a></li>
+      <li><a href="#empreendedores">Empreendedores</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
 
     <!-- CTA + hamburger -->
     <div class="navbar__cta">
-      <a href="https://wa.me/5531999558360?text=Olá! Quero alugar meu imóvel."
+      <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=navbar-desktop"
          target="_blank" rel="noreferrer"
          class="btn btn--clay btn--sm">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -2906,8 +2991,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
   <a href="#sobre"         onclick="closeDrawer()">Sobre</a>
   <a href="#ecossistema"   onclick="closeDrawer()">Ecossistema</a>
   <a href="#proprietarios" onclick="closeDrawer()">Para Proprietários</a>
+  <a href="#empreendedores" onclick="closeDrawer()">Para Empreendedores</a>
   <a href="#contato"       onclick="closeDrawer()">Contato</a>
-  <a href="https://wa.me/5531999558360?text=Olá! Quero alugar meu imóvel."
+  <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=menu-mobile"
      target="_blank" rel="noreferrer"
      class="btn btn--whatsapp nav-drawer__cta"
      onclick="closeDrawer()">
@@ -2954,14 +3040,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       </p>
 
       <div class="hero__actions">
-        <a href="https://wa.me/5531999558360?text=Olá! Quero alugar meu imóvel com a Oliveira Imóveis."
+        <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=hero-proprietario"
            target="_blank" rel="noreferrer"
            class="btn btn--primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Quero alugar meu imóvel
         </a>
-        <a href="#ecossistema" class="btn btn--outline-white">Ver case de sucesso →</a>
+        <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=hero-empreendedor"
+           target="_blank" rel="noreferrer"
+           class="btn btn--outline-white">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Procuro um ponto comercial
+        </a>
       </div>
+      <a href="#ecossistema" class="prova__link" style="margin-bottom:12px">Ver case de sucesso →</a>
 
       <!-- Prova social — visível só após CLIQUE_THRESHOLD cliques (controlado por JS) -->
       <div id="oi-social-proof" style="display:none;align-items:center;gap:8px;margin-bottom:12px;font-family:inherit;font-size:13px;color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:20px;padding:6px 14px;width:fit-content;">
@@ -2993,6 +3085,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
   <div class="hero__scroll" aria-hidden="true">
     <div class="hero__scroll-dot"></div>
     <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     ESCOLHA DE PÚBLICO — Proprietário ou Empreendedor
+═══════════════════════════════════════════════════ -->
+<section class="section section--sand publico" id="publico" aria-label="Qual é o seu perfil">
+  <div class="container">
+    <div class="sh sh--center reveal">
+      <div class="eyebrow" style="justify-content:center">Como podemos ajudar</div>
+      <h2>O que você está buscando?</h2>
+    </div>
+
+    <div class="publico__grid reveal">
+      <a href="#proprietarios" class="publico__card">
+        <div class="publico__card-icon">🏢</div>
+        <h3>Tenho um imóvel comercial</h3>
+        <p>Quero alugar minha loja ou sala com estratégia, curadoria de negócios e marketing digital.</p>
+        <span class="publico__card-link">Ver para proprietários →</span>
+      </a>
+      <a href="#empreendedores" class="publico__card">
+        <div class="publico__card-icon">🔎</div>
+        <h3>Procuro um ponto comercial</h3>
+        <p>Quero ter certeza de que o ponto é o ideal para o meu negócio antes de assinar o contrato.</p>
+        <span class="publico__card-link">Ver para empreendedores →</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -3105,7 +3225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
         </div>
 
         <div style="margin-top:32px">
-          <a href="https://wa.me/5531999558360?text=Olá! Quero aplicar essa estratégia no meu imóvel."
+          <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=secao-estrategia"
              target="_blank" rel="noreferrer"
              class="btn btn--pine">
             Quero aplicar essa estratégia no meu imóvel
@@ -3419,7 +3539,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       posicionar imóveis de forma estratégica e gerar resultados consistentes.
     </p>
     <div style="margin-top:36px">
-      <a href="https://wa.me/5531999558360?text=Olá! Quero conhecer o método da Oliveira Imóveis."
+      <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=secao-metodo"
          target="_blank" rel="noreferrer"
          class="btn btn--outline-dark">
         Quero conhecer o método →
@@ -3453,7 +3573,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
           seu imóvel com estratégia comercial e marketing digital.
         </p>
         <div class="prop-hero__actions">
-          <a href="https://wa.me/5531999558360?text=Olá! Quero alugar minha loja com a Oliveira Imóveis."
+          <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=prop-hero"
              target="_blank" rel="noreferrer"
              class="btn btn--whatsapp">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -3612,11 +3732,112 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       <div class="prop-cta__item">Garantimos ocupação duradoura</div>
     </div>
     <div class="prop-cta__actions reveal">
-      <a href="https://wa.me/5531999558360?text=Olá! Quero alugar minha loja com a Oliveira Imóveis."
+      <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=prop-cta"
          target="_blank" rel="noreferrer"
          class="btn btn--whatsapp">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Quero alugar minha loja
+      </a>
+    </div>
+    <small class="reveal">Retornamos em até 1 hora em horário comercial · Seg a Sex · 9h às 19h</small>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PARA EMPREENDEDORES — Segurança na escolha do ponto
+═══════════════════════════════════════════════════ -->
+<div class="prop-hero" id="empreendedores">
+  <div class="container">
+    <div class="prop-hero__grid">
+      <div class="reveal">
+        <div class="eyebrow eyebrow--white">Para Empreendedores</div>
+        <h2>Antes de assinar o<br>contrato, tenha certeza<br>de que o ponto é o ideal.</h2>
+        <p>
+          Procurando um ponto comercial para o seu negócio? Antes de fechar,
+          entenda o fluxo de público, a vocação comercial e o perfil dos
+          vizinhos daquele endereço.
+        </p>
+        <div class="prop-hero__actions">
+          <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=empreendedores-hero"
+             target="_blank" rel="noreferrer"
+             class="btn btn--whatsapp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Falar com especialista
+          </a>
+        </div>
+      </div>
+
+      <div class="prop-hero__card reveal">
+        <p class="prop-hero__card-tag">Como te damos segurança</p>
+        <h3>O que analisamos</h3>
+        <div class="prop-hero__stat">
+          <div class="prop-hero__stat-val">30+ anos</div>
+          <div class="prop-hero__stat-label">de experiência do nosso time em pesquisa de mercado</div>
+        </div>
+        <div class="prop-hero__stat">
+          <div class="prop-hero__stat-val">Fluxo real</div>
+          <div class="prop-hero__stat-label">de público do ponto, não só volume de trânsito na rua</div>
+        </div>
+        <div class="prop-hero__stat">
+          <div class="prop-hero__stat-val">Vizinhança</div>
+          <div class="prop-hero__stat-label">e perfil de concorrência mapeados antes da decisão</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Problema — Empreendedores -->
+<div class="problema">
+  <div class="container">
+    <div class="problema__grid">
+      <div class="reveal">
+        <div class="eyebrow">O risco</div>
+        <h3>O ponto errado<br>custa mais que o aluguel</h3>
+        <p>
+          Muitos empreendedores fecham um contrato animados com a localização
+          — e só descobrem o problema depois que as chaves estão em mãos.
+        </p>
+        <p>
+          Fluxo intenso não significa cliente certo, e contrato de locação
+          comercial tem multa por rescisão antecipada. Sem dados, a decisão
+          vira aposta.
+        </p>
+      </div>
+      <div class="reveal">
+        <div class="eyebrow">A segurança</div>
+        <h3>Pesquisa de mercado<br>antes de qualquer contrato</h3>
+        <p>
+          Antes de você assinar, analisamos o ponto, o entorno e o perfil do
+          público para confirmar que aquele endereço é o ideal para o seu
+          negócio crescer.
+        </p>
+        <p>
+          Fale com a gente e entenda como funciona a análise para o seu caso.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Prop CTA — Empreendedores -->
+<div class="prop-cta">
+  <div class="container">
+    <div class="eyebrow" style="justify-content:center">Nossa proposta</div>
+    <h3 class="reveal">Mais segurança para decidir<br>onde abrir o seu negócio</h3>
+    <div class="prop-cta__list reveal">
+      <div class="prop-cta__item">Analisamos a vocação comercial do ponto</div>
+      <div class="prop-cta__item">Mapeamos o fluxo real de público</div>
+      <div class="prop-cta__item">Avaliamos o perfil dos vizinhos e concorrentes</div>
+      <div class="prop-cta__item">Te damos dados para decidir com segurança</div>
+    </div>
+    <div class="prop-cta__actions reveal">
+      <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=empreendedores-cta"
+         target="_blank" rel="noreferrer"
+         class="btn btn--whatsapp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar com especialista
       </a>
     </div>
     <small class="reveal">Retornamos em até 1 hora em horário comercial · Seg a Sex · 9h às 19h</small>
@@ -3893,7 +4114,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       estratégia, atrair o público certo e reduzir a vacância.
     </p>
     <div class="contato-hero__btn reveal">
-      <a href="https://wa.me/5531999558360?text=Olá! Quero conversar sobre meu imóvel."
+      <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=contato-hero"
          target="_blank" rel="noreferrer"
          class="btn btn--whatsapp">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -3925,7 +4146,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
           <div class="contato-detail__text">
             <strong>WhatsApp</strong>
             <span>
-              <a href="https://wa.me/5531999558360" target="_blank" rel="noreferrer"
+              <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=contato-telefone" target="_blank" rel="noreferrer"
                  style="color:var(--ink);font-weight:600;transition:color 0.2s"
                  onmouseover="this.style.color='var(--accent)'"
                  onmouseout="this.style.color='var(--ink)'">(31) 99955-8360</a>
@@ -4009,7 +4230,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
             Resposta rápida e atendimento personalizado com nossa equipe.
             Analise do imóvel e estratégia no primeiro contato.
           </p>
-          <a href="https://wa.me/5531999558360?text=Olá! Quero conversar sobre meu imóvel com a Oliveira Imóveis."
+          <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=card-contato"
              target="_blank" rel="noreferrer"
              class="btn btn--whatsapp"
              style="width:100%;justify-content:center">
@@ -4065,7 +4286,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     <div class="eyebrow eyebrow--white reveal" style="justify-content:center">Pronto para o próximo passo?</div>
     <h3 class="reveal">Seu imóvel pode performar melhor.<br>Vamos te mostrar como.</h3>
     <div class="actions reveal">
-      <a href="https://wa.me/5531999558360?text=Olá! Quero saber como meu imóvel pode performar melhor."
+      <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=cta-banner"
          target="_blank" rel="noreferrer"
          class="btn btn--whatsapp">
         Falar no WhatsApp
@@ -4099,6 +4320,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
           <a href="#sobre">Sobre nós</a>
           <a href="#ecossistema">Ecossistema</a>
           <a href="#proprietarios">Proprietários</a>
+          <a href="#empreendedores">Empreendedores</a>
           <a href="#contato">Fale conosco</a>
         </nav>
       </div>
@@ -4136,7 +4358,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
         </address>
 
         <!-- CTA WhatsApp -->
-        <a href="https://wa.me/5531999558360?text=Olá! Quero aplicar essa estratégia no meu imóvel." target="_blank" rel="noreferrer" class="footer-cta" aria-label="Fale conosco pelo WhatsApp">
+        <a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=footer" target="_blank" rel="noreferrer" class="footer-cta" aria-label="Fale conosco pelo WhatsApp">
           <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
           </svg>
@@ -4187,7 +4409,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </footer>
 
 <!-- WhatsApp float -->
-<a href="https://wa.me/5531999558360" target="_blank" rel="noreferrer"
+<a href="https://lp.oliveiraimoveis.ia.br/?utm_source=site-oliveira&utm_medium=cta&utm_campaign=whatsapp-lead&utm_content=float-whatsapp" target="_blank" rel="noreferrer"
    class="wa-float" aria-label="Fale conosco pelo WhatsApp" title="Falar no WhatsApp">
   <svg viewBox="0 0 24 24" fill="#fff">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -4232,7 +4454,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
   });
 
   /* ── Navbar links: active on scroll ─────────── */
-  const sectionIds = ['home','ecossistema','sobre','proprietarios','contato'];
+  const sectionIds = ['home','ecossistema','sobre','proprietarios','empreendedores','contato'];
   const navLinks   = document.querySelectorAll('.navbar__links a');
 
   const sectionObserver = new IntersectionObserver((entries) => {
@@ -4326,8 +4548,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       .then(function (d) { if (d && d.count) updateBadge(d.count); })
       .catch(function () {});
 
-    // Incrementa ao clicar em qualquer CTA wa.me
-    document.querySelectorAll('a[href^="https://wa.me"], a[href^="http://wa.me"]')
+    // Incrementa ao clicar em qualquer CTA wa.me ou LP
+    document.querySelectorAll('a[href^="https://lp.oliveiraimoveis.ia.br"], a[href^="https://wa.me"], a[href^="http://wa.me"]')
       .forEach(function (a) {
         a.addEventListener('click', function () {
           fetch(API, {
@@ -4364,11 +4586,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       try { fbq('track', 'Lead', meta); } catch (e) {}
     }
 
-    var selectors = 'a[href^="https://wa.me"], a[href^="http://wa.me"], a[href^="tel:"], a[href^="mailto:"]';
+    var selectors = 'a[href^="https://lp.oliveiraimoveis.ia.br"], a[href^="https://wa.me"], a[href^="http://wa.me"], a[href^="tel:"], a[href^="mailto:"]';
     document.querySelectorAll(selectors).forEach(function (a) {
       a.addEventListener('click', function () {
         var href = a.getAttribute('href') || '';
-        var channel = href.indexOf('wa.me') > -1 ? 'whatsapp'
+        var channel = href.indexOf('lp.oliveiraimoveis.ia.br') > -1 ? 'whatsapp'
+                    : href.indexOf('wa.me') > -1 ? 'whatsapp'
                     : href.indexOf('tel:') === 0 ? 'phone'
                     : 'email';
         fireLead({
@@ -4379,6 +4602,356 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       }, { passive: true });
     });
   })();
+</script>
+
+<!-- ═══════════════════════════════════════════════════
+     MODAL — Captura de lead antes do WhatsApp
+     Substitui o redirecionamento direto pra LP1: abre um
+     formulário curto (nome, e-mail, whatsapp), envia pro
+     oliveira-leads-api (painel + Notion CRM) e só então
+     abre o WhatsApp com a mensagem pronta.
+═══════════════════════════════════════════════════ -->
+<style>
+  .oi-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(27,27,27,0.55);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .oi-modal-overlay.is-open { display: flex; }
+  .oi-modal {
+    background: var(--white);
+    border-radius: 16px;
+    max-width: 400px;
+    width: 100%;
+    padding: 32px 28px 28px;
+    position: relative;
+    box-shadow: var(--shadow);
+    font-family: 'Manrope', sans-serif;
+  }
+  .oi-modal__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--ink);
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  .oi-modal__close:hover { opacity: 1; }
+  .oi-modal__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .oi-modal__sub {
+    font-size: 13px;
+    color: var(--ink);
+    opacity: 0.65;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .oi-modal__field {
+    margin-bottom: 14px;
+  }
+  .oi-modal__field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--pine);
+    margin-bottom: 6px;
+  }
+  .oi-modal__field input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--sand);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--ink);
+    background: var(--canvas);
+  }
+  .oi-modal__field input:focus {
+    outline: none;
+    border-color: var(--clay);
+  }
+  .oi-modal__submit {
+    width: 100%;
+    margin-top: 6px;
+    border: none;
+    cursor: pointer;
+  }
+  .oi-modal__error {
+    display: none;
+    font-size: 12px;
+    color: #b3261e;
+    margin-top: -6px;
+    margin-bottom: 14px;
+  }
+  .oi-modal__error.is-visible { display: block; }
+  .oi-modal__consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--ink);
+    opacity: 0.85;
+    margin-bottom: 14px;
+    cursor: pointer;
+  }
+  .oi-modal__consent input {
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+  .oi-modal__consent a {
+    color: var(--clay);
+    text-decoration: underline;
+  }
+  .oi-modal-overlay--legal { z-index: 10000; }
+  .oi-modal--legal {
+    max-width: 560px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .oi-modal__legal-body {
+    overflow-y: auto;
+    padding-right: 6px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .oi-modal__legal-body h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    margin: 16px 0 6px;
+    color: var(--pine);
+  }
+  .oi-modal__legal-body h4:first-child { margin-top: 0; }
+  .oi-modal__legal-body p { margin-bottom: 10px; }
+  .oi-modal__legal-body ul { padding-left: 20px; margin-bottom: 10px; }
+  .oi-modal__legal-body li { margin-bottom: 6px; }
+</style>
+
+<div class="oi-modal-overlay" id="oiModalOverlay">
+  <div class="oi-modal">
+    <button type="button" class="oi-modal__close" id="oiModalClose" aria-label="Fechar">&times;</button>
+    <div class="oi-modal__title">Contato pelo WhatsApp</div>
+    <form id="oiModalForm" novalidate>
+      <div class="oi-modal__field">
+        <label for="oiModalNome">Nome</label>
+        <input type="text" id="oiModalNome" name="nome" autocomplete="name" required>
+      </div>
+      <div class="oi-modal__field">
+        <label for="oiModalWhatsapp">WhatsApp</label>
+        <input type="tel" id="oiModalWhatsapp" name="telefone" placeholder="(31) 9 0000-0000" autocomplete="tel" required>
+      </div>
+      <div class="oi-modal__field">
+        <label for="oiModalEmail">Email</label>
+        <input type="email" id="oiModalEmail" name="email" autocomplete="email">
+      </div>
+      <label class="oi-modal__consent" for="oiModalConsent">
+        <input type="checkbox" id="oiModalConsent" required>
+        <span>Li e concordo com os <a href="#" id="oiModalTermosLink">Termos de Uso</a> e a <a href="#" id="oiModalPrivacidadeLink">Política de Privacidade</a>.</span>
+      </label>
+      <div class="oi-modal__error" id="oiModalError">Preenche nome e WhatsApp pra continuar.</div>
+      <button type="submit" class="btn btn--whatsapp oi-modal__submit">Continuar no WhatsApp</button>
+    </form>
+  </div>
+</div>
+
+<!-- Termos de Uso -->
+<div class="oi-modal-overlay oi-modal-overlay--legal" id="oiTermosOverlay">
+  <div class="oi-modal oi-modal--legal">
+    <button type="button" class="oi-modal__close" id="oiTermosClose" aria-label="Fechar">&times;</button>
+    <div class="oi-modal__title">Termos de Uso</div>
+    <div class="oi-modal__legal-body">
+      <p>Estes Termos de Uso regulam o acesso às páginas, formulários e canais digitais da Oliveira Imóveis relacionados à divulgação de imóveis, oportunidades comerciais e atendimento ao cliente.</p>
+      <h4>1. Uso do site</h4>
+      <p>Ao navegar pelo site ou enviar informações por formulário, você declara que fornecerá dados verdadeiros e utilizará os canais apenas para fins lícitos, como solicitar informações, agendar atendimento ou receber contato comercial.</p>
+      <h4>2. Informações sobre imóveis</h4>
+      <p>As informações apresentadas sobre imóveis, valores, disponibilidade, condições comerciais e características podem ser atualizadas sem aviso prévio. A confirmação final deve ser feita diretamente com a equipe da Oliveira Imóveis.</p>
+      <h4>3. Formulários e WhatsApp</h4>
+      <p>Ao preencher um formulário, você autoriza a Oliveira Imóveis a utilizar os dados informados para contato, atendimento, análise de interesse e envio de informações relacionadas ao imóvel ou serviço solicitado.</p>
+      <h4>4. Responsabilidades</h4>
+      <p>A Oliveira Imóveis busca manter suas páginas disponíveis e atualizadas, mas não garante funcionamento ininterrupto, ausência de erros técnicos ou disponibilidade permanente de links externos.</p>
+      <h4>4.1. Isenção de responsabilidade sobre a pesquisa de mercado</h4>
+      <p>A pesquisa de mercado fornecida pela Oliveira Imóveis é elaborada com base nas informações disponíveis no momento da solicitação, com caráter exclusivamente informativo e orientativo. O usuário declara que a solicita por livre e espontânea vontade, ciente de que:</p>
+      <ul>
+        <li>A pesquisa não constitui consultoria financeira, imobiliária ou jurídica.</li>
+        <li>Os resultados, projeções e análises apresentados são estimativas, sujeitos a variações de mercado e circunstâncias externas não controláveis pela Oliveira Imóveis.</li>
+        <li>A decisão de abrir, expandir ou manter um negócio é de responsabilidade exclusiva do usuário.</li>
+        <li>A Oliveira Imóveis não se responsabiliza por perdas, prejuízos ou frustrações decorrentes do uso ou interpretação das informações contidas na pesquisa.</li>
+      </ul>
+      <h4>5. Propriedade intelectual</h4>
+      <p>Textos, imagens, marcas, layouts e demais conteúdos das páginas da Oliveira Imóveis não devem ser copiados, reproduzidos ou utilizados sem autorização prévia.</p>
+      <h4>6. Privacidade</h4>
+      <p>O tratamento de dados pessoais é descrito na Política de Privacidade, que integra estes Termos de Uso.</p>
+      <h4>7. Alterações</h4>
+      <p>Estes termos podem ser atualizados para refletir mudanças nos serviços, canais de atendimento, exigências legais ou práticas comerciais.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Política de Privacidade -->
+<div class="oi-modal-overlay oi-modal-overlay--legal" id="oiPrivacidadeOverlay">
+  <div class="oi-modal oi-modal--legal">
+    <button type="button" class="oi-modal__close" id="oiPrivacidadeClose" aria-label="Fechar">&times;</button>
+    <div class="oi-modal__title">Política de Privacidade</div>
+    <div class="oi-modal__legal-body">
+      <p>A Oliveira Imóveis utiliza os dados informados neste site para atendimento comercial, análise de interesse e envio de informações solicitadas pelo usuário.</p>
+      <h4>Dados coletados</h4>
+      <p>Podemos coletar nome, e-mail, WhatsApp e o botão/página de interesse informado no contato.</p>
+      <h4>Finalidade do uso</h4>
+      <ul>
+        <li>Entrar em contato sobre a solicitação feita pelo usuário.</li>
+        <li>Entender o perfil do contato e o interesse em imóveis comerciais.</li>
+        <li>Enviar informações sobre imóveis comerciais e oportunidades relacionadas.</li>
+        <li>Melhorar o atendimento e a comunicação da Oliveira Imóveis.</li>
+      </ul>
+      <h4>Compartilhamento</h4>
+      <p>Os dados não são vendidos. Podem ser utilizados em ferramentas necessárias para recebimento do formulário, atendimento, WhatsApp, anúncios e análise de desempenho da página.</p>
+      <h4>Direitos do usuário</h4>
+      <p>Você pode solicitar correção, atualização ou exclusão dos seus dados, bem como pedir a interrupção dos contatos comerciais.</p>
+      <h4>Contato</h4>
+      <p>Para dúvidas ou solicitações sobre privacidade, entre em contato pelo e-mail contato@oliveiraimoveis.ia.br.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var LEADS_API   = 'https://oliveira-leads-api.vanessabarbosadeoliveira9.workers.dev/lead';
+  var WA_NUMBER   = '5531999558360';
+  var overlay     = document.getElementById('oiModalOverlay');
+  var form        = document.getElementById('oiModalForm');
+  var errorBox    = document.getElementById('oiModalError');
+  var nomeInput   = document.getElementById('oiModalNome');
+  var waInput     = document.getElementById('oiModalWhatsapp');
+  var emailInput  = document.getElementById('oiModalEmail');
+  var consentInput = document.getElementById('oiModalConsent');
+  var currentCta  = null; // { utm_source, utm_medium, utm_campaign, utm_content, cta_text }
+
+  function setupLegalModal(overlayId, closeId) {
+    var legalOverlay = document.getElementById(overlayId);
+    var legalClose = document.getElementById(closeId);
+    function open(e) { if (e) e.preventDefault(); legalOverlay.classList.add('is-open'); }
+    function close() { legalOverlay.classList.remove('is-open'); }
+    legalClose.addEventListener('click', close);
+    legalOverlay.addEventListener('click', function (e) { if (e.target === legalOverlay) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && legalOverlay.classList.contains('is-open')) close();
+    });
+    return open;
+  }
+  var openTermos = setupLegalModal('oiTermosOverlay', 'oiTermosClose');
+  var openPrivacidade = setupLegalModal('oiPrivacidadeOverlay', 'oiPrivacidadeClose');
+  document.getElementById('oiModalTermosLink').addEventListener('click', openTermos);
+  document.getElementById('oiModalPrivacidadeLink').addEventListener('click', openPrivacidade);
+
+  function parseCta(anchor) {
+    var href = anchor.getAttribute('href') || '';
+    var url;
+    try { url = new URL(href, location.href); } catch (e) { url = null; }
+    var params = url ? url.searchParams : new URLSearchParams();
+    return {
+      utm_source:   params.get('utm_source')   || 'site-oliveira',
+      utm_medium:   params.get('utm_medium')   || 'cta',
+      utm_campaign: params.get('utm_campaign') || 'whatsapp-lead',
+      utm_content:  params.get('utm_content')  || 'nao-identificado',
+      cta_text: (anchor.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60)
+    };
+  }
+
+  function openModal(anchor) {
+    currentCta = parseCta(anchor);
+    errorBox.classList.remove('is-visible');
+    form.reset();
+    overlay.classList.add('is-open');
+    setTimeout(function () { nomeInput.focus(); }, 50);
+  }
+
+  function closeModal() {
+    overlay.classList.remove('is-open');
+    currentCta = null;
+  }
+
+  function normalizePhone(v) {
+    var digits = (v || '').replace(/\D/g, '');
+    if (digits.length > 0 && digits.length <= 11) digits = '55' + digits;
+    return digits;
+  }
+
+  // Intercepta todos os CTAs de WhatsApp do site (hoje apontam pra LP1)
+  document.querySelectorAll('a[href*="lp.oliveiraimoveis.ia.br"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      openModal(a);
+    });
+  });
+
+  document.getElementById('oiModalClose').addEventListener('click', closeModal);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nome = nomeInput.value.trim();
+    var waDigits = normalizePhone(waInput.value);
+    var email = emailInput.value.trim();
+
+    if (!nome || waDigits.length < 12) {
+      errorBox.textContent = 'Preenche nome e WhatsApp pra continuar.';
+      errorBox.classList.add('is-visible');
+      return;
+    }
+    if (!consentInput.checked) {
+      errorBox.textContent = 'Você precisa aceitar os Termos de Uso e a Política de Privacidade pra continuar.';
+      errorBox.classList.add('is-visible');
+      return;
+    }
+    errorBox.classList.remove('is-visible');
+
+    var params = new URLSearchParams(location.search);
+    var cta = currentCta || {};
+
+    var payload = new FormData();
+    payload.append('nome', nome);
+    payload.append('email', email);
+    payload.append('telefone', waDigits);
+    payload.append('pagina_origem', 'oliveiraimoveis.ia.br');
+    payload.append('utm_source', cta.utm_source || '');
+    payload.append('utm_medium', cta.utm_medium || '');
+    payload.append('utm_campaign', cta.utm_campaign || '');
+    payload.append('utm_content', cta.utm_content || '');
+    payload.append('botao_clicado', cta.utm_content || '');
+    payload.append('cta_text', cta.cta_text || '');
+    payload.append('fbclid', params.get('fbclid') || '');
+    payload.append('aceite_termos', 'Sim');
+    payload.append('data_aceite', new Date().toLocaleString('pt-BR'));
+
+    fetch(LEADS_API, { method: 'POST', body: payload, keepalive: true }).catch(function () {});
+
+    var msg = 'Olá! Me chamo ' + nome + ', vim pelo site da Oliveira Imóveis e gostaria de falar com a equipe.';
+    window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
+    closeModal();
+  });
+})();
 </script>
 
 </body>

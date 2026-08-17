@@ -4564,27 +4564,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       });
   })();
 
-  /* ── Rastreamento de LEAD nos CTAs de contato ──────────────────
-     Dispara o evento de conversão para Meta (Lead) e GA4 (generate_lead)
-     em todo clique de WhatsApp / telefone / e-mail. Sem isso o Meta
-     recebe 0 resultados e otimiza às cegas. Dataset/Pixel: 26815330474775862. */
+  /* ── Rastreamento dos CTAs de contato ──────────────────────────
+     ⚠️ MUDANÇA 2026-08-17 — o evento de conversão `Lead` NÃO dispara
+     mais no clique do CTA. O clique só abre o modal (nada é enviado
+     ainda), então contá-lo como Lead inflava o resultado no Meta e
+     treinava a otimização da campanha com sinal falso: a home sozinha
+     produzia ~6 "Leads"/dia em dias com ZERO submissão de formulário.
+     Agora o clique registra `Contact` (intenção, não conversão) e o
+     `Lead` dispara só no submit do modal, junto do envio ao Worker.
+     Dataset/Pixel: 26815330474775862. */
   (function () {
-    function fireLead(meta) {
-      // GA4 / Google Tag Manager
+    function carregarPixel() {
+      // Usa o pixel já carregado via GTM; se ausente, carrega sob demanda.
+      // Não dispara PageView aqui — quem manda PageView é o GTM.
+      if (window.fbq) return;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      try { fbq('init', '26815330474775862'); } catch (e) {}
+    }
+
+    /* Conversão real — chamada pelo submit do modal (bloco do modal abaixo).
+       `eventId` casa com o mesmo evento enviado pelo Worker via Conversions
+       API (deduplicação). `userData` habilita matching avançado: o fbq
+       hasheia em SHA-256 no próprio navegador, os dados crus não saem daqui. */
+    window.oiFireLead = function (meta, eventId, userData) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push(Object.assign({ event: 'generate_lead' }, meta));
-      // Meta Pixel — usa o pixel já carregado via GTM; se ausente, carrega sob demanda.
-      // Não dispara PageView aqui, então não há risco de duplicar PageView do GTM.
-      if (!window.fbq) {
-        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-        document,'script','https://connect.facebook.net/en_US/fbevents.js');
-        try { fbq('init', '26815330474775862'); } catch (e) {}
-      }
-      try { fbq('track', 'Lead', meta); } catch (e) {}
-    }
+      carregarPixel();
+      try {
+        if (userData) fbq('init', '26815330474775862', userData);
+        fbq('track', 'Lead', Object.assign({ value: 1, currency: 'BRL' }, meta),
+            eventId ? { eventID: eventId } : undefined);
+      } catch (e) {}
+    };
 
     var selectors = 'a[href^="https://lp.oliveiraimoveis.ia.br"], a[href^="https://wa.me"], a[href^="http://wa.me"], a[href^="tel:"], a[href^="mailto:"]';
     document.querySelectorAll(selectors).forEach(function (a) {
@@ -4594,11 +4609,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                     : href.indexOf('wa.me') > -1 ? 'whatsapp'
                     : href.indexOf('tel:') === 0 ? 'phone'
                     : 'email';
-        fireLead({
+        var meta = {
           method: channel,
           cta_text: (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60),
           link_url: href
-        });
+        };
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(Object.assign({ event: 'cta_click' }, meta));
+        // `Contact` preserva o sinal de intenção para públicos/remarketing sem
+        // contaminar o `Lead`, que é o evento por onde o adset otimiza.
+        carregarPixel();
+        try { fbq('track', 'Contact', meta); } catch (e) {}
       }, { passive: true });
     });
   })();
@@ -4893,6 +4914,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     return digits;
   }
 
+  /* ── Identificadores repassados ao Worker (GA4 + Meta CAPI) ────── */
+  function cookie(nome) {
+    try {
+      var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + nome + '=([^;]+)'));
+      return m ? decodeURIComponent(m[1]) : '';
+    } catch (e) { return ''; }
+  }
+  // client_id real do GA4 (cookie _ga: "GA1.1.<parte1>.<parte2>") — sem ele o
+  // envio server-side vira usuário órfão e a sessão cai em "(not set)".
+  function gaClientId() {
+    try {
+      var m = document.cookie.match(/(?:^|;\s*)_ga=GA\d\.\d\.(\d+\.\d+)/);
+      return m ? m[1] : '';
+    } catch (e) { return ''; }
+  }
+  // Se o visitante acabou de chegar pelo anúncio, o cookie _fbc pode ainda não
+  // existir — montamos a partir do fbclid no formato que a CAPI espera.
+  function metaFbc() {
+    var c = cookie('_fbc');
+    if (c) return c;
+    try {
+      var fbclid = new URLSearchParams(location.search).get('fbclid');
+      return fbclid ? 'fb.1.' + Date.now() + '.' + fbclid : '';
+    } catch (e) { return ''; }
+  }
+  function novoEventId() {
+    try {
+      if (window.crypto && typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+    } catch (e) {}
+    return 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+  }
+
   // Intercepta todos os CTAs de WhatsApp do site (hoje apontam pra LP1)
   document.querySelectorAll('a[href*="lp.oliveiraimoveis.ia.br"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
@@ -4929,23 +4982,71 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 
     var params = new URLSearchParams(location.search);
     var cta = currentCta || {};
+    function p(nome) { return params.get(nome) || ''; }
+    // Um único event_id por submissão: vai para o fbq (browser) e para o Worker
+    // (Conversions API). É a chave de deduplicação do Meta.
+    var eventId = novoEventId();
+
+    /* ⚠️ CORREÇÃO 2026-08-17 — atribuição paga.
+       Antes, os UTMs vinham SEMPRE do href do botão (fixos: site-oliveira/cta)
+       e sobrescreviam a origem real. Resultado: todo lead que chegava por
+       anúncio e entrava pela home perdia adset_id/ad_id e era etiquetado como
+       tráfego do próprio site — era esta a causa dos ~100% de leads pagos sem
+       atribuição no painel. Agora: se a URL tem marca de tráfego pago, ela
+       manda; os UTMs do CTA só valem para visita orgânica. */
+    var origemUrl = p('utm_source').toLowerCase();
+    var pago = !!(p('fbclid') || p('adset_id') ||
+                  origemUrl === 'facebook' || origemUrl === 'instagram');
 
     var payload = new FormData();
     payload.append('nome', nome);
     payload.append('email', email);
     payload.append('telefone', waDigits);
     payload.append('pagina_origem', 'oliveiraimoveis.ia.br');
-    payload.append('utm_source', cta.utm_source || '');
-    payload.append('utm_medium', cta.utm_medium || '');
-    payload.append('utm_campaign', cta.utm_campaign || '');
-    payload.append('utm_content', cta.utm_content || '');
+    payload.append('utm_source', (pago && p('utm_source')) || cta.utm_source || '');
+    payload.append('utm_medium', (pago && p('utm_medium')) || cta.utm_medium || '');
+    payload.append('utm_campaign', (pago && p('utm_campaign')) || cta.utm_campaign || '');
+    payload.append('utm_content', (pago && p('utm_content')) || cta.utm_content || '');
     payload.append('botao_clicado', cta.utm_content || '');
     payload.append('cta_text', cta.cta_text || '');
-    payload.append('fbclid', params.get('fbclid') || '');
+    payload.append('fbclid', p('fbclid'));
+    // Campos de campanha que a home simplesmente não enviava antes.
+    payload.append('utm_id', p('utm_id'));
+    payload.append('adset_id', p('adset_id'));
+    payload.append('ad_id', p('ad_id'));
+    payload.append('conjunto_anuncios', p('utm_term'));
+    payload.append('anuncio', pago ? p('utm_content') : '');
+    payload.append('placement', p('placement'));
+    // Identificadores usados pelo Worker (GA4 Measurement Protocol + Meta CAPI).
+    payload.append('ga_client_id', gaClientId());
+    payload.append('event_id', eventId);
+    payload.append('fbp', cookie('_fbp'));
+    payload.append('fbc', metaFbc());
+    payload.append('event_source_url', location.href);
     payload.append('aceite_termos', 'Sim');
     payload.append('data_aceite', new Date().toLocaleString('pt-BR'));
 
-    fetch(LEADS_API, { method: 'POST', body: payload, keepalive: true }).catch(function () {});
+    // O envio ao Worker alimenta painel, CRM, GA4 e Meta CAPI — tenta de novo
+    // e cai para sendBeacon, que sobrevive à navegação para o WhatsApp.
+    function enviarWorker(tentativa) {
+      fetch(LEADS_API, { method: 'POST', body: payload, keepalive: true })
+        .then(function (res) {
+          if (res && res.ok) return;
+          throw new Error('status ' + (res && res.status));
+        })
+        .catch(function () {
+          if (tentativa < 2) { enviarWorker(tentativa + 1); return; }
+          try { if (navigator.sendBeacon) navigator.sendBeacon(LEADS_API, payload); } catch (e) {}
+        });
+    }
+    enviarWorker(1);
+
+    // Conversão: só aqui, depois do formulário realmente enviado.
+    window.oiFireLead(
+      { method: 'form-modal', cta_text: cta.cta_text || '' },
+      eventId,
+      { em: email.toLowerCase(), ph: waDigits, fn: nome.toLowerCase().split(' ')[0] }
+    );
 
     var msg = 'Olá! Me chamo ' + nome + ', vim pelo site da Oliveira Imóveis e gostaria de falar com a equipe.';
     window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');

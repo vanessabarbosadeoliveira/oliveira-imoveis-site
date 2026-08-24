@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+<!--
+Oliveira Imóveis
+Landing Page — Versão 2
+Reformulação visual baseada no novo HERO (referência: mockup enviado por Vanessa em 20/08/2026)
+Base: ultima-loja-iracema.html (Versão 1, preservada intacta em campanha-loja-iracema/)
+-->
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -12,33 +18,23 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Última Loja Disponível — Centro Comercial Iracema">
 <meta property="og:description" content="96 m², térreo + mezanino, estacionamento em frente. A última oportunidade em um centro comercial ativo no bairro Serra, BH.">
-<meta property="og:image" content="https://www.oliveiraimoveis.ia.br/ultima-loja-iracema/img/02-hero-aqui-entra-o-negocio-certo.jpg">
+<meta property="og:image" content="https://www.oliveiraimoveis.ia.br/public/loja-iracema/04-hero-v2-fachada.jpg">
 <meta property="og:url" content="https://www.oliveiraimoveis.ia.br/ultima-loja-iracema">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 
-<!-- Google Analytics 4 — metrics oliveira -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4YM3X80NZ8"></script>
+<!-- TODO(Vanessa): trocar GTM-XXXXXXX pelo container real do Google Tag Manager -->
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-4YM3X80NZ8');
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-XXXXXXX');
 </script>
-<!-- Meta Pixel — dataset Oliveira Imóveis -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '26815330474775862');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=26815330474775862&ev=PageView&noscript=1"/></noscript>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="icon" href="/ultima-loja-iracema/img/02-hero-aqui-entra-o-negocio-certo.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%2307170f'/%3E%3Cpath d='M32 14c-7.2 0-13 5.8-13 13 0 9.7 13 23 13 23s13-13.3 13-23c0-7.2-5.8-13-13-13Z' fill='%23f5f2ec'/%3E%3Ccircle cx='32' cy='27' r='5.5' fill='%23c9a84c'/%3E%3C/svg%3E">
 
+<link rel="preload" as="image" href="/ultima-loja-iracema/public/loja-iracema/04-hero-v2-fachada.jpg" fetchpriority="high">
 
 <script type="application/ld+json">
 {
@@ -47,7 +43,7 @@ fbq('track', 'PageView');
   "name": "Última loja disponível — Centro Comercial Iracema",
   "description": "Loja comercial de 96 m² com térreo e mezanino, estacionamento em frente, no Centro Comercial Iracema, bairro Serra, Belo Horizonte.",
   "url": "https://www.oliveiraimoveis.ia.br/ultima-loja-iracema",
-  "image": "https://www.oliveiraimoveis.ia.br/ultima-loja-iracema/img/02-hero-aqui-entra-o-negocio-certo.jpg",
+  "image": "https://www.oliveiraimoveis.ia.br/public/loja-iracema/04-hero-v2-fachada.jpg",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Rua Palmira, 653 a 671",
@@ -69,6 +65,12 @@ fbq('track', 'PageView');
 </script>
 
 <style>
+/*
+Oliveira Imóveis
+Landing Page — V2
+Sistema de variáveis novo (V2) convive com as variáveis legadas da V1 abaixo,
+usadas pelas seções que permanecem inalteradas nesta reformulação.
+*/
 :root{
   --verde-profundo:#07170f;
   --verde-oliveira:#0d241a;
@@ -87,11 +89,55 @@ fbq('track', 'PageView');
   --sans:'Poppins',-apple-system,Segoe UI,sans-serif;
   --radius:14px;
   --radius-lg:26px;
-  --site-header-height:82px;
+  --site-header-height:0px;
+
+  /* ---- V2 — sistema de design claro/premium ---- */
+  --brand-green:#0d241a;
+  --brand-green-deep:#07170f;
+  --brand-gold:#c9a84c;
+  --brand-gold-light:#dfc16d;
+  --brand-gold-deep:#a98c42;
+  --surface-primary:#f7f3ea;
+  --surface-secondary:#efe8d9;
+  --surface-glass:rgba(255,253,248,.6);
+  --surface-glass-strong:rgba(255,253,248,.86);
+  --text-primary:#172019;
+  --text-secondary:#57584f;
+  --border-subtle:rgba(201,168,78,.32);
+
+  /* ---- V2.1 — escala fluida do HERO (recalibrada sobre a referência) ---- */
+  --space-2xs:clamp(4px,.35vw,6px);
+  --space-xs:clamp(7px,.7vw,11px);
+  --space-sm:clamp(11px,1.05vw,16px);
+  --space-md:clamp(16px,1.6vw,22px);
+  --space-lg:clamp(22px,2.4vw,32px);
+  --space-xl:clamp(32px,4vw,52px);
+
+  --hero-logo-size:clamp(30px,2.1vw,38px);
+  --hero-logo-text-size:clamp(.92rem,1vw,1.04rem);
+  --hero-badge-size:clamp(.58rem,.58vw,.64rem);
+  --hero-title-size:clamp(1.9rem,2.65vw,2.9rem);
+  --hero-lede-size:clamp(.82rem,.95vw,.92rem);
+  --hero-feature-value-size:clamp(.72rem,.8vw,.8rem);
+  --hero-feature-label-size:clamp(.52rem,.55vw,.56rem);
+  --form-title-size:clamp(.92rem,1.05vw,1.05rem);
+  --form-input-size:clamp(.78rem,.82vw,.84rem);
+  --form-btn-size:clamp(.66rem,.68vw,.7rem);
+
+  /* ---- V2.2 — CTAs de WhatsApp + escala de z-index ---- */
+  --whatsapp-green:linear-gradient(135deg,#1f6b38 0%,#0f4e2a 100%);
+  --whatsapp-green-hover:linear-gradient(135deg,#278049 0%,#125c33 100%);
+  --whatsapp-icon-green:#25d366;
+  --whatsapp-icon-green-hover:#2fe377;
+  --z-content:1;
+  --z-overlay:20;
+  --z-form:30;
+  --z-floating-cta:100;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 section[id]{scroll-margin-top:calc(var(--site-header-height) + 20px)}
+#formulario{scroll-margin-top:24px}
 body{
   font-family:var(--sans);
   color:var(--texto-escuro);
@@ -101,6 +147,8 @@ body{
   overflow-x:hidden;
 }
 img{max-width:100%;display:block}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:2.5px solid var(--brand-gold-deep, var(--dourado));outline-offset:3px}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none}
 h1,h2,h3{font-family:var(--serif);font-weight:800;line-height:1.15}
@@ -126,6 +174,51 @@ h1,h2,h3{font-family:var(--serif);font-weight:800;line-height:1.15}
   background:transparent;color:var(--creme);border:1.5px solid rgba(245,242,236,.55);
 }
 .btn-outline-cream:hover{background:rgba(245,242,236,.1);border-color:var(--creme)}
+
+/* ============ CTA WHATSAPP — componente reutilizável ============ */
+/* .btn-whatsapp: moldura funcional e acessível em volta do PNG oficial (whassap-btn.png).
+   O mesmo asset é reaproveitado no HERO e no CTA inferior — só a largura máxima muda por contexto. */
+.btn-whatsapp{
+  display:block;width:100%;max-width:340px;padding:0;border:0;
+  background:transparent;cursor:pointer;line-height:0;
+  transition:transform .25s ease, filter .25s ease;
+}
+.btn-whatsapp img{display:block;width:100%;height:auto;object-fit:contain}
+.btn-whatsapp:hover{transform:translateY(-2px);filter:brightness(1.03)}
+.btn-whatsapp:active{transform:translateY(0) scale(.99)}
+.btn-whatsapp:focus-visible{outline:2.5px solid var(--brand-gold-deep);outline-offset:4px;border-radius:100px}
+.btn-whatsapp:disabled{opacity:.6;cursor:not-allowed;transform:none !important;filter:none}
+.hero__submit.btn-whatsapp{max-width:100%}
+
+/* botão flutuante — ícone "app" quadrado arredondado + branco, sempre visível */
+/* o quadrado verde e o símbolo já vêm desenhados no símbolo #icon-whatsapp-square; o <button> é só a moldura clicável/acessível */
+.whatsapp-floating{
+  position:fixed;z-index:var(--z-floating-cta);
+  right:clamp(18px,2vw,32px);
+  bottom:calc(clamp(18px,2vw,32px) + env(safe-area-inset-bottom,0px));
+  width:clamp(52px,4.2vw,68px);aspect-ratio:1;border-radius:22%;
+  display:grid;place-items:center;border:0;padding:0;cursor:pointer;background:transparent;
+  box-shadow:0 8px 24px rgba(0,0,0,.14);
+  transition:transform .22s ease, filter .22s ease, box-shadow .22s ease;
+}
+.whatsapp-floating svg{width:100%;height:100%;display:block}
+.whatsapp-floating:hover{--whatsapp-icon-green:var(--whatsapp-icon-green-hover);transform:translateY(-2px) scale(1.025);box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.whatsapp-floating:active{transform:translateY(0) scale(.98)}
+@media (prefers-reduced-motion:reduce){
+  .btn-whatsapp,.whatsapp-floating{transition:none}
+}
+.eco-final-band .btn-whatsapp{margin-inline:auto}
+
+/* card do formulário — pequeno realce dourado ao chegar via CTA (feedback de orientação) */
+#formulario.form-highlight{animation:formHighlight 900ms ease}
+@keyframes formHighlight{
+  0%{box-shadow:0 26px 54px -22px rgba(23,32,25,.3), inset 0 1px 0 rgba(255,255,255,.55), 0 0 0 3px rgba(201,168,76,0)}
+  30%{box-shadow:0 26px 54px -22px rgba(23,32,25,.3), inset 0 1px 0 rgba(255,255,255,.55), 0 0 0 3px rgba(201,168,76,.55)}
+  100%{box-shadow:0 26px 54px -22px rgba(23,32,25,.3), inset 0 1px 0 rgba(255,255,255,.55), 0 0 0 3px rgba(201,168,76,0)}
+}
+@media (prefers-reduced-motion:reduce){
+  #formulario.form-highlight{animation:none}
+}
 .section-pad{padding:clamp(60px,9vw,120px) 0}
 .badge-metric{
   display:inline-flex;flex-direction:column;gap:2px;
@@ -142,137 +235,213 @@ h1,h2,h3{font-family:var(--serif);font-weight:800;line-height:1.15}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
 
-/* ============ TOPBAR ============ */
-.topbar{
-  position:sticky;top:0;z-index:60;height:82px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 clamp(20px,4vw,48px);
-  background:var(--verde-profundo);
-  border-bottom:1px solid rgba(201,168,78,.28);
-}
-.topbar .wordmark{font-family:var(--serif);font-weight:800;font-size:1.15rem;color:var(--branco);letter-spacing:.02em}
-.topbar .wordmark em{color:var(--dourado);font-style:normal}
-.topbar .btn{padding:11px 22px;font-size:.68rem}
-
-/* ============ HERO — imagem estática, sem carro, sem sequência cinematográfica ============ */
+/* ============ HERO V2 — reformulado a partir da referência visual ============ */
+/* Arquitetura: .hero > .hero__visual (foto + camadas de transição) + .hero__container (grid: conteúdo | formulário) */
 .hero{
-  position:relative;min-height:calc(100svh - 82px);display:flex;align-items:center;
-  overflow:hidden;background:var(--verde-profundo);
+  position:relative;min-height:100svh;display:flex;align-items:stretch;
+  overflow:hidden;background:var(--surface-primary);
 }
-.hero-media{position:absolute;inset:0;overflow:hidden}
-.hero-media img{width:100%;height:100%;object-fit:cover;object-position:50% 38%}
-.hero-scrim{
+
+/* -- camada fotográfica -- */
+.hero__visual{position:absolute;inset:0;overflow:hidden}
+.hero__visual img{
+  width:100%;height:100%;object-fit:cover;
+  object-position:38% 32%;
+}
+/* -- transição atmosférica claro → fotografia -- */
+/* A foto (herooooo.jpg) já traz o esmaecimento embutido; esta camada é só um reforço leve de legibilidade. */
+.hero__scrim{
   position:absolute;inset:0;
-  background:linear-gradient(90deg, rgba(7,23,15,.97) 0%, rgba(7,23,15,.88) 16%, rgba(7,23,15,.55) 30%, rgba(7,23,15,.15) 42%, rgba(7,23,15,.02) 55%, rgba(7,23,15,0) 70%);
+  background:
+    radial-gradient(90% 80% at 8% 28%, rgba(247,243,234,.4) 0%, rgba(247,243,234,.2) 34%, rgba(247,243,234,0) 58%),
+    linear-gradient(90deg, rgba(247,243,234,.5) 0%, rgba(247,243,234,.32) 20%, rgba(247,243,234,.1) 36%, rgba(247,243,234,0) 50%);
+}
+.hero__scrim::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(7,23,15,.03), rgba(7,23,15,0) 26%, rgba(7,23,15,0) 74%, rgba(7,23,15,.1));
 }
 
-.hero-content{position:relative;z-index:5;width:min(100%,600px);margin-left:clamp(24px,6vw,112px);padding:0 24px 0 0}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:8px 16px;border-radius:100px;margin-bottom:22px;
-  background:rgba(7,23,15,.7);border:1px solid rgba(201,168,78,.55);
-  font-size:.66rem;font-weight:800;letter-spacing:.14em;color:var(--dourado-claro);
+.hero__container{
+  position:relative;z-index:5;width:100%;max-width:1680px;margin-inline:auto;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,340px);
+  align-items:center;gap:var(--space-xl);
+  padding:clamp(52px,8vh,88px) clamp(20px,4vw,72px) clamp(24px,4.5vh,56px);
 }
-.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--dourado);box-shadow:0 0 8px var(--dourado)}
-.hero h1{
-  font-size:clamp(1.9rem,3vw,2.7rem);
-  line-height:.98;
-  letter-spacing:-.03em;
-  color:var(--branco);max-width:15ch;margin-bottom:16px;
-  text-wrap:balance;
-}
-.hero h1 em{color:var(--dourado);font-style:normal}
-.hero p.lede{font-size:clamp(.98rem,1.4vw,1.1rem);color:rgba(244,240,231,.88);max-width:42ch;margin-bottom:30px}
-.hero p.lede b{color:var(--dourado-claro);font-weight:700}
 
-.hero-cta-row{margin-bottom:0}
+/* -- coluna de conteúdo -- */
+.hero__content{max-width:500px}
+.hero__logo{display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-lg)}
+.hero__logo img{width:var(--hero-logo-size);height:var(--hero-logo-size);border-radius:50%;flex:0 0 auto}
+.hero__logo-text{font-family:var(--serif);font-weight:800;font-size:var(--hero-logo-text-size);letter-spacing:.01em;color:var(--brand-green)}
+.hero__logo-text em{color:var(--brand-gold-deep);font-style:normal}
 
-/* painel de diferenciais — fichas técnicas premium, lado direito da capa */
-.hero-features{
-  position:absolute;z-index:6;
-  right:clamp(40px,5vw,92px);
-  bottom:clamp(38px,5.5vh,72px);
-  width:min(39vw,610px);
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;
+.hero__badge{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:6px 14px 6px 11px;border-radius:100px;margin-bottom:var(--space-md);
+  background:var(--surface-glass);border:1px solid var(--border-subtle);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  font-size:var(--hero-badge-size);font-weight:800;letter-spacing:.12em;color:var(--brand-green);
+  box-shadow:0 0 0 1px rgba(201,168,76,.12), 0 8px 20px rgba(23,32,25,.06);
 }
-.hero-feature{
-  position:relative;min-height:142px;padding:22px 24px;
-  display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;
-  background:linear-gradient(145deg, rgba(13,36,26,.97), rgba(7,23,15,.94));
-  border:1px solid rgba(169,136,48,.48);border-radius:16px;
-  box-shadow:0 16px 36px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.025);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  transition:transform 260ms ease, border-color 260ms ease, background-color 260ms ease;
+.hero__badge b{color:var(--brand-gold-deep);font-weight:800}
+/* brilho sutil — protagonizado pelo ÍCONE, não pelo selo inteiro; o texto permanece parado */
+.hero__badge-icon{position:relative;display:inline-flex;flex:0 0 auto;overflow:hidden;isolation:isolate;border-radius:50%}
+.hero__badge-icon svg{
+  display:block;width:12px;height:12px;stroke:var(--brand-gold-deep);
+  filter:drop-shadow(0 0 2px rgba(203,160,55,.18)) drop-shadow(0 0 4px rgba(203,160,55,.08));
+  animation:opportunityIconGlow 3.8s ease-in-out infinite;
 }
-.hero-feature:hover{transform:translateY(-2px);border-color:rgba(201,168,76,.62)}
-.hero-feature__icon{
-  flex:0 0 auto;width:38px;height:38px;
-  display:grid;place-items:center;
-  color:#b79944;background:rgba(169,136,48,.07);
-  border:1px solid rgba(169,136,48,.5);border-radius:50%;
+.hero__badge-icon::after{
+  content:'';position:absolute;inset:-50%;z-index:1;pointer-events:none;
+  transform:translateX(-150%) rotate(20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);
+  animation:iconShine 4.5s ease-in-out infinite;
 }
-.hero-feature__icon svg{width:21px;height:21px}
-.hero-feature__label{
-  margin-top:12px;color:rgba(245,242,236,.62);
-  font-family:var(--sans);font-size:.72rem;line-height:1;font-weight:700;
-  letter-spacing:.075em;text-transform:uppercase;
+@keyframes opportunityIconGlow{
+  0%,100%{filter:drop-shadow(0 0 2px rgba(203,160,55,.18)) drop-shadow(0 0 4px rgba(203,160,55,.08))}
+  50%{filter:drop-shadow(0 0 4px rgba(225,182,72,.55)) drop-shadow(0 0 10px rgba(225,182,72,.22))}
 }
-.hero-feature__value{
-  margin-top:10px;color:var(--branco);
-  font-family:var(--serif);font-size:clamp(1.45rem,1.65vw,2rem);
-  line-height:1.03;font-weight:600;letter-spacing:-.025em;
+@keyframes iconShine{
+  0%,60%{transform:translateX(-150%) rotate(20deg)}
+  100%{transform:translateX(150%) rotate(20deg)}
 }
-.hero-feature--area .hero-feature__value{font-size:clamp(1.75rem,2vw,2.35rem)}
+@media (prefers-reduced-motion:reduce){
+  .hero__badge-icon svg,.hero__badge-icon::after{animation:none}
+}
 
-@media (max-width:1360px){
-  .hero-features{width:min(42vw,540px);gap:11px}
-  .hero-feature{min-height:126px;padding:18px 20px}
-  .hero-feature__value,.hero-feature--area .hero-feature__value{font-size:1.45rem}
+.hero__title{
+  font-size:var(--hero-title-size);
+  line-height:.96;letter-spacing:-.02em;
+  margin-bottom:var(--space-md);
+}
+.hero__title-line{display:block}
+.hero__title-line--ink{color:var(--brand-green)}
+.hero__title-line--gold{color:var(--brand-gold-deep)}
+
+.hero__divider{width:38px;height:2px;margin-bottom:var(--space-sm);background:linear-gradient(90deg,var(--brand-gold),transparent)}
+
+.hero__lede{
+  font-size:var(--hero-lede-size);line-height:1.5;
+  color:var(--text-secondary);max-width:38ch;
+}
+.hero__lede b{color:var(--brand-gold-deep);font-weight:700}
+
+/* -- ficha de características, canto inferior esquerdo -- */
+.hero__features{
+  margin-top:var(--space-lg);
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  width:min(100%,480px);
+  background:var(--surface-glass);border:1px solid rgba(255,255,255,.65);
+  border-radius:16px;box-shadow:0 16px 34px -18px rgba(23,32,25,.22), inset 0 1px 0 rgba(255,255,255,.5);
+  backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);
+}
+.hero__feature{
+  padding:var(--space-sm) var(--space-xs);display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;
+  border-left:1px solid rgba(23,32,25,.08);
+}
+.hero__feature:first-child{border-left:0}
+.hero__feature svg{width:14px;height:14px;stroke:var(--brand-gold-deep)}
+.hero__feature-label{font-size:var(--hero-feature-label-size);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary)}
+.hero__feature-value{font-family:var(--serif);font-weight:700;font-size:var(--hero-feature-value-size);line-height:1.18;color:var(--brand-green)}
+
+/* -- coluna do formulário, cartão de vidro -- */
+.hero__form{
+  width:100%;max-width:340px;justify-self:end;
+  background:var(--surface-glass);border:1px solid rgba(255,255,255,.7);
+  border-radius:20px;padding:var(--space-lg);
+  box-shadow:0 26px 54px -22px rgba(23,32,25,.3), inset 0 1px 0 rgba(255,255,255,.55);
+  backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .hero__badge,.hero__features,.hero__form{background:var(--surface-glass-strong)}
+}
+.hero__form h2{
+  font-family:var(--serif);font-weight:700;font-size:var(--form-title-size);
+  line-height:1.3;color:var(--brand-green);margin-bottom:var(--space-md);
+}
+/* "fale conosco." — verde institucional, sublinhado discreto na mesma cor, sem marcador/glow dourado */
+.form-title-highlight{
+  color:var(--brand-green);font-style:normal;font-weight:700;
+  text-decoration-line:underline;text-decoration-color:currentColor;
+  text-decoration-thickness:1px;text-underline-offset:3px;
+}
+.hero__field{position:relative;margin-bottom:var(--space-xs)}
+.hero__field svg{
+  position:absolute;left:13px;top:50%;transform:translateY(-50%);
+  width:14px;height:14px;stroke:var(--text-secondary);pointer-events:none;
+}
+.hero__field input{
+  width:100%;min-height:clamp(40px,3vw,46px);padding:0 12px 0 36px;border-radius:10px;
+  border:1.5px solid rgba(23,32,25,.14);background:rgba(255,255,255,.55);
+  font-family:inherit;font-size:var(--form-input-size);color:var(--text-primary);
+  transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.hero__field input::placeholder{color:#8a8577}
+.hero__field input:focus{
+  outline:none;border-color:var(--brand-gold);background:rgba(255,255,255,.85);
+  box-shadow:0 0 0 3px rgba(201,168,76,.18);
+}
+.hero__field .err{display:none;color:#a83a2e;font-size:.68rem;margin-top:4px;font-weight:600;padding-left:2px}
+.hero__field.invalid input{border-color:#a83a2e}
+.hero__field.invalid .err{display:block}
+.hero__consent{display:flex;gap:7px;align-items:flex-start;margin:var(--space-xs) 0 var(--space-sm);font-size:.68rem;color:var(--text-secondary);line-height:1.45}
+.hero__consent input{margin-top:2px;flex:0 0 auto;width:13px;height:13px;accent-color:var(--brand-green)}
+.hero__consent a{color:var(--brand-green);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.hero__submit{width:100%;min-height:clamp(42px,3.2vw,48px);padding:0 15px;font-size:var(--form-btn-size);letter-spacing:.08em}
+.hero__submit:disabled{opacity:.6;cursor:not-allowed;transform:none !important}
+.hero__form-note{
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  margin-top:var(--space-sm);font-size:.63rem;color:#8a8577;text-align:center;line-height:1.35;
+}
+.hero__form-note svg{width:11px;height:11px;flex:0 0 auto;stroke:#8a8577}
+.hero__form-success{display:none;text-align:center;padding:10px 2px}
+.hero__form-success.show{display:block}
+.hero__form-success svg{width:38px;height:38px;stroke:var(--brand-green);margin:0 auto 12px}
+.hero__form-success h2{margin-bottom:6px}
+.hero__form-success p{color:var(--text-secondary);margin-bottom:16px;font-size:.8rem;line-height:1.5}
+
+/* -- laptops largos porém baixos (1366×768, 1440×900, 1536×864 com barra de tarefas) -- */
+@media (min-width:1180px) and (max-height:820px){
+  .hero__container{padding-top:clamp(32px,5vh,52px);padding-bottom:clamp(20px,3.5vh,32px);gap:clamp(24px,2.6vw,40px)}
+  .hero__logo{margin-bottom:var(--space-md)}
+  .hero__badge{margin-bottom:var(--space-sm)}
+  .hero__title{margin-bottom:var(--space-sm)}
+  .hero__features{margin-top:var(--space-md)}
+  .hero__form{padding:var(--space-md)}
+}
+
+@media (max-width:1180px){
+  .hero__container{grid-template-columns:1fr;padding-top:clamp(56px,8vh,84px)}
+  .hero__form{justify-self:stretch;max-width:400px;margin-inline:auto}
+  .hero__content{max-width:560px}
+  .hero__features{width:100%;max-width:460px}
 }
 @media (max-width:900px){
-  .hero{flex-direction:column;align-items:flex-start;padding:32px 0}
-  .hero-media{bottom:auto;height:calc(100svh - 82px)}
-  .hero-scrim{
-    bottom:auto;height:calc(100svh - 82px);
-    background:linear-gradient(180deg, rgba(7,23,15,.86) 0%, rgba(7,23,15,.76) 45%, rgba(7,23,15,.6) 100%);
+  .hero{min-height:auto}
+  .hero__visual img{object-position:56% 24%}
+  .hero__scrim{
+    background:
+      radial-gradient(150% 70% at 50% 4%, rgba(247,243,234,.82) 0%, rgba(247,243,234,.58) 30%, rgba(247,243,234,.18) 58%, rgba(247,243,234,0) 78%),
+      linear-gradient(180deg, rgba(247,243,234,.88) 0%, rgba(247,243,234,.68) 24%, rgba(247,243,234,.42) 42%, rgba(247,243,234,.18) 60%, rgba(247,243,234,.05) 78%, rgba(247,243,234,0) 92%);
   }
-  .hero-media img{object-position:47% center}
-  .hero-content{width:100%;margin-left:0;padding:0 20px}
-  .hero-features{
-    position:relative;right:auto;bottom:auto;
-    width:100%;margin-top:28px;padding:0 20px;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
+  .hero__container{padding-top:36px;padding-bottom:32px}
+  .hero__title,.hero__lede{text-shadow:0 2px 20px rgba(247,243,234,.55)}
 }
-@media (max-width:520px){
-  .hero-features{grid-template-columns:1fr}
-  .hero-feature{min-height:112px}
+@media (max-width:640px){
+  .hero__title{font-size:clamp(1.85rem,8vw,2.3rem)}
+  .hero__features{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero__feature:nth-child(3){border-left:0}
+  .hero__feature{border-top:1px solid rgba(23,32,25,.08)}
+  .hero__feature:nth-child(-n+2){border-top:0}
+  .hero__form{padding:20px 18px;border-radius:18px}
 }
-
-.scroll-cue{
-  position:absolute;left:clamp(24px,6vw,112px);bottom:26px;z-index:5;
-  width:22px;height:36px;border:1.5px solid rgba(244,240,231,.5);border-radius:100px;
+@media (max-width:480px){
+  .hero__container{padding-inline:16px}
+  .hero__logo img{width:30px;height:30px}
+  .hero__logo-text{font-size:.9rem}
 }
-.scroll-cue::before{
-  content:'';position:absolute;left:50%;top:7px;width:3px;height:7px;background:var(--dourado);
-  border-radius:3px;transform:translateX(-50%);animation:cueDot 1.8s ease-in-out infinite;
-}
-@keyframes cueDot{0%{opacity:1;top:7px}70%{opacity:0;top:18px}100%{opacity:0;top:7px}}
-
 @media (prefers-reduced-motion: reduce){
-  .scroll-cue::before{animation:none}
-}
-@media (max-width:1440px){
-  .hero h1{max-width:13ch;font-size:clamp(1.8rem,3.2vw,2.3rem)}
-}
-@media (max-width:1100px){
-  .hero-media img{object-position:54% 34%}
-}
-@media (max-width:767px){
-  .hero{min-height:auto;padding-bottom:32px}
-  .hero-badge{margin-bottom:16px}
-  .hero h1{max-width:16ch;font-size:clamp(1.6rem,8vw,2.1rem);line-height:1}
-  .scroll-cue{display:none}
+  .hero__feature,.hero__field input{transition:none}
 }
 
 
@@ -328,20 +497,20 @@ h1,h2,h3{font-family:var(--serif);font-weight:800;line-height:1.15}
   .gallery figure:last-child{grid-column:auto !important}
 }
 
-/* ============ SECTION 3 — ECOSSISTEMA ============ */
+/* ============ SECTION 3 — ECOSSISTEMA (V2: bloco claro, verde só em acentos) ============ */
 .eco-section{
-  background:var(--verde-profundo);color:var(--creme);position:relative;overflow:hidden;
+  background:var(--surface-secondary);color:var(--text-primary);position:relative;overflow:hidden;
   padding-block:54px 64px;
 }
 .eco-section::before{
   content:'';position:absolute;inset:0;pointer-events:none;
   background:
-    repeating-linear-gradient(115deg, rgba(16,44,31,.5) 0px, rgba(16,44,31,.5) 1px, transparent 1px, transparent 90px);
+    repeating-linear-gradient(115deg, rgba(201,168,78,.09) 0px, rgba(201,168,78,.09) 1px, transparent 1px, transparent 90px);
 }
 .eco-wrap{width:100%;max-width:1840px;margin-inline:auto;padding-inline:clamp(20px,4vw,72px);position:relative}
 .eco-head{max-width:640px;margin:0 auto 34px;text-align:center;position:relative}
-.eco-head h2{font-size:clamp(1.6rem,3.2vw,2.2rem);color:#fff;margin:12px 0 14px;max-width:34ch;margin-inline:auto;text-wrap:balance}
-.eco-head p{color:rgba(245,242,236,.78);font-size:.96rem;line-height:1.55}
+.eco-head h2{font-size:clamp(1.6rem,3.2vw,2.2rem);color:var(--brand-green);margin:12px 0 14px;max-width:34ch;margin-inline:auto;text-wrap:balance}
+.eco-head p{color:var(--text-secondary);font-size:.96rem;line-height:1.55}
 
 .ecosystem-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;align-items:stretch;position:relative}
 @media (max-width:1279px) and (min-width:900px){.ecosystem-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -350,181 +519,92 @@ h1,h2,h3{font-family:var(--serif);font-weight:800;line-height:1.15}
 
 .ecosystem-card{
   display:flex;flex-direction:column;height:100%;min-height:350px;max-height:390px;padding:24px;
-  background:var(--verde-oliveira);border:1px solid rgba(201,168,78,.24);border-radius:20px;
+  background:var(--branco);border:1px solid rgba(201,168,78,.3);border-radius:20px;
+  box-shadow:0 10px 30px -14px rgba(23,32,25,.12);
   overflow:hidden;
-  transition:transform 300ms cubic-bezier(.22,1,.36,1), border-color 300ms ease, background-color 300ms ease;
+  transition:transform 300ms cubic-bezier(.22,1,.36,1), border-color 300ms ease, box-shadow 300ms ease;
 }
 @media (max-width:599px){.ecosystem-card{min-height:0;max-height:none;padding:20px}}
-.ecosystem-card:hover{transform:translateY(-3px);background:var(--verde-medio);border-color:rgba(201,168,78,.52)}
+.ecosystem-card:hover{transform:translateY(-3px);border-color:rgba(201,168,78,.65);box-shadow:0 18px 40px -16px rgba(23,32,25,.2)}
 .ecosystem-card__header{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;min-height:60px;margin-bottom:12px}
 .ecosystem-card__logo{width:auto;max-width:170px;height:58px;object-fit:contain;object-position:left center}
 .ecosystem-card__logo--vertical{max-width:110px;height:64px}
 .ecosystem-card__number{
   flex:0 0 auto;padding:7px 13px;border-radius:999px;
-  background:rgba(201,168,78,.13);color:var(--dourado-claro);
+  background:rgba(201,168,78,.13);color:var(--brand-gold-deep);
   font-size:.88rem;line-height:1;font-weight:700;white-space:nowrap;
 }
-.ecosystem-card__title{margin:8px 0 0;color:var(--branco);font-size:clamp(1.22rem,1.35vw,1.55rem);line-height:1.28;font-family:var(--serif);font-weight:700;overflow:visible}
-.ecosystem-card__category{margin-top:10px;color:#a9afa8;font-size:.82rem;line-height:1.25;font-weight:700;letter-spacing:.035em;text-transform:uppercase}
-.ecosystem-card__description{margin-top:15px;color:var(--creme);font-size:clamp(.94rem,1vw,1.05rem);line-height:1.42}
-.ecosystem-card__secondary{margin-top:8px;color:#a9afa8;font-size:.91rem;line-height:1.38}
+.ecosystem-card__title{margin:8px 0 0;color:var(--brand-green);font-size:clamp(1.22rem,1.35vw,1.55rem);line-height:1.28;font-family:var(--serif);font-weight:700;overflow:visible}
+.ecosystem-card__category{margin-top:10px;color:#8f8a78;font-size:.82rem;line-height:1.25;font-weight:700;letter-spacing:.035em;text-transform:uppercase}
+.ecosystem-card__description{margin-top:15px;color:var(--text-primary);font-size:clamp(.94rem,1vw,1.05rem);line-height:1.42}
+.ecosystem-card__secondary{margin-top:8px;color:var(--text-secondary);font-size:.91rem;line-height:1.38}
 .ecosystem-card__result{
   display:inline-flex;width:fit-content;max-width:100%;margin-top:12px;padding:8px 14px;border-radius:999px;
   background:var(--dourado);color:var(--verde-profundo);font-size:.78rem;line-height:1.15;font-weight:750;
 }
 .ecosystem-card__footer{
   display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
-  margin-top:auto;padding-top:16px;border-top:1px solid rgba(245,242,236,.09);
+  margin-top:auto;padding-top:16px;border-top:1px solid rgba(23,32,25,.09);
 }
-.ecosystem-card__instagram,.ecosystem-card__link{color:var(--dourado-claro);font-weight:650;font-size:.78rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
-.ecosystem-card__instagram svg{width:13px;height:13px;stroke:var(--dourado-claro);flex:0 0 auto}
-.ecosystem-card__instagram:hover,.ecosystem-card__link:hover{color:var(--branco)}
+.ecosystem-card__instagram,.ecosystem-card__link{color:var(--brand-gold-deep);font-weight:650;font-size:.78rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+.ecosystem-card__instagram svg{width:13px;height:13px;stroke:var(--brand-gold-deep);flex:0 0 auto}
+.ecosystem-card__instagram:hover,.ecosystem-card__link:hover{color:var(--brand-green)}
 
 .eco-final-band{
   margin-top:40px;padding:clamp(28px,4vw,44px);border-radius:24px;text-align:center;
-  background:linear-gradient(135deg, rgba(201,168,78,.08), rgba(201,168,78,.02));
+  background:var(--branco);
   border:1px solid rgba(201,168,78,.35);position:relative;
 }
-.eco-final-band h3{font-size:clamp(1.3rem,2.2vw,1.8rem);color:var(--branco);max-width:26ch;margin:0 auto 10px}
-.eco-final-band p{color:rgba(245,242,236,.75);font-size:.94rem;margin-bottom:22px}
+.eco-final-band h3{font-size:clamp(1.3rem,2.2vw,1.8rem);color:var(--brand-green);max-width:26ch;margin:0 auto 10px}
+.eco-final-band p{color:var(--text-secondary);font-size:.94rem;margin-bottom:22px}
 
-/* ============ SECTION 5 — LOCALIZAÇÃO + FORM ============ */
-.loc-section{background:var(--verde-profundo);color:var(--creme)}
+/* ============ SECTION 5 — LOCALIZAÇÃO (V2: mapa e formulário removidos daqui — form único vive no HERO) ============ */
+.loc-section{background:var(--surface-primary);color:var(--text-primary)}
 .location-layout{
-  width:min(100%,1720px);margin-inline:auto;padding-inline:clamp(20px,5vw,64px);
-  display:grid;
-  grid-template-columns:minmax(700px,1.12fr) minmax(520px,0.88fr);
-  gap:clamp(36px,4vw,68px);align-items:start;
-}
-@media (max-width:1450px){
-  .location-layout{grid-template-columns:minmax(560px,1fr) minmax(460px,.9fr);gap:32px}
-}
-@media (max-width:1100px){
-  .location-layout{grid-template-columns:1fr}
+  width:min(100%,980px);margin-inline:auto;padding-inline:clamp(20px,5vw,64px);
 }
 
 .location-heading{margin-bottom:26px}
-.location-heading h2{max-width:640px;color:var(--branco);font-size:clamp(1.7rem,3vw,2.6rem);line-height:1.05}
-.location-address{margin-top:18px;display:flex;gap:12px;align-items:flex-start;color:var(--dourado-claro);font-size:1.1rem;font-weight:700}
+.location-heading h2{max-width:640px;color:var(--brand-green);font-size:clamp(1.7rem,3vw,2.6rem);line-height:1.05}
+.location-address{margin-top:18px;display:flex;gap:12px;align-items:flex-start;color:var(--brand-gold-deep);font-size:1.1rem;font-weight:700}
 .location-address svg{flex:0 0 auto;width:20px;height:20px;stroke:var(--dourado);margin-top:2px}
-.location-address-secondary{margin-top:5px;color:rgba(255,253,248,.82);font-size:.98rem;font-weight:400}
-.location-nearby-intro{max-width:670px;margin-top:14px;color:rgba(255,253,248,.7);line-height:1.55;font-size:.92rem}
-
-.map-column{min-width:0}
-.iracema-map{
-  width:100%;height:clamp(360px,38vh,420px);
-  overflow:hidden;border:1px solid rgba(201,168,78,.4);border-radius:20px;
-  background:var(--creme-soft);
-}
+.location-address-secondary{margin-top:5px;color:var(--text-secondary);font-size:.98rem;font-weight:400}
+.location-nearby-intro{max-width:670px;margin-top:14px;color:var(--text-secondary);line-height:1.55;font-size:.92rem}
 
 .nearby-businesses{margin-top:24px}
 .nearby-businesses__header{margin-bottom:16px}
-.nearby-businesses__header h3{margin:0;font-family:var(--serif);color:var(--branco);font-size:clamp(1.35rem,1.65vw,1.8rem);line-height:1.15}
-.nearby-businesses__header p{max-width:700px;margin:7px 0 0;color:rgba(255,253,248,.7);font-size:.94rem;line-height:1.4}
-.nearby-businesses__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.nearby-businesses__header h3{margin:0;font-family:var(--serif);color:var(--brand-green);font-size:clamp(1.35rem,1.65vw,1.8rem);line-height:1.15}
+.nearby-businesses__header p{max-width:700px;margin:7px 0 0;color:var(--text-secondary);font-size:.94rem;line-height:1.4}
+.nearby-businesses__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .nearby-business{
   min-height:132px;padding:14px 15px;
   display:flex;flex-direction:column;align-items:flex-start;
-  background:rgba(13,36,26,.78);border:1px solid rgba(201,168,78,.2);border-radius:13px;
+  background:var(--branco);border:1px solid rgba(201,168,78,.28);border-radius:13px;
+  box-shadow:0 8px 22px -14px rgba(23,32,25,.14);
   overflow:hidden;
 }
 .nearby-business__category{
   display:inline-flex;width:fit-content;padding:4px 7px;margin-bottom:9px;
-  color:#d5b45d;background:rgba(201,168,78,.12);border-radius:6px;
+  color:var(--brand-gold-deep);background:rgba(201,168,78,.12);border-radius:6px;
   font-size:.62rem;line-height:1;font-weight:800;letter-spacing:.035em;text-transform:uppercase;
 }
-.nearby-business__name{margin:0;color:var(--branco);font-size:clamp(.9rem,.88vw,1rem);line-height:1.18;font-weight:750}
-.nearby-business__address,.nearby-business__description{margin:6px 0 0;color:rgba(255,253,248,.68);font-size:clamp(.74rem,.75vw,.84rem);line-height:1.35}
+.nearby-business__name{margin:0;color:var(--brand-green);font-size:clamp(.9rem,.88vw,1rem);line-height:1.18;font-weight:750}
+.nearby-business__address,.nearby-business__description{margin:6px 0 0;color:var(--text-secondary);font-size:clamp(.74rem,.75vw,.84rem);line-height:1.35}
 
-.location-map-button{margin-top:20px;min-height:48px;padding:0 24px;font-size:.86rem}
+.location-map-button{margin-top:20px;min-height:48px;padding:0 24px;font-size:.86rem;background:transparent;color:var(--brand-green);border:1.5px solid rgba(23,32,25,.28)}
+.location-map-button:hover{background:rgba(23,32,25,.05);border-color:var(--brand-green)}
 
-.form-column{min-width:0}
-.form-column .form-card{position:sticky;top:calc(var(--site-header-height) + 24px)}
-@media (max-width:1450px){
-  .nearby-businesses__grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .nearby-business{min-height:128px}
-}
-@media (max-width:1100px){
-  .form-column .form-card{position:static}
+@media (max-width:900px){
   .nearby-businesses__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .iracema-map{height:410px}
 }
-@media (max-width:620px){
+@media (max-width:560px){
   .nearby-businesses__grid{grid-template-columns:1fr}
   .nearby-business{min-height:auto}
-  .iracema-map{height:360px}
 }
-
-.iracema-marker{background:transparent;border:0}
-.iracema-marker__pin{
-  position:relative;width:42px;height:42px;
-  background:var(--dourado);border:4px solid var(--creme);border-radius:50% 50% 50% 0;
-  box-shadow:0 8px 20px rgba(0,0,0,.28), 0 0 0 2px rgba(7,23,15,.45);
-  transform:rotate(-45deg);
-}
-.iracema-marker__center{
-  position:absolute;top:50%;left:50%;width:13px;height:13px;
-  background:var(--verde-profundo);border-radius:50%;
-  transform:translate(-50%,-50%) rotate(45deg);
-}
-.leaflet-popup-content-wrapper{border-radius:10px !important;font-family:var(--sans) !important}
-.leaflet-popup-content{margin:12px 14px !important;font-size:.82rem !important}
-.leaflet-popup-content b{color:var(--verde-profundo);font-family:var(--serif);font-size:.92rem}
-
-/* form */
-.form-card{
-  background:var(--creme);border:1px solid rgba(201,168,78,.55);border-radius:20px;
-  padding:clamp(24px,3.4vw,40px);box-shadow:0 24px 60px rgba(0,0,0,.2);
-}
-.form-card h3{font-size:clamp(1.3rem,2.4vw,1.7rem);color:var(--verde-profundo);margin-bottom:8px}
-.form-card > p.sub{color:#555;font-size:.92rem;margin-bottom:26px}
-.field{margin-bottom:16px}
-.field label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--verde-oliveira);margin-bottom:6px}
-.field input,.field select,.field textarea{
-  width:100%;padding:13px 14px;border-radius:10px;border:1.5px solid #d8d2c2;
-  background:#fff;font-family:inherit;font-size:.95rem;color:var(--preto);
-  transition:border-color .2s ease, box-shadow .2s ease;
-}
-.field input:focus,.field select:focus,.field textarea:focus{
-  outline:none;border-color:var(--dourado);box-shadow:0 0 0 3px rgba(201,168,76,.18);
-}
-.field textarea{resize:vertical;min-height:80px}
-.field .err{display:none;color:#a83a2e;font-size:.74rem;margin-top:5px;font-weight:600}
-.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#a83a2e}
-.field.invalid .err{display:block}
-.row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media (max-width:480px){.row-2{grid-template-columns:1fr}}
-
-.consent{display:flex;gap:10px;align-items:flex-start;margin:20px 0;font-size:.78rem;color:#4a4a44;line-height:1.5}
-.consent input{margin-top:3px;flex:0 0 auto;width:16px;height:16px;accent-color:var(--verde-profundo)}
-.consent a{color:var(--verde-profundo);font-weight:700;text-decoration:underline;text-underline-offset:2px}
-
-.submit-btn{width:100%;min-height:54px;padding:16px;font-size:.82rem}
-.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none !important}
-.form-note{font-size:.7rem;color:#8a8577;margin-top:12px;text-align:center}
-
-.form-success{display:none;text-align:center;padding:20px 4px}
-.form-success.show{display:block}
-.form-success svg{width:52px;height:52px;stroke:var(--verde-profundo);margin:0 auto 16px}
-.form-success h3{margin-bottom:10px}
-.form-success p{color:#555;margin-bottom:22px;font-size:.92rem}
-
-/* ============ SECTION 6 — CTA FINAL ============ */
-.cta-final{
-  background:linear-gradient(135deg,var(--verde-profundo),var(--verde-medio));
-  border-top:1px solid var(--dourado);border-bottom:1px solid var(--dourado);
-  text-align:center;padding:clamp(56px,8vw,90px) 24px;position:relative;overflow:hidden;
-}
-.cta-final::before,.cta-final::after{
-  content:'';position:absolute;top:14px;bottom:14px;width:1px;background:linear-gradient(180deg,transparent,var(--dourado),transparent);opacity:.5;
-}
-.cta-final::before{left:14px}
-.cta-final::after{right:14px}
-.cta-final h2{color:#fff;font-size:clamp(1.7rem,3.6vw,2.6rem);max-width:20ch;margin:0 auto 14px}
-.cta-final p{color:rgba(245,242,236,.82);font-size:1rem;margin-bottom:32px}
 
 /* ============ FOOTER ============ */
-footer{background:var(--preto);color:rgba(245,242,236,.7);padding:56px 0 26px}
+/* padding-bottom reforçado: reserva espaço para o botão flutuante de WhatsApp nunca cobrir os links legais do rodapé */
+footer{background:var(--preto);color:rgba(245,242,236,.7);padding:56px 0 clamp(84px,9vh,104px)}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:40px}
 @media (max-width:720px){.footer-grid{grid-template-columns:1fr;gap:30px}}
 .footer-wordmark{font-family:var(--serif);font-weight:800;font-size:1.3rem;color:#fff;margin-bottom:10px}
@@ -595,54 +675,120 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 </head>
 <body>
 
+<!-- ícones WhatsApp — sprite único, reutilizado pelos CTAs da V2 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="icon-whatsapp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.5 11.9a8.4 8.4 0 0 1-12.3 7.4L4 20l.8-4a8.4 8.4 0 1 1 15.7-4.1Z"/>
+  </symbol>
+  <!-- versão "app icon": quadrado verde arredondado + símbolo branco — usada no botão flutuante -->
+  <symbol id="icon-whatsapp-square" viewBox="0 0 24 24">
+    <rect x="1" y="1" width="22" height="22" rx="6" fill="var(--whatsapp-icon-green)"/>
+    <path d="M17.42 6.53a7.75 7.75 0 0 0-12.2 9.32L4 21.5l5.8-1.15a7.75 7.75 0 0 0 11.14-9.6 7.7 7.7 0 0 0-3.52-4.22Zm-5.4 12.53a6.4 6.4 0 0 1-3.27-.9l-.23-.14-2.44.62.63-2.37-.15-.24a6.44 6.44 0 1 1 5.46 3.03Zm3.53-4.83c-.19-.1-1.14-.56-1.32-.62-.18-.07-.3-.1-.43.1s-.5.62-.61.75-.23.14-.42.05a5.27 5.27 0 0 1-1.56-.96 5.84 5.84 0 0 1-1.08-1.34c-.11-.19 0-.3.09-.4.09-.09.19-.23.29-.34a1.3 1.3 0 0 0 .19-.32.36.36 0 0 0 0-.34c-.05-.1-.43-1.03-.59-1.42-.15-.37-.31-.32-.43-.33h-.37a.71.71 0 0 0-.52.24 2.17 2.17 0 0 0-.68 1.61 3.75 3.75 0 0 0 .79 2 8.6 8.6 0 0 0 3.3 2.92c.46.2.82.32 1.1.41a2.65 2.65 0 0 0 1.22.08 2 2 0 0 0 1.31-.92 1.63 1.63 0 0 0 .11-.92c-.05-.09-.17-.14-.36-.24Z" fill="#fff"/>
+  </symbol>
+</svg>
+
 <!-- GTM noscript -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<div class="topbar" id="topbar">
-  <a href="#hero" class="wordmark" style="display:flex;align-items:center;gap:10px">
-    <img src="/ultima-loja-iracema/img/logos/oliveira-imoveis.png" alt="Oliveira Imóveis" width="34" height="34" style="width:34px;height:34px;border-radius:50%">
-    <span>OLIVEIRA <em>IMÓVEIS</em></span>
-  </a>
-  <a href="#formulario" class="btn btn-gold" data-cta="topbar">Quero saber mais</a>
-</div>
-
-<!-- ============ 1. HERO ============ -->
+<!-- ============ 1. HERO — reformulado (V2): logo + selo + título + card de características + formulário único, tudo dentro da primeira dobra ============ -->
 <section class="hero" id="hero">
-  <div class="hero-media">
-    <img src="/ultima-loja-iracema/img/02-hero-aqui-entra-o-negocio-certo.jpg" alt="Centro Comercial Iracema com a última loja disponível no bairro Serra, em Belo Horizonte" width="1672" height="941" fetchpriority="high">
+  <div class="hero__visual" aria-hidden="true">
+    <img src="/ultima-loja-iracema/public/loja-iracema/04-hero-v2-fachada.jpg" alt="" width="1889" height="832" fetchpriority="high" decoding="async">
+    <div class="hero__scrim"></div>
   </div>
-  <div class="hero-scrim"></div>
 
-  <div class="hero-content">
-    <div class="hero-badge"><span class="dot"></span>ÚLTIMA LOJA DISPONÍVEL</div>
-    <h1>A última oportunidade <em>no Centro Comercial Iracema</em></h1>
-    <p class="lede">Um ponto inserido em um ecossistema comercial em funcionamento. Agora falta <b>o negócio certo</b>.</p>
-    <div class="hero-cta-row">
-      <a href="#formulario" class="btn btn-gold" data-cta="hero">Quero conhecer esta oportunidade</a>
+  <div class="hero__container">
+    <div class="hero__content">
+      <div class="hero__logo">
+        <img src="/ultima-loja-iracema/public/loja-iracema/logos/oliveira-imoveis.png" alt="" width="44" height="44">
+        <span class="hero__logo-text">OLIVEIRA <em>IMÓVEIS</em></span>
+      </div>
+
+      <span class="hero__badge">
+        <span class="hero__badge-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 3 6v6c0 5 3.8 8.7 9 10 5.2-1.3 9-5 9-10V6l-9-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        OPORTUNIDADE <b>IDENTIFICADA</b>
+      </span>
+
+      <h1 class="hero__title">
+        <span class="hero__title-line hero__title-line--ink">A última loja</span>
+        <span class="hero__title-line hero__title-line--ink">de um ecossistema</span>
+        <span class="hero__title-line hero__title-line--gold">que já atrai pacientes</span>
+        <span class="hero__title-line hero__title-line--gold">e clientes de saúde</span>
+      </h1>
+
+      <div class="hero__divider" aria-hidden="true"></div>
+      <p class="hero__lede">Ao lado de um studio de pilates e uma loja de suplementos — seu público de saúde e bem-estar já circula aqui todos os dias.</p>
+
+      <div class="hero__features">
+        <div class="hero__feature" aria-label="96 m² de área">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" stroke-dasharray="3 3"/></svg>
+          <span class="hero__feature-label">Área</span>
+          <strong class="hero__feature-value">96 m²</strong>
+        </div>
+        <div class="hero__feature" aria-label="Possui mezanino">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <span class="hero__feature-label">Estrutura</span>
+          <strong class="hero__feature-value">Possui<br>mezanino</strong>
+        </div>
+        <div class="hero__feature" aria-label="Estacionamento em frente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 16V8h3a2.5 2.5 0 0 1 0 5h-3"/></svg>
+          <span class="hero__feature-label">Estacionamento</span>
+          <strong class="hero__feature-value">Em frente</strong>
+        </div>
+        <div class="hero__feature" aria-label="Ecossistema comercial ativo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="17" r="2.2"/><circle cx="19" cy="17" r="2.2"/><path d="M10.4 6.6 6.6 15.2M13.6 6.6l3.8 8.6M7.4 17h9.2"/></svg>
+          <span class="hero__feature-label">Ecossistema</span>
+          <strong class="hero__feature-value">Comercial<br>ativo</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__form" id="formulario">
+      <div id="form-wrap">
+        <h2>Para conhecer esta oportunidade ou nosso trabalho com imóveis comerciais, <em class="form-title-highlight">fale conosco.</em></h2>
+        <form id="lead-form" novalidate>
+          <div class="hero__field" data-field="nome">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1.4-4 4.2-6 7.5-6s6.1 2 7.5 6"/></svg>
+            <label class="sr-only" for="f-nome">Nome completo</label>
+            <input type="text" id="f-nome" name="nome" placeholder="Nome completo" autocomplete="name" required>
+            <span class="err">Digite seu nome completo.</span>
+          </div>
+          <div class="hero__field" data-field="telefone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4.6c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z"/></svg>
+            <label class="sr-only" for="f-telefone">Telefone</label>
+            <input type="tel" id="f-telefone" name="telefone" placeholder="Telefone" autocomplete="tel" required>
+            <span class="err">Informe um telefone válido.</span>
+          </div>
+          <div class="hero__field" data-field="email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 6.5 8 6.2 8-6.2"/></svg>
+            <label class="sr-only" for="f-email">E-mail</label>
+            <input type="email" id="f-email" name="email" placeholder="E-mail" autocomplete="email" required>
+            <span class="err">Informe um e-mail válido.</span>
+          </div>
+
+          <label class="hero__consent">
+            <input type="checkbox" id="f-consent" name="consent" required>
+            <span>Li e concordo com os <a href="#" data-modal="terms">Termos de Uso</a> e com a <a href="#" data-modal="privacy">Política de Privacidade</a>.</span>
+          </label>
+
+          <button type="submit" class="btn-whatsapp hero__submit" id="submit-btn">
+            <img src="/ultima-loja-iracema/public/loja-iracema/whassap-btn.png" alt="" width="760" height="253" aria-hidden="true">
+            <span class="sr-only" id="submit-btn-label">Enviar formulário de contato</span>
+          </button>
+          <p class="hero__form-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Seus dados estão protegidos. Não compartilhamos suas informações.</p>
+        </form>
+      </div>
+
+      <div class="hero__form-success" id="form-success">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <h2>Recebemos seus dados!</h2>
+        <p>Você será direcionado ao WhatsApp da Oliveira Imóveis para falar diretamente com nossa equipe sobre a última loja do Centro Comercial Iracema.</p>
+        <a class="btn btn-gold" id="whatsapp-link" target="_blank" rel="noopener">Continuar no WhatsApp</a>
+      </div>
     </div>
   </div>
-  <div class="hero-features">
-    <div class="hero-feature hero-feature--area" aria-label="96 m² de área">
-      <div class="hero-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg></div>
-      <span class="hero-feature__label">Área</span>
-      <strong class="hero-feature__value">96 m²</strong>
-    </div>
-    <div class="hero-feature" aria-label="Possui mezanino">
-      <div class="hero-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m6.08 9.5-3.5 1.6a1 1 0 0 0 0 1.81l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83l-3.5-1.59"/><path d="m6.08 14.5-3.5 1.6a1 1 0 0 0 0 1.81l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83l-3.5-1.59"/></svg></div>
-      <span class="hero-feature__label">Estrutura</span>
-      <strong class="hero-feature__value">Possui mezanino</strong>
-    </div>
-    <div class="hero-feature" aria-label="Estacionamento em frente">
-      <div class="hero-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></div>
-      <span class="hero-feature__label">Estacionamento</span>
-      <strong class="hero-feature__value">Em frente</strong>
-    </div>
-    <div class="hero-feature" aria-label="Ecossistema comercial ativo">
-      <div class="hero-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="6" rx="1"/><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg></div>
-      <span class="hero-feature__label">Ecossistema</span>
-      <strong class="hero-feature__value">Comercial ativo</strong>
-    </div>
-  </div>
-  <div class="scroll-cue" aria-hidden="true"></div>
 </section>
 
 <!-- ============ 2. CONHEÇA A LOJA ============ -->
@@ -667,11 +813,11 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <div class="reveal">
         <div class="gallery" id="gallery">
-          <figure data-idx="0"><img loading="eager" src="/ultima-loja-iracema/img/gal-02-terreo.jpg" alt="Visão geral do térreo da loja, com janela e bancada" width="663" height="1179" style="object-position:center 28%"><figcaption>Térreo — visão geral</figcaption></figure>
-          <figure data-idx="1"><img loading="lazy" src="/ultima-loja-iracema/img/gal-03-interior.jpg" alt="Interior da loja, corredor com parede em destaque" width="1086" height="1448" style="object-position:center 40%"><figcaption>Espaço interno</figcaption></figure>
-          <figure data-idx="2"><img loading="lazy" src="/ultima-loja-iracema/img/gal-04-escada.jpg" alt="Escada de acesso ao mezanino da loja" width="738" height="976" style="object-position:center 58%"><figcaption>Acesso ao mezanino</figcaption></figure>
-          <figure data-idx="3"><img loading="lazy" src="/ultima-loja-iracema/img/gal-05-mezanino.jpg" alt="Mezanino da loja, com espaços subdivididos" width="739" height="982" style="object-position:center 45%"><figcaption>Mezanino</figcaption></figure>
-          <figure data-idx="4"><img loading="lazy" src="/ultima-loja-iracema/img/gal-06-estacionamento.jpg" alt="Estacionamento em frente e contexto do Centro Comercial Iracema durante o dia" width="1200" height="1600" style="object-position:center 32%"><figcaption>Estacionamento e contexto</figcaption></figure>
+          <figure data-idx="0"><img loading="eager" src="/ultima-loja-iracema/public/loja-iracema/gal-02-terreo.jpg" alt="Visão geral do térreo da loja, com janela e bancada" width="663" height="1179" style="object-position:center 28%"><figcaption>Térreo — visão geral</figcaption></figure>
+          <figure data-idx="1"><img loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/gal-03-interior.jpg" alt="Interior da loja, corredor com parede em destaque" width="1086" height="1448" style="object-position:center 40%"><figcaption>Espaço interno</figcaption></figure>
+          <figure data-idx="2"><img loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/gal-04-escada.jpg" alt="Escada de acesso ao mezanino da loja" width="738" height="976" style="object-position:center 58%"><figcaption>Acesso ao mezanino</figcaption></figure>
+          <figure data-idx="3"><img loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/gal-05-mezanino.jpg" alt="Mezanino da loja, com espaços subdivididos" width="739" height="982" style="object-position:center 45%"><figcaption>Mezanino</figcaption></figure>
+          <figure data-idx="4"><img loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/gal-06-estacionamento.jpg" alt="Estacionamento em frente e contexto do Centro Comercial Iracema durante o dia" width="1200" height="1600" style="object-position:center 32%"><figcaption>Estacionamento e contexto</figcaption></figure>
         </div>
       </div>
     </div>
@@ -690,7 +836,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <article class="ecosystem-card">
         <div class="ecosystem-card__header">
-          <img class="ecosystem-card__logo ecosystem-card__logo--vertical" loading="lazy" src="/ultima-loja-iracema/img/logos/the-control-novo.png" alt="The Control Estúdio Pilates">
+          <img class="ecosystem-card__logo ecosystem-card__logo--vertical" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/the-control-novo.png" alt="The Control Estúdio Pilates">
           <span class="ecosystem-card__number">Nº 653</span>
         </div>
         <h3 class="ecosystem-card__title">The Control Pilates</h3>
@@ -704,7 +850,22 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <article class="ecosystem-card">
         <div class="ecosystem-card__header">
-          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/img/logos/tumiatti.png" alt="Tumiatti Massas">
+          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/robust.png" alt="Robust Suplementos">
+          <span class="ecosystem-card__number">Nº 663</span>
+        </div>
+        <h3 class="ecosystem-card__title">Robust Suplementos</h3>
+        <span class="ecosystem-card__category">Saúde e suplementação</span>
+        <p class="ecosystem-card__description">Nutrição esportiva e alimentação saudável conectadas ao público de saúde e bem-estar.</p>
+        <p class="ecosystem-card__secondary">Fluxo complementar ao studio ao lado.</p>
+        <div class="ecosystem-card__footer">
+          <a class="ecosystem-card__instagram" href="https://www.instagram.com/robustsuplementos" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1"/></svg>@robustsuplementos</a>
+          <a class="ecosystem-card__link" href="https://www.instagram.com/robustsuplementos" target="_blank" rel="noopener">Conhecer →</a>
+        </div>
+      </article>
+
+      <article class="ecosystem-card">
+        <div class="ecosystem-card__header">
+          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/tumiatti.png" alt="Tumiatti Massas">
           <span class="ecosystem-card__number">Nº 657</span>
         </div>
         <h3 class="ecosystem-card__title">Tumiatti Massas</h3>
@@ -719,7 +880,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <article class="ecosystem-card">
         <div class="ecosystem-card__header">
-          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/img/logos/eletro-ferragens-miller-original.png" alt="Eletro Ferragens Miller">
+          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/eletro-ferragens-miller-original.png" alt="Eletro Ferragens Miller">
           <span class="ecosystem-card__number">Nº 659</span>
         </div>
         <h3 class="ecosystem-card__title">Eletro Ferragens Miller</h3>
@@ -735,7 +896,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <article class="ecosystem-card">
         <div class="ecosystem-card__header">
-          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/img/logos/mundo-dos-bichos.png" alt="Mundo dos Bichos">
+          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/mundo-dos-bichos.png" alt="Mundo dos Bichos">
           <span class="ecosystem-card__number">Nº 661</span>
         </div>
         <h3 class="ecosystem-card__title">Mundo dos Bichos</h3>
@@ -750,22 +911,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <article class="ecosystem-card">
         <div class="ecosystem-card__header">
-          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/img/logos/robust.png" alt="Robust Suplementos">
-          <span class="ecosystem-card__number">Nº 663</span>
-        </div>
-        <h3 class="ecosystem-card__title">Robust Suplementos</h3>
-        <span class="ecosystem-card__category">Saúde e suplementação</span>
-        <p class="ecosystem-card__description">Nutrição esportiva e alimentação saudável conectadas ao público de saúde e bem-estar.</p>
-        <p class="ecosystem-card__secondary">Fluxo complementar ao studio ao lado.</p>
-        <div class="ecosystem-card__footer">
-          <a class="ecosystem-card__instagram" href="https://www.instagram.com/robustsuplementos" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1"/></svg>@robustsuplementos</a>
-          <a class="ecosystem-card__link" href="https://www.instagram.com/robustsuplementos" target="_blank" rel="noopener">Conhecer →</a>
-        </div>
-      </article>
-
-      <article class="ecosystem-card">
-        <div class="ecosystem-card__header">
-          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/img/logos/pizza-do-douglas.png" alt="Pizzaria do Douglas">
+          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/pizza-do-douglas.png" alt="Pizzaria do Douglas">
           <span class="ecosystem-card__number">Nº 665</span>
         </div>
         <h3 class="ecosystem-card__title">Pizzaria do Douglas</h3>
@@ -780,7 +926,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <article class="ecosystem-card">
         <div class="ecosystem-card__header">
-          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/img/logos/pamonharia-tres-pontas.png" alt="Pamonharia Três Pontas">
+          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/pamonharia-tres-pontas.png" alt="Pamonharia Três Pontas">
           <span class="ecosystem-card__number">Nº 671</span>
         </div>
         <h3 class="ecosystem-card__title">Pamonharia Três Pontas</h3>
@@ -798,15 +944,18 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
     <div class="eco-final-band reveal">
       <h3>O próximo negócio deste ecossistema pode ser o seu.</h3>
       <p>Conheça a última loja disponível no Centro Comercial Iracema.</p>
-      <a href="#formulario" class="btn btn-gold" data-cta="eco-final">Quero conhecer a última loja</a>
+      <button type="button" class="btn-whatsapp" data-cta="eco-final" data-scroll-to-contact>
+        <img src="/ultima-loja-iracema/public/loja-iracema/whassap-btn.png" alt="" width="760" height="253" aria-hidden="true">
+        <span class="sr-only">Ir para o formulário de contato</span>
+      </button>
     </div>
   </div>
 </section>
 
-<!-- ============ 4. LOCALIZAÇÃO + FORMULÁRIO ============ -->
-<section class="section-pad loc-section" id="formulario">
+<!-- ============ 4. LOCALIZAÇÃO ============ -->
+<!-- V2: mapa incorporado e formulário duplicado foram removidos desta seção (o único formulário da página vive no HERO) -->
+<section class="section-pad loc-section" id="localizacao">
   <div class="location-layout">
-    <div class="map-column">
       <div class="location-heading reveal">
         <span class="eyebrow">Localização</span>
         <h2>Localização estratégica no bairro Serra</h2>
@@ -818,8 +967,6 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
           </div>
         </div>
       </div>
-
-      <div class="iracema-map reveal" id="map-leaflet" role="application" aria-label="Mapa interativo — última loja disponível no Centro Comercial Iracema"></div>
 
       <div class="nearby-businesses reveal">
         <div class="nearby-businesses__header">
@@ -873,62 +1020,8 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
         </div>
       </div>
 
-      <a class="btn btn-outline-cream location-map-button" target="_blank" rel="noopener"
+      <a class="btn location-map-button" target="_blank" rel="noopener"
          href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Iracema+Rua+Palmira+653+Serra+Belo+Horizonte+MG">Ver no mapa</a>
-    </div>
-
-    <div class="form-column reveal">
-      <div class="form-card">
-        <div id="form-wrap">
-          <h3>Interessado nesta última oportunidade?</h3>
-            <p class="sub">Preencha seus dados e nossa equipe entrará em contato com você pelo WhatsApp.</p>
-            <form id="lead-form" novalidate>
-              <div class="field" data-field="nome">
-                <label for="f-nome">Nome completo</label>
-                <input type="text" id="f-nome" name="nome" autocomplete="name" required>
-                <span class="err">Digite seu nome completo.</span>
-              </div>
-              <div class="row-2">
-                <div class="field" data-field="telefone">
-                  <label for="f-telefone">Telefone / WhatsApp</label>
-                  <input type="tel" id="f-telefone" name="telefone" placeholder="(31) 9XXXX-XXXX" autocomplete="tel" required>
-                  <span class="err">Informe um telefone válido.</span>
-                </div>
-                <div class="field" data-field="email">
-                  <label for="f-email">E-mail</label>
-                  <input type="email" id="f-email" name="email" autocomplete="email" required>
-                  <span class="err">Informe um e-mail válido.</span>
-                </div>
-              </div>
-
-              <label class="consent">
-                <input type="checkbox" id="f-consent" name="consent" required>
-                <span>Li e concordo com a <a href="#" data-modal="privacy">Política de Privacidade</a> e com os <a href="#" data-modal="terms">Termos de Uso</a>. Autorizo o contato da Oliveira Imóveis por telefone, WhatsApp ou e-mail para tratar desta oportunidade comercial.</span>
-              </label>
-
-              <button type="submit" class="btn btn-gold submit-btn" id="submit-btn">Receber informações pelo WhatsApp</button>
-              <p class="form-note">Seus dados são usados exclusivamente para contato sobre esta oportunidade, conforme a LGPD.</p>
-            </form>
-          </div>
-
-          <div class="form-success" id="form-success">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            <h3>Recebemos seus dados!</h3>
-            <p>Você será direcionado ao WhatsApp da Oliveira Imóveis para falar diretamente com nossa equipe sobre a última loja do Centro Comercial Iracema.</p>
-            <a class="btn btn-gold" id="whatsapp-link" target="_blank" rel="noopener">Continuar no WhatsApp</a>
-          </div>
-        </div>
-      </div>
-    </div>
-</section>
-
-<!-- ============ 6. CTA FINAL ============ -->
-<section class="cta-final">
-  <div class="container">
-    <span class="eyebrow" style="color:var(--dourado-claro)">Última chamada</span>
-    <h2>O próximo negócio deste ecossistema pode ser o seu.</h2>
-    <p>Conheça a última loja disponível no Centro Comercial Iracema.</p>
-    <a href="#formulario" class="btn btn-gold" data-cta="final">Quero falar sobre a última loja</a>
   </div>
 </section>
 
@@ -938,7 +1031,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
     <div class="footer-grid">
       <div>
         <div class="footer-wordmark" style="display:flex;align-items:center;gap:10px">
-          <img src="/ultima-loja-iracema/img/logos/oliveira-imoveis.png" alt="Oliveira Imóveis" width="30" height="30" style="width:30px;height:30px;border-radius:50%">
+          <img src="/ultima-loja-iracema/public/loja-iracema/logos/oliveira-imoveis.png" alt="Oliveira Imóveis" width="30" height="30" style="width:30px;height:30px;border-radius:50%">
           OLIVEIRA <em>IMÓVEIS</em>
         </div>
         <p class="tagline">Especialistas em Imóveis Comerciais · Belo Horizonte, MG</p>
@@ -972,6 +1065,11 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
     </div>
   </div>
 </footer>
+
+<!-- ============ BOTÃO FLUTUANTE — sempre leva ao formulário do HERO, nunca abre o WhatsApp de fato ============ -->
+<button type="button" class="whatsapp-floating" data-cta="floating-whatsapp" data-scroll-to-contact aria-label="Ir para o formulário de contato">
+  <svg aria-hidden="true"><use href="#icon-whatsapp-square"/></svg>
+</button>
 
 <!-- ============ MODAL: PRIVACIDADE ============ -->
 <div class="modal-overlay" id="modal-privacy" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
@@ -1030,198 +1128,14 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 (function(){
   "use strict";
 
-  // ---------- interactive map (Leaflet + OSM, um único marcador institucional) ----------
-  // Geocodificação verificada: a Rua Palmira não tem interpolação de número de porta em
-  // nenhum provedor gratuito consultado (Nominatim estruturado e livre, Photon — todos
-  // devolvem os mesmos 3 trechos da via, sem "653"/"657"/"671" isolados; Overpass confirma
-  // que não há nó endereçado nesse trecho nem POI "Centro Comercial Iracema" mapeado).
-  // O único nó com addr:housenumber real na rua é o nº 876 (-19.9399833,-43.9171313),
-  // perto da ponta LESTE — o que indica que a numeração cresce para leste e cai para
-  // oeste, exatamente na direção do trecho 653-671. A Rua Palmira e a Rua do Ouro
-  // compartilham um nó de cruzamento real no OSM em (-19.9390106,-43.9198971); o ponto
-  // abaixo é o próximo vértice do eixo da Rua Palmira, ~13 m a oeste desse cruzamento —
-  // portanto sobre a rua certa, a poucos metros da Rua do Ouro, e não a própria Rua do Ouro.
-  var IRACEMA_LOCATION = {
-    label: 'Centro Comercial Iracema',
-    address: 'Rua Palmira, 653 a 671 — Bairro Serra — Belo Horizonte/MG',
-    lat: -19.938980,
-    lng: -43.920035
-  };
-
-  function initMap(){
-    if(!window.L) return;
-    var el = document.getElementById('map-leaflet');
-    if(!el || el._leaflet_id) return;
-    var map = L.map(el, { scrollWheelZoom:false, keyboard:false, fadeAnimation:false, zoomAnimation:false, markerZoomAnimation:false });
-    map.setView([IRACEMA_LOCATION.lat, IRACEMA_LOCATION.lng], 16);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      maxZoom:19, minZoom:14
-    }).addTo(map);
-    map.on('click', function(){ map.scrollWheelZoom.enable(); });
-    map.on('mouseout', function(){ map.scrollWheelZoom.disable(); });
-
-    var iracemaIcon = L.divIcon({
-      className:'iracema-marker',
-      html:'<div class="iracema-marker__pin"><div class="iracema-marker__center"></div></div>',
-      iconSize:[44,54], iconAnchor:[22,52], popupAnchor:[0,-48]
-    });
-    L.marker([IRACEMA_LOCATION.lat, IRACEMA_LOCATION.lng], { icon:iracemaIcon, alt:'Última loja disponível — Centro Comercial Iracema' })
-      .addTo(map)
-      .bindPopup('<strong>Última loja disponível</strong><br>Centro Comercial Iracema<br>Rua Palmira, 653 a 671<br>Bairro Serra — Belo Horizonte/MG', {autoPan:false})
-      .openPopup();
-
-    setTimeout(function(){ map.invalidateSize(); }, 200);
-  }
-  function loadLeafletThenInit(){
-    if(window.L){ initMap(); return; }
-    var css = document.createElement('link');
-    css.rel = 'stylesheet';
-    css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-    document.head.appendChild(css);
-    var script = document.createElement('script');
-    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-    script.onload = initMap;
-    document.body.appendChild(script);
-  }
-  var mapSection = document.getElementById('map-leaflet');
-  if(mapSection){
-    var mapIO = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){ loadLeafletThenInit(); mapIO.disconnect(); }
-      });
-    }, {rootMargin:'150px'});
-    mapIO.observe(mapSection);
-  }
+  // ---------- V2: mapa incorporado (Leaflet) foi removido desta versão ----------
+  // O botão "Ver no mapa" abre o Google Maps em nova aba (link simples, sem dependência de bibliotecas externas).
 
   // ---------- dataLayer helper ----------
   window.dataLayer = window.dataLayer || [];
   function track(event, data){
     window.dataLayer.push(Object.assign({event:event}, data||{}));
-    // generate_lead NÃO dispara aqui — o Worker (oliveira-leads-api) manda esse
-    // evento pro GA4 via Measurement Protocol assim que salva o lead (server-side,
-    // não depende do navegador). Mandar dos dois lados conta o lead em dobro no
-    // GA4. Os outros eventos (form_start, cta_click, page_view...) seguem client-side normalmente.
-    if(typeof gtag === 'function' && event !== 'page_view' && event !== 'lead'){
-      gtag('event', event, data || {});
-    }
-    if(typeof fbq === 'function'){
-      var d = data || {};
-      if(event === 'lead'){
-        // eventID casa este evento do navegador com o MESMO evento enviado pela
-        // Conversions API no Worker. Sem ele o Meta não tem como deduplicar e
-        // conta a mesma conversão duas vezes (CPL reportado cai pela metade).
-        // value/currency habilitam otimização por valor e cálculo de ROAS.
-        fbq('track', 'Lead', {
-          content_name: 'ultima-loja-iracema',
-          value: d.value || 1,
-          currency: 'BRL'
-        }, d.event_id ? {eventID: d.event_id} : undefined);
-      } else if(event === 'scroll_depth'){
-        // Um evento POR MARCO (Scroll25/50/75/90) em vez de um evento único com
-        // parâmetro: no Gerenciador de Eventos cada marco vira uma linha própria,
-        // dá pra montar público personalizado e conversão personalizada direto,
-        // sem depender de regra de parâmetro (que o Meta só aceita em Custom
-        // Conversions e não aparece na lista de eventos do dataset).
-        fbq('trackCustom', 'Scroll' + d.percent, {
-          content_name: 'ultima-loja-iracema',
-          percent: d.percent
-        });
-      } else if(event === 'engajamento'){
-        // ViewContent é evento PADRÃO — aparece traduzido no Gerenciador
-        // ("Visualização de conteúdo") e serve de sinal de otimização/público.
-        // Dispara uma vez, quando o visitante passa de 50% da página OU fica 30s.
-        fbq('track', 'ViewContent', {
-          content_name: 'ultima-loja-iracema',
-          content_type: 'landing_page',
-          percent: d.percent || 0,
-          segundos: d.segundos || 0
-        });
-      } else if(event === 'cta_click'){
-        fbq('trackCustom', 'CTAClick', {
-          content_name: 'ultima-loja-iracema',
-          cta_location: d.cta_location || ''
-        });
-      } else if(event === 'form_start'){
-        fbq('trackCustom', 'FormStart', {content_name: 'ultima-loja-iracema'});
-      } else if(event === 'saida_pagina'){
-        // Resumo final da visita: profundidade máxima e tempo total. É o que
-        // responde "o lead chegou e interagiu?" mesmo quando ele não converte.
-        fbq('trackCustom', 'ProfundidadeFinal', {
-          content_name: 'ultima-loja-iracema',
-          percent: d.percent || 0,
-          segundos: d.segundos || 0
-        });
-      }
-    }
   }
-  // client_id real do GA4 (cookie _ga: "GA1.1.<parte1>.<parte2>") — repassado ao
-  // Worker pra ele usar o MESMO client_id no envio server-side do generate_lead,
-  // fundindo o evento à sessão/usuário certo em vez de criar um usuário órfão.
-  function ga4ClientId(){
-    try{
-      var m = document.cookie.match(/(?:^|;\s*)_ga=GA\d\.\d\.(\d+\.\d+)/);
-      return m ? m[1] : '';
-    }catch(err){ return ''; }
-  }
-  // ——— Meta: identificadores de deduplicação e matching ———
-  // _fbp/_fbc são os cookies first-party do pixel. O Worker precisa deles para
-  // mandar o mesmo evento pela Conversions API e o Meta conseguir casar os dois.
-  function cookie(nome){
-    try{
-      var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + nome + '=([^;]+)'));
-      return m ? decodeURIComponent(m[1]) : '';
-    }catch(err){ return ''; }
-  }
-  // Se o visitante acabou de chegar pelo anúncio, o cookie _fbc pode ainda não
-  // existir — nesse caso montamos a partir do fbclid no formato que a CAPI espera.
-  function metaFbc(){
-    var c = cookie('_fbc');
-    if(c) return c;
-    try{
-      var fbclid = new URLSearchParams(location.search).get('fbclid');
-      return fbclid ? 'fb.1.' + Date.now() + '.' + fbclid : '';
-    }catch(err){ return ''; }
-  }
-  function novoEventId(){
-    try{
-      if(window.crypto && typeof crypto.randomUUID === 'function') return crypto.randomUUID();
-    }catch(err){}
-    return 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
-  }
-  // Telefone no formato E.164 sem "+" (o Meta espera código do país).
-  function telefoneMeta(tel){
-    var d = String(tel || '').replace(/\D/g, '');
-    if(!d) return '';
-    if(d.length === 10 || d.length === 11) d = '55' + d;
-    return d;
-  }
-  // atribuição de campanha (mesmo padrão das LPs LP1/LP2)
-  var ATTR = {};
-  try{
-    var params = new URLSearchParams(location.search);
-    function firstParam(keys, fallback){
-      for(var i=0;i<keys.length;i++){ var v=params.get(keys[i]); if(v) return v; }
-      return fallback;
-    }
-    if([...params.keys()].length){
-      ATTR = {
-        utm_source:        params.get('utm_source')   || 'sem_origem',
-        utm_medium:        params.get('utm_medium')   || 'sem_midia',
-        utm_campaign:      params.get('utm_campaign') || 'sem_campanha',
-        utm_id:            firstParam(['utm_id','campaign_id','meta_campaign_id'], 'sem_campaign_id'),
-        conjunto_anuncios: firstParam(['utm_term','adset','adset_name','meta_adset'], 'sem_conjunto'),
-        adset_id:          firstParam(['adset_id','utm_adset_id','meta_adset_id'], 'sem_adset_id'),
-        anuncio:           firstParam(['utm_content','ad','ad_name','creative','meta_ad'], 'sem_anuncio'),
-        ad_id:             firstParam(['ad_id','utm_ad_id','creative_id','meta_ad_id'], 'sem_ad_id'),
-        placement:         firstParam(['placement','utm_placement','site_source_name'], 'sem_posicionamento'),
-        fbclid:            params.get('fbclid') || 'sem_fbclid'
-      };
-      sessionStorage.setItem('oliveira_utm', JSON.stringify(ATTR));
-    } else {
-      ATTR = JSON.parse(sessionStorage.getItem('oliveira_utm') || '{}');
-    }
-  }catch(err){}
   track('page_view', {page:'ultima-loja-iracema'});
 
   // ---------- CTA click tracking ----------
@@ -1231,78 +1145,22 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
     });
   });
 
-  // ---------- profundidade de rolagem + engajamento (GA4 + Meta) ----------
-  // Por que existe: o tráfego pago do Meta abre a LP dentro do navegador in-app
-  // do Instagram/Facebook, que bloqueia o gtag.js com frequência. O fbq é
-  // first-party ali e passa. Mandar rolagem pelos DOIS lados é o único jeito de
-  // saber se quem clicou no anúncio realmente chegou e leu a página.
-  (function(){
-    var MARCOS = [25, 50, 75, 90];
-    var enviados = {};
-    var maxPercent = 0;
-    var inicio = Date.now();
-    var engajou = false;
-    var finalizado = false;
-
-    function segundos(){ return Math.round((Date.now() - inicio) / 1000); }
-
-    function percentAtual(){
-      var doc = document.documentElement;
-      var altura = Math.max(doc.scrollHeight, document.body ? document.body.scrollHeight : 0);
-      var janela = window.innerHeight || doc.clientHeight;
-      var rolavel = altura - janela;
-      // Página menor que a janela: não há o que rolar, conta como 100% vista.
-      if(rolavel <= 0) return 100;
-      var y = window.pageYOffset || doc.scrollTop || 0;
-      return Math.min(100, Math.round((y / rolavel) * 100));
-    }
-
-    function avaliar(){
-      var pct = percentAtual();
-      if(pct > maxPercent) maxPercent = pct;
-      for(var i = 0; i < MARCOS.length; i++){
-        var m = MARCOS[i];
-        if(maxPercent >= m && !enviados[m]){
-          enviados[m] = true;
-          track('scroll_depth', {percent: m, page: 'ultima-loja-iracema', segundos: segundos()});
-        }
-      }
-      if(!engajou && (maxPercent >= 50 || segundos() >= 30)){
-        engajou = true;
-        track('engajamento', {percent: maxPercent, segundos: segundos(), page: 'ultima-loja-iracema'});
-      }
-    }
-
-    // Throttle por timer, não por requestAnimationFrame: o rAF fica congelado
-    // enquanto a aba está em segundo plano, e aí o flag de controle nunca é
-    // liberado — a medição de rolagem morria de vez. setTimeout continua
-    // rodando (só desacelera), então o listener sempre volta a si.
-    var agendado = false;
-    window.addEventListener('scroll', function(){
-      if(agendado) return;
-      agendado = true;
-      setTimeout(function(){ agendado = false; avaliar(); }, 200);
-    }, {passive: true});
-    window.addEventListener('resize', avaliar, {passive: true});
-
-    // Quem fica parado lendo o topo também é engajado — checa por tempo.
-    setTimeout(avaliar, 15000);
-    setTimeout(avaliar, 30000);
-    avaliar();
-
-    // Resumo no fim da visita. pagehide/visibilitychange são os únicos eventos
-    // confiáveis em iOS e no webview do Instagram (unload não dispara lá).
-    function finalizar(){
-      if(finalizado) return;
-      finalizado = true;
-      avaliar();
-      track('saida_pagina', {percent: maxPercent, segundos: segundos(), page: 'ultima-loja-iracema'});
-    }
-    window.addEventListener('pagehide', finalizar);
-    document.addEventListener('visibilitychange', function(){
-      if(document.visibilityState === 'hidden') finalizar();
+  // ---------- CTAs de WhatsApp fora do formulário: rolam até o formulário do HERO ----------
+  // (o botão type="submit" dentro do próprio formulário mantém seu comportamento de envio, mais abaixo)
+  var contactForm = document.getElementById('formulario');
+  var scrollTriggers = document.querySelectorAll('[data-scroll-to-contact]');
+  scrollTriggers.forEach(function(trigger){
+    trigger.addEventListener('click', function(event){
+      event.preventDefault();
+      if(!contactForm) return;
+      contactForm.scrollIntoView({behavior:'smooth', block:'center'});
+      contactForm.classList.remove('form-highlight');
+      // força reflow para poder re-disparar a animação em cliques seguidos
+      void contactForm.offsetWidth;
+      contactForm.classList.add('form-highlight');
+      setTimeout(function(){ contactForm.classList.remove('form-highlight'); }, 900);
     });
-  })();
+  });
 
   // ---------- reveal on scroll ----------
   var revealEls = document.querySelectorAll('.reveal');
@@ -1373,8 +1231,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
   var WHATSAPP_NUMBER = '5531999558360';
   var WHATSAPP_MESSAGE = 'Olá! Preenchi o formulário da última loja disponível no Centro Comercial Iracema e gostaria de receber mais informações.';
   // TODO(Vanessa): configure the real leads endpoint (Sheets/CRM webhook). Leave blank to store locally only.
-  var LEAD_ENDPOINT_URL = 'https://formsubmit.co/ajax/contato@oliveiraimoveis.ia.br';
-  var LEADS_API_URL = 'https://oliveira-leads-api.vanessabarbosadeoliveira9.workers.dev/lead';
+  var LEAD_ENDPOINT_URL = '';
 
   var form = document.getElementById('lead-form');
   var formWrap = document.getElementById('form-wrap');
@@ -1419,14 +1276,15 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
       ts: new Date().toISOString(),
       page: 'ultima-loja-iracema'
     };
-    Object.assign(data, ATTR);
 
     if(!validate(data)) return;
 
     // duplicate-submit guard
     if(submitBtn.disabled) return;
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Enviando…';
+    // troca só o texto do rótulo — preserva o ícone do WhatsApp dentro do botão
+    var submitBtnLabel = document.getElementById('submit-btn-label');
+    if(submitBtnLabel) submitBtnLabel.textContent = 'enviando…';
 
     // local backup log (always) — swap/extend with a real endpoint when available
     try{
@@ -1436,26 +1294,9 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
       localStorage.setItem(SUBMIT_KEY, '1');
     }catch(err){}
 
-    // Um único event_id por submissão: vai para o fbq (browser) e para o Worker
-    // (Conversions API). É a chave de deduplicação do Meta.
-    var LEAD_EVENT_ID = novoEventId();
-
-    // Matching avançado: o fbq hasheia (SHA-256) dentro do próprio navegador
-    // antes de enviar — e-mail e telefone crus nunca saem daqui. Sobe o EMQ do
-    // dataset (hoje 6,1/10) e melhora atribuição e qualidade do lookalike.
-    try{
-      if(typeof fbq === 'function'){
-        fbq('init', '26815330474775862', {
-          em: String(data.email || '').trim().toLowerCase(),
-          ph: telefoneMeta(data.telefone),
-          fn: String(data.nome || '').trim().toLowerCase().split(' ')[0]
-        });
-      }
-    }catch(err){}
-
     function proceed(){
       track('form_submit', {form:'lead-loja-iracema'});
-      track('lead', {form:'lead-loja-iracema', value:1, event_id: LEAD_EVENT_ID});
+      track('lead', {form:'lead-loja-iracema', value:1});
       var msg = encodeURIComponent(WHATSAPP_MESSAGE);
       var waUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + msg;
       whatsappLink.href = waUrl;
@@ -1464,51 +1305,15 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
       setTimeout(function(){ window.open(waUrl, '_blank', 'noopener'); }, 500);
     }
 
-    // envia para o painel/CRM (oliveira-leads-api) e para o e-mail (FormSubmit)
-    var apiPayload = Object.assign({
-      nome: data.nome,
-      telefone: data.telefone,
-      email: data.email,
-      segmento: 'sem_segmento',
-      pagina_origem: 'ultima-loja-iracema (www.oliveiraimoveis.ia.br)',
-      ga_client_id: ga4ClientId(),
-      // campos que o Worker usa para mandar o mesmo Lead pela Conversions API
-      event_id: LEAD_EVENT_ID,
-      fbp: cookie('_fbp'),
-      fbc: metaFbc(),
-      event_source_url: location.href
-    }, ATTR);
-    var apiBody = JSON.stringify(apiPayload);
-
-    // O envio ao Worker é o que alimenta painel, CRM, GA4 e Meta CAPI — não pode
-    // falhar em silêncio. Tenta 2x e, se ainda assim falhar, usa sendBeacon (que
-    // sobrevive à navegação para o WhatsApp) e registra o erro no GA4.
-    function enviarWorker(tentativa){
-      return fetch(LEADS_API_URL, {
+    if(LEAD_ENDPOINT_URL){
+      fetch(LEAD_ENDPOINT_URL, {
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body: apiBody,
-        keepalive: true
-      }).then(function(res){
-        if(res && res.ok) return true;
-        throw new Error('status ' + (res && res.status));
-      }).catch(function(err){
-        if(tentativa < 2) return enviarWorker(tentativa + 1);
-        try{
-          if(navigator.sendBeacon){
-            navigator.sendBeacon(LEADS_API_URL, new Blob([apiBody], {type:'application/json'}));
-          }
-        }catch(e){}
-        track('lead_send_failed', {form:'lead-loja-iracema', erro: String(err).slice(0,120)});
-        return false;
-      });
+        body: JSON.stringify(data)
+      }).then(proceed).catch(proceed);
+    } else {
+      proceed();
     }
-
-    var sends = [
-      enviarWorker(1),
-      fetch(LEAD_ENDPOINT_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data), keepalive: true})
-    ];
-    Promise.allSettled(sends).then(proceed, proceed);
   });
 
   // ---------- footer year ----------

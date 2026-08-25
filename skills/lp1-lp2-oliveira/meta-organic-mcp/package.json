@@ -1,0 +1,15 @@
+{
+  "name": "oliveira-meta-organic-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "MCP local para dados orgânicos do Instagram/Facebook da Oliveira Imóveis via Graph API.",
+  "scripts": {
+    "start": "node src/server.js",
+    "check": "node src/server.js --check"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.5",
+    "zod": "^3.25.76"
+  }
+}

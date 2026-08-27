@@ -25,3 +25,7 @@ marketing/identidade-visual/Oliveira-Imoveis-Apresentacao.pptx
 # Temporários e inspeção
 *.inspect.ndjson
 *.textClipping
+
+# Cloudflare Workers — build/dev cache e deps (regeneram com npm install/wrangler)
+.wrangler/
+node_modules/

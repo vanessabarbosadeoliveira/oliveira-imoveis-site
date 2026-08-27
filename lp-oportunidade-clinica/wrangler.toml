@@ -1,0 +1,10 @@
+name = "oliveira-lp-clinica"
+compatibility_date = "2024-09-23"
+account_id = "669491c12f3d53a3f28ba3270668efaf"
+
+routes = [
+  { pattern = "www.oliveiraimoveis.ia.br/oportunidade-clinica*", zone_name = "oliveiraimoveis.ia.br" }
+]
+
+[assets]
+directory = "./build"

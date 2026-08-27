@@ -1,0 +1,6 @@
+name = "soft-smoke-c987"
+compatibility_date = "2024-09-23"
+account_id = "669491c12f3d53a3f28ba3270668efaf"
+
+[assets]
+directory = "./assets"

@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "oliveira-ga4-api",
+  "main": "worker.js",
+  "compatibility_date": "2026-08-01",
+  "vars": {
+    "GA4_PROPERTY_ID": "538068487"
+  }
+  // GA4_SA_EMAIL, GA4_SA_PRIVATE_KEY e API_SECRET são segredos —
+  // configurar com `wrangler secret put`, nunca aqui neste arquivo.
+}

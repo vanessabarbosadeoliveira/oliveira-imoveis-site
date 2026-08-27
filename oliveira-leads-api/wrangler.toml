@@ -1,0 +1,9 @@
+name = "oliveira-leads-api"
+main = "worker.js"
+compatibility_date = "2026-06-24"
+account_id = "669491c12f3d53a3f28ba3270668efaf"
+keep_vars = true
+
+kv_namespaces = [
+  { binding = "LEADS", id = "e78412fec06348f89c5618fd3be4b7d1" }
+]

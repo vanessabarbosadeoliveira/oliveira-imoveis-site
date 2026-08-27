@@ -2,8 +2,8 @@
 # sync-github.sh — sincroniza o repo oliveira-imoveis-site com o GitHub
 # Roda automaticamente via launchd sempre que houver mudanças na pasta
 
-REPO_DIR="/Users/vanessadeoliveira/Documents/Rede Oliveira Imóveis/02 - Site, Marketing e Identidade Visual/Site Oliveira Imóveis"
-LOG="/Users/vanessadeoliveira/Documents/Rede Oliveira Imóveis/sync-github.log"
+REPO_DIR="/Users/vanessadeoliveira/Documents/Claude/Projects/oliveira-imoveis-site"
+LOG="/Users/vanessadeoliveira/Library/Logs/oliveira-site-sync.log"
 
 cd "$REPO_DIR" || exit 1
 

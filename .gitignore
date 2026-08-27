@@ -29,3 +29,5 @@ marketing/identidade-visual/Oliveira-Imoveis-Apresentacao.pptx
 # Cloudflare Workers — build/dev cache e deps (regeneram com npm install/wrangler)
 .wrangler/
 node_modules/
+.env
+.env.local

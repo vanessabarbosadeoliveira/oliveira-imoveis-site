@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{TITLE}}</title>
+  <meta name="description" content="{{META_DESC}}" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- GA4 (gtag). generate_lead NAO dispara client-side: o worker oliveira-leads-api envia server-side (padrao LP3/oportunidade-clinica) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YM3X80NZ8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4YM3X80NZ8');
+  </script>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '26815330474775862');
+    fbq('track', 'PageView');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root{
+      --green-darkest:#0a2016;
+      --green-dark:#132c21;
+      --green:#173c2d;
+      --green-mid:#1d4634;
+      --gold:#b8944a;
+      --gold-light:#cbaa66;
+      --cream:#f6f1e6;
+      --cream-soft:#faf6ee;
+      --text-light:#f4efe4;
+      --text-dark:#17392d;
+      --ink:#20241f;
+      --serif: "Playfair Display", "Times New Roman", serif;
+      --sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --radius-s: 6px;
+      --radius-m: 10px;
+      --radius-l: 16px;
+      --pad: clamp(20px, 5vw, 72px);
+    }
+    *,*::before,*::after{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0; font-family:var(--sans); color:var(--ink); background:var(--cream-soft);
+      -webkit-font-smoothing:antialiased;
+    }
+    img{ max-width:100%; display:block; }
+    a{ color:inherit; }
+    .font-serif{ font-family:var(--serif); }
+    .skip-link{
+      position:absolute; left:-999px; top:0; background:var(--green-darkest); color:#fff; padding:10px 16px; z-index:200;
+    }
+    .skip-link:focus{ left:12px; top:12px; }
+
+    /* ============= HEADER ============= */
+    .site-header{
+      position:sticky; top:0; z-index:100; background:var(--green-darkest);
+      border-bottom:1px solid rgba(184,148,74,.25);
+    }
+    .site-header__inner{
+      max-width:1280px; margin:0 auto; padding:14px var(--pad);
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .logo-link{ text-decoration:none; display:flex; align-items:baseline; gap:8px; }
+    .logo-link .logo-word{ font-family:var(--serif); font-weight:700; font-size:20px; color:var(--text-light); letter-spacing:.02em; }
+    .logo-link .logo-sub{ font-family:var(--sans); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-light); }
+    .btn{
+      display:inline-flex; align-items:center; gap:8px; font-family:var(--sans); font-weight:600; font-size:14px;
+      padding:11px 20px; border-radius:999px; border:1.5px solid transparent; cursor:pointer; text-decoration:none;
+      transition:transform .15s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover{ transform:translateY(-1px); }
+    .btn--outline-header{ background:transparent; border-color:rgba(207,175,111,.55); color:var(--text-light); }
+    .btn--outline-header:hover{ background:rgba(255,255,255,.06); }
+    .btn--green{ background:var(--green-mid); color:#fff; border-color:var(--green-mid); }
+    .btn--green:hover{ background:var(--green); }
+    .long-label{ display:inline; }
+    .short-label{ display:none; }
+
+    /* ============= HERO ============= */
+    .hero{ position:relative; overflow:hidden; background:var(--green-darkest); }
+    .hero__bg{ position:absolute; inset:0; }
+    .hero__bg img{ width:100%; height:100%; object-fit:cover; opacity:.55; }
+    .hero__overlay{
+      position:absolute; inset:0;
+      background:linear-gradient(115deg, rgba(10,32,22,.97) 0%, rgba(10,32,22,.92) 32%, rgba(10,32,22,.72) 62%, rgba(10,32,22,.55) 100%);
+    }
+    .hero__content{ position:relative; padding:56px var(--pad) 64px; max-width:1280px; margin:0 auto; }
+    .hero-layout{ display:grid; grid-template-columns:1.15fr .85fr; gap:48px; align-items:start; }
+    .hero-copy{ max-width:560px; }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border-radius:999px;
+      background:rgba(184,148,74,.14); border:1px solid rgba(184,148,74,.4); color:var(--gold-light);
+      font-size:12.5px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; margin-bottom:22px;
+    }
+    .badge svg{ width:15px; height:15px; }
+    .hero-title{ color:#fff; font-size:clamp(30px, 4vw, 46px); line-height:1.14; font-weight:600; margin:0 0 18px; }
+    .hero-title .highlight{ color:var(--gold-light); font-style:italic; }
+    .hero-description{ color:rgba(244,239,228,.86); font-size:16.5px; line-height:1.65; margin:0; }
+    .hero-description strong{ color:var(--text-light); font-weight:600; }
+
+    .hero-features{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:36px; }
+    .hero-feature-card{
+      background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.12); border-radius:var(--radius-m);
+      padding:18px 16px; backdrop-filter:blur(2px);
+    }
+    .card-icon{
+      display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:999px;
+      background:rgba(184,148,74,.16); color:var(--gold-light); margin-bottom:12px;
+    }
+    .card-icon svg{ width:17px; height:17px; }
+    .card-title{ color:#fff; font-size:15px; line-height:1.3; margin:0 0 6px; font-weight:600; }
+    .card-title .highlight{ color:var(--gold-light); font-style:italic; }
+    .card-subtitle{ color:var(--gold-light); font-size:12px; font-weight:600; margin:0 0 6px; }
+    .card-copy{ color:rgba(244,239,228,.72); font-size:13px; line-height:1.55; margin:0; }
+
+    /* ============= LEAD FORM ============= */
+    .hero-form-wrap{ position:relative; }
+    .lead-form{
+      background:var(--cream-soft); border-radius:var(--radius-l); padding:30px 28px 26px;
+      box-shadow:0 30px 60px -20px rgba(0,0,0,.5); border:1px solid rgba(184,148,74,.25);
+    }
+    .lead-form__title{ font-size:21px; line-height:1.3; color:var(--text-dark); margin:0 0 6px; }
+    .lead-form__subtitle{ font-size:13.5px; color:#5a6b60; margin:0; }
+    .field{ margin-top:14px; }
+    .field label{ display:block; font-size:12.5px; font-weight:600; color:var(--text-dark); margin-bottom:6px; }
+    .field__control{
+      display:flex; align-items:center; gap:10px; border:1.5px solid #d9d2c0; border-radius:var(--radius-s);
+      padding:11px 13px; background:#fff; transition:border-color .15s ease;
+    }
+    .field__control:focus-within{ border-color:var(--gold); }
+    .field__control svg{ width:17px; height:17px; color:var(--gold); flex-shrink:0; }
+    .field__control input{
+      border:none; outline:none; font-family:var(--sans); font-size:14px; width:100%; background:transparent; color:var(--ink);
+    }
+    .field__error{ color:#b3261e; font-size:12px; margin:5px 0 0; min-height:14px; }
+    .honeypot{ position:absolute !important; left:-9999px; width:1px; height:1px; overflow:hidden; }
+    .consent{ display:flex; gap:9px; align-items:flex-start; margin-top:16px; font-size:12px; color:#5a6b60; line-height:1.5; cursor:pointer; }
+    .consent input{ margin-top:3px; accent-color:var(--gold); }
+    .consent a{ color:var(--green-mid); text-decoration:underline; }
+    .lead-form button[type="submit"]{ width:100%; justify-content:center; margin-top:18px; padding:13px 20px; font-size:14.5px; }
+    .lead-form__privacy{
+      display:flex; align-items:center; gap:8px; margin:16px 0 0; font-size:11.5px; color:#7c8a80; line-height:1.4;
+    }
+    .lead-form__privacy svg{ width:15px; height:15px; flex-shrink:0; color:#9aa79c; }
+    .form-status{ font-size:12.5px; color:var(--green-mid); min-height:16px; margin:10px 0 0; }
+    .lead-form__success{ display:none; text-align:center; padding:36px 20px; }
+    .lead-form__success.is-visible{ display:block; }
+    .lead-form__success svg{ width:52px; height:52px; color:var(--green-mid); margin:0 auto 14px; }
+    .lead-form__success h3{ font-family:var(--serif); font-size:20px; color:var(--text-dark); margin:0 0 8px; }
+    .lead-form__success p{ font-size:13.5px; color:#5a6b60; margin:0; }
+
+    /* ============= TRANSFORM (antes/depois) ============= */
+    .transform{ padding:76px var(--pad) 60px; max-width:1100px; margin:0 auto; text-align:center; }
+    .transform__eyebrow{ color:var(--gold); font-weight:600; font-size:13px; letter-spacing:.1em; text-transform:uppercase; margin:0 0 8px; }
+    .transform__title{ font-family:var(--serif); font-size:clamp(26px, 3.2vw, 36px); color:var(--text-dark); margin:0 0 40px; }
+    .before-after{ display:grid; grid-template-columns:1fr auto 1fr; gap:22px; align-items:center; }
+    .before-after figure{ margin:0; position:relative; border-radius:var(--radius-l); overflow:hidden; box-shadow:0 20px 40px -18px rgba(23,57,45,.35); }
+    .before-after img{ width:100%; height:420px; object-fit:cover; }
+    .before-after__badge{
+      position:absolute; top:14px; left:14px; background:rgba(23,57,45,.88); color:#fff; font-size:12px; font-weight:600;
+      padding:6px 14px; border-radius:999px; letter-spacing:.03em; text-transform:uppercase;
+    }
+    .before-after__badge--after{ background:var(--gold); color:var(--green-darkest); }
+    .before-after__arrow{
+      width:44px; height:44px; border-radius:999px; background:var(--gold); color:var(--green-darkest);
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .before-after__arrow svg{ width:20px; height:20px; }
+    .transform__disclaimer{ font-size:11.5px; color:#8a9690; margin:22px 0 0; }
+
+    /* ============= FINAL CTA ============= */
+    .final-cta{ background:var(--green-darkest); padding:70px var(--pad); }
+    .final-cta__inner{
+      max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1.3fr auto; gap:40px; align-items:center;
+    }
+    .final-cta__text h2{ font-family:var(--serif); color:#fff; font-size:clamp(26px, 3.4vw, 38px); line-height:1.22; margin:0 0 18px; }
+    .final-cta__rule{ display:block; width:64px; height:3px; background:var(--gold); margin-bottom:18px; }
+    .final-cta__text > p{ color:rgba(244,239,228,.82); font-size:15.5px; margin:0 0 22px; }
+    .final-cta__benefits{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+    .final-cta__benefits li{ display:flex; align-items:center; gap:10px; color:var(--text-light); font-size:14.5px; }
+    .final-cta__benefits svg{ width:19px; height:19px; color:var(--gold-light); flex-shrink:0; }
+    .btn--final-cta{ padding:16px 28px; font-size:15px; white-space:nowrap; }
+
+    /* ============= FOOTER ============= */
+    .site-footer{ background:var(--green-darkest); border-top:1px solid rgba(184,148,74,.2); padding:44px var(--pad) 24px; }
+    .site-footer__inner{ max-width:1100px; margin:0 auto; text-align:center; }
+    .site-footer__logo{ display:inline-flex; flex-direction:column; align-items:center; text-decoration:none; margin-bottom:14px; }
+    .site-footer__logo .logo-word{ font-family:var(--serif); font-weight:700; font-size:24px; color:#fff; }
+    .site-footer__logo .logo-sub{ font-family:var(--sans); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-light); margin-top:3px; }
+    .site-footer__tagline{ color:rgba(244,239,228,.7); font-size:13.5px; line-height:1.6; margin:0 0 22px; }
+    .site-footer__contacts{ display:flex; justify-content:center; gap:28px; flex-wrap:wrap; margin-bottom:24px; }
+    .site-footer__contacts a{ display:inline-flex; align-items:center; gap:8px; color:var(--text-light); font-size:13.5px; text-decoration:none; }
+    .site-footer__contacts svg{ width:16px; height:16px; color:var(--gold-light); }
+    .site-footer__contacts a:hover{ color:var(--gold-light); }
+    .site-footer__copy{ text-align:center; color:rgba(244,239,228,.45); font-size:12px; margin:0; padding-top:18px; border-top:1px solid rgba(255,255,255,.08); }
+
+    @media (max-width: 980px){
+      .hero-layout{ grid-template-columns:1fr; }
+      .hero-form-wrap{ order:-1; }
+      .final-cta__inner{ grid-template-columns:1fr; text-align:left; }
+      .btn--final-cta{ width:100%; justify-content:center; }
+    }
+    @media (max-width: 720px){
+      .hero-features{ grid-template-columns:1fr; }
+      .before-after{ grid-template-columns:1fr; }
+      .before-after__arrow{ margin:0 auto; transform:rotate(90deg); }
+      .before-after img{ height:280px; }
+      .long-label{ display:none; }
+      .short-label{ display:inline; }
+      .site-footer__contacts{ flex-direction:column; gap:14px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#hero" class="skip-link">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="#hero" class="logo-link" aria-label="Oliveira Imóveis — início da página">
+        <span class="logo-word">Oliveira Imóveis</span>
+      </a>
+      <a href="#lead-form" class="btn btn--outline-header">
+        <span class="short-label">Agendar</span>
+        <span class="long-label">Agendar visita</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14">
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero__bg">
+        <img src="data:image/jpeg;base64,{{ANTES_B64}}" alt="Fachada/interior da loja comercial vazia na Av. Getúlio Vargas, 306" />
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <div class="hero-layout">
+          <div class="hero-left">
+            <div class="hero-copy">
+              <span class="badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M11.4 4.1a8 8 0 1 0 8 8" />
+                  <path d="M11.4 8.1a4 4 0 1 0 4 4" />
+                  <circle cx="11.4" cy="12.1" r="1.05" fill="currentColor" stroke="none" />
+                  <path d="M11.4 12.1 20.4 3.1" />
+                  <path d="M15.6 3.1h4.8v4.8" />
+                </svg>
+                <span>Oportunidade exclusiva</span>
+              </span>
+
+              <h1 class="hero-title font-serif">
+                O endereço <span class="highlight">que aproxima</span> o seu negócio.
+              </h1>
+
+              <p class="hero-description">{{HERO_DESC}}</p>
+            </div>
+
+            <div class="hero-features">
+              <div class="hero-feature-card">
+                <span class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" />
+                  </svg>
+                </span>
+                <p class="card-title font-serif">Endereço<br /><span class="highlight">estratégico</span></p>
+                <p class="card-subtitle">Av. Getúlio Vargas</p>
+                <p class="card-copy">Um endereço reconhecido e conectado à dinâmica comercial da região.</p>
+              </div>
+
+              <div class="hero-feature-card">
+                <span class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z" /><circle cx="12" cy="12" r="3.2" />
+                  </svg>
+                </span>
+                <p class="card-title font-serif">Visibilidade<br /><span class="highlight">para o seu<br />negócio</span></p>
+                <p class="card-copy">Um imóvel que permite que a marca faça parte do movimento do entorno.</p>
+              </div>
+
+              <div class="hero-feature-card">
+                <span class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="6" cy="19" r="2.3" /><circle cx="18" cy="5" r="2.3" />
+                    <path d="M8.1 19h7.4a3 3 0 0 0 3-3v-1.5a3 3 0 0 0-3-3H8.5a3 3 0 0 1-3-3V7.3" />
+                  </svg>
+                </span>
+                <p class="card-title font-serif">Acesso<br /><span class="highlight">conveniente</span></p>
+                <p class="card-copy">Facilidade para clientes, profissionais e fornecedores chegarem ao endereço.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-form-wrap">
+            <div class="lead-form" id="lead-form">
+              <form id="lead-form-el" data-lead-form novalidate>
+                <h2 class="lead-form__title font-serif">Agende sua visita e conheça esta oportunidade.</h2>
+                <p class="lead-form__subtitle">Preencha seus dados e nossa equipe entrará em contato.</p>
+
+                <div class="field-group" data-field="nome">
+                  <div class="field" style="margin-top: 16px">
+                    <label for="lead-name">Nome completo</label>
+                    <div class="field__control">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M18 20a6 6 0 0 0-12 0" /><circle cx="12" cy="10" r="4" />
+                      </svg>
+                      <input id="lead-name" name="nome" type="text" autocomplete="name" placeholder="Seu nome" />
+                    </div>
+                    <p class="field__error" data-error="nome"></p>
+                  </div>
+                </div>
+
+                <div class="field-group" data-field="telefone">
+                  <div class="field">
+                    <label for="lead-phone">Telefone</label>
+                    <div class="field__control">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.98.36 1.94.67 2.86a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.22-1.24a2 2 0 0 1 2.11-.45c.92.31 1.88.54 2.86.67A2 2 0 0 1 22 16.92Z" />
+                      </svg>
+                      <input id="lead-phone" name="telefone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(31) 99999-9999" />
+                    </div>
+                    <p class="field__error" data-error="telefone"></p>
+                  </div>
+                </div>
+
+                <div class="field-group" data-field="email">
+                  <div class="field">
+                    <label for="lead-email">E-mail (opcional)</label>
+                    <div class="field__control">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                      </svg>
+                      <input id="lead-email" name="email" type="email" autocomplete="email" placeholder="voce@empresa.com.br" />
+                    </div>
+                    <p class="field__error" data-error="email"></p>
+                  </div>
+                </div>
+
+                <div class="honeypot" aria-hidden="true">
+                  <label for="lead-website">Não preencha este campo</label>
+                  <input id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+                </div>
+
+                <label class="consent">
+                  <input type="checkbox" name="privacyAccepted" />
+                  <span>
+                    Li e concordo com os <a href="#">Termos de Uso</a> e com a
+                    <a href="#">Política de Privacidade</a>.
+                  </span>
+                </label>
+                <p class="field__error" data-error="privacy"></p>
+
+                <button type="submit" class="btn btn--green">Quero conversar sobre este espaço</button>
+                <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+
+                <p class="lead-form__privacy">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                  <span>Seus dados estão protegidos. Não compartilhamos suas informações.</span>
+                </p>
+              </form>
+
+              <div class="lead-form__success" id="lead-form-success">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9.25" /><path d="m8.2 12.4 2.6 2.6 5-5.4" />
+                </svg>
+                <h3>Recebemos seus dados.</h3>
+                <p>Nossa equipe entrará em contato em breve para apresentar o imóvel.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="transform" aria-labelledby="transform-title">
+      <p class="transform__eyebrow">Transforme este espaço</p>
+      <h2 class="transform__title" id="transform-title">{{TRANSFORM_TITLE}}</h2>
+
+      <div class="before-after">
+        <figure>
+          <span class="before-after__badge">Antes</span>
+          <img src="data:image/jpeg;base64,{{ANTES_B64}}" alt="Espaço interno da loja, ainda vazio" width="880" height="550" loading="lazy" />
+        </figure>
+
+        <div class="before-after__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </div>
+
+        <figure>
+          <span class="before-after__badge before-after__badge--after">Depois</span>
+          <img src="data:image/jpeg;base64,{{DEPOIS_B64}}" alt="{{DEPOIS_ALT}}" width="880" height="550" loading="lazy" />
+        </figure>
+      </div>
+
+      <p class="transform__disclaimer">* Imagens meramente ilustrativas geradas por inteligência artificial.</p>
+    </section>
+
+    <section class="final-cta">
+      <div class="final-cta__inner">
+        <div class="final-cta__text">
+          <h2 class="font-serif">Conheça essa<br />oportunidade antes<br />que ela seja ocupada.</h2>
+          <span class="final-cta__rule" aria-hidden="true"></span>
+          <p>Preencha o formulário e agende sua visita.</p>
+
+          <ul class="final-cta__benefits">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1Z" />
+              </svg>
+              Atendimento exclusivo
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              Informações seguras
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9.25" /><path d="m8.2 12.4 2.6 2.6 5-5.4" />
+              </svg>
+              Análise estratégica da Oliveira Imóveis
+            </li>
+          </ul>
+        </div>
+
+        <a href="#lead-form" class="btn btn--green btn--final-cta">
+          Quero conversar sobre este espaço
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <a href="#hero" class="site-footer__logo" aria-label="Oliveira Imóveis — início da página">
+        <span class="logo-word">Oliveira Imóveis</span>
+        <span class="logo-sub">Especialistas em Imóveis Comerciais</span>
+      </a>
+
+      <p class="site-footer__tagline">Conectamos oportunidades a negócios<br />que transformam regiões e impulsionam marcas.</p>
+
+      <div class="site-footer__contacts">
+        <a href="https://wa.me/553199558360" target="_blank" rel="noopener noreferrer" data-cta="whatsapp-footer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.98.36 1.94.67 2.86a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.22-1.24a2 2 0 0 1 2.11-.45c.92.31 1.88.54 2.86.67A2 2 0 0 1 22 16.92Z" />
+          </svg>
+          31 99955-8360
+        </a>
+        <a href="https://oliveiraimoveis.ia.br" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20Z" />
+          </svg>
+          oliveiraimoveis.ia.br
+        </a>
+      </div>
+    </div>
+    <p class="site-footer__copy">© 2026 Oliveira Imóveis · Belo Horizonte · MG</p>
+  </footer>
+
+  <script>
+  (function(){
+    "use strict";
+    function maskPhoneBR(v){
+      v = (v || '').replace(/\D/g, '').slice(0, 11);
+      if (v.length > 10) return v.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3').trim().replace(/-$/, '');
+      if (v.length > 5) return v.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3').trim().replace(/-$/, '');
+      if (v.length > 2) return v.replace(/(\d{2})(\d{0,5})/, '($1) $2').trim();
+      if (v.length > 0) return '(' + v;
+      return '';
+    }
+    var schema = {
+      nome: function(v){ v = (v||'').trim(); if(!v) return 'Informe seu nome.'; if(v.length < 2) return 'Nome muito curto.'; return null; },
+      telefone: function(v){ var d = (v||'').replace(/\D/g,''); if(!d) return 'Informe seu telefone.'; if(d.length < 10) return 'Telefone incompleto.'; return null; },
+      email: function(v){ v=(v||'').trim(); if(!v) return null; var re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/; if(!re.test(v)) return 'E-mail inválido.'; return null; }
+    };
+
+    // ===== Integracao real de lead (padrao LP3/oportunidade-clinica) =====
+    var LEADS_API_URL = 'https://oliveira-leads-api.vanessabarbosadeoliveira9.workers.dev/lead';
+    var LEAD_BACKUP_URL = 'https://formsubmit.co/ajax/contato@oliveiraimoveis.ia.br';
+    var PAGINA_ORIGEM = '{{PAGINA_ORIGEM}}';
+    var PAGE = '{{PAGE_SLUG}}';
+    var CONTENT_NAME = '{{CONTENT_NAME}}';
+
+    function ga4ClientId(){
+      try{ var m = document.cookie.match(/(?:^|;\s*)_ga=GA\d\.\d\.(\d+\.\d+)/); return m ? m[1] : ''; }catch(err){ return ''; }
+    }
+    function lerCookie(nome){
+      try{ var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + nome + '=([^;]+)')); return m ? decodeURIComponent(m[1]) : ''; }catch(err){ return ''; }
+    }
+    function metaFbc(){
+      var c = lerCookie('_fbc'); if(c) return c;
+      try{ var fbclid = new URLSearchParams(location.search).get('fbclid'); return fbclid ? 'fb.1.' + Date.now() + '.' + fbclid : ''; }catch(err){ return ''; }
+    }
+    function novoEventId(){
+      try{ if(window.crypto && typeof crypto.randomUUID === 'function') return crypto.randomUUID(); }catch(err){}
+      return 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+    }
+    function telefoneMeta(tel){
+      var d = String(tel || '').replace(/\D/g, ''); if(!d) return '';
+      if(d.length === 10 || d.length === 11) d = '55' + d;
+      return d;
+    }
+    var ATTR = {};
+    try{
+      var _params = new URLSearchParams(location.search);
+      function _firstParam(keys, fallback){
+        for(var i=0;i<keys.length;i++){ var v=_params.get(keys[i]); if(v) return v; }
+        return fallback;
+      }
+      if([..._params.keys()].length){
+        ATTR = {
+          utm_source:        _params.get('utm_source')   || 'sem_origem',
+          utm_medium:        _params.get('utm_medium')   || 'sem_midia',
+          utm_campaign:      _params.get('utm_campaign') || 'sem_campanha',
+          utm_id:            _firstParam(['utm_id','campaign_id','meta_campaign_id'], 'sem_campaign_id'),
+          conjunto_anuncios: _firstParam(['utm_term','adset','adset_name','meta_adset'], 'sem_conjunto'),
+          adset_id:          _firstParam(['adset_id','utm_adset_id','meta_adset_id'], 'sem_adset_id'),
+          anuncio:           _firstParam(['utm_content','ad','ad_name','creative','meta_ad'], 'sem_anuncio'),
+          ad_id:             _firstParam(['ad_id','utm_ad_id','creative_id','meta_ad_id'], 'sem_ad_id'),
+          placement:         _firstParam(['placement','utm_placement','site_source_name'], 'sem_posicionamento'),
+          fbclid:            _params.get('fbclid') || 'sem_fbclid'
+        };
+        sessionStorage.setItem('oliveira_utm', JSON.stringify(ATTR));
+      } else {
+        ATTR = JSON.parse(sessionStorage.getItem('oliveira_utm') || '{}');
+      }
+    }catch(err){}
+
+    async function submitLead(data){
+      var LEAD_EVENT_ID = novoEventId();
+      try{
+        if (window.fbq){
+          fbq('init', '26815330474775862', {
+            em: String(data.email || '').trim().toLowerCase(),
+            ph: telefoneMeta(data.telefone),
+            fn: String(data.nome || '').trim().toLowerCase().split(' ')[0]
+          });
+          fbq('track', 'Lead', {content_name: CONTENT_NAME, value: 1, currency: 'BRL'}, {eventID: LEAD_EVENT_ID});
+        }
+      }catch(e){}
+      var payload = Object.assign({
+        nome: data.nome,
+        telefone: data.telefone,
+        email: data.email,
+        segmento: '{{SEGMENTO}}',
+        pagina_origem: PAGINA_ORIGEM,
+        ga_client_id: ga4ClientId(),
+        event_id: LEAD_EVENT_ID,
+        fbp: lerCookie('_fbp'),
+        fbc: metaFbc(),
+        event_source_url: location.href
+      }, ATTR);
+      var body = JSON.stringify(payload);
+      function enviarWorker(tentativa){
+        return fetch(LEADS_API_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body: body, keepalive: true})
+          .then(function(res){ if(res && res.ok) return true; throw new Error('status ' + (res && res.status)); })
+          .catch(function(err){
+            if(tentativa < 2) return enviarWorker(tentativa + 1);
+            try{ if(navigator.sendBeacon) navigator.sendBeacon(LEADS_API_URL, new Blob([body], {type:'application/json'})); }catch(e){}
+            tk('lead_send_failed', {erro: String(err).slice(0,120)});
+            return false;
+          });
+      }
+      var backup = fetch(LEAD_BACKUP_URL, {method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({nome: data.nome, telefone: data.telefone, email: data.email, pagina: PAGINA_ORIGEM}), keepalive: true}).catch(function(){});
+      var okWorker = await enviarWorker(1);
+      await Promise.allSettled([backup]);
+      return { ok: true, worker: okWorker };
+    }
+
+    (function initForms(){
+      var forms = document.querySelectorAll('[data-lead-form]');
+      if (!forms.length) return;
+      Array.prototype.forEach.call(forms, initForm);
+
+      function initForm(form){
+        var formId = form.id || 'lead-form';
+        var telInput = form.querySelector('[name="telefone"]');
+        var submitBtn = form.querySelector('button[type="submit"]');
+        var statusEl = form.querySelector('[data-form-status]');
+        var successEl = document.getElementById('lead-form-success');
+        var startedTracked = false;
+        var isSubmitting = false;
+
+        if (telInput){
+          telInput.addEventListener('input', function(){ telInput.value = maskPhoneBR(telInput.value); });
+        }
+
+        form.addEventListener('input', function(){
+          if (!startedTracked){ startedTracked = true; tk('form_start', { form: formId }); }
+        });
+
+        function setFieldError(name, message){
+          var wrap = form.querySelector('.field-group[data-field="' + name + '"]');
+          var errEl = form.querySelector('[data-error="' + name + '"]');
+          if (!errEl) return;
+          if (message){ if(wrap) wrap.classList.add('has-error'); errEl.textContent = message; }
+          else { if(wrap) wrap.classList.remove('has-error'); errEl.textContent = ''; }
+        }
+        function setConsentError(message){
+          var errEl = form.querySelector('[data-error="privacy"]');
+          if (errEl) errEl.textContent = message || '';
+        }
+        function valueOf(name){
+          var el = form.querySelector('[name="' + name + '"]');
+          return el ? el.value : '';
+        }
+
+        form.addEventListener('submit', async function(ev){
+          ev.preventDefault();
+          if (isSubmitting) return;
+          if (valueOf('website')) return; // honeypot
+
+          var values = { nome: valueOf('nome'), telefone: valueOf('telefone'), email: valueOf('email') };
+
+          var hasError = false;
+          Object.keys(schema).forEach(function(key){
+            var msg = schema[key](values[key]);
+            setFieldError(key, msg);
+            if (msg) hasError = true;
+          });
+
+          var consentEl = form.querySelector('[name="privacyAccepted"]');
+          if (consentEl && !consentEl.checked){ setConsentError('Você precisa aceitar os termos para continuar.'); hasError = true; }
+          else { setConsentError(''); }
+
+          if (hasError){ if (statusEl) statusEl.textContent = 'Verifique os campos destacados.'; return; }
+
+          isSubmitting = true;
+          submitBtn.disabled = true;
+          var originalLabel = submitBtn.innerHTML;
+          submitBtn.textContent = 'Enviando...';
+          if (statusEl) statusEl.textContent = '';
+
+          try{
+            var res = await submitLead(values);
+            if (res && res.ok){
+              tk('form_submit', { form: formId });
+              form.style.display = 'none';
+              if (successEl) successEl.classList.add('is-visible');
+            } else { throw new Error('fail'); }
+          }catch(e){
+            if (statusEl) statusEl.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
+          }finally{
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalLabel;
+            isSubmitting = false;
+          }
+        });
+      }
+    })();
+
+    // ===== Tracking de engajamento (scroll, tempo na página, CTA) — padrao LP3 =====
+    function tk(event, data){
+      var d = data || {};
+      try{ if(window.dataLayer) dataLayer.push(Object.assign({event:event}, d)); }catch(e){}
+      try{ if(window.gtag) gtag('event', event, d); }catch(e){}
+      try{
+        if(window.fbq){
+          if(event === 'scroll_depth') fbq('trackCustom', 'Scroll' + d.percent, {content_name: PAGE, percent: d.percent});
+          else if(event === 'engajamento') fbq('track', 'ViewContent', {content_name: PAGE, content_type: 'landing_page', percent: d.percent||0, segundos: d.segundos||0});
+          else if(event === 'saida_pagina') fbq('trackCustom', 'ProfundidadeFinal', {content_name: PAGE, percent: d.percent||0, segundos: d.segundos||0});
+          else if(event === 'cta_click') fbq('trackCustom', 'CTAClick', {content_name: PAGE, cta_location: d.cta_location||''});
+        }
+      }catch(e){}
+    }
+    window.tk = tk;
+    document.querySelectorAll('a[href*="wa.me"]').forEach(function(el){
+      el.addEventListener('click', function(){ tk('cta_click', {cta_location: 'whatsapp'}); });
+    });
+    var MARCOS = [25, 50, 75, 90], enviados = {}, maxPercent = 0, inicio = Date.now(), engajou = false, finalizado = false;
+    function segundos(){ return Math.round((Date.now() - inicio) / 1000); }
+    function percentAtual(){
+      var doc = document.documentElement;
+      var altura = Math.max(doc.scrollHeight, document.body ? document.body.scrollHeight : 0);
+      var janela = window.innerHeight || doc.clientHeight;
+      var rolavel = altura - janela;
+      if(rolavel <= 0) return 100;
+      var y = window.pageYOffset || doc.scrollTop || 0;
+      return Math.min(100, Math.round((y / rolavel) * 100));
+    }
+    function avaliar(){
+      var pct = percentAtual();
+      if(pct > maxPercent) maxPercent = pct;
+      for(var i = 0; i < MARCOS.length; i++){
+        var m = MARCOS[i];
+        if(maxPercent >= m && !enviados[m]){ enviados[m] = true; tk('scroll_depth', {percent: m, page: PAGE, segundos: segundos()}); }
+      }
+      if(!engajou && (maxPercent >= 50 || segundos() >= 30)){ engajou = true; tk('engajamento', {percent: maxPercent, segundos: segundos(), page: PAGE}); }
+    }
+    var agendado = false;
+    window.addEventListener('scroll', function(){
+      if(agendado) return;
+      agendado = true;
+      setTimeout(function(){ agendado = false; avaliar(); }, 200);
+    }, {passive: true});
+    window.addEventListener('resize', avaliar, {passive: true});
+    setTimeout(avaliar, 15000);
+    setTimeout(avaliar, 30000);
+    avaliar();
+    function finalizar(){
+      if(finalizado) return;
+      finalizado = true;
+      avaliar();
+      tk('saida_pagina', {percent: maxPercent, segundos: segundos(), page: PAGE});
+    }
+    window.addEventListener('pagehide', finalizar);
+    document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'hidden') finalizar(); });
+  })();
+  </script>
+</body>
+</html>

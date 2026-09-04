@@ -1,0 +1,13 @@
+name = "oliveira-lp-getulio-vargas"
+compatibility_date = "2024-09-23"
+account_id = "669491c12f3d53a3f28ba3270668efaf"
+
+routes = [
+  { pattern = "www.oliveiraimoveis.ia.br/oportunidade-farmacia*", zone_name = "oliveiraimoveis.ia.br" },
+  { pattern = "www.oliveiraimoveis.ia.br/oportunidade-quiropraxia*", zone_name = "oliveiraimoveis.ia.br" },
+  { pattern = "www.oliveiraimoveis.ia.br/oportunidade-tricologia*", zone_name = "oliveiraimoveis.ia.br" },
+  { pattern = "www.oliveiraimoveis.ia.br/oportunidade-recovery*", zone_name = "oliveiraimoveis.ia.br" }
+]
+
+[assets]
+directory = "./build"

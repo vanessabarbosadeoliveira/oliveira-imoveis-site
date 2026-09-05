@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oliveira Imóveis | Portofino Street Mall</title>
+    <meta
+      name="description"
+      content="Espaço comercial premium no Portofino Street Mall, no Buritis, para clínicas, wellness, pilates, fisioterapia, psicologia e operações de saúde."
+    >
+    <meta name="theme-color" content="#0d1117">
+    <meta property="og:title" content="Espaço comercial premium no Buritis">
+    <meta
+      property="og:description"
+      content="Solicite uma análise estratégica para sua clínica, wellness ou operação de saúde no Portofino Street Mall."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/oliveira-portofino-landing.png">
+
+    <!--
+      Para ativar:
+      1. Troque G-XXXXXXXXXX pelo Measurement ID do GA4.
+      2. Troque 000000000000000 pelo Pixel ID da Meta.
+      3. Troque o telefone do WhatsApp abaixo, se precisar.
+    -->
+    <script>
+      window.LANDING_CONFIG = {
+        ga4Id: "G-4YM3X80NZ8",
+        metaPixelId: "26815330474775862",
+        whatsappPhone: "5531999558360",
+        whatsappText:
+          "Olá, vim pela landing do Portofino Street Mall e quero solicitar uma análise estratégica."
+      };
+    </script>
+
+    <script>
+      (function () {
+        var id = window.LANDING_CONFIG.ga4Id;
+        if (!id || id === "G-XXXXXXXXXX") return;
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function gtag() {
+          window.dataLayer.push(arguments);
+        };
+        window.gtag("js", new Date());
+        window.gtag("config", id);
+
+        var script = document.createElement("script");
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+        document.head.appendChild(script);
+      })();
+    </script>
+
+    <script>
+      (function () {
+        var id = window.LANDING_CONFIG.metaPixelId;
+        if (!id || id === "000000000000000") return;
+
+        !(function (f, b, e, v, n, t, s) {
+          if (f.fbq) return;
+          n = f.fbq = function () {
+            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = true;
+          n.version = "2.0";
+          n.queue = [];
+          t = b.createElement(e);
+          t.async = true;
+          t.src = v;
+          s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+
+        window.fbq("init", id);
+        window.fbq("track", "PageView");
+      })();
+    </script>
+
+    <style>
+      :root {
+        --ink: #0b0f14;
+        --paper: #f4efe5;
+        --gold: #d9a647;
+        --gold-bright: #f2c567;
+        --muted: #d7d1c5;
+        --shadow: rgba(0, 0, 0, 0.36);
+        --max: 1024px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--ink);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        color: #fff;
+        font-family: Georgia, "Times New Roman", serif;
+        background:
+          radial-gradient(circle at top right, rgba(217, 166, 71, 0.2), transparent 36rem),
+          linear-gradient(180deg, #07090c 0%, #11161d 54%, #f4efe5 54%, #f4efe5 100%);
+      }
+
+      main {
+        width: min(100%, var(--max));
+        margin: 0 auto;
+        background: #080b10;
+        box-shadow: 0 28px 90px var(--shadow);
+      }
+
+      .poster {
+        position: relative;
+        overflow: hidden;
+        background: #0c1118;
+      }
+
+      .poster img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .cta-layer {
+        position: absolute;
+        left: 20%;
+        right: 20%;
+        top: 72.3%;
+        height: 7.1%;
+        border-radius: 999px;
+        outline: 0;
+        transition: box-shadow 180ms ease, transform 180ms ease;
+      }
+
+      .cta-layer:focus-visible,
+      .cta-layer:hover {
+        box-shadow: 0 0 0 4px rgba(242, 197, 103, 0.7), 0 18px 42px rgba(0, 0, 0, 0.36);
+        transform: translateY(-1px);
+      }
+
+      .location-card {
+        position: absolute;
+        left: 5.45%;
+        top: 60.25%;
+        z-index: 2;
+        width: 44.1%;
+        height: 8.45%;
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        gap: 14px;
+        align-items: center;
+        padding: 15px 22px 15px 29px;
+        border: 1px solid rgba(217, 166, 71, 0.92);
+        border-radius: 999px;
+        color: #fff;
+        font-family: "Trebuchet MS", Verdana, sans-serif;
+        background: rgba(8, 11, 15, 0.91);
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+      }
+
+      .location-card::before {
+        display: none;
+      }
+
+      .pin {
+        width: 40px;
+        height: 40px;
+        color: var(--gold-bright);
+      }
+
+      .location-card strong,
+      .location-card span {
+        display: block;
+      }
+
+      .location-card strong {
+        color: var(--gold-bright);
+        font-size: clamp(0.9rem, 2vw, 1.18rem);
+        font-weight: 700;
+        line-height: 1.05;
+        text-transform: uppercase;
+      }
+
+      .location-card span {
+        margin-top: 4px;
+        font-size: clamp(0.8rem, 1.75vw, 1rem);
+        line-height: 1.18;
+      }
+
+      .fallback {
+        display: none;
+        padding: 28px 20px 34px;
+        color: #141414;
+        background: var(--paper);
+        text-align: center;
+      }
+
+      .fallback h1 {
+        max-width: 760px;
+        margin: 0 auto 14px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(2rem, 7vw, 4.2rem);
+        font-weight: 500;
+        line-height: 0.98;
+      }
+
+      .fallback p {
+        max-width: 700px;
+        margin: 0 auto 22px;
+        font-family: "Trebuchet MS", Verdana, sans-serif;
+        font-size: clamp(1rem, 3vw, 1.25rem);
+        line-height: 1.5;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 58px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 26px;
+        border: 1px solid rgba(10, 10, 10, 0.28);
+        border-radius: 999px;
+        color: #080808;
+        font-family: "Trebuchet MS", Verdana, sans-serif;
+        font-size: clamp(0.95rem, 3vw, 1.05rem);
+        font-weight: 800;
+        text-decoration: none;
+        text-transform: uppercase;
+        background: linear-gradient(180deg, #ffe09b 0%, var(--gold) 100%);
+        box-shadow: 0 14px 35px rgba(90, 55, 0, 0.24);
+      }
+
+      .details {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        border-top: 1px solid rgba(217, 166, 71, 0.45);
+        background: rgba(217, 166, 71, 0.45);
+      }
+
+      .detail {
+        min-height: 116px;
+        padding: 22px 18px;
+        color: var(--muted);
+        font-family: "Trebuchet MS", Verdana, sans-serif;
+        text-align: center;
+        background: #0d1117;
+      }
+
+      .detail strong {
+        display: block;
+        margin-bottom: 6px;
+        color: #fff;
+        font-size: 0.94rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .detail span {
+        display: block;
+        font-size: 0.95rem;
+        line-height: 1.35;
+      }
+
+      @media (max-width: 760px) {
+        body {
+          background: #090d12;
+        }
+
+        main {
+          box-shadow: none;
+        }
+
+        .cta-layer {
+          left: 10%;
+          right: 10%;
+          top: 72%;
+          height: 7.4%;
+        }
+
+        .location-card {
+          left: 5.2%;
+          top: 60.1%;
+          width: 52%;
+          height: 8.6%;
+          grid-template-columns: 38px 1fr;
+          gap: 10px;
+          padding: 11px 16px 11px 22px;
+          border-radius: 999px;
+        }
+
+        .pin {
+          width: 32px;
+          height: 32px;
+        }
+
+        .details {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 520px) {
+        .poster {
+          min-height: 100svh;
+        }
+
+        .poster img {
+          width: 100%;
+          min-height: 100svh;
+          object-fit: cover;
+          object-position: center top;
+        }
+
+        .cta-layer {
+          left: 6%;
+          right: 6%;
+          top: auto;
+          bottom: 18.4%;
+          height: 7.2%;
+        }
+
+        .location-card {
+          left: 5.1%;
+          top: auto;
+          bottom: 32.2%;
+          width: 69%;
+          height: 7.8%;
+          grid-template-columns: 28px 1fr;
+          gap: 8px;
+          padding: 8px 12px 8px 16px;
+          border-radius: 999px;
+        }
+
+        .location-card strong {
+          font-size: 0.72rem;
+        }
+
+        .location-card span {
+          font-size: 0.67rem;
+        }
+
+        .pin {
+          width: 25px;
+          height: 25px;
+        }
+
+        .fallback {
+          display: block;
+        }
+
+        .details {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <section class="poster" aria-label="Oliveira Imóveis - Portofino Street Mall">
+        <img
+          src="assets/oliveira-portofino-landing.png"
+          alt="Landing page da Oliveira Imóveis: espaço comercial premium no Portofino Street Mall, Rua Henrique Badaró Portugal, Buritis, Belo Horizonte."
+          width="1024"
+          height="1536"
+          fetchpriority="high"
+        >
+        <div class="location-card" aria-label="Localização">
+          <svg class="pin" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M12 2a7.6 7.6 0 0 0-7.6 7.6c0 5.5 7 12 7.3 12.3a.45.45 0 0 0 .6 0c.3-.3 7.3-6.8 7.3-12.3A7.6 7.6 0 0 0 12 2Zm0 10.7a3.1 3.1 0 1 1 0-6.2 3.1 3.1 0 0 1 0 6.2Z"
+            />
+          </svg>
+          <div>
+            <strong>Portofino Street Mall</strong>
+            <span>R. Henrique Badaró Portugal<br>Buritis, Belo Horizonte - MG</span>
+          </div>
+        </div>
+        <a
+          id="main-cta"
+          class="cta-layer"
+          href="#contato"
+          aria-label="Solicitar análise estratégica pelo WhatsApp"
+        ></a>
+      </section>
+
+      <section id="contato" class="fallback" aria-label="Contato">
+        <h1>Portofino Street Mall</h1>
+        <p>
+          Espaço comercial premium no Buritis para clínicas, wellness, pilates,
+          fisioterapia, psicologia e operações de saúde.
+        </p>
+        <a id="fallback-cta" class="button" href="#">Solicitar análise estratégica</a>
+      </section>
+
+      <section class="details" aria-label="Diferenciais do imóvel">
+        <div class="detail">
+          <strong>Localização estratégica</strong>
+          <span>R. Henrique Badaró Portugal, no Buritis</span>
+        </div>
+        <div class="detail">
+          <strong>Fluxo qualificado</strong>
+          <span>Visibilidade premium para marcas de saúde</span>
+        </div>
+        <div class="detail">
+          <strong>Estrutura moderna</strong>
+          <span>Ambiente sofisticado para atendimento</span>
+        </div>
+        <div class="detail">
+          <strong>Ideal para clínicas</strong>
+          <span>Wellness, fisioterapia, psicologia e bem-estar</span>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var config = window.LANDING_CONFIG;
+        var params = new URLSearchParams(window.location.search);
+
+        function firstParam(names, fallback) {
+          for (var i = 0; i < names.length; i += 1) {
+            var value = params.get(names[i]);
+            if (value) return value;
+          }
+
+          return fallback;
+        }
+
+        var attribution = {
+          source: params.get("utm_source") || "sem_origem",
+          medium: params.get("utm_medium") || "sem_midia",
+          campaign: params.get("utm_campaign") || "sem_campanha",
+          campaign_id: firstParam(["utm_id", "campaign_id", "meta_campaign_id"], "sem_campaign_id"),
+          adset: firstParam(["utm_term", "adset", "adset_name", "meta_adset"], "sem_conjunto"),
+          adset_id: firstParam(["adset_id", "utm_adset_id", "meta_adset_id"], "sem_adset_id"),
+          ad_name: firstParam(["utm_content", "ad", "ad_name", "creative", "meta_ad"], "sem_anuncio"),
+          ad_id: firstParam(["ad_id", "utm_ad_id", "creative_id", "meta_ad_id"], "sem_ad_id"),
+          placement: firstParam(["placement", "utm_placement", "site_source_name"], "sem_posicionamento"),
+          fbclid: params.get("fbclid") || "sem_fbclid",
+          lead_channel: "whatsapp",
+          landing_page: "portofino_street_mall"
+        };
+
+        var attributionText =
+          "\n\nOrigem do contato:" +
+          "\nCampanha: " +
+          attribution.campaign +
+          "\nID da campanha: " +
+          attribution.campaign_id +
+          "\nConjunto de anúncios: " +
+          attribution.adset +
+          "\nID do conjunto: " +
+          attribution.adset_id +
+          "\nAnúncio/criativo: " +
+          attribution.ad_name +
+          "\nID do anúncio: " +
+          attribution.ad_id +
+          "\nPosicionamento: " +
+          attribution.placement +
+          "\nOrigem/mídia: " +
+          attribution.source +
+          " / " +
+          attribution.medium +
+          "\nClick ID Meta: " +
+          attribution.fbclid;
+        var encodedText = encodeURIComponent(config.whatsappText + attributionText);
+        var whatsappUrl = "https://wa.me/" + config.whatsappPhone + "?text=" + encodedText;
+        var buttons = [document.getElementById("main-cta"), document.getElementById("fallback-cta")];
+
+        function trackWhatsappClick() {
+          if (window.gtag) {
+            window.gtag("event", "generate_lead", attribution);
+            window.gtag("event", "whatsapp_click", Object.assign({
+              event_category: "landing_page",
+              event_label: "portofino_street_mall_whatsapp"
+            }, attribution));
+          }
+
+          if (window.fbq) {
+            window.fbq("track", "Lead", {
+              content_name: "Portofino Street Mall",
+              content_category: "WhatsApp",
+              campaign: attribution.campaign,
+              adset: attribution.adset,
+              ad_name: attribution.ad_name
+            });
+          }
+        }
+
+        buttons.forEach(function (button) {
+          if (!button) return;
+          button.href = whatsappUrl;
+          button.addEventListener("click", trackWhatsappClick);
+        });
+      })();
+    </script>
+  </body>
+</html>

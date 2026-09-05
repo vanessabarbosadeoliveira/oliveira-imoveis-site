@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oliveira Imóveis | Encontre o ponto comercial certo para sua loja em BH</title>
+  <meta name="description" content="Análise gratuita do ponto comercial para quem quer expandir com segurança em Belo Horizonte. Atuando desde 2016. Especialistas em ecossistemas comerciais." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YM3X80NZ8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4YM3X80NZ8');
+  </script>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '26815330474775862');
+    fbq('track', 'PageView');
+  </script>
+
+  <style>
+    :root {
+      /* Identidade visual Oliveira Imóveis */
+      --verde:     #020d07;   /* verde escuro principal */
+      --verde2:    #061b10;
+      --verde3:    #0a2514;
+      --dourado:   #d9aa38;
+      --dourado2:  #c49828;   /* dourado mais escuro p/ texto em fundo claro */
+      --dourado3:  #f4cf69;   /* dourado claro p/ fundo escuro */
+      --creme:     #f5ecdf;   /* fundo principal */
+      --creme2:    #fffaf2;   /* fundo cards */
+      --creme3:    #f0e3cc;   /* fundo alternado */
+      --texto:     #06160d;   /* texto principal */
+      --texto2:    #2a3c2d;   /* texto secundário */
+      --muted:     #687266;
+      --border:    rgba(160,120,40,.18);
+      --border2:   rgba(160,120,40,.28);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Montserrat', Arial, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--creme); color: var(--texto); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1160px, calc(100% - 40px)); margin: auto; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(245,236,223,.97);
+      border-bottom: 1px solid var(--border2);
+      backdrop-filter: blur(14px);
+    }
+    .nav-inner { height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 13px; }
+    .brand-mark {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: radial-gradient(circle at 32% 22%, #fff0ae, var(--dourado) 54%, #a77d26);
+      display: grid; place-items: center;
+      font-family: var(--serif); font-size: 1.5rem; font-weight: 700;
+      color: var(--verde); letter-spacing: -.04em;
+      box-shadow: 0 2px 12px rgba(160,120,40,.22);
+    }
+    .brand-name { font-family: var(--serif); font-size: 1.42rem; font-weight: 700; letter-spacing: .05em; line-height: 1; color: var(--verde); }
+    .brand-sub { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--dourado2); font-weight: 900; margin-top: 3px; }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--verde); color: var(--dourado3);
+      font-weight: 900; font-size: .78rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 14px 26px; border-radius: 999px;
+      box-shadow: 0 6px 22px rgba(2,13,7,.18);
+      transition: .2s;
+    }
+    .nav-cta:hover { background: var(--verde2); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 72px 0 60px;
+      background: var(--creme);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute;
+      top: -60px; right: -80px;
+      width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(217,170,56,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1fr 460px; gap: 60px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .7rem; text-transform: uppercase; letter-spacing: .22em;
+      color: var(--dourado2); font-weight: 900; margin-bottom: 22px;
+    }
+    .eyebrow-line { width: 28px; height: 2px; background: var(--dourado); flex-shrink: 0; }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 6.2vw, 6rem);
+      line-height: .9; letter-spacing: -.03em; font-weight: 700;
+      color: var(--verde); margin-bottom: 26px;
+    }
+    .hero h1 em { color: var(--dourado2); font-style: italic; }
+    .hero-lead {
+      font-size: clamp(.95rem, 1.4vw, 1.16rem); line-height: 1.6;
+      color: var(--texto2); font-weight: 500;
+      max-width: 520px; margin-bottom: 34px;
+    }
+    .hero-lead strong { color: var(--texto); font-weight: 700; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 36px; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border-radius: 999px; padding: 17px 30px;
+      font-family: var(--sans); font-size: .8rem; font-weight: 900;
+      letter-spacing: .12em; text-transform: uppercase;
+      transition: .2s; white-space: nowrap; border: 0; cursor: pointer;
+    }
+    .btn-dark {
+      background: var(--verde); color: var(--dourado3);
+      box-shadow: 0 10px 30px rgba(2,13,7,.18);
+    }
+    .btn-dark:hover { background: var(--verde2); transform: translateY(-2px); }
+    .btn-outline {
+      border: 1.5px solid var(--border2); color: var(--texto2);
+      background: transparent;
+    }
+    .btn-outline:hover { background: var(--creme3); transform: translateY(-2px); }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--dourado), #c49828);
+      color: var(--verde); box-shadow: 0 10px 28px rgba(160,120,40,.28);
+    }
+    .btn-gold:hover { filter: brightness(1.06); transform: translateY(-2px); }
+
+    .trust-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .trust-chip {
+      display: flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border2); background: var(--creme2);
+      border-radius: 999px; padding: 9px 14px;
+      font-size: .76rem; font-weight: 700; color: var(--texto2);
+    }
+    .trust-chip svg { flex-shrink: 0; color: var(--dourado2); }
+
+    /* Form card */
+    .form-card {
+      background: var(--verde);
+      border: 1px solid rgba(217,170,56,.25);
+      border-radius: 26px; padding: 32px;
+      box-shadow: 0 40px 80px rgba(2,13,7,.18);
+    }
+    .form-card-tag {
+      display: inline-block;
+      background: rgba(217,170,56,.18); color: var(--dourado3);
+      font-size: .64rem; font-weight: 900; letter-spacing: .18em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 999px; margin-bottom: 12px;
+    }
+    .form-card h2 { font-family: var(--serif); font-size: 2rem; line-height: .96; color: #fff; margin-bottom: 8px; }
+    .form-card > p { font-size: .88rem; color: rgba(255,255,255,.6); font-weight: 600; margin-bottom: 22px; }
+    .field { margin-bottom: 13px; }
+    .field label { display: block; color: rgba(255,255,255,.5); font-weight: 900; font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 6px; }
+    .field input, .field select {
+      width: 100%; border: 1.5px solid rgba(255,255,255,.12); border-radius: 14px;
+      background: rgba(255,255,255,.06); padding: 14px 16px;
+      font-family: var(--sans); font-size: .95rem;
+      outline: none; transition: .2s; color: #fff;
+      appearance: none;
+    }
+    .field input::placeholder { color: rgba(255,255,255,.3); }
+    .field select option { background: var(--verde2); color: #fff; }
+    .field input:focus, .field select:focus {
+      border-color: rgba(217,170,56,.6);
+      background: rgba(255,255,255,.09);
+      box-shadow: 0 0 0 4px rgba(217,170,56,.12);
+    }
+    .consent { display: flex; gap: 10px; align-items: flex-start; margin: 12px 0 16px; font-size: .73rem; line-height: 1.5; color: rgba(255,255,255,.55); font-weight: 600; }
+    .consent input { width: 16px; height: 16px; min-width: 16px; margin-top: 2px; accent-color: var(--dourado); }
+    .consent a { color: var(--dourado3); text-decoration: underline; text-underline-offset: 2px; }
+    .form-footer-note { text-align: center; color: rgba(255,255,255,.35); font-size: .68rem; font-weight: 600; margin-top: 12px; }
+
+    /* ── SECTION COMMONS ── */
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .66rem; letter-spacing: .22em; text-transform: uppercase;
+      font-weight: 900; color: var(--dourado2); margin-bottom: 14px;
+    }
+    .section-label::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--dourado); flex-shrink: 0; }
+    .section-title {
+      font-family: var(--serif); font-size: clamp(2rem, 4.2vw, 3.6rem);
+      line-height: .96; letter-spacing: -.03em; font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .section-lead { font-size: 1rem; line-height: 1.65; font-weight: 500; max-width: 620px; }
+
+    /* ── PAIN SECTION ── */
+    .pain-section { padding: 90px 0; background: var(--creme2); }
+    .pain-section .section-title { color: var(--verde); }
+    .pain-section .section-lead { color: var(--texto2); margin-bottom: 48px; }
+    .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .pain-card {
+      background: var(--creme); border: 1px solid var(--border2);
+      border-radius: 20px; padding: 28px;
+    }
+    .pain-icon { font-size: 1.6rem; margin-bottom: 14px; }
+    .pain-card h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 700; color: var(--verde); margin-bottom: 10px; line-height: 1.2; }
+    .pain-card p { font-size: .87rem; color: var(--texto2); line-height: 1.62; font-weight: 500; }
+    .pain-bottom {
+      margin-top: 36px;
+      background: var(--verde); border-radius: 20px; padding: 30px 34px;
+      display: flex; align-items: center; gap: 22px;
+    }
+    .pain-bottom-icon { font-size: 2.2rem; flex-shrink: 0; }
+    .pain-bottom p { font-size: 1rem; line-height: 1.58; color: rgba(255,255,255,.82); font-weight: 500; }
+    .pain-bottom p strong { color: var(--dourado3); font-weight: 800; }
+
+    /* ── METHOD SECTION ── */
+    .method-section { padding: 90px 0; background: var(--creme); }
+    .method-section .section-title { color: var(--verde); }
+    .method-intro { max-width: 640px; margin-bottom: 56px; }
+    .method-intro .section-lead { color: var(--texto2); }
+    .method-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .method-step {
+      background: var(--creme2); border: 1px solid var(--border2);
+      border-radius: 20px; padding: 30px 24px;
+      transition: .22s; position: relative; overflow: hidden;
+    }
+    .method-step:hover { border-color: rgba(160,120,40,.5); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(2,13,7,.08); }
+    .step-num {
+      font-family: var(--serif); font-size: 3.8rem; font-weight: 700;
+      color: rgba(160,120,40,.15); line-height: 1; margin-bottom: 10px;
+      letter-spacing: -.06em;
+    }
+    .step-icon { font-size: 1.5rem; margin-bottom: 14px; }
+    .method-step h3 { font-family: var(--serif); font-size: 1.28rem; font-weight: 700; color: var(--verde); margin-bottom: 10px; line-height: 1.22; }
+    .method-step p { font-size: .86rem; color: var(--texto2); line-height: 1.62; font-weight: 500; }
+    .method-cta { margin-top: 48px; text-align: center; }
+
+    /* ── CASE SECTION ── */
+    .case-section { padding: 90px 0; background: var(--creme3); }
+    .case-section .section-title { color: var(--verde); }
+    .case-grid { display: grid; grid-template-columns: 1fr 460px; gap: 56px; align-items: start; }
+    .case-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(160,120,40,.12); border: 1px solid var(--border2);
+      color: var(--dourado2); font-size: .64rem; font-weight: 900; letter-spacing: .18em; text-transform: uppercase;
+      padding: 6px 13px; border-radius: 999px; margin-bottom: 18px;
+    }
+    .case-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--dourado); flex-shrink: 0; }
+    .case-desc { font-size: .97rem; line-height: 1.68; color: var(--texto2); font-weight: 500; margin-bottom: 22px; }
+    .case-quote {
+      background: var(--verde); color: rgba(255,255,255,.9);
+      border-radius: 18px; padding: 24px 26px;
+      border-left: 3px solid var(--dourado);
+      margin-bottom: 28px;
+    }
+    .case-quote p { font-family: var(--serif); font-size: 1.1rem; font-style: italic; line-height: 1.56; margin-bottom: 12px; color: rgba(255,255,255,.92); }
+    .case-quote cite { font-size: .76rem; color: var(--dourado3); font-weight: 700; font-style: normal; }
+    .case-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .case-stat {
+      background: var(--creme2); border: 1px solid var(--border2);
+      border-radius: 16px; padding: 20px 18px;
+    }
+    .case-stat-num { font-family: var(--serif); font-size: 2.5rem; font-weight: 700; color: var(--verde); line-height: 1; margin-bottom: 5px; }
+    .case-stat-label { font-size: .74rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; line-height: 1.35; }
+
+    /* Ecosystem map — dark card */
+    .ecosystem-map {
+      background: var(--verde); border-radius: 22px; padding: 28px;
+      border: 1px solid rgba(217,170,56,.18); position: sticky; top: 100px;
+    }
+    .ecosystem-title { font-size: .68rem; text-transform: uppercase; letter-spacing: .2em; font-weight: 900; color: var(--dourado3); margin-bottom: 18px; }
+    .ecosystem-list { display: flex; flex-direction: column; gap: 8px; }
+    .eco-item {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,.06); border-radius: 12px; padding: 12px 14px;
+      font-size: .87rem; color: rgba(255,255,255,.84); font-weight: 600;
+    }
+    .eco-item-icon { font-size: 1rem; flex-shrink: 0; }
+    .eco-arrow { font-size: .7rem; color: var(--dourado3); font-weight: 900; margin-left: auto; white-space: nowrap; }
+    .eco-address {
+      margin-top: 20px; padding: 14px; background: rgba(255,255,255,.05);
+      border: 1px solid rgba(217,170,56,.15); border-radius: 12px;
+      font-size: .8rem; color: rgba(255,255,255,.55); font-weight: 600; line-height: 1.5;
+      display: flex; gap: 9px; align-items: flex-start;
+    }
+    .eco-address span:first-child { color: var(--dourado3); flex-shrink: 0; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section { padding: 90px 0; background: var(--creme2); }
+    .testimonials-section .section-title { color: var(--verde); margin-bottom: 48px; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .testimonial-card {
+      background: var(--creme); border: 1px solid var(--border2);
+      border-radius: 22px; padding: 28px; position: relative;
+    }
+    .testimonial-card::before {
+      content: '"'; font-family: var(--serif); font-size: 4.5rem; line-height: .7;
+      color: rgba(160,120,40,.15); position: absolute; top: 16px; left: 22px;
+      pointer-events: none;
+    }
+    .testimonial-stars { display: flex; gap: 3px; margin-bottom: 14px; color: var(--dourado2); font-size: .95rem; }
+    .testimonial-text { font-family: var(--serif); font-size: 1.05rem; line-height: 1.6; color: var(--texto); font-style: italic; margin-bottom: 20px; }
+    .testimonial-text strong { color: var(--verde); font-style: normal; font-weight: 700; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: radial-gradient(circle at 32% 22%, #fff0ae, var(--dourado) 60%);
+      display: grid; place-items: center;
+      font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--verde);
+      flex-shrink: 0;
+    }
+    .testimonial-name { font-weight: 800; font-size: .86rem; color: var(--verde); margin-bottom: 2px; }
+    .testimonial-biz { font-size: .74rem; color: var(--muted); font-weight: 600; }
+    .testimonial-result {
+      margin-top: 16px; background: rgba(160,120,40,.1); border: 1px solid var(--border2);
+      border-radius: 10px; padding: 9px 13px;
+      font-size: .74rem; font-weight: 800; color: var(--dourado2);
+      display: flex; align-items: center; gap: 7px;
+    }
+
+    /* ── NUMBERS ── */
+    .numbers-section {
+      padding: 64px 0;
+      background: var(--verde);
+      border-top: 1px solid rgba(217,170,56,.15);
+    }
+    .numbers-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .number-item { text-align: center; padding: 28px 18px; }
+    .number-item + .number-item { border-left: 1px solid rgba(217,170,56,.15); }
+    .number-num { font-family: var(--serif); font-size: clamp(2.6rem, 4.5vw, 4.4rem); font-weight: 700; color: var(--dourado3); line-height: 1; margin-bottom: 8px; }
+    .number-label { font-size: .74rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 700; color: rgba(255,255,255,.5); }
+
+    /* ── ABOUT ── */
+    .about-section { padding: 90px 0; background: var(--creme); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .about-section .section-title { color: var(--verde); }
+    .about-section .section-lead { color: var(--texto2); margin-bottom: 26px; }
+    .about-list { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+    .about-list li { display: flex; align-items: flex-start; gap: 12px; font-size: .93rem; line-height: 1.5; color: var(--texto2); font-weight: 600; }
+    .about-list li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--dourado); flex-shrink: 0; margin-top: 6px; }
+    .about-visual {
+      background: var(--verde); border-radius: 24px; padding: 36px;
+      border: 1px solid rgba(217,170,56,.18);
+    }
+    .about-visual h3 { font-family: var(--serif); font-size: 1.75rem; color: var(--dourado3); margin-bottom: 10px; line-height: 1.1; }
+    .about-visual p { font-size: .9rem; color: rgba(255,255,255,.65); line-height: 1.65; font-weight: 500; margin-bottom: 24px; }
+    .about-address { display: flex; gap: 10px; align-items: flex-start; color: rgba(255,255,255,.5); font-size: .82rem; font-weight: 600; line-height: 1.45; }
+    .about-address span:first-child { color: var(--dourado3); flex-shrink: 0; }
+
+    /* ── CTA SECTION ── */
+    .cta-section { padding: 90px 0; background: var(--creme3); }
+    .cta-grid { display: grid; grid-template-columns: 1fr 480px; gap: 64px; align-items: start; }
+    .cta-section .section-title { color: var(--verde); }
+    .cta-section .section-title em { color: var(--dourado2); font-style: italic; }
+    .cta-section > .container > .cta-grid > .cta-content > p { font-size: 1rem; line-height: 1.7; color: var(--texto2); font-weight: 500; margin-bottom: 30px; }
+    .cta-features { display: flex; flex-direction: column; gap: 13px; }
+    .cta-feature { display: flex; align-items: center; gap: 12px; font-size: .92rem; font-weight: 600; color: var(--texto2); }
+    .cta-check {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(160,120,40,.12); border: 1px solid var(--border2);
+      display: grid; place-items: center;
+      color: var(--dourado2); font-size: .75rem; font-weight: 900;
+    }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--verde); border-top: 1px solid rgba(217,170,56,.15); padding: 38px 0; }
+    .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer-brand { display: flex; align-items: center; gap: 12px; }
+    .footer-brand-mark {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: radial-gradient(circle at 32% 22%, #fff0ae, var(--dourado) 54%, #a77d26);
+      display: grid; place-items: center;
+      font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--verde);
+    }
+    .footer-brand-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; color: #fff; }
+    .footer-brand-sub { font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; color: var(--dourado3); font-weight: 900; margin-top: 2px; }
+    .footer-copy { font-size: .74rem; color: rgba(255,255,255,.35); font-weight: 600; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: .74rem; color: rgba(255,255,255,.38); font-weight: 600; transition: .15s; }
+    .footer-links a:hover { color: var(--dourado3); }
+
+    /* ── MODAL ── */
+    .modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 22px; background: rgba(0,0,0,.55); backdrop-filter: blur(8px); }
+    .modal.open { display: flex; }
+    .modal-box { width: min(740px,100%); max-height: 88vh; overflow-y: auto; background: var(--creme2); color: var(--texto); border-radius: 22px; border: 1px solid var(--border2); box-shadow: 0 40px 100px rgba(0,0,0,.25); }
+    .modal-head { position: sticky; top: 0; background: var(--creme2); border-bottom: 1px solid var(--border); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+    .modal-head h3 { font-family: var(--serif); font-size: 1.9rem; color: var(--verde); }
+    .modal-close { border: 0; background: var(--verde); color: #fff; border-radius: 50%; width: 34px; height: 34px; cursor: pointer; font-size: 1rem; font-weight: 900; }
+    .modal-body { padding: 22px 24px 28px; font-size: .9rem; line-height: 1.65; color: var(--texto2); }
+    .modal-body h4 { margin: 16px 0 6px; color: var(--verde); font-size: .88rem; text-transform: uppercase; letter-spacing: .08em; }
+    .modal-body p { margin-bottom: 10px; }
+    .modal-body ul { padding-left: 18px; margin: 6px 0 12px; }
+    .modal-body li { margin-bottom: 6px; }
+
+    /* ── DUAL CARD ── */
+    .dual-card {
+      background: var(--creme2);
+      border: 1px solid var(--border2);
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(2,13,7,.12);
+    }
+    .dual-tabs {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border2);
+    }
+    .dual-tab {
+      display: flex; align-items: center; gap: 12px;
+      padding: 18px 20px; border: 0; cursor: pointer;
+      background: transparent; text-align: left; transition: .18s;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      font-family: var(--sans);
+    }
+    .dual-tab:first-child { border-right: 1px solid var(--border); }
+    .dual-tab .tab-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .dual-tab .tab-title { display: block; font-size: .82rem; font-weight: 800; color: var(--muted); line-height: 1.2; }
+    .dual-tab .tab-desc { display: block; font-size: .7rem; font-weight: 600; color: rgba(104,114,102,.6); margin-top: 2px; }
+    .dual-tab.active { background: var(--creme2); border-bottom-color: var(--dourado); }
+    .dual-tab.active .tab-title { color: var(--verde); }
+    .dual-tab.active .tab-desc { color: var(--muted); }
+    .dual-tab:not(.active):hover { background: var(--creme3); }
+    .dual-panel { padding: 28px; }
+    .dual-panel.hidden { display: none; }
+    .panel-header { margin-bottom: 20px; }
+    .panel-title { font-family: var(--serif); font-size: 1.7rem; line-height: 1; color: #fff; margin-bottom: 8px; }
+    .panel-desc { font-size: .86rem; color: rgba(255,255,255,.6); font-weight: 600; line-height: 1.5; }
+    /* Painel especialista tem fundo escuro, plataforma tem fundo claro */
+    #panel-especialista { background: var(--verde); border-radius: 0; }
+    #panel-especialista .field label { color: rgba(255,255,255,.5); }
+    #panel-especialista .field input {
+      border-color: rgba(255,255,255,.12); background: rgba(255,255,255,.07);
+      color: #fff;
+    }
+    #panel-especialista .field input::placeholder { color: rgba(255,255,255,.3); }
+    #panel-especialista .field input:focus {
+      border-color: rgba(217,170,56,.6); background: rgba(255,255,255,.1);
+      box-shadow: 0 0 0 4px rgba(217,170,56,.12);
+    }
+    #panel-plataforma { background: var(--creme2); }
+    #panel-plataforma .panel-title { color: var(--verde); }
+    #panel-plataforma .panel-desc { color: var(--texto2); }
+    .pwd-toggle {
+      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+      border: 0; background: transparent; cursor: pointer; color: var(--muted);
+      display: flex; align-items: center; padding: 4px;
+    }
+    .pwd-toggle:hover { color: var(--verde); }
+    .hidden { display: none !important; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1060px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+      .dual-card { max-width: 560px; }
+      .case-grid { grid-template-columns: 1fr; }
+      .ecosystem-map { position: static; }
+      .cta-grid { grid-template-columns: 1fr; gap: 44px; }
+      .about-grid { grid-template-columns: 1fr; gap: 44px; }
+    }
+    @media (max-width: 840px) {
+      .pain-grid, .method-steps, .testimonials-grid { grid-template-columns: 1fr; }
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+      .number-item + .number-item { border-left: 0; }
+      .numbers-grid .number-item:nth-child(odd) { border-right: 1px solid rgba(217,170,56,.15); }
+      .numbers-grid .number-item:nth-child(-n+2) { border-bottom: 1px solid rgba(217,170,56,.15); }
+    }
+    @media (max-width: 600px) {
+      .container { width: calc(100% - 28px); }
+      .nav-inner { height: 68px; }
+      .nav-cta span { display: none; }
+      .hero { padding: 44px 0 50px; }
+      .hero h1 { font-size: 3rem; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; }
+      .pain-bottom { flex-direction: column; gap: 14px; }
+      .case-stats-grid { grid-template-columns: 1fr 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#inicio" aria-label="Oliveira Imóveis">
+        <div class="brand-mark">OI</div>
+        <div>
+          <div class="brand-name">OLIVEIRA IMÓVEIS</div>
+          <div class="brand-sub">Ecossistemas Comerciais</div>
+        </div>
+      </a>
+      <a class="nav-cta" href="#opcoes">
+        <span>Análise gratuita</span>
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div class="copy">
+        <div class="eyebrow">
+          <span class="eyebrow-line"></span>
+          Análise gratuita · Belo Horizonte e região
+        </div>
+        <h1>Seu próximo ponto<br>precisa de <em>dados,</em><br>não de sorte.</h1>
+        <p class="hero-lead">
+          Antes de assinar um contrato, saiba se o ponto tem <strong>fluxo de público</strong>, <strong>vocação comercial</strong> e <strong>vizinhos certos</strong> para o seu negócio crescer de verdade.
+        </p>
+        <div class="hero-actions">
+          <a href="#opcoes" class="btn btn-dark">Quero a análise gratuita</a>
+          <a href="#caso" class="btn btn-outline">Ver case real</a>
+        </div>
+        <div class="trust-row">
+          <div class="trust-chip">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 7l1.8 1.8L9.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Desde 2016 em BH
+          </div>
+          <div class="trust-chip">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 7l1.8 1.8L9.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            100% foco comercial
+          </div>
+          <div class="trust-chip">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 7l1.8 1.8L9.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            R$0 para solicitar
+          </div>
+        </div>
+      </div>
+
+      <!-- DUAL OPTION CARD -->
+      <div class="dual-card" id="opcoes">
+        <!-- Tabs -->
+        <div class="dual-tabs" role="tablist">
+          <button class="dual-tab active" data-tab="especialista" role="tab" aria-selected="true">
+            <span class="tab-icon">💬</span>
+            <span>
+              <span class="tab-title">Falar com especialista</span>
+              <span class="tab-desc">Nossa equipe te chama no WhatsApp</span>
+            </span>
+          </button>
+          <button class="dual-tab" data-tab="plataforma" role="tab" aria-selected="false">
+            <span class="tab-icon">🔍</span>
+            <span>
+              <span class="tab-title">Fazer pesquisa agora</span>
+              <span class="tab-desc">Acesse a plataforma gratuitamente</span>
+            </span>
+          </button>
+        </div>
+
+        <!-- Painel: Especialista -->
+        <div class="dual-panel" id="panel-especialista" role="tabpanel">
+          <div class="panel-header">
+            <div class="form-card-tag">Gratuito · sem compromisso</div>
+            <h2 class="panel-title">Fale com um de nossos especialistas</h2>
+            <p class="panel-desc">Preencha o formulário e nossa equipe entra em contato pelo WhatsApp para entender seu negócio e indicar o melhor ponto.</p>
+          </div>
+          <form id="form-especialista">
+            <input type="hidden" name="tipo" value="especialista">
+            <input type="hidden" name="pagina_origem" value="lp.oliveiraimoveis.ia.br">
+            <input type="hidden" id="utm_source" name="utm_source" value="">
+            <input type="hidden" id="utm_medium" name="utm_medium" value="">
+            <input type="hidden" id="utm_campaign" name="utm_campaign" value="">
+            <input type="hidden" id="utm_id" name="utm_id" value="">
+            <input type="hidden" id="conjunto_anuncios" name="conjunto_anuncios" value="">
+            <input type="hidden" id="adset_id" name="adset_id" value="">
+            <input type="hidden" id="anuncio" name="anuncio" value="">
+            <input type="hidden" id="ad_id" name="ad_id" value="">
+            <input type="hidden" id="placement" name="placement" value="">
+            <input type="hidden" id="fbclid" name="fbclid" value="">
+            <div class="field">
+              <label for="esp-nome">Nome *</label>
+              <input id="esp-nome" name="nome" type="text" placeholder="Seu nome completo" required>
+            </div>
+            <div class="field">
+              <label for="esp-email">E-mail *</label>
+              <input id="esp-email" name="email" type="email" placeholder="seunome@email.com" required>
+            </div>
+            <div class="field">
+              <label for="esp-tel">Telefone / WhatsApp *</label>
+              <input id="esp-tel" name="telefone" type="tel" placeholder="(31) 9 0000-0000" required>
+            </div>
+            <label class="consent" for="esp-aceite" style="color:rgba(255,255,255,.7)">
+              <input id="esp-aceite" name="consentimento" type="checkbox" required style="accent-color:var(--dourado)">
+              <span>Li e concordo com os <a href="#" data-modal="termos" style="color:var(--dourado3)">Termos de Uso</a> e a <a href="#" data-modal="privacidade" style="color:var(--dourado3)">Política de Privacidade</a>.</span>
+            </label>
+            <button class="btn btn-dark" style="width:100%;font-size:.82rem;padding:17px 22px;font-family:var(--sans);margin-top:6px" type="submit" id="btn-especialista">
+              Quero falar com especialista
+            </button>
+            <p class="form-footer-note" style="color:var(--muted)">Sem custo. Nossa equipe te chama no WhatsApp.</p>
+          </form>
+        </div>
+
+        <!-- Painel: Plataforma -->
+        <div class="dual-panel hidden" id="panel-plataforma" role="tabpanel">
+          <div class="panel-header">
+            <div class="form-card-tag" style="background:rgba(217,170,56,.12);color:var(--dourado2)">Pesquisa de mercado · gratuita</div>
+            <h2 class="panel-title" style="color:var(--verde)">Crie sua conta e faça a pesquisa agora</h2>
+            <p class="panel-desc">Acesse a plataforma Oliveira Imóveis, informe o bairro e segmento do seu negócio e receba a análise do ponto na hora.</p>
+          </div>
+          <form id="form-plataforma">
+            <div class="field">
+              <label for="plt-nome" style="color:var(--muted)">Nome completo *</label>
+              <input id="plt-nome" name="nome" type="text" placeholder="Seu nome completo" required
+                style="border-color:#d2c4ae;background:#fff;color:var(--texto);">
+            </div>
+            <div class="field">
+              <label for="plt-email" style="color:var(--muted)">E-mail *</label>
+              <input id="plt-email" name="email" type="email" placeholder="seunome@email.com" required
+                style="border-color:#d2c4ae;background:#fff;color:var(--texto);">
+            </div>
+            <div class="field">
+              <label for="plt-wpp" style="color:var(--muted)">WhatsApp *</label>
+              <input id="plt-wpp" name="whatsapp" type="tel" placeholder="(31) 9 0000-0000" required
+                style="border-color:#d2c4ae;background:#fff;color:var(--texto);">
+            </div>
+            <div class="field">
+              <label for="plt-senha" style="color:var(--muted)">Senha *</label>
+              <div style="position:relative">
+                <input id="plt-senha" name="senha" type="password" placeholder="Mínimo 8 caracteres" required minlength="8"
+                  style="border-color:#d2c4ae;background:#fff;color:var(--texto);padding-right:44px">
+                <button type="button" class="pwd-toggle" data-target="plt-senha" aria-label="Mostrar senha">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+              <span style="font-size:.68rem;color:var(--muted);font-weight:600;margin-top:4px;display:block">Mínimo 8 caracteres, com maiúscula, minúscula e número.</span>
+            </div>
+            <div class="field">
+              <label for="plt-confirm" style="color:var(--muted)">Confirmar senha *</label>
+              <div style="position:relative">
+                <input id="plt-confirm" name="senha_confirmar" type="password" placeholder="Repita a senha" required
+                  style="border-color:#d2c4ae;background:#fff;color:var(--texto);padding-right:44px">
+                <button type="button" class="pwd-toggle" data-target="plt-confirm" aria-label="Mostrar senha">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+            <label class="consent" for="plt-aceite" style="color:#4a5a4d">
+              <input id="plt-aceite" name="consentimento" type="checkbox" required style="accent-color:var(--dourado)">
+              <span>Li e concordo com os <a href="#" data-modal="termos" style="color:var(--dourado2)">Termos de Uso</a> e a <a href="#" data-modal="privacidade" style="color:var(--dourado2)">Política de Privacidade</a>.</span>
+            </label>
+            <button class="btn btn-gold" style="width:100%;font-size:.82rem;padding:17px 22px;font-family:var(--sans);" type="submit" id="btn-plataforma">
+              Criar conta
+            </button>
+            <p class="form-footer-note" style="color:var(--muted)">Acesso gratuito à plataforma de pesquisa.</p>
+          </form>
+          <!-- Sucesso cadastro -->
+          <div id="signup-success" class="hidden" style="text-align:center;padding:24px 0">
+            <div style="font-size:2.5rem;margin-bottom:12px">✅</div>
+            <p style="font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--verde);margin-bottom:8px">Conta criada!</p>
+            <p style="font-size:.9rem;color:var(--muted);font-weight:600;line-height:1.5">Em breve você receberá um e-mail com o acesso à plataforma de pesquisa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAIN SECTION -->
+  <section class="pain-section">
+    <div class="container">
+      <div class="section-label">O risco de decidir sem dados</div>
+      <h2 class="section-title">O ponto errado<br>custa mais do que o aluguel</h2>
+      <p class="section-lead">Muitos empreendedores fecham um contrato animados com a localização — e só descobrem o problema depois que as chaves estão em mãos.</p>
+
+      <div class="pain-grid" style="margin-top:40px">
+        <div class="pain-card">
+          <div class="pain-icon">📉</div>
+          <h3>Fluxo de pessoas que não é o seu público</h3>
+          <p>Movimento intenso não significa cliente certo. Uma rua com muito trânsito pode ter zero potencial para pilates, estética ou pet shop. Sem análise, você só descobre depois do contrato.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">🏚️</div>
+          <h3>Vizinhos que drenam ao invés de atrair</h3>
+          <p>Pontos isolados, sem negócios complementares, forçam você a construir todo o fluxo do zero. Nos melhores ecossistemas, quem vai ao pilates descobre o pet shop ao lado.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">📋</div>
+          <h3>Contrato assinado sem análise do entorno</h3>
+          <p>Sem dados sobre potencial da região, vocação do ponto e perfil de concorrência, a decisão vira aposta. E contrato de locação comercial tem multa por rescisão antecipada.</p>
+        </div>
+      </div>
+
+      <div class="pain-bottom">
+        <div class="pain-bottom-icon">💡</div>
+        <p>A Oliveira Imóveis resolve exatamente isso. <strong>Antes de qualquer contrato</strong>, analisamos o ponto, o entorno e o perfil do público para garantir que seu negócio entra no lugar certo — e cresce.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD SECTION -->
+  <section class="method-section">
+    <div class="container">
+      <div class="method-intro">
+        <div class="section-label">Como trabalhamos</div>
+        <h2 class="section-title">Não alugamos espaço.<br>Montamos ecossistemas.</h2>
+        <p class="section-lead" style="margin-top:14px">Cada negócio que entra em um ponto Oliveira Imóveis passou por etapas de análise estratégica — para que o conjunto seja mais forte que cada parte.</p>
+      </div>
+
+      <div class="method-steps">
+        <div class="method-step">
+          <div class="step-num">01</div>
+          <div class="step-icon">🔍</div>
+          <h3>Curadoria estratégica de ponto e perfil</h3>
+          <p>Analisamos a vocação comercial do ponto, o fluxo real de público e o potencial da região antes de indicar qualquer espaço. Não trabalhamos com volume — trabalhamos com estratégia.</p>
+        </div>
+      </div>
+
+      <div class="method-cta">
+        <a href="#opcoes" class="btn btn-dark">Quero entrar nesse ecossistema</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE SECTION -->
+  <section class="case-section" id="caso">
+    <div class="container case-grid">
+      <div>
+        <div class="case-tag">
+          <span class="case-tag-dot"></span>
+          Case real · Serra · Belo Horizonte
+        </div>
+        <h2 class="section-title">De lojas vazias a um<br>centro comercial de sucesso</h2>
+        <p class="case-desc" style="margin-top:16px">
+          O Centro Comercial Iracema, na Rua Palmira 653–671, Serra, era um imóvel com alta vacância. A Oliveira Imóveis aplicou seu método de curadoria e montou um ecossistema com 7 negócios complementares: saúde, alimentação, serviço e conveniência sob o mesmo teto.
+        </p>
+        <p class="case-desc">
+          Cada lojista foi escolhido para gerar fluxo em horários diferentes e atender o mesmo público do bairro. <em>"Quem vai ao pilates conhece o pet shop. Quem busca ferragens passa pela pamonharia."</em>
+        </p>
+
+        <div class="case-quote">
+          <p>"Em menos de 1 ano no Centro Comercial Iracema, nosso faturamento cresceu 30%. O ecossistema que a Oliveira Imóveis criou aqui faz toda a diferença."</p>
+          <cite>— Davi · Eletro Ferragens Miller · 30 anos de tradição na Serra</cite>
+        </div>
+
+        <div class="case-stats-grid">
+          <div class="case-stat">
+            <div class="case-stat-num">7+</div>
+            <div class="case-stat-label">Negócios no ecossistema</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-num">30%</div>
+            <div class="case-stat-label">Crescimento no faturamento</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-num">0%</div>
+            <div class="case-stat-label">Vacância após curadoria</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-num">2016</div>
+            <div class="case-stat-label">Início das operações em BH</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ecosystem-map">
+        <div class="ecosystem-title">Negócios do ecossistema · Iracema</div>
+        <div class="ecosystem-list">
+          <div class="eco-item"><span class="eco-item-icon">🧘</span> Pilates &amp; saúde <span class="eco-arrow">↑ fluxo manhã</span></div>
+          <div class="eco-item"><span class="eco-item-icon">🐾</span> Pet shop <span class="eco-arrow">↑ fidelização</span></div>
+          <div class="eco-item"><span class="eco-item-icon">🔧</span> Eletro Ferragens Miller <span class="eco-arrow">+30% fat.</span></div>
+          <div class="eco-item"><span class="eco-item-icon">🌽</span> Pamonharia <span class="eco-arrow">↑ fluxo tarde</span></div>
+          <div class="eco-item"><span class="eco-item-icon">🍕</span> Pizzaria <span class="eco-arrow">↑ fluxo noite</span></div>
+          <div class="eco-item"><span class="eco-item-icon">🍝</span> Massas artesanais <span class="eco-arrow">↑ fidelização</span></div>
+          <div class="eco-item"><span class="eco-item-icon">💊</span> Robust Suplementos <span class="eco-arrow">↑ recorrência</span></div>
+        </div>
+        <div class="eco-address">
+          <span>📍</span>
+          <span>Rua Palmira, 653–671<br>Serra · Belo Horizonte – MG</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-label">Depoimentos reais</div>
+      <h2 class="section-title">Quem já está no ecossistema<br>fala por si</h2>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Em menos de 1 ano no Centro Comercial Iracema, nosso <strong>faturamento cresceu 30%</strong>. O ecossistema que a Oliveira Imóveis criou aqui faz toda a diferença."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">D</div>
+            <div>
+              <div class="testimonial-name">Davi</div>
+              <div class="testimonial-biz">Eletro Ferragens Miller · 30 anos na Serra</div>
+            </div>
+          </div>
+          <div class="testimonial-result">📈 +30% de faturamento em menos de 1 ano</div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Boa localidade e <strong>boa relação entre os lojistas</strong> e com a Oliveira Imóveis, que parecem sempre interessados em melhorar o local."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">W</div>
+            <div>
+              <div class="testimonial-name">Walter Junior</div>
+              <div class="testimonial-biz">Robust Suplementos · Serra, BH</div>
+            </div>
+          </div>
+          <div class="testimonial-result">🤝 Ambiente colaborativo entre lojistas</div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"A <strong>segurança foi o que mais nos surpreendeu</strong>. Estamos na Serra há quase 10 anos e a diferença em relação ao ponto anterior foi enorme. O fluxo constante trouxe muito mais tranquilidade."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">L</div>
+            <div>
+              <div class="testimonial-name">Lojista do Iracema</div>
+              <div class="testimonial-biz">Quase 10 anos na Serra · BH</div>
+            </div>
+          </div>
+          <div class="testimonial-result">🔒 Segurança e fluxo constante no ponto</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <section class="numbers-section">
+    <div class="container numbers-grid">
+      <div class="number-item">
+        <div class="number-num">2016</div>
+        <div class="number-label">Atuando em BH</div>
+      </div>
+      <div class="number-item">
+        <div class="number-num">7+</div>
+        <div class="number-label">Negócios no ecossistema</div>
+      </div>
+      <div class="number-item">
+        <div class="number-num">100%</div>
+        <div class="number-label">Foco em comercial</div>
+      </div>
+      <div class="number-item">
+        <div class="number-num">4</div>
+        <div class="number-label">Etapas do método</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section">
+    <div class="container about-grid">
+      <div>
+        <div class="section-label">Quem somos</div>
+        <h2 class="section-title">Mais do que uma imobiliária — estrategistas de ponto comercial</h2>
+        <p class="section-lead" style="margin-top:14px;margin-bottom:26px">A Oliveira Imóveis nasceu com um propósito claro: posicionar espaços comerciais com estratégia e curadoria de negócios — gerando resultado real para proprietários e lojistas.</p>
+        <ul class="about-list">
+          <li>Foco exclusivo em imóveis comerciais em BH e região</li>
+          <li>Método proprietário de análise e curadoria de ecossistemas</li>
+          <li>Marketing digital com tráfego pago e campanhas segmentadas</li>
+          <li>Gestão próxima e transparente com análise de mercado contínua</li>
+          <li>Case comprovado: Centro Comercial Iracema — Serra, BH</li>
+        </ul>
+      </div>
+
+      <div class="about-visual">
+        <h3>Centro Comercial Iracema</h3>
+        <p>Um ecossistema real de negócios complementares que se multiplicam no mesmo endereço — provando que o ponto certo, com os vizinhos certos, faz toda a diferença.</p>
+        <div class="about-address">
+          <span>📍</span>
+          <span>Rua Palmira, 653 a 671<br>Serra · Belo Horizonte – MG</span>
+        </div>
+        <div style="margin-top:24px;padding-top:24px;border-top:1px solid rgba(217,170,56,.15)">
+          <a href="#opcoes" class="btn btn-gold" style="width:100%;justify-content:center;font-family:var(--sans)">
+            Quero a análise gratuita
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <div class="container cta-grid">
+      <div class="cta-content">
+        <div class="section-label">Pronto para expandir com segurança?</div>
+        <h2 class="section-title">Antes de assinar qualquer<br>contrato, <em>fale com a gente.</em></h2>
+        <p style="font-size:1rem;line-height:1.7;color:var(--texto2);font-weight:500;margin:16px 0 30px">Nossa análise é gratuita, sem compromisso e feita por quem conhece o mercado comercial de BH desde 2016. Você recebe dados reais para tomar a decisão mais importante da sua expansão.</p>
+        <div class="cta-features">
+          <div class="cta-feature"><div class="cta-check">✓</div> Análise do ponto e entorno sem custo</div>
+          <div class="cta-feature"><div class="cta-check">✓</div> Potencial comercial da região mapeado</div>
+          <div class="cta-feature"><div class="cta-check">✓</div> Perfil dos vizinhos e fluxo de público</div>
+          <div class="cta-feature"><div class="cta-check">✓</div> Especialistas em imóveis comerciais em BH</div>
+          <div class="cta-feature"><div class="cta-check">✓</div> Retorno pelo WhatsApp em até 1 dia útil</div>
+        </div>
+      </div>
+
+      <form class="form-card" id="form-cta">
+        <div class="form-card-tag">Análise gratuita · R$0</div>
+        <h2>Receba sua análise gratuita</h2>
+        <p>Nossa equipe entra em contato em até 1 dia útil.</p>
+
+        <div class="field">
+          <label for="cta-nome">Nome *</label>
+          <input id="cta-nome" name="nome" type="text" placeholder="Seu nome completo" required>
+        </div>
+        <div class="field">
+          <label for="cta-tel">WhatsApp *</label>
+          <input id="cta-tel" name="telefone" type="tel" placeholder="(31) 9 0000-0000" required>
+        </div>
+        <div class="field">
+          <label for="cta-email">E-mail *</label>
+          <input id="cta-email" name="email" type="email" placeholder="seunome@email.com" required>
+        </div>
+
+        <label class="consent" for="cta-aceite">
+          <input id="cta-aceite" name="consentimento" type="checkbox" required style="accent-color:var(--dourado)">
+          <span>Li e concordo com os <a href="#" data-modal="termos">Termos de Uso</a> e a <a href="#" data-modal="privacidade">Política de Privacidade</a>.</span>
+        </label>
+        <button class="btn btn-gold" style="width:100%;font-size:.82rem;padding:18px 22px;font-family:var(--sans);" type="submit">
+          Quero minha análise gratuita
+        </button>
+        <p class="form-footer-note">Sem custo. Sem compromisso. Contato apenas sobre locação comercial.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-mark">OI</div>
+        <div>
+          <div class="footer-brand-name">OLIVEIRA IMÓVEIS</div>
+          <div class="footer-brand-sub">Ecossistemas Comerciais</div>
+        </div>
+      </div>
+      <div class="footer-copy">© 2024 Oliveira Imóveis · Belo Horizonte, MG</div>
+      <div class="footer-links">
+        <a href="#" data-modal="termos">Termos de Uso</a>
+        <a href="#" data-modal="privacidade">Privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODALS -->
+  <div class="modal" id="modal-termos" aria-hidden="true" role="dialog" aria-labelledby="titulo-termos">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="titulo-termos">Termos de Uso</h3>
+        <button class="modal-close" type="button" data-close aria-label="Fechar">×</button>
+      </div>
+      <div class="modal-body">
+        <p>Estes Termos de Uso regulam o acesso às páginas, formulários e canais digitais da Oliveira Imóveis relacionados à divulgação de imóveis, oportunidades comerciais e atendimento ao cliente.</p>
+        <h4>1. Uso do site</h4>
+        <p>Ao navegar pelo site ou enviar informações por formulário, você declara que fornecerá dados verdadeiros e utilizará os canais apenas para fins lícitos, como solicitar informações, agendar atendimento ou receber contato comercial.</p>
+        <h4>2. Informações sobre imóveis</h4>
+        <p>As informações apresentadas sobre imóveis, valores, disponibilidade, condições comerciais e características podem ser atualizadas sem aviso prévio. A confirmação final deve ser feita diretamente com a equipe da Oliveira Imóveis.</p>
+        <h4>3. Formulários e WhatsApp</h4>
+        <p>Ao preencher um formulário, você autoriza a Oliveira Imóveis a utilizar os dados informados para contato, atendimento, análise de interesse e envio de informações relacionadas ao imóvel ou serviço solicitado.</p>
+        <h4>4. Responsabilidades</h4>
+        <p>A Oliveira Imóveis busca manter suas páginas disponíveis e atualizadas, mas não garante funcionamento ininterrupto, ausência de erros técnicos ou disponibilidade permanente de links externos, como WhatsApp, plataformas de anúncios e ferramentas de análise.</p>
+        <h4>4.1. Isenção de responsabilidade sobre a pesquisa de mercado</h4>
+        <p>A pesquisa de mercado fornecida pela Oliveira Imóveis é elaborada com base nas informações disponíveis no momento da solicitação, com caráter exclusivamente informativo e orientativo. O usuário declara que a solicita por livre e espontânea vontade, ciente de que:</p>
+        <ul>
+          <li>A pesquisa não constitui consultoria financeira, imobiliária ou jurídica.</li>
+          <li>Os resultados, projeções e análises apresentados são estimativas, sujeitos a variações de mercado e circunstâncias externas não controláveis pela Oliveira Imóveis.</li>
+          <li>A decisão de abrir, expandir ou manter um negócio é de responsabilidade exclusiva do usuário.</li>
+          <li>A Oliveira Imóveis não se responsabiliza por perdas, prejuízos ou frustrações decorrentes do uso ou interpretação das informações contidas na pesquisa.</li>
+        </ul>
+        <h4>5. Propriedade intelectual</h4>
+        <p>Textos, imagens, marcas, layouts e demais conteúdos das páginas da Oliveira Imóveis não devem ser copiados, reproduzidos ou utilizados sem autorização prévia.</p>
+        <h4>6. Privacidade</h4>
+        <p>O tratamento de dados pessoais é descrito na Política de Privacidade, que integra estes Termos de Uso.</p>
+        <h4>7. Alterações</h4>
+        <p>Estes termos podem ser atualizados para refletir mudanças nos serviços, canais de atendimento, exigências legais ou práticas comerciais.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-privacidade" aria-hidden="true" role="dialog" aria-labelledby="titulo-privacidade">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="titulo-privacidade">Política de Privacidade</h3>
+        <button class="modal-close" type="button" data-close aria-label="Fechar">×</button>
+      </div>
+      <div class="modal-body">
+        <p>Esta Política de Privacidade explica como a Oliveira Imóveis coleta, utiliza e protege dados pessoais enviados em suas páginas, formulários e canais digitais, em conformidade com a Lei Geral de Proteção de Dados Pessoais, Lei nº 13.709/2018.</p>
+        <h4>1. Dados coletados</h4>
+        <p>Podemos coletar dados fornecidos diretamente por você, como nome, e-mail, telefone/WhatsApp e mensagem de interesse. Também podemos registrar dados de navegação e origem da campanha, como página acessada, data, horário, dispositivo, fonte de tráfego e parâmetros UTM.</p>
+        <h4>2. Finalidades de uso</h4>
+        <p>Os dados podem ser utilizados para:</p>
+        <ul>
+          <li>Responder solicitações feitas pelo formulário ou WhatsApp;</li>
+          <li>Entrar em contato sobre imóveis, visitas e oportunidades comerciais;</li>
+          <li>Organizar atendimento e histórico de relacionamento;</li>
+          <li>Medir desempenho de campanhas e melhorar a comunicação;</li>
+          <li>Cumprir obrigações legais e regulatórias quando necessário.</li>
+        </ul>
+        <h4>3. Base legal</h4>
+        <p>O tratamento pode ocorrer com base no consentimento fornecido no formulário, na execução de procedimentos preliminares relacionados ao atendimento solicitado, no legítimo interesse para melhoria dos serviços e no cumprimento de obrigações legais.</p>
+        <h4>4. Compartilhamento</h4>
+        <p>Os dados podem ser compartilhados com prestadores de serviço necessários para operação dos canais digitais, como ferramentas de hospedagem, análise, anúncios, CRM, automação e atendimento por WhatsApp. Esses parceiros devem utilizar os dados apenas para as finalidades contratadas.</p>
+        <h4>5. Cookies e ferramentas de medição</h4>
+        <p>A página pode utilizar tecnologias como Google Analytics, Meta Pixel e parâmetros UTM para medir visitas, origem de campanhas, interações com formulário e cliques para WhatsApp. Essas informações ajudam a entender quais campanhas geram contatos mais qualificados.</p>
+        <h4>6. Conservação dos dados</h4>
+        <p>Os dados serão mantidos pelo tempo necessário para atendimento, relacionamento comercial, análise de campanhas e cumprimento de obrigações legais. Quando não forem mais necessários, poderão ser excluídos ou anonimizados.</p>
+        <h4>7. Direitos do titular</h4>
+        <p>Você pode solicitar confirmação de tratamento, acesso, correção, exclusão, anonimização, portabilidade, revogação de consentimento e informações sobre compartilhamento, conforme previsto na LGPD.</p>
+        <h4>8. Segurança</h4>
+        <p>A Oliveira Imóveis adota medidas razoáveis para proteger dados pessoais contra acessos não autorizados, perda, alteração ou uso inadequado.</p>
+        <h4>9. Contato</h4>
+        <p>Para dúvidas ou solicitações sobre privacidade, entre em contato: contato@oliveiraimoveis.ia.br</p>
+        <h4>10. Atualizações</h4>
+        <p>Esta Política de Privacidade pode ser atualizada periodicamente. A versão vigente será sempre a publicada nesta página.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ── UTM / Attribution ── */
+    const params = new URLSearchParams(window.location.search);
+    const LEADS_API = 'https://oliveira-leads-api.vanessabarbosadeoliveira9.workers.dev/lead';
+    const WPP_NUM   = '5531999558360';
+
+    function firstParam(names, fallback) {
+      for (const n of names) { const v = params.get(n); if (v) return v; }
+      return fallback;
+    }
+
+    const attribution = {
+      utm_source:        params.get('utm_source')    || 'sem_origem',
+      utm_medium:        params.get('utm_medium')    || 'sem_midia',
+      utm_campaign:      params.get('utm_campaign')  || 'sem_campanha',
+      utm_id:            firstParam(['utm_id','campaign_id','meta_campaign_id'], 'sem_campaign_id'),
+      conjunto_anuncios: firstParam(['utm_term','adset','adset_name','meta_adset'], 'sem_conjunto'),
+      adset_id:          firstParam(['adset_id','utm_adset_id','meta_adset_id'], 'sem_adset_id'),
+      anuncio:           firstParam(['utm_content','ad','ad_name','creative','meta_ad'], 'sem_anuncio'),
+      ad_id:             firstParam(['ad_id','utm_ad_id','creative_id','meta_ad_id'], 'sem_ad_id'),
+      placement:         firstParam(['placement','utm_placement','site_source_name'], 'sem_posicionamento'),
+      fbclid:            params.get('fbclid') || 'sem_fbclid'
+    };
+
+    /* preenche campos hidden da atribuição no form-especialista */
+    function fillHiddenFields() {
+      Object.keys(attribution).forEach(k => {
+        const el = document.getElementById(k);
+        if (el) el.value = attribution[k];
+      });
+    }
+    fillHiddenFields();
+
+    /* ── Tabs ── */
+    document.querySelectorAll('.dual-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.dual-tab').forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.dual-panel').forEach(p => p.classList.add('hidden'));
+
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        const panel = document.getElementById('panel-' + tab.dataset.tab);
+        if (panel) panel.classList.remove('hidden');
+      });
+    });
+
+    /* ── Password toggle ── */
+    document.querySelectorAll('.pwd-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const input = document.getElementById(btn.dataset.target);
+        if (!input) return;
+        input.type = input.type === 'password' ? 'text' : 'password';
+      });
+    });
+
+    /* ── Modals ── */
+    const modals = document.querySelectorAll('.modal');
+    document.querySelectorAll('[data-modal]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const m = document.getElementById('modal-' + link.dataset.modal);
+        if (m) { m.classList.add('open'); m.setAttribute('aria-hidden','false'); }
+      });
+    });
+    document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', closeModals));
+    modals.forEach(m => m.addEventListener('click', e => { if (e.target===m) closeModals(); }));
+    document.addEventListener('keydown', e => { if (e.key==='Escape') closeModals(); });
+    function closeModals() { modals.forEach(m => { m.classList.remove('open'); m.setAttribute('aria-hidden','true'); }); }
+
+    /* ── Tracking ── */
+    function trackLead(label) {
+      const p = {
+        event_category:'landing_page', event_label:label,
+        source:attribution.utm_source, medium:attribution.utm_medium,
+        campaign:attribution.utm_campaign, campaign_id:attribution.utm_id,
+        adset:attribution.conjunto_anuncios, adset_id:attribution.adset_id,
+        ad_name:attribution.anuncio, ad_id:attribution.ad_id,
+        placement:attribution.placement, fbclid:attribution.fbclid
+      };
+      if (window.gtag) { gtag('event','form_submitted',p); gtag('event','generate_lead',p); }
+      if (window.fbq) { fbq('track','Lead',{ content_name:'Análise Gratuita Oliveira Imóveis', content_category:'Lead form', campaign:attribution.utm_campaign }); }
+    }
+
+    /* ── Form Especialista (hero + cta) ── */
+    function setupEspecialistaForm(formId, label) {
+      const form = document.getElementById(formId);
+      if (!form) return;
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        fillHiddenFields();
+
+        const btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.textContent = 'Enviando…';
+
+        const nome = form.querySelector('[name="nome"]').value.trim();
+        const email = form.querySelector('[name="email"]').value.trim();
+        const telefone = form.querySelector('[name="telefone"]').value.trim();
+
+        const payload = {
+          nome, email, telefone,
+          tipo: 'especialista',
+          pagina_origem: 'lp.oliveiraimoveis.ia.br',
+          ...attribution
+        };
+
+        trackLead(label);
+
+        try {
+          await fetch(LEADS_API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            keepalive: true
+          });
+        } catch (_) {}
+
+        const msg = encodeURIComponent(
+          'Olá! Me chamo ' + nome + '. Preenchi o formulário no site da Oliveira Imóveis e gostaria de falar com um especialista sobre pontos comerciais disponíveis em BH.'
+        );
+        window.location.href = 'https://wa.me/' + WPP_NUM + '?text=' + msg;
+      });
+    }
+
+    /* ── Form Plataforma (criar conta) ── */
+    /* TODO (programador): substituir PLATAFORMA_SIGNUP_URL pelo endpoint real de registro da plataforma */
+    const PLATAFORMA_SIGNUP_URL = null; /* ex: 'https://lp.oliveiraimoveis.ia.br/portal/api/register' */
+    const PLATAFORMA_URL = 'https://lp.oliveiraimoveis.ia.br/portal/perfil';
+
+    const formPlat = document.getElementById('form-plataforma');
+    if (formPlat) {
+      formPlat.addEventListener('submit', async e => {
+        e.preventDefault();
+
+        const senha   = document.getElementById('plt-senha').value;
+        const confirm = document.getElementById('plt-confirm').value;
+        if (senha !== confirm) {
+          alert('As senhas não coincidem. Verifique e tente novamente.');
+          return;
+        }
+        if (!/(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}/.test(senha)) {
+          alert('A senha precisa ter ao menos 8 caracteres, uma maiúscula, uma minúscula e um número.');
+          return;
+        }
+
+        const btn = document.getElementById('btn-plataforma');
+        btn.disabled = true;
+        btn.textContent = 'Criando conta…';
+
+        const nome     = document.getElementById('plt-nome').value.trim();
+        const email    = document.getElementById('plt-email').value.trim();
+        const whatsapp = document.getElementById('plt-wpp').value.trim();
+
+        /* Salva lead na API */
+        trackLead('cadastro_plataforma');
+        try {
+          await fetch(LEADS_API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nome, email, telefone: whatsapp, tipo: 'cadastro_plataforma', pagina_origem: 'lp.oliveiraimoveis.ia.br', ...attribution }),
+            keepalive: true
+          });
+        } catch (_) {}
+
+        /* Se o endpoint da plataforma estiver configurado, registra lá também */
+        if (PLATAFORMA_SIGNUP_URL) {
+          try {
+            await fetch(PLATAFORMA_SIGNUP_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ nome, email, whatsapp, senha }),
+            });
+          } catch (_) {}
+        }
+
+        /* Redireciona para a plataforma */
+        window.location.href = PLATAFORMA_URL;
+      });
+    }
+
+    /* ── CTA bottom form (também especialista → WPP) ── */
+    const formCta = document.getElementById('form-cta');
+    if (formCta) {
+      formCta.addEventListener('submit', async e => {
+        e.preventDefault();
+        const btn = formCta.querySelector('button[type="submit"]');
+        btn.disabled = true; btn.textContent = 'Enviando…';
+
+        const nome     = formCta.querySelector('[name="nome"]').value.trim();
+        const email    = formCta.querySelector('[name="email"]').value.trim();
+        const telefone = formCta.querySelector('[name="telefone"]').value.trim();
+
+        const payload = { nome, email, telefone, tipo:'especialista_cta', pagina_origem:'lp.oliveiraimoveis.ia.br/cta', ...attribution };
+        trackLead('cta_form');
+
+        try {
+          await fetch(LEADS_API, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload), keepalive:true });
+        } catch(_) {}
+
+        const msg = encodeURIComponent('Olá! Me chamo ' + nome + '. Preenchi o formulário no site da Oliveira Imóveis e gostaria de falar com um especialista sobre pontos comerciais disponíveis em BH.');
+        window.location.href = 'https://wa.me/' + WPP_NUM + '?text=' + msg;
+      });
+    }
+
+    setupEspecialistaForm('form-especialista', 'hero_especialista');
+
+    /* ── Botões CTA → foca primeiro campo do formulário ── */
+    document.querySelectorAll('a[href="#opcoes"]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const card = document.getElementById('opcoes');
+        if (!card) return;
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => {
+          const firstInput = card.querySelector('input:not([type="hidden"]):not([type="checkbox"])');
+          if (firstInput) firstInput.focus();
+        }, 400);
+      });
+    });
+  </script>
+</body>
+</html>

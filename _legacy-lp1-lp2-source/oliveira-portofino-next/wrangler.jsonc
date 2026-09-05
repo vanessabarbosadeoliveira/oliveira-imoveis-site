@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "wispy-field-ab1d",
+  "account_id": "669491c12f3d53a3f28ba3270668efaf",
+  "compatibility_date": "2026-06-04",
+  "assets": {
+    "directory": "./out"
+  }
+}

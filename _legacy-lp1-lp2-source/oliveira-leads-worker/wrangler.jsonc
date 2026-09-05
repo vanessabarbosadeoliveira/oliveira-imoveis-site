@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cloudflare/workers-sdk/main/packages/wrangler/config-schema.json",
+  "name": "oliveira-leads-api",
+  "account_id": "669491c12f3d53a3f28ba3270668efaf",
+  "compatibility_date": "2026-06-24",
+  "main": "worker.js",
+  "keep_vars": true,
+  "triggers": {
+    "crons": ["*/15 * * * *"]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "LEADS",
+      "id": "e78412fec06348f89c5618fd3be4b7d1"
+    }
+  ]
+}

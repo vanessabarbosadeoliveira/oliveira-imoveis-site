@@ -1,0 +1,431 @@
+const NTFY_TOPIC = "oliveira-imoveis-leads-2026";
+const ADMIN_SECRET = "oli2026admin";
+// CRM — Leads Oliveira Imóveis (banco recriado 08/07/2026 dentro de 🏠 MVP Oliveira)
+const NOTION_DB_ID = "527c3cfd-45fc-41fe-8193-5ebd7d57ce83";
+// Opções válidas do select "Momento" no Notion — só enviar se bater exato,
+// para não criar opções novas no CRM por engano.
+const MOMENTOS_VALIDOS = new Set([
+  "Já tenho loja e quero abrir outra unidade",
+  "Quero trocar para um ponto melhor",
+  "Quero testar uma nova região",
+  "Estou avaliando franquia ou expansão",
+  "Pesquisando",
+]);
+
+// Campos de atribuição exibidos no painel, na ordem das colunas.
+const COLUNAS = [
+  ["timestamp", "Data/Hora"],
+  ["nome", "Nome"],
+  ["telefone", "Telefone"],
+  ["email", "Email"],
+  ["segmento", "Segmento"],
+  ["momento", "Momento"],
+  ["pagina_origem", "Página"],
+  ["utm_campaign", "Campanha"],
+  ["utm_id", "campaign_id"],
+  ["conjunto_anuncios", "Conjunto"],
+  ["adset_id", "adset_id"],
+  ["anuncio", "Criativo"],
+  ["ad_id", "ad_id"],
+  ["placement", "Posicionamento"],
+  ["utm_source", "utm_source"],
+  ["utm_medium", "utm_medium"],
+  ["fbclid", "fbclid"],
+];
+
+// Valores que a LP grava quando o parâmetro não chegou na URL — contam como vazio.
+const PLACEHOLDERS = new Set([
+  "-", "sem_origem", "sem_midia", "sem_campanha", "sem_campaign_id",
+  "sem_conjunto", "sem_adset_id", "sem_anuncio", "sem_ad_id",
+  "sem_posicionamento", "sem_fbclid", "sem_segmento",
+]);
+
+const vazio = (v) => !String(v ?? "").trim() || PLACEHOLDERS.has(String(v).trim());
+
+const esc = (v) =>
+  String(v ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
+function ehTeste(l) {
+  const alvo = `${l.utm_campaign || ""} ${l.pagina_origem || ""}`.toLowerCase();
+  return ["teste", "automacao-ok", "campanha-final", "diagnostico"].some((t) =>
+    alvo.includes(t)
+  );
+}
+
+// ——— Notion CRM ———
+// Schema atual do banco: Segmento é TEXTO (não select); Momento e Fase são selects.
+function notionProps(lead) {
+  const rt = (v) => ({ rich_text: [{ text: { content: String(v).slice(0, 2000) } }] });
+  const props = {
+    "Nome": { title: [{ text: { content: lead.nome || "Lead sem nome" } }] },
+    "Fase": { select: { name: "Novo lead" } },
+    "Categoria do Registro": { select: { name: "Cliente" } },
+  };
+  if (lead.timestamp) props["Data"] = { date: { start: lead.timestamp } };
+  if (!vazio(lead.pagina_origem)) props["Página de Origem"] = rt(lead.pagina_origem);
+  if (lead.telefone && lead.telefone !== "via WhatsApp" && !vazio(lead.telefone))
+    props["Telefone"] = { phone_number: String(lead.telefone) };
+  if (!vazio(lead.email) && String(lead.email).includes("@"))
+    props["Email"] = { email: String(lead.email) };
+  if (!vazio(lead.segmento)) props["Segmento"] = rt(lead.segmento);
+  if (MOMENTOS_VALIDOS.has(String(lead.momento || "").trim()))
+    props["Momento"] = { select: { name: String(lead.momento).trim() } };
+  if (!vazio(lead.utm_source)) props["UTM Source"] = rt(lead.utm_source);
+  if (!vazio(lead.utm_medium)) props["UTM Medium"] = rt(lead.utm_medium);
+  if (!vazio(lead.utm_campaign)) props["UTM Campaign"] = rt(lead.utm_campaign);
+  if (!vazio(lead.utm_id)) props["UTM ID"] = rt(lead.utm_id);
+  const botao = !vazio(lead.botao_clicado) ? lead.botao_clicado : lead.utm_content;
+  if (!vazio(botao)) props["Botão Clicado (UTM Content)"] = rt(botao);
+  if (!vazio(lead.conjunto_anuncios)) props["Conjunto de Anúncios"] = rt(lead.conjunto_anuncios);
+  if (!vazio(lead.adset_id)) props["Adset ID"] = rt(lead.adset_id);
+  if (!vazio(lead.anuncio)) props["Anúncio"] = rt(lead.anuncio);
+  if (!vazio(lead.ad_id)) props["Ad ID"] = rt(lead.ad_id);
+  if (!vazio(lead.placement)) props["Placement"] = rt(lead.placement);
+  if (!vazio(lead.fbclid)) props["FBCLID"] = rt(lead.fbclid);
+  return props;
+}
+
+async function criarLeadNoNotion(lead, notionToken) {
+  const res = await fetch("https://api.notion.com/v1/pages", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${notionToken}`,
+      "Content-Type": "application/json",
+      "Notion-Version": "2022-06-28",
+    },
+    body: JSON.stringify({ parent: { database_id: NOTION_DB_ID }, properties: notionProps(lead) }),
+  });
+  if (!res.ok) throw new Error(`Notion ${res.status}: ${(await res.text()).slice(0, 500)}`);
+}
+
+// Sincroniza um lead; se falhar, entra na fila notion:pending:* (o cron re-tenta)
+// e dispara alerta no ntfy — falha no Notion nunca derruba o registro do lead.
+async function sincronizarNotion(lead, env, { alertar = true } = {}) {
+  try {
+    await criarLeadNoNotion(lead, env.NOTION_TOKEN);
+    await env.LEADS.delete(`notion:pending:${lead.id}`).catch(() => {});
+    return true;
+  } catch (e) {
+    const erro = `${new Date().toISOString()} lead:${lead.id} ${String(e).slice(0, 500)}`;
+    await env.LEADS.put("notion:last_error", erro).catch(() => {});
+    await env.LEADS.put(`notion:pending:${lead.id}`, "1").catch(() => {});
+    if (alertar)
+      await fetch(`https://ntfy.sh/${NTFY_TOPIC}`, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain", Title: "Lead NAO sincronizou com Notion", Priority: "high", Tags: "warning" },
+        body: `⚠️ Lead ${lead.nome || lead.id} salvo no painel mas falhou no Notion CRM. O cron vai re-tentar a cada 15 min.\n${String(e).slice(0, 300)}`,
+      }).catch(() => {});
+    return false;
+  }
+}
+
+// ——— GA4 Measurement Protocol (envio server-side) ———
+// Backup do generate_lead client-side: cobre o tráfego pago do Meta que abre
+// dentro do navegador in-app do Instagram/Facebook, onde o gtag.js do
+// navegador costuma ser bloqueado/descartado (Meta Pixel sobrevive por ser
+// first-party do app; o GA4 via cookie/gtag não). Não bloqueia nem derruba
+// o lead se falhar — só registra em ga4:last_error, igual ao padrão do Notion.
+const GA4_MEASUREMENT_ID = "G-4YM3X80NZ8";
+const GA4_EVENT_FIELDS = [
+  "utm_source", "utm_medium", "utm_campaign", "utm_id",
+  "conjunto_anuncios", "adset_id", "anuncio", "ad_id",
+  "placement", "fbclid", "pagina_origem",
+];
+
+async function enviarGA4(lead, env) {
+  if (!env.GA4_API_SECRET) return;
+  try {
+    // Usa o client_id real do cookie _ga do visitante (repassado pela LP no
+    // campo ga_client_id) quando disponível — assim o evento se funde à
+    // sessão/usuário certo no GA4 em vez de virar um usuário órfão. Sem
+    // isso (ex: navegador in-app do Meta bloqueando cookie), cai num
+    // client_id sintético — ainda soma certo em "Eventos principais".
+    const clientId = !vazio(lead.ga_client_id)
+      ? String(lead.ga_client_id)
+      : `${Date.now()}.${Math.random().toString(36).slice(2)}`;
+    const params = {};
+    for (const k of GA4_EVENT_FIELDS) {
+      if (!vazio(lead[k])) params[k] = String(lead[k]).slice(0, 100);
+    }
+    const res = await fetch(
+      `https://www.google-analytics.com/mp/collect?measurement_id=${GA4_MEASUREMENT_ID}&api_secret=${env.GA4_API_SECRET}`,
+      { method: "POST", body: JSON.stringify({ client_id: clientId, events: [{ name: "generate_lead", params }] }) }
+    );
+    if (!res.ok) {
+      const erro = `${new Date().toISOString()} lead:${lead.id} status:${res.status}`;
+      await env.LEADS.put("ga4:last_error", erro).catch(() => {});
+    }
+  } catch (e) {
+    const erro = `${new Date().toISOString()} lead:${lead.id} ${String(e).slice(0, 500)}`;
+    await env.LEADS.put("ga4:last_error", erro).catch(() => {});
+  }
+}
+
+async function reprocessarPendentes(env) {
+  if (!env.NOTION_TOKEN) return;
+  const pend = await env.LEADS.list({ prefix: "notion:pending:" });
+  for (const k of pend.keys) {
+    const id = k.name.replace("notion:pending:", "");
+    const raw = await env.LEADS.get(`lead:${id}`);
+    if (!raw) { await env.LEADS.delete(k.name).catch(() => {}); continue; }
+    await sincronizarNotion(JSON.parse(raw), env, { alertar: false });
+  }
+}
+
+async function carregarLeads(env) {
+  const list = await env.LEADS.list({ prefix: "lead:" });
+  const leads = await Promise.all(
+    list.keys.map(async (k) => {
+      const raw = await env.LEADS.get(k.name);
+      return raw ? JSON.parse(raw) : null;
+    })
+  );
+  return leads.filter(Boolean).sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+}
+
+function filtrar(leads, p) {
+  const desde = p.get("desde"); // YYYY-MM-DD
+  const ate = p.get("ate"); // YYYY-MM-DD (inclusivo)
+  const campanha = (p.get("campanha") || "").toLowerCase();
+  const lp = (p.get("lp") || "").toLowerCase();
+  const semTestes = p.get("testes") === "0";
+
+  return leads.filter((l) => {
+    const dia = (l.timestamp || "").slice(0, 10);
+    if (desde && dia < desde) return false;
+    if (ate && dia > ate) return false;
+    if (campanha && !String(l.utm_campaign || "").toLowerCase().includes(campanha)) return false;
+    if (lp && !String(l.pagina_origem || "").toLowerCase().includes(lp)) return false;
+    if (semTestes && ehTeste(l)) return false;
+    return true;
+  });
+}
+
+function toCSV(leads) {
+  const chaves = [...new Set(leads.flatMap((l) => Object.keys(l)))];
+  const celula = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+  return [
+    chaves.join(","),
+    ...leads.map((l) => chaves.map((k) => celula(l[k])).join(",")),
+  ].join("\n");
+}
+
+function resumo(leads) {
+  const conta = (campo) => {
+    const m = new Map();
+    for (const l of leads) {
+      const v = vazio(l[campo]) ? "(sem valor)" : String(l[campo]).trim();
+      m.set(v, (m.get(v) || 0) + 1);
+    }
+    return [...m.entries()].sort((a, b) => b[1] - a[1]);
+  };
+  const cobertura = COLUNAS.filter(([k]) =>
+    ["adset_id", "ad_id", "placement", "utm_source", "fbclid", "segmento", "momento"].includes(k)
+  ).map(([k, rot]) => [rot, leads.filter((l) => !vazio(l[k])).length]);
+  return { porLP: conta("pagina_origem"), porCampanha: conta("utm_campaign"), cobertura };
+}
+
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    const method = request.method;
+
+    const corsHeaders = {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    };
+
+    if (method === "OPTIONS") {
+      return new Response(null, { headers: corsHeaders });
+    }
+
+    // POST /lead — recebe e salva lead
+    if (method === "POST" && url.pathname === "/lead") {
+      let data = {};
+      const ct = request.headers.get("Content-Type") || "";
+
+      if (ct.includes("application/json")) {
+        data = await request.json().catch(() => ({}));
+      } else {
+        const form = await request.formData().catch(() => null);
+        if (form) {
+          for (const [k, v] of form.entries()) {
+            if (!k.startsWith("_")) data[k] = v;
+          }
+        }
+      }
+
+      if (!data.nome && !data.email && !data.telefone) {
+        return new Response(JSON.stringify({ success: false, error: "Dados insuficientes" }), {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+      const lead = {
+        id,
+        timestamp: new Date().toISOString(),
+        ...data,
+      };
+
+      await env.LEADS.put(`lead:${id}`, JSON.stringify(lead));
+
+      // Notificação ntfy.sh
+      const msg = [
+        `🏢 Novo lead Oliveira Imóveis`,
+        `Nome: ${data.nome || "-"}`,
+        `Tel: ${data.telefone || "-"}`,
+        `Email: ${data.email || "-"}`,
+        `Segmento: ${data.segmento || "-"}`,
+        `Campanha: ${data.utm_campaign || data.conjunto_anuncios || "-"}`,
+        `Criativo: ${data.anuncio || "-"}`,
+        `Página: ${data.pagina_origem || "-"}`,
+      ].join("\n");
+
+      await fetch(`https://ntfy.sh/${NTFY_TOPIC}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain",
+          Title: "Novo Lead - Oliveira Imóveis",
+          Priority: "high",
+          Tags: "house,bell",
+        },
+        body: msg,
+      }).catch(() => {});
+
+      // CRM Notion — todo lead vai direto pro banco; falha entra na fila do cron.
+      if (env.NOTION_TOKEN) await sincronizarNotion(lead, env);
+
+      // GA4 — backup server-side do generate_lead (ver enviarGA4 acima).
+      await enviarGA4(lead, env);
+
+      return new Response(JSON.stringify({ success: true, id }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // GET /leads?secret=... — painel + exportação
+    // Filtros: &desde=YYYY-MM-DD &ate=YYYY-MM-DD &campanha=x &lp=x &testes=0
+    // Formatos: &format=json | &format=csv (padrão: html)
+    if (method === "GET" && url.pathname === "/leads") {
+      if (url.searchParams.get("secret") !== ADMIN_SECRET) {
+        return new Response("Não autorizado", { status: 401 });
+      }
+
+      const p = url.searchParams;
+      const todos = await carregarLeads(env);
+      const leads = filtrar(todos, p);
+      const format = (p.get("format") || "html").toLowerCase();
+
+      if (format === "json") {
+        return new Response(
+          JSON.stringify({ total: leads.length, total_sem_filtro: todos.length, leads }, null, 2),
+          { headers: { ...corsHeaders, "Content-Type": "application/json;charset=utf-8" } }
+        );
+      }
+
+      if (format === "csv") {
+        return new Response(toCSV(leads), {
+          headers: {
+            ...corsHeaders,
+            "Content-Type": "text/csv;charset=utf-8",
+            "Content-Disposition": `attachment; filename="leads-oliveira-${new Date()
+              .toISOString()
+              .slice(0, 10)}.csv"`,
+          },
+        });
+      }
+
+      const r = resumo(leads);
+      const rows = leads
+        .map(
+          (l) =>
+            `<tr>${COLUNAS.map(([k]) => {
+              const bruto = k === "timestamp" ? new Date(l[k]).toLocaleString("pt-BR") : l[k];
+              const falta = k !== "timestamp" && vazio(l[k]);
+              return `<td class="${falta ? "falta" : ""}">${
+                falta ? "—" : esc(bruto)
+              }</td>`;
+            }).join("")}</tr>`
+        )
+        .join("");
+
+      const chips = (pares) =>
+        pares
+          .map(([k, v]) => `<span class="chip">${esc(k)} <b>${v}</b></span>`)
+          .join("");
+
+      const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Leads — Oliveira Imóveis</title>
+  <style>
+    body{font-family:system-ui,sans-serif;padding:1rem;background:#f5f5f5;color:#1a1a2e}
+    h1{margin:0 0 .25rem}
+    h2{font-size:.9rem;text-transform:uppercase;letter-spacing:.04em;color:#666;margin:1.25rem 0 .5rem}
+    .count{color:#666;font-size:.9rem;margin:0 0 1rem}
+    .wrap{overflow-x:auto;background:#fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+    table{width:100%;border-collapse:collapse;min-width:1400px}
+    th{background:#1a1a2e;color:#fff;padding:.7rem .5rem;text-align:left;font-size:.72rem;white-space:nowrap;position:sticky;top:0}
+    td{padding:.6rem .5rem;border-bottom:1px solid #eee;font-size:.8rem;vertical-align:top;white-space:nowrap;max-width:260px;overflow:hidden;text-overflow:ellipsis}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:#f9f9f9}
+    td.falta{color:#c00;background:#fff5f5;text-align:center}
+    .chip{display:inline-block;background:#fff;border:1px solid #ddd;border-radius:999px;padding:.25rem .7rem;margin:0 .3rem .4rem 0;font-size:.78rem}
+    .chip b{color:#1a1a2e}
+    .bar{background:#fff;border-radius:8px;padding:.75rem 1rem;margin-bottom:1rem;font-size:.82rem;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    code{background:#eef;padding:.1rem .35rem;border-radius:4px;font-size:.78rem}
+  </style>
+</head>
+<body>
+  <h1>🏢 Leads — Oliveira Imóveis</h1>
+  <p class="count"><b>${leads.length}</b> leads exibidos${
+        leads.length !== todos.length ? ` (de ${todos.length} no total — filtro ativo)` : ""
+      }</p>
+
+  <div class="bar">
+    <b>Exportar:</b>
+    <code>&amp;format=json</code> · <code>&amp;format=csv</code> &nbsp;|&nbsp;
+    <b>Filtrar:</b>
+    <code>&amp;desde=2026-07-25</code> · <code>&amp;ate=2026-07-27</code> ·
+    <code>&amp;campanha=palmira</code> · <code>&amp;lp=iracema</code> · <code>&amp;testes=0</code>
+  </div>
+
+  <h2>Por landing page</h2>${chips(r.porLP)}
+  <h2>Por campanha</h2>${chips(r.porCampanha)}
+  <h2>Cobertura de atribuição (preenchidos de ${leads.length})</h2>${chips(r.cobertura)}
+
+  <h2>Leads</h2>
+  <div class="wrap">
+    <table>
+      <thead><tr>${COLUNAS.map(([, rot]) => `<th>${rot}</th>`).join("")}</tr></thead>
+      <tbody>${
+        rows ||
+        `<tr><td colspan="${COLUNAS.length}" style="text-align:center;padding:2rem;color:#999">Nenhum lead</td></tr>`
+      }</tbody>
+    </table>
+  </div>
+</body>
+</html>`;
+
+      return new Response(html, {
+        headers: { "Content-Type": "text/html;charset=utf-8" },
+      });
+    }
+
+    return new Response("Not found", { status: 404 });
+  },
+
+  // Cron (a cada 15 min): re-tenta leads que falharam ao sincronizar com o Notion.
+  async scheduled(_event, env, ctx) {
+    ctx.waitUntil(reprocessarPendentes(env));
+  },
+};

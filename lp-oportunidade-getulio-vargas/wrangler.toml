@@ -6,7 +6,8 @@ routes = [
   { pattern = "www.oliveiraimoveis.ia.br/oportunidade-farmacia*", zone_name = "oliveiraimoveis.ia.br" },
   { pattern = "www.oliveiraimoveis.ia.br/oportunidade-quiropraxia*", zone_name = "oliveiraimoveis.ia.br" },
   { pattern = "www.oliveiraimoveis.ia.br/oportunidade-tricologia*", zone_name = "oliveiraimoveis.ia.br" },
-  { pattern = "www.oliveiraimoveis.ia.br/oportunidade-recovery*", zone_name = "oliveiraimoveis.ia.br" }
+  { pattern = "www.oliveiraimoveis.ia.br/oportunidade-recovery*", zone_name = "oliveiraimoveis.ia.br" },
+  { pattern = "www.oliveiraimoveis.ia.br/oportunidade-palmira-655*", zone_name = "oliveiraimoveis.ia.br" }
 ]
 
 [assets]

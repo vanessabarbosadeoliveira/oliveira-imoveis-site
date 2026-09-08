@@ -87,14 +87,14 @@ NEW_OPP_CARD = f'''  <aside class="opportunity-card" aria-label="Diferenciais da
 html = html_src
 
 html = replace_img(html, hero_bg_m, "image/jpeg", DEPOIS_B64,
-                    new_attrs=' alt="Clínica de saúde e estética implantada no espaço da Rua Palmira, ambiente pronto para atender." width="900" height="1125" loading="eager" fetchpriority="high" decoding="async"')
+                    new_attrs=' alt="Clínica de saúde implantada no espaço da Rua Palmira, ambiente pronto para atender." width="900" height="1125" loading="eager" fetchpriority="high" decoding="async"')
 html = replace_img(html, before_m, "image/jpeg", ANTES_B64,
                     new_attrs=' alt="Espaço comercial vazio na Rua Palmira, 655, antes da transformação." loading="lazy"')
 html = replace_img(html, after_m, "image/jpeg", DEPOIS_B64,
-                    new_attrs=' alt="Clínica de saúde e estética implantada no espaço da Rua Palmira, ambiente pronto para atender." loading="lazy"')
+                    new_attrs=' alt="Clínica de saúde implantada no espaço da Rua Palmira, ambiente pronto para atender." loading="lazy"')
 
 html = html.replace(TITLE_ANCHOR, '<title>Loja Comercial na Rua Palmira, 655 — Centro Comercial Iracema | Oliveira Imóveis</title>')
-html = html.replace(META_ANCHOR, '<meta name="description" content="Nossa pesquisa de mercado identificou potencial para clínicas de saúde e estética neste espaço de 96 m² + mezanino no Centro Comercial Iracema, Rua Palmira, bairro Serra. Conheça o espaço e agende sua visita com a Oliveira Imóveis." />')
+html = html.replace(META_ANCHOR, '<meta name="description" content="Nossa pesquisa de mercado identificou potencial para clínicas de saúde neste espaço de 96 m² + mezanino no Centro Comercial Iracema, Rua Palmira, bairro Serra. Conheça o espaço e agende sua visita com a Oliveira Imóveis." />')
 html = html.replace(PAGINA_ORIGEM_ANCHOR, "var PAGINA_ORIGEM = 'oportunidade-palmira-655 (www.oliveiraimoveis.ia.br)';\n  var CONTENT_NAME = 'oportunidade-palmira-655';")
 html = html.replace(PAGE_ANCHOR, "var PAGE = 'oportunidade-palmira-655';")
 html = html.replace(CONTENT_NAME_LEAD_ANCHOR, "fbq('track', 'Lead', {content_name: CONTENT_NAME, value: 1, currency: 'BRL'}, {eventID: LEAD_EVENT_ID});")
@@ -108,7 +108,7 @@ HERO_TITLE = '''    <h1 class="hero__title">
 html = html.replace(HERO_TITLE_ANCHOR, HERO_TITLE)
 
 HERO_TEXT = '''    <p class="hero__text">
-      <strong>Nossa <span class="research-accent">análise de mercado</span> identificou:</strong> clínicas e operações voltadas à saúde, estética e cuidados especializados estão entre os negócios com maior aderência a este espaço no Centro Comercial Iracema, na Rua Palmira, pela localização, configuração do imóvel e perfil do entorno.
+      <strong>Nossa <span class="research-accent">análise de mercado</span> identificou:</strong> clínicas e operações voltadas à saúde e cuidados especializados estão entre os negócios com maior aderência a este espaço no Centro Comercial Iracema, na Rua Palmira, pela localização, configuração do imóvel e perfil do entorno.
     </p>'''
 html = html.replace(HERO_TEXT_ANCHOR, HERO_TEXT)
 

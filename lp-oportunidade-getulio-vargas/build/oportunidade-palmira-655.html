@@ -1361,6 +1361,10 @@ fbq('track', 'PageView');
   .legal-modal__body ul{ padding-left:18px; margin:6px 0; }
   .legal-modal__body a{ color:var(--text-dark); text-decoration:underline; }
 
+
+  /* override específico da LP Palmira 655 — fotos verticais, sem cortar o ambiente */
+  .hero__bg img{ object-fit: contain; background: #0A3327; }
+  .ba-figure img{ object-fit: contain; background: #0A3327; }
 </style>
 <!-- marca a raiz antes das seções renderizarem: o estado oculto do scroll-reveal
      só se aplica se o JS estiver vivo para depois revelar -->

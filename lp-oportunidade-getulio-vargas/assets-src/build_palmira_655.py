@@ -115,6 +115,21 @@ html = html.replace(HERO_TEXT_ANCHOR, HERO_TEXT)
 html = html.replace(OPP_CARD_ANCHOR, NEW_OPP_CARD)
 html = html.replace(TRANSFORM_TITLE_ANCHOR, "na experiência da sua clínica.")
 
+# As fotos desta página vêm de um vídeo vertical (1080x1920) — bem diferente
+# do enquadramento paisagem que a Savassi usava (retrato original do fotógrafo).
+# Com object-fit:cover nos contêineres paisagem (.hero__bg, aspect-ratio
+# 208/138 do .ba-figure), a foto ficava cortada quase num close — Vanessa
+# pediu pra mostrar mais do ambiente. Override só nesta página: object-fit
+# contain (mostra a foto inteira) com fundo na cor do próprio brand
+# (--oi-green-deep) preenchendo as barras, em vez de recortar.
+CSS_OVERRIDE = '''
+  /* override específico da LP Palmira 655 — fotos verticais, sem cortar o ambiente */
+  .hero__bg img{ object-fit: contain; background: #0A3327; }
+  .ba-figure img{ object-fit: contain; background: #0A3327; }
+</style>'''
+assert html.count('</style>') == 1, "esperava 1 </style> pra inserir o override"
+html = html.replace('</style>', CSS_OVERRIDE, 1)
+
 out_path = OUT_DIR / "oportunidade-palmira-655.html"
 out_path.write_text(html, encoding="utf-8")
 print("oportunidade-palmira-655.html", f"{out_path.stat().st_size/1024:.0f} KB")

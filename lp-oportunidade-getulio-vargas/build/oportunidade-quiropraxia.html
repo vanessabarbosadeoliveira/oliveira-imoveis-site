@@ -1540,7 +1540,7 @@ fbq('track', 'PageView');
   </a>
   <p class="footer__text">Conectamos oportunidades a negócios<br />que transformam regiões e impulsionam marcas.</p>
   <div class="footer__contacts">
-    <a href="https://wa.me/5531999558360" target="_blank" rel="noopener">
+    <a id="footer-whatsapp-link" href="https://wa.me/5531999558360" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
       31 99955-8360
     </a>
@@ -1776,6 +1776,12 @@ fbq('track', 'PageView');
   var LEAD_BACKUP_URL = 'https://formsubmit.co/ajax/contato@oliveiraimoveis.ia.br';
   var PAGINA_ORIGEM = 'oportunidade-quiropraxia (www.oliveiraimoveis.ia.br)';
   var CONTENT_NAME = 'oportunidade-quiropraxia';
+  // CTA de WhatsApp do rodapé com mensagem pré-preenchida por segmento (Vanessa, 11/09/2026).
+  var MENSAGEM_WHATSAPP = 'Olá, tenho interesse na loja para clínica de quiropraxia...';
+  (function(){
+    var whatsappCta = document.getElementById('footer-whatsapp-link');
+    if (whatsappCta) whatsappCta.href = getWhatsAppLink(MENSAGEM_WHATSAPP);
+  })();
   function ga4ClientId(){
     try{ var m = document.cookie.match(/(?:^|;\s*)_ga=GA\d\.\d\.(\d+\.\d+)/); return m ? m[1] : ''; }catch(err){ return ''; }
   }

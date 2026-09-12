@@ -11,6 +11,27 @@ Antes de qualquer implementação, leia este documento inteiro. Ele é a fonte d
 
 ---
 
+## ⚠️ ATUALIZAÇÃO 12/09/2026 — Evolution API e CRM Notion descontinuados
+
+Vanessa confirmou (em chat, 12/09/2026): **"pode desligar este plano usando o evolution api mais crm notion. não uso mais estas ferramentas."**
+
+Isto descontinua especificamente:
+- **WhatsApp via Evolution API + n8n** (seção 6 abaixo, e a linha "Automação WhatsApp" da seção 9).
+- **CRM em Notion** (seção 10 — callout "CRM no Notion" — e o funil de métricas de plataforma da seção 20).
+
+**Substituído por:** projeto `oliveira-intelligence-platform/` em
+`/Users/vanessadeoliveira/Documents/Claude/Projects/Rede Oliveira Imóveis/oliveira-intelligence-platform/`
+— WhatsApp Business Platform oficial da Meta (Cloud API) + Instagram Direct/Facebook Messenger via **Chatwoot** self-hosted, CRM oficial = **Loft** (antigo Vista CRM), n8n self-hosted (Docker/Oracle Cloud), banco analítico próprio PostgreSQL + pgvector para inteligência de atendimento/RAG. Ver `docs/architecture.md` desse projeto para a arquitetura completa e o relatório final para o status de implementação.
+
+**Em aberto (confirmar com Vanessa antes de qualquer ação técnica — não presumir):**
+- `oliveira-imoveis-site/oliveira-leads-api/worker.js` **ainda está ao vivo**, gravando cada lead novo direto no Notion (banco "CRM — Leads Oliveira Imóveis", dentro de 🏠 MVP Oliveira). Ainda não foi desligado/repontado — perguntei a sequência de corte para a Vanessa.
+- Existe uma automação **separada e aparentemente não relacionada** usando outra instância Evolution API (Railway) em `04 - Administração e Financeiro/n8n-setup/`: lembretes de cobrança de aluguel para **lojistas** (inquilinos existentes), não leads. Escopo do "desligar" em relação a ela **não confirmado**.
+- O funil específico descrito na seção 20 (pesquisa de mercado paga R$697, match com imobiliária **parceira**, ghosting pós-entrega) modela um negócio de intermediação (Oliveira conecta lojista a imobiliária parceira) que não aparece no briefing do novo projeto (que trata Loft como CRM direto da própria Oliveira). Não presumir que um substitui o outro sem confirmação.
+
+O conteúdo original abaixo (seções 1-20) é mantido como histórico do que foi planejado/implementado até aqui. As partes específicas de Evolution API/Notion **não são mais a arquitetura vigente** — o resto (modelo de negócio, questionário/prompt de pesquisa, contrato de parceria, viabilidade econômica) continua válido até indicação em contrário.
+
+---
+
 ## 1. Visão do Produto
 
 Plataforma que conecta **empresários (lojistas)** ao **ponto comercial certo**, usando pesquisa de mercado com IA como diferencial. A Oliveira atua como intermediária entre quem quer abrir/expandir um negócio e as imobiliárias parceiras.

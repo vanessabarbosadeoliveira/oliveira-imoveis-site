@@ -1,74 +1,47 @@
 // worker.js — Oliveira Imóveis Leads API
 var NTFY_TOPIC = "oliveira-imoveis-leads-2026";
 var ADMIN_SECRET = "oli2026admin";
-var NOTION_DB_ID = "527c3cfd-45fc-41fe-8193-5ebd7d57ce83";
+// Pipeline novo (n8n -> Chatwoot -> Loft), substitui o envio pro Notion
+// a partir de 25/09/2026 (pedido da Vanessa: "nao precisa mais enviar pro
+// Notion, agora so precisa enviar pra Loft atraves do n8n"). Token de
+// webhook e só um "não deixe qualquer um chamar esse endpoint", não é
+// segredo de Loft/Chatwoot/Postgres (ver docs/site-integration.md do
+// projeto oliveira-intelligence-platform) — mesmo padrão de secret
+// hardcoded já usado neste arquivo (NTFY_TOPIC/ADMIN_SECRET acima).
+var N8N_WEBHOOK_URL = "https://n8n.oliveiraimoveis.ia.br/webhook/website-lead-ingress";
+var N8N_WEBHOOK_TOKEN = "1eee630a604241944a48733a869b59457a45023e79265e30";
 
-function normalizeSegmento(raw) {
-  if (!raw) return null;
-  const s = raw.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
-  if (s.includes("odonto") || s.includes("dentist") || s.includes("ortodont")) return "Odontologia";
-  if (s.includes("estetica") || s.includes("beleza") || s.includes("harmoniz") || s.includes("dermato")) return "Estética";
-  if (s.includes("pilates") || s.includes("fisioterapia") || s.includes("fisio")) return "Pilates / Fisioterapia";
-  if (s.includes("longevidade") || s.includes("geriatr") || s.includes("idoso")) return "Longevidade / Geriatria";
-  if (s.includes("nutri") || s.includes("bem-estar") || s.includes("bem estar") || s.includes("integrativa") || s.includes("saude") || s.includes("spa")) return "Saúde e bem-estar";
-  if (s.includes("pet") || s.includes("veterin") || s.includes("animal")) return "Pet Shop / Veterinário";
-  if (s.includes("psicolog") || s.includes("terapia")) return "Psicologia";
-  if (s.includes("academia") || s.includes("fitness") || s.includes("gym") || s.includes("musculac")) return "Academia / Fitness";
-  if (s.includes("aliment") || s.includes("restaur") || s.includes("cafe") || s.includes("lanche")) return "Alimentação";
-  return "Outros";
-}
-
-function getOrigem(pagina) {
-  if (!pagina) return "LP1 — Pesquisa Estratégica";
-  const p = pagina.toLowerCase();
-  if (p.includes("portofino") || p.includes("loja16")) return "LP2 — Portofino Street Mall";
-  if (p.includes("pesquisa") || p.includes("organico")) return "Orgânico";
-  return "LP1 — Pesquisa Estratégica";
-}
-
-async function createNotionLead(lead, notionToken) {
-  // schema do banco novo "CRM — Leads Oliveira Imóveis" (recriado 08/07/2026 em MVP Oliveira)
-  const rt = (v) => ({ rich_text: [{ text: { content: String(v) } }] });
-  const has = (v) => v && v !== "-" && !String(v).startsWith("sem_");
-  const props = {
-    "Nome": { title: [{ text: { content: lead.nome || "Lead sem nome" } }] },
-    "Fase": { select: { name: "Novo lead" } },
-    "Página de Origem": rt(lead.pagina_origem || "-"),
+async function forwardToN8n(lead) {
+  // Contrato canônico de docs/site-integration.md (workflow 00_website_lead_ingress.json).
+  const payload = {
+    nome: lead.nome || "",
+    telefone: lead.telefone || "",
+    email: lead.email && lead.email !== "-" ? lead.email : undefined,
+    imovel_id: lead.imovel_id || undefined,
+    imovel_codigo: lead.imovel_codigo || lead.segmento || undefined,
+    origem: "landing_page",
+    submission_id: lead.event_id || lead.id,
+    utm_source: lead.utm_source || undefined,
+    utm_medium: lead.utm_medium || undefined,
+    utm_campaign: lead.utm_campaign || undefined,
+    utm_content: lead.utm_content || lead.botao_clicado || undefined,
+    utm_term: lead.utm_term || undefined,
+    gclid: lead.gclid || undefined,
+    fbclid: lead.fbclid && lead.fbclid !== "sem_fbclid" ? lead.fbclid : undefined,
+    pagina_origem: lead.pagina_origem || undefined,
+    url_origem: lead.event_source_url || undefined,
   };
-  if (lead.telefone && lead.telefone !== "via WhatsApp" && lead.telefone !== "-")
-    props["Telefone"] = { phone_number: lead.telefone };
-  if (lead.email && lead.email !== "-")
-    props["Email"] = { email: lead.email };
-  const segmento = normalizeSegmento(lead.segmento);
-  if (segmento && has(lead.segmento)) props["Segmento"] = { select: { name: segmento } };
-  if (has(lead.utm_source)) props["UTM Source"] = rt(lead.utm_source);
-  if (has(lead.utm_medium)) props["UTM Medium"] = rt(lead.utm_medium);
-  if (has(lead.utm_campaign)) props["UTM Campaign"] = rt(lead.utm_campaign);
-  if (has(lead.utm_id)) props["UTM ID"] = rt(lead.utm_id);
-  const botaoClicado = has(lead.botao_clicado) ? lead.botao_clicado : lead.utm_content;
-  if (has(botaoClicado)) props["Botão Clicado (UTM Content)"] = rt(botaoClicado);
-  if (has(lead.conjunto_anuncios)) props["Conjunto de Anúncios"] = rt(lead.conjunto_anuncios);
-  if (has(lead.adset_id)) props["Adset ID"] = rt(lead.adset_id);
-  if (has(lead.anuncio)) props["Anúncio"] = rt(lead.anuncio);
-  if (has(lead.ad_id)) props["Ad ID"] = rt(lead.ad_id);
-  if (has(lead.placement)) props["Placement"] = rt(lead.placement);
-  if (has(lead.fbclid)) props["FBCLID"] = rt(lead.fbclid);
-
-  const res = await fetch("https://api.notion.com/v1/pages", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${notionToken}`,
-      "Content-Type": "application/json",
-      "Notion-Version": "2022-06-28",
-    },
-    body: JSON.stringify({ parent: { database_id: NOTION_DB_ID }, properties: props }),
-  });
-  if (!res.ok) {
-    const errText = await res.text();
-    console.error("Notion error:", errText);
-    return errText;
+  try {
+    const res = await fetch(N8N_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Oliveira-Webhook-Token": N8N_WEBHOOK_TOKEN },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) return await res.text();
+    return null;
+  } catch (e) {
+    return String(e);
   }
-  return null;
 }
 
 var worker_default = {
@@ -118,10 +91,8 @@ var worker_default = {
         body: msg
       }).catch(() => {});
 
-      if (env.NOTION_TOKEN) {
-        const notionErr = await createNotionLead(lead, env.NOTION_TOKEN).catch((e) => String(e));
-        if (notionErr) await env.LEADS.put("notion:last_error", `${new Date().toISOString()} ${notionErr}`).catch(() => {});
-      }
+      const n8nErr = await forwardToN8n(lead).catch((e) => String(e));
+      if (n8nErr) await env.LEADS.put("n8n:last_error", `${new Date().toISOString()} ${n8nErr}`).catch(() => {});
 
       return new Response(JSON.stringify({ success: true, id }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" }

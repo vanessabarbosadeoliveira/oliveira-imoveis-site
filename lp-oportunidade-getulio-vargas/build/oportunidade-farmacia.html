@@ -1737,7 +1737,11 @@ fbq('track', 'PageView');
 
   // ---- Máscara de telefone BR ----
   function maskPhoneBR(value){
-    var digits = value.replace(/\D/g, '').slice(0, 11);
+    var digits = value.replace(/\D/g, '');
+    // autofill do navegador manda +55 (13 digitos): tirar o DDI ANTES de cortar em 11,
+    // senao o slice perde os 2 ultimos digitos do numero real
+    if (digits.length > 11 && digits.indexOf('55') === 0) digits = digits.slice(2);
+    digits = digits.slice(0, 11);
     if (digits.length <= 2) return digits.replace(/^(\d{0,2})/, '($1');
     if (digits.length <= 6) return digits.replace(/^(\d{2})(\d{0,4})/, '($1) $2');
     if (digits.length <= 10) return digits.replace(/^(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');

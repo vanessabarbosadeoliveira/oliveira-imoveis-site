@@ -483,7 +483,10 @@
   (function(){
     "use strict";
     function maskPhoneBR(v){
-      v = (v || '').replace(/\D/g, '').slice(0, 11);
+      v = (v || '').replace(/\D/g, '');
+      // autofill manda +55 (13 digitos): tirar o DDI antes de cortar em 11
+      if (v.length > 11 && v.indexOf('55') === 0) v = v.slice(2);
+      v = v.slice(0, 11);
       if (v.length > 10) return v.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3').trim().replace(/-$/, '');
       if (v.length > 5) return v.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3').trim().replace(/-$/, '');
       if (v.length > 2) return v.replace(/(\d{2})(\d{0,5})/, '($1) $2').trim();

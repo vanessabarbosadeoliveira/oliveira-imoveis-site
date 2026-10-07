@@ -165,10 +165,15 @@ async function enviarGA4(lead, env) {
   }
 }
 
-// ——— Meta Conversions API (envio server-side do Lead) ———
-// Espelha o fbq('track','Lead') do navegador. Sem isto, ad-block, ITP do Safari
-// e o navegador in-app do Instagram derrubam o sinal de conversão do Meta —
-// exatamente o problema que o envio server-side já resolvia só para o GA4.
+// ——— Meta Conversions API (envio server-side do formulário) ———
+// Espelha o fbq('track','SubmitApplication') do navegador. Sem isto, ad-block,
+// ITP do Safari e o navegador in-app do Instagram derrubam o sinal — exatamente
+// o problema que o envio server-side já resolvia só para o GA4.
+// Decisão de Vanessa (06/10/2026, marketing de intenção): o formulário NÃO é
+// mais `Lead`. `Lead` passa a ser enviado pelo MCP mcp-metaads-oliveira
+// (send_qualified_events_to_meta) só quando a Loft/atendimento marca o lead
+// como qualificado; visita → Schedule, fechado → ContratoAssinado. O pixel deixa
+// de ser treinado com curioso.
 // A deduplicação depende de event_id + event_name IGUAIS nos dois lados: a LP
 // gera o event_id, manda no payload, e aqui reusamos o mesmo. Sem event_id o
 // Meta conta a mesma conversão duas vezes.
@@ -216,7 +221,7 @@ async function enviarMetaCAPI(lead, env, request) {
       ? String(lead.pagina_origem).slice(0, 100)
       : "origem_desconhecida";
     const evento = {
-      event_name: "Lead",
+      event_name: "SubmitApplication",
       event_time: Math.floor(Date.now() / 1000),
       action_source: "website",
       event_source_url: !vazio(lead.event_source_url)

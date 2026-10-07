@@ -560,7 +560,7 @@
             ph: telefoneMeta(data.telefone),
             fn: String(data.nome || '').trim().toLowerCase().split(' ')[0]
           });
-          fbq('track', 'Lead', {content_name: CONTENT_NAME, value: 1, currency: 'BRL'}, {eventID: LEAD_EVENT_ID});
+          fbq('track', 'SubmitApplication', {content_name: CONTENT_NAME, value: 1, currency: 'BRL'}, {eventID: LEAD_EVENT_ID});
         }
       }catch(e){}
       var payload = Object.assign({

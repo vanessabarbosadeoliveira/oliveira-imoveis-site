@@ -196,9 +196,13 @@ async function sha256Hex(valor) {
 
 // Meta espera o telefone com código do país, só dígitos.
 function telefoneE164(tel) {
-  let d = String(tel ?? "").replace(/\D/g, "");
+  let d = String(tel ?? "").replace(/\D/g, "").replace(/^0+/, "");
   if (!d) return "";
   if (d.length === 10 || d.length === 11) d = "55" + d;
+  // Celular BR no formato antigo (55 + DDD + 8 dígitos começando em 6–9, sem o 9 extra): o Chatwoot/WhatsApp entrega
+  // assim, mas o Meta guarda o número atual (13 dígitos). Sem completar o 9 o hash não casa com o cadastro da pessoa.
+  // Fixos começam em 2–5 e ficam como estão.
+  if (d.length === 12 && d.startsWith("55") && /^[6-9]/.test(d.slice(4))) d = d.slice(0, 4) + "9" + d.slice(4);
   return d;
 }
 

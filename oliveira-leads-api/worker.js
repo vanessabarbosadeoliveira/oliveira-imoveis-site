@@ -70,8 +70,13 @@ async function forwardToN8n(lead) {
     utm_source: lead.utm_source || undefined,
     utm_medium: lead.utm_medium || undefined,
     utm_campaign: lead.utm_campaign || undefined,
-    utm_content: lead.utm_content || lead.botao_clicado || undefined,
-    utm_term: lead.utm_term || undefined,
+    utm_content: lead.utm_content || (!vazio(lead.anuncio) ? lead.anuncio : undefined) || lead.botao_clicado || undefined,
+    utm_term: lead.utm_term || (!vazio(lead.conjunto_anuncios) ? lead.conjunto_anuncios : undefined) || undefined,
+    // Detalhe do anúncio (as LPs mandam com estes nomes; sem isto o criativo/placement nunca chegava ao n8n/Loft).
+    utm_id: !vazio(lead.utm_id) ? lead.utm_id : undefined,
+    ad_id: !vazio(lead.ad_id) ? lead.ad_id : undefined,
+    adset_id: !vazio(lead.adset_id) ? lead.adset_id : undefined,
+    placement: !vazio(lead.placement) ? lead.placement : undefined,
     gclid: lead.gclid || undefined,
     fbclid: lead.fbclid && lead.fbclid !== "sem_fbclid" ? lead.fbclid : undefined,
     pagina_origem: lead.pagina_origem || undefined,
@@ -197,11 +202,14 @@ function telefoneE164(tel) {
   return d;
 }
 
-// Decisão de Vanessa (06–07/10/2026, marketing de intenção): SÓ a LP Palmira 655 v2
-// já usa SubmitApplication no formulário (Lead passa a vir qualificado, via MCP).
+// Decisão de Vanessa (06–07/10/2026, marketing de intenção): SÓ as LPs Palmira 655 v2 e Instagram orgânico
+// já usam SubmitApplication no formulário (Lead passa a vir qualificado, via MCP).
 // As demais LPs seguem enviando `Lead` até serem migradas — o evento do servidor
 // precisa bater com o do navegador para o Meta deduplicar.
-const ehPalmira655V2 = (lead) => String(lead.pagina_origem || "").includes("oportunidade-palmira-655-v2");
+// LPs que já usam SubmitApplication no formulário (Lead só vem qualificado, via MCP).
+// Quando uma LP nova migrar, basta incluir aqui — o evento do servidor precisa ser IGUAL ao do navegador.
+const LPS_SUBMIT_APPLICATION = ["oportunidade-palmira-655-v2", "instagram-organico"];
+const ehPalmira655V2 = (lead) => LPS_SUBMIT_APPLICATION.some((lp) => String(lead.pagina_origem || "").includes(lp));
 
 async function enviarMetaCAPI(lead, env, request) {
   if (!env.META_CAPI_TOKEN) return;

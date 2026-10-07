@@ -4,9 +4,8 @@ account_id = "669491c12f3d53a3f28ba3270668efaf"
 
 # Worker PRÓPRIO desta LP — não toca no worker do site institucional (soft-smoke).
 routes = [
-  { pattern = "www.oliveiraimoveis.ia.br/instagram*", zone_name = "oliveiraimoveis.ia.br" }
+  { pattern = "www.oliveiraimoveis.ia.br/oportunidade-instagram-organico*", zone_name = "oliveiraimoveis.ia.br" }
 ]
 
 [assets]
 directory = "./build"
-html_handling = "none"

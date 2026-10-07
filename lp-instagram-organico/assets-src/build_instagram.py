@@ -7,7 +7,7 @@ Uso: python3 lp-instagram-organico/assets-src/build_instagram.py
 import re, pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 SRC = ROOT / 'lp-oportunidade-getulio-vargas/build/oportunidade-palmira-655-v2.html'
-OUT = ROOT / 'lp-instagram-organico/build/instagram.html'
+OUT = ROOT / 'lp-instagram-organico/build/oportunidade-instagram-organico.html'
 s = SRC.read_text(encoding='utf-8')
 
 def sub(old, new, count=1):

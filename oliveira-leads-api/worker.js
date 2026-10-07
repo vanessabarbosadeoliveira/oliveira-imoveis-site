@@ -17,6 +17,7 @@ const COLUNAS = [
   ["telefone", "Telefone"],
   ["email", "Email"],
   ["segmento", "Segmento"],
+  ["publico_alvo", "Público-alvo"],
   ["momento", "Momento"],
   ["pagina_origem", "Página"],
   ["utm_campaign", "Campanha"],
@@ -64,6 +65,7 @@ async function forwardToN8n(lead) {
     imovel_id: lead.imovel_id || undefined,
     imovel_codigo: lead.imovel_codigo || lead.segmento || undefined,
     origem: "landing_page",
+    publico_alvo: lead.publico_alvo || undefined,
     submission_id: lead.event_id || lead.id,
     utm_source: lead.utm_source || undefined,
     utm_medium: lead.utm_medium || undefined,
@@ -165,10 +167,15 @@ async function enviarGA4(lead, env) {
   }
 }
 
-// ——— Meta Conversions API (envio server-side do Lead) ———
-// Espelha o fbq('track','Lead') do navegador. Sem isto, ad-block, ITP do Safari
-// e o navegador in-app do Instagram derrubam o sinal de conversão do Meta —
-// exatamente o problema que o envio server-side já resolvia só para o GA4.
+// ——— Meta Conversions API (envio server-side do formulário) ———
+// Espelha o fbq('track','SubmitApplication') do navegador. Sem isto, ad-block,
+// ITP do Safari e o navegador in-app do Instagram derrubam o sinal — exatamente
+// o problema que o envio server-side já resolvia só para o GA4.
+// Decisão de Vanessa (06/10/2026, marketing de intenção): o formulário NÃO é
+// mais `Lead`. `Lead` passa a ser enviado pelo MCP mcp-metaads-oliveira
+// (send_qualified_events_to_meta) só quando a Loft/atendimento marca o lead
+// como qualificado; visita → Schedule, fechado → ContratoAssinado. O pixel deixa
+// de ser treinado com curioso.
 // A deduplicação depende de event_id + event_name IGUAIS nos dois lados: a LP
 // gera o event_id, manda no payload, e aqui reusamos o mesmo. Sem event_id o
 // Meta conta a mesma conversão duas vezes.
@@ -189,6 +196,12 @@ function telefoneE164(tel) {
   if (d.length === 10 || d.length === 11) d = "55" + d;
   return d;
 }
+
+// Decisão de Vanessa (06–07/10/2026, marketing de intenção): SÓ a LP Palmira 655 v2
+// já usa SubmitApplication no formulário (Lead passa a vir qualificado, via MCP).
+// As demais LPs seguem enviando `Lead` até serem migradas — o evento do servidor
+// precisa bater com o do navegador para o Meta deduplicar.
+const ehPalmira655V2 = (lead) => String(lead.pagina_origem || "").includes("oportunidade-palmira-655-v2");
 
 async function enviarMetaCAPI(lead, env, request) {
   if (!env.META_CAPI_TOKEN) return;
@@ -216,23 +229,36 @@ async function enviarMetaCAPI(lead, env, request) {
       ? String(lead.pagina_origem).slice(0, 100)
       : "origem_desconhecida";
     const evento = {
-      event_name: "Lead",
+      event_name: ehPalmira655V2(lead) ? "SubmitApplication" : "Lead",
       event_time: Math.floor(Date.now() / 1000),
       action_source: "website",
       event_source_url: !vazio(lead.event_source_url)
         ? String(lead.event_source_url)
         : "https://www.oliveiraimoveis.ia.br/",
       user_data,
-      custom_data: { content_name: origem, value: 1, currency: "BRL" },
+      custom_data: {
+        content_name: origem, value: 1, currency: "BRL",
+        ...(lead.publico_alvo ? { publico_alvo: lead.publico_alvo } : {}),
+      },
     };
     if (!vazio(lead.event_id)) evento.event_id = String(lead.event_id);
+
+    // Evento por público-alvo (base das conversões/públicos separados no Meta).
+    // Mesmo event_id do pixel (sufixo -publico) para o Meta deduplicar.
+    const eventos = [evento];
+    const nomePublico = { empresario: "LeadEmpresario", proprietario: "LeadProprietario" }[lead.publico_alvo];
+    if (nomePublico) {
+      const ev2 = { ...evento, event_name: nomePublico, custom_data: { ...evento.custom_data } };
+      if (!vazio(lead.event_id)) ev2.event_id = `${lead.event_id}-publico`;
+      eventos.push(ev2);
+    }
 
     const res = await fetch(
       `https://graph.facebook.com/${META_API_VERSION}/${META_PIXEL_ID}/events?access_token=${env.META_CAPI_TOKEN}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ data: [evento] }),
+        body: JSON.stringify({ data: eventos }),
       }
     );
     if (!res.ok) {
@@ -337,6 +363,9 @@ export default {
         });
       }
 
+      // Só aceita os dois valores do formulário; qualquer outro vira vazio (LPs antigas não enviam).
+      data.publico_alvo = ["empresario", "proprietario"].includes(data.publico_alvo) ? data.publico_alvo : "";
+
       const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
       const lead = {
         id,
@@ -353,6 +382,7 @@ export default {
         `Tel: ${data.telefone || "-"}`,
         `Email: ${data.email || "-"}`,
         `Segmento: ${data.segmento || "-"}`,
+        `Público: ${data.publico_alvo || "-"}`,
         `Campanha: ${data.utm_campaign || data.conjunto_anuncios || "-"}`,
         `Criativo: ${data.anuncio || "-"}`,
         `Página: ${data.pagina_origem || "-"}`,

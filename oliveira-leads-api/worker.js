@@ -202,11 +202,14 @@ function telefoneE164(tel) {
   return d;
 }
 
-// Decisão de Vanessa (06–07/10/2026, marketing de intenção): SÓ a LP Palmira 655 v2
-// já usa SubmitApplication no formulário (Lead passa a vir qualificado, via MCP).
+// Decisão de Vanessa (06–07/10/2026, marketing de intenção): SÓ as LPs Palmira 655 v2 e Instagram orgânico
+// já usam SubmitApplication no formulário (Lead passa a vir qualificado, via MCP).
 // As demais LPs seguem enviando `Lead` até serem migradas — o evento do servidor
 // precisa bater com o do navegador para o Meta deduplicar.
-const ehPalmira655V2 = (lead) => String(lead.pagina_origem || "").includes("oportunidade-palmira-655-v2");
+// LPs que já usam SubmitApplication no formulário (Lead só vem qualificado, via MCP).
+// Quando uma LP nova migrar, basta incluir aqui — o evento do servidor precisa ser IGUAL ao do navegador.
+const LPS_SUBMIT_APPLICATION = ["oportunidade-palmira-655-v2", "instagram-organico"];
+const ehPalmira655V2 = (lead) => LPS_SUBMIT_APPLICATION.some((lp) => String(lead.pagina_origem || "").includes(lp));
 
 async function enviarMetaCAPI(lead, env, request) {
   if (!env.META_CAPI_TOKEN) return;

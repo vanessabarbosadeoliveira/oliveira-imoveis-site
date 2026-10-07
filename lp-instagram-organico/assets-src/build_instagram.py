@@ -30,7 +30,7 @@ imgs = re.findall(r'<img src="(data:image/[^"]+)"[^>]*alt="Fachada do Centro Com
 assert imgs, 'fachada não encontrada'
 fachada = imgs[0]
 s = re.sub(r'(<div class="hero__bg"><img src=")data:image/[^"]+("[^>]*?alt=")[^"]*(")',
-           lambda m: m.group(1) + fachada + m.group(2) + 'Fachada do Centro Comercial Iracema, Rua Palmira, Serra, Belo Horizonte, case da Oliveira Imóveis.' + m.group(3), s, count=1, flags=re.S)
+           lambda m: m.group(1) + fachada + m.group(2) + 'Fachada de centro comercial em Belo Horizonte.' + m.group(3), s, count=1, flags=re.S)
 
 # --- hero: textos ---
 sub_re(r'<p class="opportunity-badge">.*?</p>', '<p class="opportunity-badge"><span>Imóveis</span> <strong>comerciais em BH</strong></p>')
@@ -45,37 +45,12 @@ sub_re(r'<p class="hero__text">.*?</p>', '''<p class="hero__text">
 sub_re(r'<h2 class="hero-form__title" id="hero-form-title">.*?</h2>', '<h2 class="hero-form__title" id="hero-form-title">Olá, quero falar com a<br />Oliveira Imóveis.</h2>')
 sub('aria-label="Quero saber os detalhes dessa loja"><span>Quero saber os detalhes</span>', 'aria-label="Quero falar com a Oliveira Imóveis"><span>Quero falar com a Oliveira</span>')
 
-# --- cartão de provas (site original) ---
-sub_re(r'<aside class="opportunity-card".*?</aside>', '''<aside class="opportunity-card" aria-label="Por que a Oliveira Imóveis">
-    <div class="opp-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-      <div><strong>Foco exclusivo em imóveis comerciais</strong><span>Atuação em Belo Horizonte</span></div>
-    </div>
-    <div class="opp-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      <div><strong>Case: Centro Comercial Iracema</strong><span>7 negócios no ecossistema, Rua Palmira, Serra</span></div>
-    </div>
-    <div class="opp-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 14 3.5-3.5 3 3L19 7"/><path d="M19 7h-3.6M19 7v3.6"/></svg>
-      <div><strong>+30% de faturamento</strong><span>relato de lojista, em menos de um ano</span></div>
-    </div>
-  </aside>''')
+# --- cartão de provas: REMOVIDO (Vanessa, 07/10/2026: só o formulário) ---
+sub_re(r'<aside class="opportunity-card".*?</aside>', '')
 
-# --- seção "transform": inquilinos x proprietários (textos do site original), mantendo a mesma estrutura/CSS ---
-sub('<p class="eyebrow scroll-reveal" style="--reveal-index:0">Fachada e interior</p>', '<p class="eyebrow scroll-reveal" style="--reveal-index:0">Como podemos ajudar</p>')
-sub('id="transform-title" style="--reveal-index:1">da última loja do Iracema.</h2>', 'id="transform-title" style="--reveal-index:1">o que você está buscando?</h2>')
-sub('<span class="ba-label">Fachada</span>', '<span class="ba-label">Para inquilinos</span>')
-sub('<span class="ba-label">Por dentro</span>', '<span class="ba-label">Para proprietários</span>')
-s = re.sub(r'alt="Fachada do Centro Comercial Iracema, Rua Palmira 655, com estacionamento na frente\."', 'alt="Fachada do Centro Comercial Iracema, case de ocupação da Oliveira Imóveis."', s, count=1)
-s = re.sub(r'alt="Corredor interno da loja de 96 m² na Rua Palmira 655\."', 'alt="Interior de loja pronta no Centro Comercial Iracema."', s, count=1)
-
-# --- seção lead (texto + benefícios) ---
-sub_re(r'<h2 id="lead-title"[^>]*>.*?</h2>', '<h2 id="lead-title" class="scroll-reveal" style="--reveal-index:0">Não sabe qual endereço<br />é o certo? Ou seu imóvel<br />está parado?</h2>')
-sub_re(r'<p class="lead-sub[^"]*"[^>]*>.*?</p>', '<p class="lead-sub scroll-reveal" style="--reveal-index:1">Escolha seu perfil no formulário e vamos conversar.</p>')
-s = s.replace('Ajuda pra decidir se o espaço serve pro seu negócio', 'Leitura da localização para quem procura um ponto')
-s = s.replace('Atendimento direto com a Oliveira Imóveis', 'Estratégia para quem quer alugar o imóvel parado')
-s = s.replace('aria-label="Quero saber os detalhes dessa loja"', 'aria-label="Quero falar com a Oliveira Imóveis"')
-s = s.replace('<span>Quero saber os detalhes</span>', '<span>Quero falar com a Oliveira</span>')
+# --- seções abaixo do hero (perfis/fotos do case e faixa de benefícios): REMOVIDAS, só o formulário ---
+sub_re(r'<section class="transform".*?</section>', '')
+sub_re(r'<section class="lead".*?</section>', '')
 
 # --- rodapé ---
 sub_re(r'<p class="footer__text">.*?</p>', '<p class="footer__text">Mais do que alugar e administrar imóveis comerciais<br />em Belo Horizonte.</p>')

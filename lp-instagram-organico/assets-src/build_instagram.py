@@ -29,8 +29,6 @@ sub('<meta name="robots" content="index, follow" />', '<meta name="robots" conte
 imgs = re.findall(r'<img src="(data:image/[^"]+)"[^>]*alt="Fachada do Centro Comercial Iracema', s)
 assert imgs, 'fachada não encontrada'
 fachada = imgs[0]
-sub_re(r'(<div class="hero__bg"><img src=")data:image/[^"]+("[^>]*?alt=")[^"]*(")',
-       '\\1' + fachada + '\\2Fachada do Centro Comercial Iracema, Rua Palmira, Serra, Belo Horizonte, case da Oliveira Imóveis.\\3') if False else None
 s = re.sub(r'(<div class="hero__bg"><img src=")data:image/[^"]+("[^>]*?alt=")[^"]*(")',
            lambda m: m.group(1) + fachada + m.group(2) + 'Fachada do Centro Comercial Iracema, Rua Palmira, Serra, Belo Horizonte, case da Oliveira Imóveis.' + m.group(3), s, count=1, flags=re.S)
 
@@ -46,7 +44,6 @@ sub_re(r'<p class="hero__text">.*?</p>', '''<p class="hero__text">
     </p>''')
 sub_re(r'<h2 class="hero-form__title" id="hero-form-title">.*?</h2>', '<h2 class="hero-form__title" id="hero-form-title">Olá, quero falar com a<br />Oliveira Imóveis.</h2>')
 sub('aria-label="Quero saber os detalhes dessa loja"><span>Quero saber os detalhes</span>', 'aria-label="Quero falar com a Oliveira Imóveis"><span>Quero falar com a Oliveira</span>')
-sub('aria-label="Quero saber os detalhes dessa loja"', 'aria-label="Quero falar com a Oliveira Imóveis"') if 'aria-label="Quero saber os detalhes dessa loja"' in s else None
 
 # --- cartão de provas (site original) ---
 sub_re(r'<aside class="opportunity-card".*?</aside>', '''<aside class="opportunity-card" aria-label="Por que a Oliveira Imóveis">

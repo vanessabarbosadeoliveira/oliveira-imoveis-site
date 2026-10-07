@@ -57,10 +57,11 @@ sub_re(r'<section class="lead".*?</section>', '')
 sub_re(r'<p class="footer__text">.*?</p>', '')
 FOOTER_CSS = """
   /* LP Instagram: logo do rodapé maior, rodapé mais alto */
-  .footer{ padding-block: clamp(28px, 4vw, 48px); }
+  .footer{ padding-block: clamp(28px, 4vw, 48px); flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:18px; }
+  .footer .brand{ display:flex; justify-content:center; }
   .footer .brand img{ width: clamp(210px, 24vw, 320px) !important; height:auto; }
+  .footer__contacts{ justify-content:center; flex-wrap:wrap; }
   @media (max-width: 700px){
-    .footer{ flex-direction:column; justify-content:center; text-align:center; gap:18px; }
     .footer .brand img{ width: min(260px, 72vw) !important; }
   }
 """

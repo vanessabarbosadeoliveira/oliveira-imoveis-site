@@ -280,6 +280,59 @@ async function enviarMetaCAPI(lead, env, request) {
   }
 }
 
+// ——— Meta CAPI para contatos que escrevem direto (WhatsApp / direct) ———
+// Chamado pelo n8n (workflow 26) quando a pessoa responde ao menu "1 empresário / 2 proprietário".
+// Envia LeadEmpresario ou LeadProprietario ao MESMO pixel, para formar público e enriquecer o pixel.
+// action_source "chat": a conversa é a origem (não há página nem clique em anúncio).
+// Autenticação: mesmo token que o worker usa para falar com o n8n (X-Oliveira-Webhook-Token).
+async function enviarMetaEventoChat(d, env) {
+  const nomeEvento = { empresario: "LeadEmpresario", proprietario: "LeadProprietario" }[d.publico_alvo];
+  if (!nomeEvento) return { ok: false, motivo: "publico_alvo inválido" };
+  if (!env.META_CAPI_TOKEN) return { ok: false, motivo: "META_CAPI_TOKEN não configurado" };
+
+  // Tudo que identifica a pessoa vai hasheado (SHA-256). Sem nenhum identificador o Meta não consegue casar: não envia.
+  const user_data = {};
+  const email = String(d.email ?? "").trim().toLowerCase();
+  const fone = telefoneE164(d.telefone);
+  const nome = String(d.nome ?? "").trim().toLowerCase();
+  if (email) user_data.em = [await sha256Hex(email)];
+  if (fone) user_data.ph = [await sha256Hex(fone)];
+  if (nome) user_data.fn = [await sha256Hex(nome.split(" ")[0])];
+  if (!vazio(d.external_id)) user_data.external_id = [await sha256Hex(String(d.external_id))];
+  if (!Object.keys(user_data).length) return { ok: false, motivo: "sem identificador para casar no Meta" };
+
+  const canal = ["whatsapp", "instagram", "facebook_messenger"].includes(d.canal) ? d.canal : "chat";
+  const evento = {
+    event_name: nomeEvento,
+    event_time: Math.floor(Date.now() / 1000),
+    action_source: "chat",
+    user_data,
+    custom_data: {
+      content_name: `${canal}-direto`,
+      publico_alvo: d.publico_alvo,
+      canal,
+      value: 1,
+      currency: "BRL",
+    },
+  };
+  if (!vazio(d.event_id)) evento.event_id = String(d.event_id).slice(0, 120);
+
+  const corpo = { data: [evento] };
+  // test_event_code: aparece em "Testar eventos" do Gerenciador de Eventos sem entrar nos públicos.
+  if (!vazio(d.test_event_code)) corpo.test_event_code = String(d.test_event_code);
+
+  const res = await fetch(
+    `https://graph.facebook.com/${META_API_VERSION}/${META_PIXEL_ID}/events?access_token=${env.META_CAPI_TOKEN}`,
+    { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corpo) }
+  );
+  if (!res.ok) {
+    const txt = await res.text().catch(() => "");
+    await env.LEADS.put("meta:last_error", `${new Date().toISOString()} chat:${d.publico_alvo} status:${res.status} ${txt.slice(0, 300)}`).catch(() => {});
+    return { ok: false, motivo: `Meta respondeu ${res.status}` };
+  }
+  return { ok: true, evento: nomeEvento, identificadores: Object.keys(user_data) };
+}
+
 async function carregarLeads(env) {
   const list = await env.LEADS.list({ prefix: "lead:" });
   const leads = await Promise.all(
@@ -346,6 +399,20 @@ export default {
 
     if (method === "OPTIONS") {
       return new Response(null, { headers: corsHeaders });
+    }
+
+    // POST /meta-evento — n8n (workflow 26) envia LeadEmpresario/LeadProprietario de quem escreveu direto
+    if (method === "POST" && url.pathname === "/meta-evento") {
+      if (request.headers.get("X-Oliveira-Webhook-Token") !== N8N_WEBHOOK_TOKEN) {
+        return new Response(JSON.stringify({ ok: false, motivo: "não autorizado" }), {
+          status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      const d = await request.json().catch(() => ({}));
+      const r = await enviarMetaEventoChat(d, env).catch((e) => ({ ok: false, motivo: String(e).slice(0, 200) }));
+      return new Response(JSON.stringify(r), {
+        status: r.ok ? 200 : 422, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     // POST /lead — recebe e salva lead

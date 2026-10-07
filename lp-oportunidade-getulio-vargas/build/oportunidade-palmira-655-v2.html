@@ -2012,6 +2012,7 @@ async function submitLead(data){
         try{
           var res = await submitLead(values);
           if (res && res.ok){
+            window.__leadEnviado = true; // usado pelo evento SaiuSemPreencher
             trackEvent('form_submit', { form: formId });
             // generate_lead vai SERVER-SIDE pelo worker (Measurement Protocol) — client-side dobraria a contagem (licao LP3)
             if (statusEl) statusEl.textContent = 'Recebemos seus dados! Em breve entraremos em contato.';
@@ -2043,7 +2044,11 @@ async function submitLead(data){
       if(window.fbq){
         if(event === 'scroll_depth') fbq('trackCustom', 'Scroll' + d.percent, {content_name: PAGE, percent: d.percent});
         else if(event === 'engajamento') fbq('track', 'ViewContent', {content_name: PAGE, content_type: 'landing_page', percent: d.percent||0, segundos: d.segundos||0});
-        else if(event === 'saida_pagina') fbq('trackCustom', 'ProfundidadeFinal', {content_name: PAGE, percent: d.percent||0, segundos: d.segundos||0});
+        else if(event === 'saida_pagina'){
+          fbq('trackCustom', 'ProfundidadeFinal', {content_name: PAGE, percent: d.percent||0, segundos: d.segundos||0});
+          // Viu a LP e saiu SEM preencher o formulário (base do público de remarketing de visitantes)
+          if(!window.__leadEnviado) fbq('trackCustom', 'SaiuSemPreencher', {content_name: PAGE, percent: d.percent||0, segundos: d.segundos||0});
+        }
         else if(event === 'cta_click') fbq('trackCustom', 'CTAClick', {content_name: PAGE, cta_location: d.cta_location||''});
       }
     }catch(e){}

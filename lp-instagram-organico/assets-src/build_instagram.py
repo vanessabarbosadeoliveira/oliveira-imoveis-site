@@ -53,7 +53,20 @@ sub_re(r'<section class="transform".*?</section>', '')
 sub_re(r'<section class="lead".*?</section>', '')
 
 # --- rodapé ---
-sub_re(r'<p class="footer__text">.*?</p>', '<p class="footer__text">Mais do que alugar e administrar imóveis comerciais<br />em Belo Horizonte.</p>')
+# Vanessa, 07/10/2026: logo do rodapé maior e sem a frase.
+sub_re(r'<p class="footer__text">.*?</p>', '')
+FOOTER_CSS = """
+  /* LP Instagram: logo do rodapé maior, rodapé mais alto */
+  .footer{ padding-block: clamp(28px, 4vw, 48px); }
+  .footer .brand img{ width: clamp(210px, 24vw, 320px) !important; height:auto; }
+  @media (max-width: 700px){
+    .footer{ flex-direction:column; justify-content:center; text-align:center; gap:18px; }
+    .footer .brand img{ width: min(260px, 72vw) !important; }
+  }
+"""
+# CSS no último </style> do head (vence as regras anteriores por ordem + !important)
+k = s.index('</style>', s.index('/* ============ FOOTER'))
+s = s[:k] + FOOTER_CSS + s[k:]
 
 # --- remove IIFE que usa o hero (background do painel) — mantido, pois .hero__bg img continua existindo ---
 

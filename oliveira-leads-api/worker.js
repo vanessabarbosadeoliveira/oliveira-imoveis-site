@@ -212,7 +212,9 @@ function telefoneE164(tel) {
 // precisa bater com o do navegador para o Meta deduplicar.
 // LPs que já usam SubmitApplication no formulário (Lead só vem qualificado, via MCP).
 // Quando uma LP nova migrar, basta incluir aqui — o evento do servidor precisa ser IGUAL ao do navegador.
-const LPS_SUBMIT_APPLICATION = ["oportunidade-palmira-655-v2", "instagram-organico"];
+// 08/10/2026 (Vanessa): `Lead` volta a ser o evento do envio do formulário em TODAS as LPs (SubmitApplication descartado).
+// Lista vazia = o servidor envia sempre `Lead`, igual ao navegador (event_id + event_name iguais deduplicam).
+const LPS_SUBMIT_APPLICATION = [];
 const ehPalmira655V2 = (lead) => LPS_SUBMIT_APPLICATION.some((lp) => String(lead.pagina_origem || "").includes(lp));
 
 async function enviarMetaCAPI(lead, env, request) {

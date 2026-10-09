@@ -1872,7 +1872,7 @@ async function submitLead(data){
           ph: telefoneMeta(data.telefone),
           fn: String(data.nome || '').trim().toLowerCase().split(' ')[0]
         });
-        fbq('track', 'SubmitApplication', {content_name: CONTENT_NAME, publico_alvo: data.publico_alvo, value: 1, currency: 'BRL'}, {eventID: LEAD_EVENT_ID});
+        fbq('track', 'Lead', {content_name: CONTENT_NAME, publico_alvo: data.publico_alvo, value: 1, currency: 'BRL'}, {eventID: LEAD_EVENT_ID});
         // Evento por público-alvo (base das 2 conversões/públicos no Meta): LeadEmpresario | LeadProprietario
         fbq('trackCustom', data.publico_alvo === 'proprietario' ? 'LeadProprietario' : 'LeadEmpresario', {content_name: CONTENT_NAME, publico_alvo: data.publico_alvo}, {eventID: LEAD_EVENT_ID + '-publico'});
       }

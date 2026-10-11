@@ -4598,6 +4598,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
         if (userData) fbq('init', '26815330474775862', userData);
         fbq('track', 'Lead', Object.assign({ value: 1, currency: 'BRL' }, meta),
             eventId ? { eventID: eventId } : undefined);
+        // Evento por público-alvo (mesma lógica da LP Palmira 655 v2): LeadEmpresario | LeadProprietario.
+        // O Worker envia o mesmo evento pela Conversions API com event_id + '-publico' (deduplicação).
+        if (meta && (meta.publico_alvo === 'empresario' || meta.publico_alvo === 'proprietario')) {
+          fbq('trackCustom', meta.publico_alvo === 'proprietario' ? 'LeadProprietario' : 'LeadEmpresario',
+              { content_name: 'site-home', publico_alvo: meta.publico_alvo },
+              eventId ? { eventID: eventId + '-publico' } : undefined);
+        }
       } catch (e) {}
     };
 
@@ -4720,6 +4727,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     margin-bottom: 14px;
   }
   .oi-modal__error.is-visible { display: block; }
+  .oi-modal__tipo {
+    border: 0;
+    padding: 0;
+    margin: 0 0 14px;
+    min-width: 0;
+  }
+  .oi-modal__tipo legend {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--pine);
+    padding: 0;
+    margin-bottom: 6px;
+  }
+  .oi-modal__opt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border: 1px solid var(--sand);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--canvas);
+    cursor: pointer;
+  }
+  .oi-modal__opt input { margin: 0; flex-shrink: 0; }
+  .oi-modal__opt:has(input:checked) { border-color: var(--clay); }
   .oi-modal__consent {
     display: flex;
     align-items: flex-start;
@@ -4782,6 +4819,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
         <label for="oiModalEmail">Email</label>
         <input type="email" id="oiModalEmail" name="email" autocomplete="email">
       </div>
+      <fieldset class="oi-modal__tipo" id="oiModalTipo">
+        <legend>Quem é você?</legend>
+        <label class="oi-modal__opt">
+          <input type="radio" name="publico_alvo" value="empresario">
+          <span>Sou empresário e procuro um imóvel</span>
+        </label>
+        <label class="oi-modal__opt">
+          <input type="radio" name="publico_alvo" value="proprietario">
+          <span>Sou proprietário e quero alugar meu imóvel</span>
+        </label>
+      </fieldset>
       <label class="oi-modal__consent" for="oiModalConsent">
         <input type="checkbox" id="oiModalConsent" required>
         <span>Li e concordo com os <a href="#" id="oiModalTermosLink">Termos de Uso</a> e a <a href="#" id="oiModalPrivacidadeLink">Política de Privacidade</a>.</span>
@@ -4971,9 +5019,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     var nome = nomeInput.value.trim();
     var waDigits = normalizePhone(waInput.value);
     var email = emailInput.value.trim();
+    var tipoEl = form.querySelector('input[name="publico_alvo"]:checked');
+    var tipo = tipoEl ? tipoEl.value : '';
 
     if (!nome || waDigits.length < 12) {
       errorBox.textContent = 'Preenche nome e WhatsApp pra continuar.';
+      errorBox.classList.add('is-visible');
+      return;
+    }
+    if (!tipo) {
+      errorBox.textContent = 'Escolha uma das opções de "Quem é você?" pra continuar.';
       errorBox.classList.add('is-visible');
       return;
     }
@@ -5006,6 +5061,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     payload.append('nome', nome);
     payload.append('email', email);
     payload.append('telefone', waDigits);
+    payload.append('publico_alvo', tipo);
     payload.append('pagina_origem', 'oliveiraimoveis.ia.br');
     payload.append('utm_source', (pago && p('utm_source')) || cta.utm_source || '');
     payload.append('utm_medium', (pago && p('utm_medium')) || cta.utm_medium || '');
@@ -5051,7 +5107,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     try {
       if (typeof window.oiFireLead === 'function') {
         window.oiFireLead(
-          { method: 'form-modal', cta_text: cta.cta_text || '' },
+          { method: 'form-modal', cta_text: cta.cta_text || '', publico_alvo: tipo },
           eventId,
           { em: email.toLowerCase(), ph: waDigits, fn: nome.toLowerCase().split(' ')[0] }
         );

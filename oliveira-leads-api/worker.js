@@ -217,7 +217,22 @@ function telefoneE164(tel) {
 const LPS_SUBMIT_APPLICATION = [];
 const ehPalmira655V2 = (lead) => LPS_SUBMIT_APPLICATION.some((lp) => String(lead.pagina_origem || "").includes(lp));
 
-async function enviarMetaCAPI(lead, env, request) {
+// IP e user-agent do VISITANTE. Quando o lead chega por um servidor intermediário (o site das páginas de
+// imóvel chama este endpoint pelo back-end), os cabeçalhos da requisição são do servidor, não da pessoa; o
+// back-end repassa os dados reais em `client_ip_address` e `client_user_agent` no corpo. Valores inválidos
+// são descartados e voltamos para os cabeçalhos (comportamento das LPs, que chamam direto do navegador).
+function ipDoVisitante(v) {
+  const ip = String(v ?? "").split(",")[0].trim();
+  const v4 = /^(?:\d{1,3}\.){3}\d{1,3}$/.test(ip);
+  const v6 = /^[0-9a-fA-F:]{2,39}$/.test(ip) && ip.includes(":");
+  return v4 || v6 ? ip : "";
+}
+function uaDoVisitante(v) {
+  const ua = String(v ?? "").trim();
+  return ua && ua.length <= 512 && !/[\u0000-\u001f]/.test(ua) ? ua : "";
+}
+
+async function enviarMetaCAPI(lead, env, request, visitante = {}) {
   if (!env.META_CAPI_TOKEN) return;
   try {
     // Tudo que identifica a pessoa vai hasheado em SHA-256, como a API exige.
@@ -231,8 +246,9 @@ async function enviarMetaCAPI(lead, env, request) {
     if (nome) user_data.fn = [await sha256Hex(nome.split(" ")[0])];
     if (!vazio(lead.fbp)) user_data.fbp = String(lead.fbp);
     if (!vazio(lead.fbc)) user_data.fbc = String(lead.fbc);
-    const ip = request?.headers?.get("CF-Connecting-IP");
-    const ua = request?.headers?.get("User-Agent");
+    // Os dados do visitante enviados no corpo têm prioridade; sem eles, cabeçalhos da requisição.
+    const ip = ipDoVisitante(visitante.ip) || request?.headers?.get("CF-Connecting-IP");
+    const ua = uaDoVisitante(visitante.ua) || request?.headers?.get("User-Agent");
     if (ip) user_data.client_ip_address = ip;
     if (ua) user_data.client_user_agent = ua;
 
@@ -447,6 +463,12 @@ export default {
       // Só aceita os dois valores do formulário; qualquer outro vira vazio (LPs antigas não enviam).
       data.publico_alvo = ["empresario", "proprietario"].includes(data.publico_alvo) ? data.publico_alvo : "";
 
+      // IP e user-agent do visitante (repassados por um back-end intermediário): vão só para o Meta CAPI,
+      // não são gravados no lead nem enviados ao n8n/GA4.
+      const visitante = { ip: data.client_ip_address, ua: data.client_user_agent };
+      delete data.client_ip_address;
+      delete data.client_user_agent;
+
       const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
       const lead = {
         id,
@@ -488,7 +510,7 @@ export default {
       await enviarGA4(lead, env);
 
       // Meta — espelho server-side do Lead do pixel (ver enviarMetaCAPI acima).
-      await enviarMetaCAPI(lead, env, request);
+      await enviarMetaCAPI(lead, env, request, visitante);
 
       return new Response(JSON.stringify({ success: true, id }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },

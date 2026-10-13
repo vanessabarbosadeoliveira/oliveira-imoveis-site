@@ -471,6 +471,20 @@ export default {
 
       const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
+      // Origem do site de imóveis (13/10/2026): toda submissão do site (página de imóvel, "portal"/home,
+      // listagem) ganha UTM ligada à PÁGINA de onde veio, no padrão das LPs (ex.: Palmira 655 v2), para a
+      // Loft/relatórios saberem qual imóvel ou botão levou ao contato. Só preenche o que veio vazio:
+      // tráfego pago para o site mantém as UTMs do anúncio.
+      const paginaSite = String(data.pagina_origem || "").trim().split(/\s+/)[0];
+      if (/^(imovel\/[^\s/]+|portal|imoveis)$/i.test(paginaSite)) {
+        const slug = paginaSite.toLowerCase().replace(/\//g, "-"); // imovel/16 -> imovel-16
+        const botao = !vazio(data.botao_clicado) ? String(data.botao_clicado).trim() : "formulario";
+        if (vazio(data.utm_source)) data.utm_source = "site";
+        if (vazio(data.utm_medium)) data.utm_medium = "formulario";
+        if (vazio(data.utm_campaign)) data.utm_campaign = slug;
+        if (vazio(data.utm_content)) data.utm_content = botao;
+      }
+
       // Idempotência por event_id: o servidor do site de imóveis repete a chamada ~6 s depois (mesmo event_id)
       // e cada lead entrava duas vezes no KV, no painel e no sync do MCP. Só a primeira chegada é processada;
       // a repetida recebe sucesso, para o chamador não tentar de novo. O registro vale 7 dias.

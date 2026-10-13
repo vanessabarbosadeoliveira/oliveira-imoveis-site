@@ -533,6 +533,9 @@ export default {
       const visitante = { ip: data.client_ip_address, ua: data.client_user_agent };
       delete data.client_ip_address;
       delete data.client_user_agent;
+      // Diagnóstico (sem dado pessoal): só registra SE o back-end do site mandou os dois campos válidos, para conferir o
+      // alerta "user agent ausente" da Meta sem olhar o valor. Vai no registro do lead (KV), não ao n8n nem ao GA4.
+      data.visitante_campos = ipDoVisitante(visitante.ip) && uaDoVisitante(visitante.ua) ? "ip+ua" : (ipDoVisitante(visitante.ip) ? "so_ip" : (uaDoVisitante(visitante.ua) ? "so_ua" : "nenhum"));
 
       const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 

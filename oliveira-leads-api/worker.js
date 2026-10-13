@@ -206,6 +206,30 @@ function telefoneE164(tel) {
   return d;
 }
 
+// ——— Lead ÚNICO por telefone (pedido da Vanessa, 13/10/2026) ———
+// Uma pessoa gera UM `Lead` no pixel, mesmo que entre por dois caminhos (formulário do site e WhatsApp direto). O telefone
+// (E.164, hash) é a chave: o primeiro caminho que aparecer conta; o segundo manda só o evento do tipo (LeadEmpresario/Proprietario).
+// Limite: formulário DEPOIS de uma conversa ainda dispara o Lead no navegador (antes de qualquer verificação). Quem conta
+// "pessoas" com exatidão é o relatório do banco (marketing.v_pessoas_por_origem), não o total do pixel.
+async function chaveLeadTelefone(fone) { return fone ? `lt:${await sha256Hex(fone)}` : null; }
+async function leadJaContado(env, chave) { if (!chave) return false; return !!(await env.LEADS.get(chave).catch(() => null)); }
+async function marcarLeadContado(env, chave, origem) {
+  if (!chave) return;
+  await env.LEADS.put(chave, JSON.stringify({ origem, em: new Date().toISOString() }), { expirationTtl: 400 * 24 * 3600 }).catch(() => {});
+}
+// Evento do TIPO (LeadEmpresario / LeadProprietario) também é único por pessoa e por tipo: o mesmo telefone (ou, sem telefone,
+// o mesmo contato) não gera o mesmo tipo duas vezes, nem por duas conversas, nem por formulário + conversa.
+async function chaveTipoPessoa(idPessoa, tipo) { return idPessoa ? `tp:${await sha256Hex(String(idPessoa))}:${tipo}` : null; }
+// Origem do lead para o parâmetro `origem_lead` do evento: site_imovel | site_portal | site_listagem | lp_<nome> | outro.
+function origemDoLead(lead) {
+  const pg = String(lead.pagina_origem || "").trim().split(/\s+/)[0].toLowerCase();
+  if (/^imovel\//.test(pg)) return "site_imovel";
+  if (pg === "portal") return "site_portal";
+  if (pg === "imoveis") return "site_listagem";
+  if (/^oportunidade-/.test(pg)) return "lp_" + pg.replace(/^oportunidade-/, "");
+  return pg ? "outro_" + pg.slice(0, 40) : "outro";
+}
+
 // Decisão de Vanessa (06–07/10/2026, marketing de intenção): SÓ as LPs Palmira 655 v2 e Instagram orgânico
 // já usam SubmitApplication no formulário (Lead passa a vir qualificado, via MCP).
 // As demais LPs seguem enviando `Lead` até serem migradas — o evento do servidor
@@ -269,6 +293,11 @@ async function enviarMetaCAPI(lead, env, request, visitante = {}) {
       custom_data: {
         content_name: origem, value: 1, currency: "BRL",
         ...(lead.publico_alvo ? { publico_alvo: lead.publico_alvo } : {}),
+        // Origem e imóvel dentro do Lead (relatório por origem/imóvel no Gerenciador de Eventos).
+        origem_lead: origemDoLead(lead),
+        ...(!vazio(lead.imovel_id) ? { imovel_id: String(lead.imovel_id).slice(0, 40) } : {}),
+        ...(!vazio(lead.imovel_codigo) ? { imovel_codigo: String(lead.imovel_codigo).slice(0, 40) } : {}),
+        ...(!vazio(lead.botao_clicado) ? { botao: String(lead.botao_clicado).slice(0, 60) } : {}),
       },
     };
     if (!vazio(lead.event_id)) evento.event_id = String(lead.event_id);
@@ -295,6 +324,16 @@ async function enviarMetaCAPI(lead, env, request, visitante = {}) {
       const corpo = await res.text().catch(() => "");
       const erro = `${new Date().toISOString()} lead:${lead.id} status:${res.status} ${corpo.slice(0, 300)}`;
       await env.LEADS.put("meta:last_error", erro).catch(() => {});
+    } else if (fone) {
+      // Esta pessoa já tem Lead: um contato direto posterior (WhatsApp/Instagram) não manda outro.
+      const chave = await chaveLeadTelefone(fone);
+      if (!(await leadJaContado(env, chave))) await marcarLeadContado(env, chave, origemDoLead(lead));
+      if (["empresario", "proprietario"].includes(lead.publico_alvo)) {
+        const chaveTipo = await chaveTipoPessoa(fone, lead.publico_alvo);
+        if (chaveTipo && !(await env.LEADS.get(chaveTipo).catch(() => null))) {
+          await env.LEADS.put(chaveTipo, new Date().toISOString(), { expirationTtl: 400 * 24 * 3600 }).catch(() => {});
+        }
+      }
     }
   } catch (e) {
     const erro = `${new Date().toISOString()} lead:${lead.id} ${String(e).slice(0, 500)}`;
@@ -324,6 +363,16 @@ async function enviarMetaEventoChat(d, env) {
   if (!Object.keys(user_data).length) return { ok: false, motivo: "sem identificador para casar no Meta" };
 
   const canal = ["whatsapp", "instagram", "facebook_messenger"].includes(d.canal) ? d.canal : "chat";
+  // O mesmo TIPO não é enviado duas vezes para a mesma pessoa (telefone ou, sem telefone, o contato). Nada é enviado.
+  const chaveTipo = await chaveTipoPessoa(fone || (!vazio(d.external_id) ? String(d.external_id) : ""), d.publico_alvo);
+  if (chaveTipo && (await env.LEADS.get(chaveTipo).catch(() => null))) {
+    return { ok: true, evento: nomeEvento, evento_enviado: false, lead_enviado: false, motivo: "tipo já contado para esta pessoa" };
+  }
+  // Lead único por telefone: só envia `Lead` se este telefone ainda não gerou Lead (formulário ou outra conversa).
+  // Sem telefone não há como saber: não envia Lead (conservador), só o evento do tipo.
+  const chaveLead = await chaveLeadTelefone(fone);
+  const enviarLead = !!fone && !(await leadJaContado(env, chaveLead));
+  const origemChat = !vazio(d.origem_lead) ? String(d.origem_lead).slice(0, 40) : `${canal}_direto`;
   const evento = {
     event_name: nomeEvento,
     event_time: Math.floor(Date.now() / 1000),
@@ -339,7 +388,18 @@ async function enviarMetaEventoChat(d, env) {
   };
   if (!vazio(d.event_id)) evento.event_id = String(d.event_id).slice(0, 120);
 
-  const corpo = { data: [evento] };
+  const eventos = [evento];
+  if (enviarLead) {
+    eventos.push({
+      event_name: "Lead",
+      event_time: evento.event_time,
+      action_source: "chat",
+      user_data,
+      event_id: `${!vazio(d.event_id) ? String(d.event_id).slice(0, 100) : "chat"}-lead`,
+      custom_data: { content_name: `${canal}-direto`, origem_lead: origemChat, publico_alvo: d.publico_alvo, canal, value: 1, currency: "BRL" },
+    });
+  }
+  const corpo = { data: eventos };
   // test_event_code: aparece em "Testar eventos" do Gerenciador de Eventos sem entrar nos públicos.
   if (!vazio(d.test_event_code)) corpo.test_event_code = String(d.test_event_code);
 
@@ -352,7 +412,12 @@ async function enviarMetaEventoChat(d, env) {
     await env.LEADS.put("meta:last_error", `${new Date().toISOString()} chat:${d.publico_alvo} status:${res.status} ${txt.slice(0, 300)}`).catch(() => {});
     return { ok: false, motivo: `Meta respondeu ${res.status}` };
   }
-  return { ok: true, evento: nomeEvento, identificadores: Object.keys(user_data) };
+  // test_event_code (simulação) não conta: não marca o telefone.
+  if (vazio(d.test_event_code)) {
+    if (enviarLead) await marcarLeadContado(env, chaveLead, origemChat);
+    if (chaveTipo) await env.LEADS.put(chaveTipo, new Date().toISOString(), { expirationTtl: 400 * 24 * 3600 }).catch(() => {});
+  }
+  return { ok: true, evento: nomeEvento, evento_enviado: true, lead_enviado: enviarLead, identificadores: Object.keys(user_data) };
 }
 
 async function carregarLeads(env) {

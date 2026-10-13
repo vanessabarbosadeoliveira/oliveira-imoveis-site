@@ -470,6 +470,22 @@ export default {
       delete data.client_user_agent;
 
       const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+
+      // Idempotência por event_id: o servidor do site de imóveis repete a chamada ~6 s depois (mesmo event_id)
+      // e cada lead entrava duas vezes no KV, no painel e no sync do MCP. Só a primeira chegada é processada;
+      // a repetida recebe sucesso, para o chamador não tentar de novo. O registro vale 7 dias.
+      // Limite: o KV é eventualmente consistente; duas chamadas simultâneas em locais diferentes podem escapar.
+      const eventId = vazio(data.event_id) ? "" : String(data.event_id).trim().slice(0, 120);
+      if (eventId) {
+        const jaRecebido = await env.LEADS.get(`evt:${eventId}`).catch(() => null);
+        if (jaRecebido) {
+          return new Response(JSON.stringify({ success: true, id: jaRecebido, duplicate: true }), {
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+          });
+        }
+        await env.LEADS.put(`evt:${eventId}`, id, { expirationTtl: 7 * 24 * 3600 }).catch(() => {});
+      }
+
       const lead = {
         id,
         timestamp: new Date().toISOString(),

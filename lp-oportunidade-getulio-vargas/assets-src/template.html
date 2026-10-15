@@ -509,6 +509,17 @@
     function ga4ClientId(){
       try{ var m = document.cookie.match(/(?:^|;\s*)_ga=GA\d\.\d\.(\d+\.\d+)/); return m ? m[1] : ''; }catch(err){ return ''; }
     }
+    // id da sessão GA4 (cookie _ga_<ID>): GS1.1.<sessao>.… (antigo) ou GS2.1.s<sessao>$o… (novo).
+    // Vai como ga_session_id para o worker colar o generate_lead server-side na sessão certa.
+    function ga4SessionId(){
+      try{
+        var c = document.cookie.split(';').map(function(x){ return x.trim(); })
+          .filter(function(x){ return x.indexOf('_ga_') === 0; })[0] || '';
+        var v = c.split('=')[1] || '';
+        var m = v.match(/^GS1\.\d\.(\d+)/) || v.match(/^GS2\.\d\.s(\d+)/);
+        return m ? m[1] : '';
+      }catch(err){ return ''; }
+    }
     function lerCookie(nome){
       try{ var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + nome + '=([^;]+)')); return m ? decodeURIComponent(m[1]) : ''; }catch(err){ return ''; }
     }
@@ -570,6 +581,7 @@
         segmento: '{{SEGMENTO}}',
         pagina_origem: PAGINA_ORIGEM,
         ga_client_id: ga4ClientId(),
+        ga_session_id: ga4SessionId(),
         event_id: LEAD_EVENT_ID,
         fbp: lerCookie('_fbp'),
         fbc: metaFbc(),

@@ -116,6 +116,9 @@ const GA4_UTM_FIELD_MAP = {
 
 async function enviarGA4(lead, env) {
   if (!env.GA4_API_SECRET) return;
+  // 14/10/2026: lead de teste (utm_campaign/pagina_origem com 'teste' etc.) não vai ao GA4;
+  // a limpeza do KV não apaga o evento do GA4 (41 eventos de teste em 11/10).
+  if (ehTeste(lead)) return;
   try {
     // Usa o client_id real do cookie _ga do visitante (repassado pela LP no
     // campo ga_client_id) quando disponível — assim o evento se funde à
@@ -155,6 +158,14 @@ async function enviarGA4(lead, env) {
       if (Object.keys(traffic).length > 0) {
         events.push({ name: "session_start", params: { ...traffic, engagement_time_msec: "1" } });
       }
+    }
+    // 14/10/2026 — atribuição: com client_id real o evento ainda caía em (not set)
+    // porque o payload não levava o session_id. A LP agora manda o id da sessão
+    // GA4 (cookie _ga_<ID>, campo ga_session_id); com ele (e engagement_time_msec) o
+    // generate_lead entra na MESMA sessão que já tem origem/mídia.
+    if (clientIdReal && /^\d{6,}$/.test(String(lead.ga_session_id || ""))) {
+      params.session_id = String(lead.ga_session_id);
+      params.engagement_time_msec = "1";
     }
     events.push({ name: "generate_lead", params });
 

@@ -585,10 +585,20 @@ export default {
         ...data,
       };
 
-      await env.LEADS.put(`lead:${id}`, JSON.stringify(lead));
+      // Se o KV recusar a gravação (ex.: limite diário do plano gratuito, erro 429), o lead NÃO pode morrer aqui:
+      // segue para ntfy, n8n (Chatwoot/Loft), GA4 e Meta. Só o painel e o sync_leads do MCP leem do KV, então
+      // um lead sem gravação não aparece no Supabase até ser conferido; por isso o aviso vai no ntfy e no KV de diagnóstico.
+      let kvErro = "";
+      try {
+        await env.LEADS.put(`lead:${id}`, JSON.stringify(lead));
+      } catch (e) {
+        kvErro = String((e && e.message) || e).slice(0, 300);
+        await env.LEADS.put("kv:last_error", `${new Date().toISOString()} lead:${id} ${kvErro}`).catch(() => {});
+      }
 
       // Notificação ntfy.sh
       const msg = [
+        ...(kvErro ? [`⚠️ ATENÇÃO: lead NÃO gravado no KV (${kvErro}). Conferir no Chatwoot/Loft.`] : []),
         `🏢 Novo lead Oliveira Imóveis`,
         `Nome: ${data.nome || "-"}`,
         `Tel: ${data.telefone || "-"}`,
@@ -621,7 +631,7 @@ export default {
       // Meta — espelho server-side do Lead do pixel (ver enviarMetaCAPI acima).
       await enviarMetaCAPI(lead, env, request, visitante);
 
-      return new Response(JSON.stringify({ success: true, id }), {
+      return new Response(JSON.stringify(kvErro ? { success: true, id, kv_gravado: false } : { success: true, id }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }

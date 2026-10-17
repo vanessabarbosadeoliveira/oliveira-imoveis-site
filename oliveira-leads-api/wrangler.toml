@@ -12,3 +12,8 @@ kv_namespaces = [
 [observability]
 enabled = true
 head_sampling_rate = 1
+
+# Sem Cron Triggers. O cron "*/15 * * * *" era do reprocessamento de leads que falhavam no Notion; o Notion foi
+# substituído pelo n8n em 25/09/2026 e o worker não tem scheduled(), então cada disparo virava "Uncaught Exception".
+[triggers]
+crons = []

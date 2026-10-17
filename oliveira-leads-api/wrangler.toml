@@ -7,3 +7,8 @@ keep_vars = true
 kv_namespaces = [
   { binding = "LEADS", id = "e78412fec06348f89c5618fd3be4b7d1" }
 ]
+
+# Logs do Workers (Observability): sem isto o painel mostra os erros mas não a mensagem da exceção.
+[observability]
+enabled = true
+head_sampling_rate = 1

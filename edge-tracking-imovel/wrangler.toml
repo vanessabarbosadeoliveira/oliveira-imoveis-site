@@ -1,0 +1,18 @@
+name = "oliveira-edge-tracking-imovel"
+main = "worker.js"
+compatibility_date = "2026-06-24"
+account_id = "669491c12f3d53a3f28ba3270668efaf"
+workers_dev = false
+
+# So paginas de imovel. A rota mais especifica vence a do site; o resto do site nao passa por este worker.
+routes = [
+  { pattern = "www.oliveiraimoveis.ia.br/imovel/*", zone_name = "oliveiraimoveis.ia.br" }
+]
+
+# Chama o site do Daniel direto, sem passar de novo pelas rotas da zona (evita laco).
+services = [
+  { binding = "SITE", service = "soft-smoke-c987" }
+]
+
+[vars]
+TRACKING_ENABLED = "1"

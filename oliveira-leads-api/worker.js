@@ -267,6 +267,36 @@ function uaDoVisitante(v) {
   return ua && ua.length <= 512 && !/[\u0000-\u001f]/.test(ua) ? ua : "";
 }
 
+// Atribuição pela URL da página (22/10/2026). O site de imóveis manda os UTMs lidos do sessionStorage do navegador
+// (`oli_attr`), mas o `event_source_url` é a URL da aba no momento do envio. Quando o sessionStorage está vazio no
+// envio, os UTMs chegam em branco embora a URL ainda tenha os do anúncio; aí o bloco "Origem do site" abaixo gravava
+// site/formulario e o lead pago virava "direto" (casos de 20 e 21/10, imóvel 23). Só age se `utm_source` veio vazio e
+// só preenche campo vazio: o que o site mandou nunca é sobrescrito. Marca `atribuicao_via` para auditoria.
+const CAMPOS_DA_URL = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "utm_id",
+  "adset_id", "ad_id", "placement", "fbclid", "gclid"];
+function atribuicaoDaUrl(data) {
+  if (!vazio(data.utm_source) || vazio(data.event_source_url)) return [];
+  let params;
+  try {
+    const u = new URL(String(data.event_source_url));
+    if (!/(^|\.)oliveiraimoveis\.ia\.br$/i.test(u.hostname)) return [];
+    params = u.searchParams;
+  } catch {
+    return [];
+  }
+  if (vazio(params.get("utm_source"))) return [];
+  const preenchidos = [];
+  for (const k of CAMPOS_DA_URL) {
+    const v = (params.get(k) || "").trim().slice(0, 500);
+    if (v && vazio(data[k])) { data[k] = v; preenchidos.push(k); }
+  }
+  // Mesmos apelidos que o site manda (conjunto_anuncios = utm_term, anuncio = utm_content).
+  if (vazio(data.conjunto_anuncios) && !vazio(data.utm_term)) data.conjunto_anuncios = data.utm_term;
+  if (vazio(data.anuncio) && !vazio(data.utm_content)) data.anuncio = data.utm_content;
+  if (preenchidos.length) data.atribuicao_via = "event_source_url";
+  return preenchidos;
+}
+
 async function enviarMetaCAPI(lead, env, request, visitante = {}) {
   if (!env.META_CAPI_TOKEN) return;
   try {
@@ -553,7 +583,8 @@ export default {
       // Origem do site de imóveis (13/10/2026): toda submissão do site (página de imóvel, "portal"/home,
       // listagem) ganha UTM ligada à PÁGINA de onde veio, no padrão das LPs (ex.: Palmira 655 v2), para a
       // Loft/relatórios saberem qual imóvel ou botão levou ao contato. Só preenche o que veio vazio:
-      // tráfego pago para o site mantém as UTMs do anúncio.
+      // tráfego pago para o site mantém as UTMs do anúncio (do corpo ou, se vieram vazias, da URL: atribuicaoDaUrl).
+      atribuicaoDaUrl(data);
       const paginaSite = String(data.pagina_origem || "").trim().split(/\s+/)[0];
       if (/^(imovel\/[^\s/]+|portal|imoveis)$/i.test(paginaSite)) {
         const slug = paginaSite.toLowerCase().replace(/\//g, "-"); // imovel/16 -> imovel-16

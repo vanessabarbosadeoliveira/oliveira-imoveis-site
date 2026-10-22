@@ -81,6 +81,12 @@ async function forwardToN8n(lead) {
     fbclid: lead.fbclid && lead.fbclid !== "sem_fbclid" ? lead.fbclid : undefined,
     pagina_origem: lead.pagina_origem || undefined,
     url_origem: lead.event_source_url || undefined,
+    // Dados do imóvel que a LP de proprietários coleta (lp-proprietarios-360). O workflow 00 não os rejeita;
+    // ficam em normalized.raw_payload para o Chatwoot/Loft verem o imóvel quando o 03/07 passar a lê-los.
+    tipo_imovel: !vazio(lead.tipo_imovel) ? String(lead.tipo_imovel).slice(0, 100) : undefined,
+    vinculo: !vazio(lead.vinculo) ? String(lead.vinculo).slice(0, 100) : undefined,
+    local_imovel: !vazio(lead.local_imovel) ? String(lead.local_imovel).slice(0, 100) : undefined,
+    situacao_imovel: !vazio(lead.situacao_imovel) ? String(lead.situacao_imovel).slice(0, 100) : undefined,
   };
   try {
     const res = await fetch(N8N_WEBHOOK_URL, {

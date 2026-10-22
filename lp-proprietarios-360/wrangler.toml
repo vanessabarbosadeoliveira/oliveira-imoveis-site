@@ -1,0 +1,11 @@
+name = "oliveira-lp-proprietarios-360"
+compatibility_date = "2024-09-23"
+account_id = "669491c12f3d53a3f28ba3270668efaf"
+
+# Worker PRÓPRIO desta LP — não toca no worker do site institucional (soft-smoke) nem em /imovel/* (site do Daniel).
+routes = [
+  { pattern = "www.oliveiraimoveis.ia.br/oportunidade-proprietarios-360*", zone_name = "oliveiraimoveis.ia.br" }
+]
+
+[assets]
+directory = "./build"

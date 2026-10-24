@@ -13,6 +13,3 @@ cd "lp-ultima-loja-iracema"
 npx wrangler deploy --config wrangler.toml
 ```
 (usa o login OAuth do wrangler já salvo no computador)
-
-## Velocidade
-Imagens em WebP (`public/loja-iracema/*.webp`, os JPG/PNG originais continuam no disco), fontes do Google carregadas sem bloquear a renderização e `build/_headers` com cache de 7 dias. Para novas imagens: `node tools/lp-perf/webp-referencias.mjs lp-ultima-loja-iracema/build/ultima-loja-iracema.html`.

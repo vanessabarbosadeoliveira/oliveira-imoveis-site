@@ -1,6 +1,8 @@
 # Auditoria de velocidade — site e LPs (24/10/2026)
 
 ## Resumo
+> **Escopo do PR #23:** só a LP Proprietários 360 (a única em uso fora do smoke), as ferramentas `tools/lp-perf` e este relatório. As demais LPs (clínica, Getúlio Vargas, Instagram, Iracema) não estão em uso e a versão otimizada delas ficou guardada na branch `claude/lp-page-speed-demais-lps`, sem PR e sem deploy. Os números abaixo dessas LPs vêm dessa branch.
+
 - O plano da Cloudflare não é o gargalo. As LPs (`/oportunidade-*`, `/ultima-loja-iracema`) já saem do cache de borda (`cf-cache-status: HIT`, TTFB 0,08–0,16 s, Brotli e HTTP/3 ativos). O problema delas era o peso: as páginas de clínica, Getúlio Vargas e Instagram tinham de 0,5 a 1,2 MB de HTML, porque imagens e fontes estavam embutidas em base64.
 - Corrigido nas LPs (PR, não mergeado): nota mobile de 60–91 para 96–99 e LCP de 3–10,5 s para 2,0–2,7 s.
 - O site principal (www, do Daniel) tem outro problema: HTML sem cache de borda e TTFB irregular, mais arquivos estáticos sem cache longo. Nada foi alterado; o pedido está em `pedido-daniel.md`.

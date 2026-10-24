@@ -2,6 +2,8 @@
 
 Pós-processamento das LPs (`lp-*`). Não toca em tracking (pixel, GA4, eventos, worker).
 
+> As LPs de clínica, Getúlio Vargas, Instagram e Iracema ainda estão com base64/imagens pesadas na `main`; a versão otimizada está na branch `claude/lp-page-speed-demais-lps`. Use `externalizar-assets.mjs` se voltarem a ser usadas.
+
 ## Por que existe
 As LPs de clínica, Getúlio Vargas e Instagram são geradas com imagens e fontes em base64 dentro do HTML (HTML de 0,5 a 1,2 MB). O navegador precisa baixar tudo antes de pintar e nada fica em cache. Em 4G lento isso levava o LCP a 8–10 s.
 

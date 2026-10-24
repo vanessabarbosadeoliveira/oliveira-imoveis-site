@@ -1,3 +1,0 @@
-# lp-perf: imagens/fontes sem hash no nome -> cache de 7 dias (HTML continua sem cache)
-/ultima-loja-iracema/public/*
-  Cache-Control: public, max-age=604800

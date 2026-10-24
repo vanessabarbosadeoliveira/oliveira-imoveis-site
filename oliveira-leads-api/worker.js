@@ -467,6 +467,79 @@ async function enviarMetaEventoChat(d, env) {
   return { ok: true, evento: nomeEvento, evento_enviado: true, lead_enviado: enviarLead, identificadores: Object.keys(user_data) };
 }
 
+// ——— Clique no botão "Falar direto no WhatsApp" da LP Proprietários 360 (anúncio provável, 23/10/2026) ———
+// A mensagem do botão não leva mais código. A LP avisa o clique aqui (POST /wa-click) e o workflow 26 do n8n, quando a mensagem
+// chega, pergunta (POST /wa-click/casar) qual clique é o dela: o ÚNICO clique ainda livre nos minutos anteriores à mensagem.
+// É atribuição PROVÁVEL (o WhatsApp não diz quem clicou): com nenhum ou 2+ cliques na janela, não adivinha.
+const WA_CLICK_PREFIXO = "wac:";
+const WA_CLICK_TTL = 6 * 3600; // o KV só aceita expirationTtl >= 60
+const WA_CLICK_JANELA_PADRAO_MIN = 10;
+const WA_CLICK_JANELA_MAX_MIN = 60;
+const WA_CLICK_TOLERANCIA_MS = 30 * 1000; // relógio do navegador/worker e o do Chatwoot não são idênticos
+const WA_CLICK_ORIGEM_OK = "https://www.oliveiraimoveis.ia.br";
+const WA_CLICK_INTERVALO_MS = 20 * 1000; // por IP, por instância do worker (melhor esforço; protege a cota diária de gravações do KV)
+const WA_CLICK_CAMPOS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "utm_id", "adset_id", "ad_id", "placement"];
+const waClickUltimo = new Map();
+const waClickTexto = (v, n = 150) => (vazio(v) ? "" : String(v).trim().slice(0, n));
+
+async function registrarWaClick(data, env, ip = "") {
+  const pagina = String(data.pagina_origem || "").trim().split(/\s+/)[0].toLowerCase();
+  if (pagina !== "oportunidade-proprietarios-360") return { ok: false, motivo: "pagina_origem inválida" };
+  const agora = Date.now();
+  if (ip) {
+    if (agora - (waClickUltimo.get(ip) || 0) < WA_CLICK_INTERVALO_MS) return { ok: true, ignorado: "muitos cliques" };
+    waClickUltimo.set(ip, agora);
+    if (waClickUltimo.size > 500) for (const [k, t] of waClickUltimo) if (agora - t > WA_CLICK_INTERVALO_MS) waClickUltimo.delete(k);
+  }
+  const clique = { t: agora, pagina_origem: pagina };
+  for (const k of WA_CLICK_CAMPOS) {
+    const v = waClickTexto(data[k]);
+    if (v) clique[k] = v;
+  }
+  const versao = waClickTexto(data.lp_variante, 1);
+  if (/^[123]$/.test(versao)) clique.lp_variante = versao;
+  const id = `${WA_CLICK_PREFIXO}${String(agora).padStart(13, "0")}:${Math.random().toString(36).slice(2, 8)}`;
+  await env.LEADS.put(id, JSON.stringify(clique), { expirationTtl: WA_CLICK_TTL });
+  return { ok: true };
+}
+
+async function casarWaClick(d, env) {
+  const fim = Date.parse(String(d.mensagem_em || "")) || Date.now();
+  const janelaMin = Math.min(Math.max(Number(d.janela_min) || WA_CLICK_JANELA_PADRAO_MIN, 1), WA_CLICK_JANELA_MAX_MIN);
+  const ini = fim - janelaMin * 60 * 1000;
+  const conversa = waClickTexto(d.conversation_id, 40);
+  const chaves = [];
+  let cursor;
+  for (let pagina = 0; pagina < 5; pagina++) {
+    const lista = await env.LEADS.list({ prefix: WA_CLICK_PREFIXO, cursor });
+    for (const k of lista.keys) {
+      const t = Number(k.name.slice(WA_CLICK_PREFIXO.length).split(":")[0]);
+      if (t >= ini && t <= fim + WA_CLICK_TOLERANCIA_MS) chaves.push(k.name);
+    }
+    if (lista.list_complete) break;
+    cursor = lista.cursor;
+  }
+  const candidatos = [];
+  for (const nome of chaves) {
+    const c = JSON.parse((await env.LEADS.get(nome)) || "null");
+    if (c && (!c.consumido_por || (conversa && c.consumido_por === conversa))) candidatos.push({ nome, c });
+  }
+  // repetição da mesma conversa (retry do n8n): devolve o mesmo clique
+  const meu = conversa ? candidatos.find((x) => x.c.consumido_por === conversa) : null;
+  const livres = candidatos.filter((x) => !x.c.consumido_por);
+  const escolhido = meu || (livres.length === 1 ? livres[0] : null);
+  if (!escolhido) {
+    return livres.length > 1
+      ? { match: false, motivo: "ambiguo", candidatos: livres.length }
+      : { match: false, motivo: "nenhum_clique_na_janela" };
+  }
+  if (!meu && conversa) {
+    await env.LEADS.put(escolhido.nome, JSON.stringify({ ...escolhido.c, consumido_por: conversa, consumido_em: new Date().toISOString() }), { expirationTtl: WA_CLICK_TTL });
+  }
+  const { t, consumido_por, consumido_em, ...clique } = escolhido.c; // eslint-disable-line no-unused-vars
+  return { match: true, candidatos: 1, segundos_antes_da_mensagem: Math.round((fim - t) / 1000), clique };
+}
+
 async function carregarLeads(env) {
   const list = await env.LEADS.list({ prefix: "lead:" });
   const leads = await Promise.all(
@@ -550,6 +623,33 @@ export default {
     }
 
     // POST /lead — recebe e salva lead
+    if (method === "POST" && url.pathname === "/wa-click") {
+      // Chamado pelo navegador da LP: só o domínio da Oliveira. Sempre responde rápido e nunca derruba a LP.
+      const headers = { ...corsHeaders, "Content-Type": "application/json" };
+      if (request.headers.get("Origin") !== WA_CLICK_ORIGEM_OK) {
+        return new Response(JSON.stringify({ ok: false, motivo: "origem não permitida" }), { status: 403, headers });
+      }
+      const texto = await request.text().catch(() => "");
+      const d = texto.length <= 4000 ? (() => { try { return JSON.parse(texto); } catch { return {}; } })() : {};
+      const r = await registrarWaClick(d, env, request.headers.get("CF-Connecting-IP") || "").catch((e) => {
+        env.LEADS.put("waclick:last_error", `${new Date().toISOString()} ${String((e && e.message) || e).slice(0, 300)}`).catch(() => {});
+        return { ok: false, motivo: "erro" };
+      });
+      return new Response(JSON.stringify(r), { status: r.ok || r.motivo === "erro" ? 200 : 400, headers });
+    }
+
+    if (method === "POST" && url.pathname === "/wa-click/casar") {
+      if (request.headers.get("X-Oliveira-Webhook-Token") !== N8N_WEBHOOK_TOKEN) {
+        return new Response(JSON.stringify({ match: false, motivo: "não autorizado" }), {
+          status: 401,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      const d = await request.json().catch(() => ({}));
+      const r = await casarWaClick(d, env).catch((e) => ({ match: false, motivo: "erro", detalhe: String((e && e.message) || e).slice(0, 200) }));
+      return new Response(JSON.stringify(r), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
     if (method === "POST" && url.pathname === "/lead") {
       let data = {};
       const ct = request.headers.get("Content-Type") || "";

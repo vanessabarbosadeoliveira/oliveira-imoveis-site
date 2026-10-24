@@ -289,10 +289,11 @@ footer div{text-align:right}
 <script>
 (function(){
   var WA='5531953492356';
-  // código de origem: vai no fim de toda mensagem de WhatsApp desta LP (ex.: LP-PROP-V2) para a automação reconhecer a conversa
+  // Desde 23/10/2026 a mensagem não leva mais código: a automação reconhece a frase fixa abaixo (não mudar o texto sem avisar a plataforma)
+  // e o anúncio de onde a pessoa veio vai pelo clique registrado no worker (registrarCliqueWhatsApp), casado com a mensagem pelo horário.
   var vKey=new URLSearchParams(location.search).get('v');
-  var REF='Ref.: LP-PROP-V'+(['1','2','3'].indexOf(vKey)>-1?vKey:'1');
-  var MSG_DIRETO='Olá! Vi o anúncio e quero conversar sobre a locação do meu imóvel comercial com a Oliveira.\n\n'+REF;
+  var vLP=['1','2','3'].indexOf(vKey)>-1?vKey:'1';
+  var MSG_DIRETO='Olá! Vi o anúncio e quero conversar sobre a locação do meu imóvel comercial com a Oliveira.';
   var directUrl='https://wa.me/'+WA+'?text='+encodeURIComponent(MSG_DIRETO);
 
   var PAGE='oportunidade-proprietarios-360'; // content_name no Meta e página nos relatórios
@@ -321,7 +322,7 @@ footer div{text-align:right}
   document.querySelectorAll('[data-cta]').forEach(function(el){
     el.addEventListener('click',function(){
       track('cta_click',{cta_location:el.getAttribute('data-cta')});
-      if(el.dataset.wa) track('whatsapp_click',{cta_location:el.getAttribute('data-cta')});
+      if(el.dataset.wa){track('whatsapp_click',{cta_location:el.getAttribute('data-cta')});registrarCliqueWhatsApp()}
     });
   });
 
@@ -351,6 +352,7 @@ footer div{text-align:right}
   form.addEventListener('focusin',function(){if(!started){started=true;track('form_start',{form:'proprietarios-360'})}});
   // —— envio do lead: mesmo worker e mesmo formato das outras LPs de captação ——
   var LEADS_API_URL='https://oliveira-leads-api.vanessabarbosadeoliveira9.workers.dev/lead';
+  var WA_CLICK_URL=LEADS_API_URL.replace(/\/lead$/,'/wa-click');
   var META_PIXEL_ID='26815330474775862'; // pixel/dataset "Oliveira" (confirmado em 22/10/2026); o evento de proprietário é LeadProprietario
   var qs=new URLSearchParams(location.search);
   function cookie(n){try{var m=document.cookie.match(new RegExp('(?:^|;\\s*)'+n+'=([^;]+)'));return m?decodeURIComponent(m[1]):''}catch(e){return ''}}
@@ -378,6 +380,16 @@ footer div{text-align:right}
     return o;
   }
   capturarAtribuicao();
+  // Clique no botão de WhatsApp: avisa o worker (anúncio + versão da LP, sem dado pessoal) para a plataforma casar com a mensagem que chegar.
+  var ultimoCliqueWa=0;
+  function registrarCliqueWhatsApp(){
+    try{
+      var agora=Date.now();if(agora-ultimoCliqueWa<20000)return;ultimoCliqueWa=agora;
+      var o=attribution(),c={pagina_origem:PAGINA_ORIGEM,lp_variante:vLP};
+      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','utm_id','adset_id','ad_id','placement'].forEach(function(k){if(o[k])c[k]=o[k]});
+      fetch(WA_CLICK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(c),keepalive:true}).catch(function(){});
+    }catch(e){}
+  }
   function enviarLead(payload,tentativa){
     return fetch(LEADS_API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true})
       .then(function(r){if(r&&r.ok)return true;throw new Error('status '+(r&&r.status))})
@@ -408,7 +420,7 @@ footer div{text-align:right}
       nome:val('nome'),telefone:fone,
       publico_alvo:'proprietario',segmento:'proprietarios-360',
       tipo_imovel:val('tipo'),vinculo:val('vinculo'),local_imovel:val('local'),situacao_imovel:val('situacao'),
-      lp_variante:REF,
+      lp_variante:'Ref.: LP-PROP-V'+vLP,   // só no cadastro do lead (não vai em mensagem de WhatsApp)
       pagina_origem:PAGINA_ORIGEM,botao_clicado:'form-proprietarios',
       aceite_termos:'Sim',data_aceite:new Date().toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo'}),
       ga_client_id:gaClientId(),event_id:eventId,fbp:cookie('_fbp'),fbc:fbc(),event_source_url:location.href
@@ -419,7 +431,7 @@ footer div{text-align:right}
         form.hidden=true;document.getElementById('form-ok').hidden=false;
       }else{
         // plano B: o lead não chegou ao painel; abre o WhatsApp com os dados para não perder o contato
-        var msg='Olá! Quero conversar sobre a locação do meu imóvel comercial com a Oliveira.\n\nNome: '+val('nome')+'\nVínculo: '+val('vinculo')+'\nTipo: '+val('tipo')+'\nBairro e cidade: '+val('local')+'\nSituação: '+val('situacao')+'\n\n'+REF;
+        var msg='Olá! Quero conversar sobre a locação do meu imóvel comercial com a Oliveira.\n\nNome: '+val('nome')+'\nVínculo: '+val('vinculo')+'\nTipo: '+val('tipo')+'\nBairro e cidade: '+val('local')+'\nSituação: '+val('situacao');
         var a=document.createElement('a');a.href='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);a.target='_blank';a.rel='noopener';a.click();
         status.textContent='Não conseguimos enviar agora. Abrimos o WhatsApp para você falar direto com a Oliveira.';
         btn.disabled=false;

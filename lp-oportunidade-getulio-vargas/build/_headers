@@ -1,0 +1,13 @@
+# lp-perf: assets com hash no nome -> cache imutavel de 1 ano
+/oportunidade-farmacia/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/oportunidade-quiropraxia/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/oportunidade-tricologia/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/oportunidade-recovery/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/oportunidade-palmira-655/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/oportunidade-palmira-655-v2/assets/*
+  Cache-Control: public, max-age=31536000, immutable

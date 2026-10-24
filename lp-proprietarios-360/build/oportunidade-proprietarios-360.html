@@ -20,9 +20,18 @@ fbq('track','PageView');
 <title>Alugue seu imóvel comercial | Oliveira Imóveis</title>
 <meta name="description" content="Seu imóvel comercial está vazio ou os interessados não avançam? Conheça a estratégia de locação da Oliveira Imóveis em BH.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"></noscript>
+<!-- foto da primeira tela segue o anuncio (?v=1|2|3): baixa so a foto certa, com prioridade alta, sem baixar a padrao antes -->
+<script>
+(function(){var A={'1':'/oportunidade-proprietarios-360/assets/foto-vazio.webp','2':'/oportunidade-proprietarios-360/assets/foto-placa.webp','3':'/oportunidade-proprietarios-360/assets/foto-clinica.webp'};
+var k=new URLSearchParams(location.search).get('v');var u=A[k]||A['1'];
+var l=document.createElement('link');l.rel='preload';l.as='image';l.href=u;l.setAttribute('fetchpriority','high');document.head.appendChild(l);})();
+</script>
 <style>
-:root{--ink:#172d20;--body:#1f2823;--gold:#a68633;--green:#053d1a;--mist:#f3f6f1;--line:#dfe5dc;--muted:#56655c;--f:"Montserrat",system-ui,sans-serif}
+@font-face{font-family:"Montserrat Fallback";src:local("Arial");size-adjust:113.5%;ascent-override:84.9%;descent-override:22%;line-gap-override:0%}
+:root{--ink:#172d20;--body:#1f2823;--gold:#a68633;--green:#053d1a;--mist:#f3f6f1;--line:#dfe5dc;--muted:#56655c;--f:"Montserrat","Montserrat Fallback",system-ui,sans-serif}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:16px}
 body{margin:0;font:400 16px/1.6 var(--f);color:var(--body);background:#fff;letter-spacing:-.012em}
@@ -171,18 +180,18 @@ footer div{text-align:right}
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=26815330474775862&ev=PageView&noscript=1" alt=""></noscript>
 <main>
 
-<div class="m-photo"><img id="m-hero-img" src="/oportunidade-proprietarios-360/assets/foto-vazio.jpg" alt="Loja comercial vazia, com piso claro e vidraças"></div>
+<div class="m-photo"><img id="m-hero-img" alt="Loja comercial vazia, com piso claro e vidraças" fetchpriority="high" decoding="async"><noscript><img src="/oportunidade-proprietarios-360/assets/foto-vazio.webp" width="1080" height="694" alt="Loja comercial vazia, com piso claro e vidraças"></noscript></div>
 
 <section class="hero">
 <div class="hero-copy">
-<img class="logo" src="/oportunidade-proprietarios-360/assets/logo-claro.png" alt="Oliveira Imóveis, especialistas em imóveis comerciais">
+<img class="logo" width="660" height="120" src="/oportunidade-proprietarios-360/assets/logo-claro.webp" alt="Oliveira Imóveis, especialistas em imóveis comerciais">
 <h1 class="t">Seu imóvel comercial precisa de <b>estratégia</b> para alugar.</h1>
 <p class="lead">Seu imóvel está vazio, a divulgação não traz retorno ou os interessados não avançam? A Oliveira analisa o ponto, apresenta seu espaço e filtra os contatos para buscar um inquilino compatível.</p>
 <p class="gold" id="gancho">Descubra como acelerar a locação do seu imóvel.</p>
 <div class="chips"><span class="chip">Análise do ponto comercial</span><span class="chip">Apresentação com tour 360°</span><span class="chip">Divulgação direcionada</span><span class="chip">Triagem de interessados</span></div>
 </div>
 <div class="hero-form" id="contato">
-<img id="hero-img" src="/oportunidade-proprietarios-360/assets/foto-vazio.jpg" alt="">
+<img id="hero-img" alt="" decoding="async">
 <form class="form" id="lead-form" novalidate>
 <div><h3>Apresente seu imóvel</h3><p class="sub">Uma conversa sobre seu imóvel e como podemos trabalhar juntos.</p></div>
 <div><label for="nome">Seu nome *</label><input class="field" id="nome" name="nome" autocomplete="name" required maxlength="100"></div>
@@ -210,7 +219,7 @@ footer div{text-align:right}
 </section>
 
 <section class="tour" id="tour">
-<div class="tour-media" id="tour-media"><img src="/oportunidade-proprietarios-360/assets/andradas.jpg" alt="Interior da loja na Avenida dos Andradas, Santa Efigênia, Belo Horizonte"></div>
+<div class="tour-media" id="tour-media"><img src="/oportunidade-proprietarios-360/assets/andradas.webp" width="1280" height="960" alt="Interior da loja na Avenida dos Andradas, Santa Efigênia, Belo Horizonte"></div>
 <div class="tour-card">
 <div class="eyebrow">Um dos diferenciais da nossa apresentação</div>
 <h2 class="t">Tour virtual 360°: <b>mais clareza</b> antes da visita.</h2>
@@ -236,9 +245,9 @@ footer div{text-align:right}
 <div class="wrap">
 <div class="intro"><div class="eyebrow">Seu imóvel, seu momento</div><h2 class="t">O que você precisa <b>resolver agora?</b></h2><p>Imóvel vazio, divulgação e seleção de interessados fazem parte da mesma conversa. Entendemos seu momento para trabalhar a locação do seu espaço.</p></div>
 <div class="rcards">
-<article class="rcard"><img src="/oportunidade-proprietarios-360/assets/foto-vazio.jpg" alt="Loja comercial vazia" loading="lazy"><div><h3 class="t">Meu imóvel está <b>vazio</b></h3><p>O aluguel não entra, mas despesas como IPTU, condomínio e manutenção podem continuar. Vamos entender como seu imóvel está sendo posicionado para locação.</p><p class="gold" style="font-size:15px">Descubra como acelerar a locação.</p></div></article>
-<article class="rcard"><img src="/oportunidade-proprietarios-360/assets/foto-placa.jpg" alt="Fachada com placa de aluga-se" loading="lazy"><div><h3 class="t">Só a placa <b>não basta</b></h3><p>Analisar o ponto, apresentar suas características e direcionar a divulgação ajuda o interessado a entender se o espaço atende ao seu negócio.</p><p class="gold" style="font-size:15px">Conheça nosso método.</p></div></article>
-<article class="rcard"><img src="/oportunidade-proprietarios-360/assets/foto-clinica.jpg" alt="Consultório mobiliado" loading="lazy"><div><h3 class="t">Um inquilino <b>compatível</b></h3><p>Buscamos compatibilidade entre o imóvel e as necessidades do negócio, com triagem antes da visita presencial.</p><p class="gold" style="font-size:15px">Descubra como atrair o inquilino certo.</p></div></article>
+<article class="rcard"><img src="/oportunidade-proprietarios-360/assets/foto-vazio.webp" width="1080" height="694" alt="Loja comercial vazia" loading="lazy"><div><h3 class="t">Meu imóvel está <b>vazio</b></h3><p>O aluguel não entra, mas despesas como IPTU, condomínio e manutenção podem continuar. Vamos entender como seu imóvel está sendo posicionado para locação.</p><p class="gold" style="font-size:15px">Descubra como acelerar a locação.</p></div></article>
+<article class="rcard"><img src="/oportunidade-proprietarios-360/assets/foto-placa.webp" width="1080" height="653" alt="Fachada com placa de aluga-se" loading="lazy"><div><h3 class="t">Só a placa <b>não basta</b></h3><p>Analisar o ponto, apresentar suas características e direcionar a divulgação ajuda o interessado a entender se o espaço atende ao seu negócio.</p><p class="gold" style="font-size:15px">Conheça nosso método.</p></div></article>
+<article class="rcard"><img src="/oportunidade-proprietarios-360/assets/foto-clinica.webp" width="1080" height="665" alt="Consultório mobiliado" loading="lazy"><div><h3 class="t">Um inquilino <b>compatível</b></h3><p>Buscamos compatibilidade entre o imóvel e as necessidades do negócio, com triagem antes da visita presencial.</p><p class="gold" style="font-size:15px">Descubra como atrair o inquilino certo.</p></div></article>
 </div>
 </div>
 </section>
@@ -268,7 +277,7 @@ footer div{text-align:right}
 
 </main>
 <footer>
-<img src="/oportunidade-proprietarios-360/assets/logo-escuro.png" alt="Oliveira Imóveis">
+<img src="/oportunidade-proprietarios-360/assets/logo-escuro.webp" width="660" height="120" alt="Oliveira Imóveis">
 <div>Especialistas em imóveis comerciais em BH<br><a href="https://www.oliveiraimoveis.ia.br" target="_blank" rel="noopener">Visite nosso site oficial ↗</a><br>© 2026 Oliveira Imóveis</div>
 </footer>
 
@@ -318,9 +327,9 @@ footer div{text-align:right}
 
   // foto e chamada da primeira tela seguem o anúncio: ?v=1 (vazio), ?v=2 (placa), ?v=3 (inquilino certo)
   var ads={
-    '1':{img:'/oportunidade-proprietarios-360/assets/foto-vazio.jpg',alt:'Loja comercial vazia, com piso claro e vidraças',gancho:'Descubra como acelerar a locação do seu imóvel.'},
-    '2':{img:'/oportunidade-proprietarios-360/assets/foto-placa.jpg',alt:'Fachada com placa de aluga-se',gancho:'Conheça nosso método.'},
-    '3':{img:'/oportunidade-proprietarios-360/assets/foto-clinica.jpg',alt:'Consultório mobiliado',gancho:'Descubra como atrair o inquilino certo.'}
+    '1':{img:'/oportunidade-proprietarios-360/assets/foto-vazio.webp',alt:'Loja comercial vazia, com piso claro e vidraças',gancho:'Descubra como acelerar a locação do seu imóvel.'},
+    '2':{img:'/oportunidade-proprietarios-360/assets/foto-placa.webp',alt:'Fachada com placa de aluga-se',gancho:'Conheça nosso método.'},
+    '3':{img:'/oportunidade-proprietarios-360/assets/foto-clinica.webp',alt:'Consultório mobiliado',gancho:'Descubra como atrair o inquilino certo.'}
   };
   var v=ads[new URLSearchParams(location.search).get('v')]||ads['1'];
   document.getElementById('hero-img').src=v.img;

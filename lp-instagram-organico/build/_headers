@@ -1,0 +1,3 @@
+# lp-perf: assets com hash no nome -> cache imutavel de 1 ano
+/oportunidade-instagram-organico/assets/*
+  Cache-Control: public, max-age=31536000, immutable

@@ -1,0 +1,3 @@
+# lp-perf: imagens sem hash no nome -> cache de 7 dias (HTML continua sem cache)
+/oportunidade-proprietarios-360/assets/*
+  Cache-Control: public, max-age=604800

@@ -10,3 +10,6 @@
 
 Link para o Linktree:
 `https://www.oliveiraimoveis.ia.br/oportunidade-instagram-organico?utm_campaign=bio-linktree&utm_content=linktree`
+
+## Velocidade (pós-processamento obrigatório)
+Depois de rodar o `build.py`, rode `node tools/lp-perf/externalizar-assets.mjs <build/pagina.html>` na raiz do repositório. Sem isso o HTML volta a ter imagens e fontes em base64 (0,5–1,2 MB). Detalhes em `tools/lp-perf/LEIA-ME.md`.

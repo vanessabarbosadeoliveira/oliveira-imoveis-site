@@ -29,11 +29,12 @@ Base: ultima-loja-iracema.html (Versão 1, preservada intacta em campanha-loja-i
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Poppins:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Poppins:wght@400;500;600;700;800&display=swap"></noscript>
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%2307170f'/%3E%3Cpath d='M32 14c-7.2 0-13 5.8-13 13 0 9.7 13 23 13 23s13-13.3 13-23c0-7.2-5.8-13-13-13Z' fill='%23f5f2ec'/%3E%3Ccircle cx='32' cy='27' r='5.5' fill='%23c9a84c'/%3E%3C/svg%3E">
 
-<link rel="preload" as="image" href="/ultima-loja-iracema/public/loja-iracema/04-hero-v2-fachada.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="/ultima-loja-iracema/public/loja-iracema/04-hero-v2-fachada.webp" type="image/webp" fetchpriority="high">
 
 <script type="application/ld+json">
 {
@@ -692,14 +693,14 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 <!-- ============ 1. HERO — reformulado (V2): logo + selo + título + card de características + formulário único, tudo dentro da primeira dobra ============ -->
 <section class="hero" id="hero">
   <div class="hero__visual" aria-hidden="true">
-    <img src="/ultima-loja-iracema/public/loja-iracema/04-hero-v2-fachada.jpg" alt="" width="1889" height="832" fetchpriority="high" decoding="async">
+    <img src="/ultima-loja-iracema/public/loja-iracema/04-hero-v2-fachada.webp" alt="" width="1889" height="832" fetchpriority="high" decoding="async">
     <div class="hero__scrim"></div>
   </div>
 
   <div class="hero__container">
     <div class="hero__content">
       <div class="hero__logo">
-        <img src="/ultima-loja-iracema/public/loja-iracema/logos/oliveira-imoveis.png" alt="" width="44" height="44">
+        <img src="/ultima-loja-iracema/public/loja-iracema/logos/oliveira-imoveis.webp" alt="" width="44" height="44">
         <span class="hero__logo-text">OLIVEIRA <em>IMÓVEIS</em></span>
       </div>
 
@@ -773,7 +774,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
           </label>
 
           <button type="submit" class="btn-whatsapp hero__submit" id="submit-btn">
-            <img src="/ultima-loja-iracema/public/loja-iracema/whassap-btn.png" alt="" width="760" height="253" aria-hidden="true">
+            <img src="/ultima-loja-iracema/public/loja-iracema/whassap-btn.webp" alt="" width="760" height="253" aria-hidden="true">
             <span class="sr-only" id="submit-btn-label">Enviar formulário de contato</span>
           </button>
           <p class="hero__form-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Seus dados estão protegidos. Não compartilhamos suas informações.</p>
@@ -812,11 +813,11 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <div class="reveal">
         <div class="gallery" id="gallery">
-          <figure data-idx="0"><img loading="eager" src="/ultima-loja-iracema/public/loja-iracema/gal-02-terreo.jpg" alt="Visão geral do térreo da loja, com janela e bancada" width="663" height="1179" style="object-position:center 28%"><figcaption>Térreo — visão geral</figcaption></figure>
-          <figure data-idx="1"><img loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/gal-03-interior.jpg" alt="Interior da loja, corredor com parede em destaque" width="1086" height="1448" style="object-position:center 40%"><figcaption>Espaço interno</figcaption></figure>
-          <figure data-idx="2"><img loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/gal-04-escada.jpg" alt="Escada de acesso ao mezanino da loja" width="738" height="976" style="object-position:center 58%"><figcaption>Acesso ao mezanino</figcaption></figure>
-          <figure data-idx="3"><img loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/gal-05-mezanino.jpg" alt="Mezanino da loja, com espaços subdivididos" width="739" height="982" style="object-position:center 45%"><figcaption>Mezanino</figcaption></figure>
-          <figure data-idx="4"><img loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/gal-06-estacionamento.jpg" alt="Estacionamento em frente e contexto do Centro Comercial Iracema durante o dia" width="1200" height="1600" style="object-position:center 32%"><figcaption>Estacionamento e contexto</figcaption></figure>
+          <figure data-idx="0"><img loading="eager" src="/ultima-loja-iracema/public/loja-iracema/gal-02-terreo.webp" alt="Visão geral do térreo da loja, com janela e bancada" width="663" height="1179" style="object-position:center 28%"><figcaption>Térreo — visão geral</figcaption></figure>
+          <figure data-idx="1"><img loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/gal-03-interior.webp" alt="Interior da loja, corredor com parede em destaque" width="1086" height="1448" style="object-position:center 40%"><figcaption>Espaço interno</figcaption></figure>
+          <figure data-idx="2"><img loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/gal-04-escada.webp" alt="Escada de acesso ao mezanino da loja" width="738" height="976" style="object-position:center 58%"><figcaption>Acesso ao mezanino</figcaption></figure>
+          <figure data-idx="3"><img loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/gal-05-mezanino.webp" alt="Mezanino da loja, com espaços subdivididos" width="739" height="982" style="object-position:center 45%"><figcaption>Mezanino</figcaption></figure>
+          <figure data-idx="4"><img loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/gal-06-estacionamento.webp" alt="Estacionamento em frente e contexto do Centro Comercial Iracema durante o dia" width="1200" height="1600" style="object-position:center 32%"><figcaption>Estacionamento e contexto</figcaption></figure>
         </div>
       </div>
     </div>
@@ -835,7 +836,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <article class="ecosystem-card">
         <div class="ecosystem-card__header">
-          <img class="ecosystem-card__logo ecosystem-card__logo--vertical" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/the-control-novo.png" alt="The Control Estúdio Pilates">
+          <img class="ecosystem-card__logo ecosystem-card__logo--vertical" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/the-control-novo.webp" alt="The Control Estúdio Pilates">
           <span class="ecosystem-card__number">Nº 653</span>
         </div>
         <h3 class="ecosystem-card__title">The Control Pilates</h3>
@@ -849,7 +850,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <article class="ecosystem-card">
         <div class="ecosystem-card__header">
-          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/robust.png" alt="Robust Suplementos">
+          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/robust.webp" alt="Robust Suplementos">
           <span class="ecosystem-card__number">Nº 663</span>
         </div>
         <h3 class="ecosystem-card__title">Robust Suplementos</h3>
@@ -864,7 +865,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <article class="ecosystem-card">
         <div class="ecosystem-card__header">
-          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/tumiatti.png" alt="Tumiatti Massas">
+          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/tumiatti.webp" alt="Tumiatti Massas">
           <span class="ecosystem-card__number">Nº 657</span>
         </div>
         <h3 class="ecosystem-card__title">Tumiatti Massas</h3>
@@ -879,7 +880,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <article class="ecosystem-card">
         <div class="ecosystem-card__header">
-          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/eletro-ferragens-miller-original.png" alt="Eletro Ferragens Miller">
+          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/eletro-ferragens-miller-original.webp" alt="Eletro Ferragens Miller">
           <span class="ecosystem-card__number">Nº 659</span>
         </div>
         <h3 class="ecosystem-card__title">Eletro Ferragens Miller</h3>
@@ -895,7 +896,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <article class="ecosystem-card">
         <div class="ecosystem-card__header">
-          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/mundo-dos-bichos.png" alt="Mundo dos Bichos">
+          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/mundo-dos-bichos.webp" alt="Mundo dos Bichos">
           <span class="ecosystem-card__number">Nº 661</span>
         </div>
         <h3 class="ecosystem-card__title">Mundo dos Bichos</h3>
@@ -910,7 +911,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <article class="ecosystem-card">
         <div class="ecosystem-card__header">
-          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/pizza-do-douglas.png" alt="Pizzaria do Douglas">
+          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/pizza-do-douglas.webp" alt="Pizzaria do Douglas">
           <span class="ecosystem-card__number">Nº 665</span>
         </div>
         <h3 class="ecosystem-card__title">Pizzaria do Douglas</h3>
@@ -925,7 +926,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
 
       <article class="ecosystem-card">
         <div class="ecosystem-card__header">
-          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/pamonharia-tres-pontas.png" alt="Pamonharia Três Pontas">
+          <img class="ecosystem-card__logo" loading="lazy" src="/ultima-loja-iracema/public/loja-iracema/logos/pamonharia-tres-pontas.webp" alt="Pamonharia Três Pontas">
           <span class="ecosystem-card__number">Nº 671</span>
         </div>
         <h3 class="ecosystem-card__title">Pamonharia Três Pontas</h3>
@@ -944,7 +945,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
       <h3>O próximo negócio deste ecossistema pode ser o seu.</h3>
       <p>Conheça a última loja disponível no Centro Comercial Iracema.</p>
       <button type="button" class="btn-whatsapp" data-cta="eco-final" data-scroll-to-contact>
-        <img src="/ultima-loja-iracema/public/loja-iracema/whassap-btn.png" alt="" width="760" height="253" aria-hidden="true">
+        <img src="/ultima-loja-iracema/public/loja-iracema/whassap-btn.webp" alt="" width="760" height="253" aria-hidden="true">
         <span class="sr-only">Ir para o formulário de contato</span>
       </button>
     </div>
@@ -1030,7 +1031,7 @@ footer .tagline{font-size:.82rem;color:rgba(245,242,236,.55);max-width:32ch}
     <div class="footer-grid">
       <div>
         <div class="footer-wordmark" style="display:flex;align-items:center;gap:10px">
-          <img src="/ultima-loja-iracema/public/loja-iracema/logos/oliveira-imoveis.png" alt="Oliveira Imóveis" width="30" height="30" style="width:30px;height:30px;border-radius:50%">
+          <img src="/ultima-loja-iracema/public/loja-iracema/logos/oliveira-imoveis.webp" alt="Oliveira Imóveis" width="30" height="30" style="width:30px;height:30px;border-radius:50%">
           OLIVEIRA <em>IMÓVEIS</em>
         </div>
         <p class="tagline">Especialistas em Imóveis Comerciais · Belo Horizonte, MG</p>

@@ -1,0 +1,9 @@
+{
+  "name": "lp-perf",
+  "private": true,
+  "type": "module",
+  "description": "Pos-processamento de velocidade das LPs: tira imagens/fontes embutidas em base64 do HTML e serve como arquivos WebP/WOFF2 com cache longo.",
+  "dependencies": {
+    "sharp": "^0.35.5"
+  }
+}

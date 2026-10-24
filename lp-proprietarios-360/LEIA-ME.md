@@ -10,3 +10,6 @@
 - `criativos/`: criativo 02 (placa de aluga-se) sem o reflexo; não é servido (fora de `build/`).
 - Deploy (somente com aval da Vanessa): `npx wrangler deploy --config wrangler.toml` nesta pasta.
 - Depois de publicar: Gerenciador de Eventos (`Lead` e `LeadProprietario`, Navegador + Servidor desduplicados); `sync_leads` e `paid_without_ad` = 0 nos leads novos.
+
+## Velocidade
+Imagens em WebP (`assets/*.webp`). A foto da primeira tela (`?v=1|2|3`) é escolhida por um script no `<head>` que faz o preload só da foto do anúncio; os `<img>` do hero não têm `src` no HTML (o script do fim da página define). Fonte Montserrat carregada sem bloquear, com fallback de métrica para não gerar CLS. `build/_headers` com cache de 7 dias.
